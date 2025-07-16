@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { CHARACTER_CLASSES, ATTRIBUTES, STARTING_ATTRIBUTES, DICE_PROGRESSION } from '../../../shared/game_data.js';
+import CharacterAvatar from './CharacterAvatar';
 import './CharacterGenerator.css';
 
 const CharacterGenerator = () => {
@@ -25,7 +26,8 @@ const CharacterGenerator = () => {
     fabulaPoints: 3,
     traits: [],
     bonds: [],
-    equipment: []
+    equipment: [],
+    avatar_url: null
   });
 
   const [availablePoints, setAvailablePoints] = useState(STARTING_ATTRIBUTES.total_points);
@@ -75,6 +77,22 @@ const CharacterGenerator = () => {
     }
   };
 
+  const handleAvatarChange = (avatarData) => {
+    if (avatarData) {
+      setCharacter(prev => ({
+        ...prev,
+        avatar_url: avatarData.url,
+        avatar_file: avatarData.file
+      }));
+    } else {
+      setCharacter(prev => ({
+        ...prev,
+        avatar_url: null,
+        avatar_file: null
+      }));
+    }
+  };
+
   const exportCharacter = () => {
     const characterData = {
       ...character,
@@ -88,7 +106,10 @@ const CharacterGenerator = () => {
       created: new Date().toISOString()
     };
     
-    const blob = new Blob([JSON.stringify(characterData, null, 2)], { type: 'application/json' });
+    // Remove file reference for JSON export (keep only URL)
+    const { avatar_file, ...exportData } = characterData;
+    
+    const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
@@ -101,6 +122,16 @@ const CharacterGenerator = () => {
       <h1>🎮 Fabula Ultima Character Generator</h1>
       
       <div className="character-form">
+        {/* Character Avatar Section */}
+        <section className="character-avatar-section">
+          <CharacterAvatar 
+            character={character}
+            onAvatarChange={handleAvatarChange}
+            size="large"
+            showUpload={true}
+          />
+        </section>
+
         <section className="basic-info">
           <h2>Basic Information</h2>
           <div className="form-grid">

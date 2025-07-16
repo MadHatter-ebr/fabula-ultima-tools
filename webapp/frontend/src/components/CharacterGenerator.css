@@ -23,6 +23,18 @@
   gap: 2rem;
 }
 
+/* Character Avatar Section */
+.character-avatar-section {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.character-avatar-section .character-avatar {
+  background: linear-gradient(135deg, #f8f9ff, #e8f2ff);
+  border: 2px solid rgba(102, 126, 234, 0.2);
+}
+
 .basic-info h2,
 .attributes h2,
 .classes h2,

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { STATUS_EFFECTS, DAMAGE_TYPES } from '../../../shared/game_data.js';
+import CharacterAvatar from './CharacterAvatar';
 import './CombatTracker.css';
 
 const CombatTracker = () => {
@@ -208,9 +209,23 @@ const CombatTracker = () => {
                 } ${combatant.currentHp === 0 ? 'defeated' : ''}`}
               >
                 <div className="combatant-header">
-                  <h3>{combatant.name}</h3>
-                  <div className="combatant-type">
-                    {combatant.isPlayer ? '🛡️' : '👹'}
+                  <div className="combatant-avatar">
+                    <CharacterAvatar 
+                      character={{
+                        name: combatant.name,
+                        classes: { primary: combatant.isPlayer ? 'GUARDIAN' : 'ENEMY' },
+                        level: 1,
+                        avatar_url: combatant.avatar_url
+                      }}
+                      size="small"
+                      showUpload={false}
+                    />
+                  </div>
+                  <div className="combatant-info">
+                    <h3>{combatant.name}</h3>
+                    <div className="combatant-type">
+                      {combatant.isPlayer ? '🛡️ Player' : '👹 Enemy'}
+                    </div>
                   </div>
                   <button 
                     className="remove-btn"

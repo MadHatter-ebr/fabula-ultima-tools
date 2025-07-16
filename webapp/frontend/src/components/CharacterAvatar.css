@@ -1,0 +1,341 @@
+/* Character Avatar Styles */
+.character-avatar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.character-avatar:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Avatar Container */
+.avatar-container {
+  position: relative;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.avatar-container:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Size variants */
+.character-avatar.small .avatar-container {
+  width: 60px;
+  height: 60px;
+}
+
+.character-avatar.medium .avatar-container {
+  width: 100px;
+  height: 100px;
+}
+
+.character-avatar.large .avatar-container {
+  width: 150px;
+  height: 150px;
+}
+
+.character-avatar.xlarge .avatar-container {
+  width: 200px;
+  height: 200px;
+}
+
+/* Avatar Image */
+.avatar-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.3s ease;
+}
+
+.avatar-image:hover {
+  transform: scale(1.1);
+}
+
+/* Placeholder */
+.avatar-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+}
+
+.placeholder-emoji {
+  font-size: 2.5rem;
+  margin-bottom: 0.2rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.character-avatar.small .placeholder-emoji {
+  font-size: 1.5rem;
+}
+
+.character-avatar.large .placeholder-emoji {
+  font-size: 3.5rem;
+}
+
+.character-avatar.xlarge .placeholder-emoji {
+  font-size: 4.5rem;
+}
+
+.placeholder-initial {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: white;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  position: absolute;
+  bottom: 0.2rem;
+  right: 0.2rem;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+  width: 1.8rem;
+  height: 1.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.character-avatar.small .placeholder-initial {
+  font-size: 0.8rem;
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+.character-avatar.large .placeholder-initial {
+  font-size: 1.5rem;
+  width: 2.2rem;
+  height: 2.2rem;
+}
+
+.character-avatar.xlarge .placeholder-initial {
+  font-size: 1.8rem;
+  width: 2.8rem;
+  height: 2.8rem;
+}
+
+/* Upload Overlay */
+.upload-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.upload-spinner {
+  width: 30px;
+  height: 30px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top: 3px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Avatar Controls */
+.avatar-controls {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.upload-btn,
+.remove-btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.upload-btn {
+  background: linear-gradient(45deg, #3498db, #2980b9);
+  color: white;
+}
+
+.upload-btn:hover:not(:disabled) {
+  background: linear-gradient(45deg, #2980b9, #3498db);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+}
+
+.upload-btn:disabled {
+  background: #bdc3c7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.remove-btn {
+  background: linear-gradient(45deg, #e74c3c, #c0392b);
+  color: white;
+}
+
+.remove-btn:hover {
+  background: linear-gradient(45deg, #c0392b, #e74c3c);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+}
+
+/* Avatar Info */
+.avatar-info {
+  text-align: center;
+  min-width: 0;
+}
+
+.character-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 0.3rem;
+  word-wrap: break-word;
+  line-height: 1.2;
+}
+
+.character-avatar.small .character-name {
+  font-size: 1rem;
+}
+
+.character-avatar.large .character-name {
+  font-size: 1.4rem;
+}
+
+.character-avatar.xlarge .character-name {
+  font-size: 1.6rem;
+}
+
+.character-class {
+  font-size: 0.9rem;
+  color: #7f8c8d;
+  font-weight: 500;
+  word-wrap: break-word;
+}
+
+.character-avatar.small .character-class {
+  font-size: 0.8rem;
+}
+
+.character-avatar.large .character-class {
+  font-size: 1rem;
+}
+
+.character-avatar.xlarge .character-class {
+  font-size: 1.1rem;
+}
+
+/* Grid layout for multiple avatars */
+.avatar-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  padding: 1rem;
+}
+
+.avatar-grid .character-avatar {
+  flex: 1;
+  min-width: 180px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .character-avatar {
+    padding: 0.75rem;
+  }
+  
+  .avatar-controls {
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+  
+  .upload-btn,
+  .remove-btn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+  }
+  
+  .character-name {
+    font-size: 1rem;
+  }
+  
+  .character-class {
+    font-size: 0.8rem;
+  }
+  
+  .avatar-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .character-avatar.medium .avatar-container {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .character-avatar.large .avatar-container {
+    width: 120px;
+    height: 120px;
+  }
+  
+  .placeholder-emoji {
+    font-size: 2rem;
+  }
+  
+  .character-avatar.large .placeholder-emoji {
+    font-size: 2.8rem;
+  }
+  
+  .avatar-grid {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  }
+}
+
+/* Special effects for different classes */
+.character-avatar[data-class="ARCANIST"] .avatar-container {
+  box-shadow: 0 0 20px rgba(155, 89, 182, 0.5);
+}
+
+.character-avatar[data-class="ELEMENTALIST"] .avatar-container {
+  box-shadow: 0 0 20px rgba(231, 76, 60, 0.5);
+}
+
+.character-avatar[data-class="GUARDIAN"] .avatar-container {
+  box-shadow: 0 0 20px rgba(52, 152, 219, 0.5);
+}
+
+.character-avatar[data-class="ROGUE"] .avatar-container {
+  box-shadow: 0 0 20px rgba(52, 73, 94, 0.5);
+}
+
+.character-avatar[data-class="FURY"] .avatar-container {
+  box-shadow: 0 0 20px rgba(192, 57, 43, 0.5);
+}

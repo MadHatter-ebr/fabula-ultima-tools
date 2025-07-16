@@ -204,19 +204,38 @@
 
 .combatant-header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  gap: 1rem;
   margin-bottom: 1rem;
 }
 
-.combatant-header h3 {
+.combatant-avatar {
+  flex-shrink: 0;
+}
+
+.combatant-avatar .character-avatar {
+  background: transparent;
+  padding: 0;
+  box-shadow: none;
+}
+
+.combatant-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.combatant-info h3 {
   margin: 0;
   color: #333;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
 }
 
 .combatant-type {
-  font-size: 1.5rem;
+  font-size: 0.9rem;
+  color: #666;
+  font-weight: 500;
 }
 
 .remove-btn {

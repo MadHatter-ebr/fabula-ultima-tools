@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import CharacterGenerator from './components/CharacterGenerator';
+import CharacterGallery from './components/CharacterGallery';
 import DiceRoller from './components/DiceRoller';
 import CombatTracker from './components/CombatTracker';
 import RuleReference from './components/RuleReference';
@@ -36,6 +37,7 @@ const App = () => {
 
   const tabs = [
     { id: 'character', name: '🎭 Character Generator', component: CharacterGenerator },
+    { id: 'gallery', name: '🖼️ Character Gallery', component: CharacterGallery },
     { id: 'dice', name: '🎲 Dice Roller', component: DiceRoller },
     { id: 'combat', name: '⚔️ Combat Tracker', component: CombatTracker },
     { id: 'inventory', name: '🎒 Inventory', component: InventoryManager },
