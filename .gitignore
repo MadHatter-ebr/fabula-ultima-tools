@@ -19,6 +19,10 @@ dist/
 .env
 .env.local
 .env.production
+.env.development
+webapp/frontend/.env
+webapp/frontend/.env.local
+webapp/frontend/.env.production
 
 # IDE files
 .vscode/

@@ -1,11 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import CharacterGenerator from './components/CharacterGenerator';
 import DiceRoller from './components/DiceRoller';
 import CombatTracker from './components/CombatTracker';
+import Auth from './components/Auth';
+import { supabase } from './lib/supabase';
 import './App.css';
 
 const App = () => {
   const [activeTab, setActiveTab] = useState('character');
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Get initial session
+    const getInitialSession = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      setUser(session?.user || null);
+      setLoading(false);
+    };
+
+    getInitialSession();
+
+    // Listen for auth changes
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      async (event, session) => {
+        setUser(session?.user || null);
+        setLoading(false);
+      }
+    );
+
+    return () => subscription.unsubscribe();
+  }, []);
 
   const tabs = [
     { id: 'character', name: '🎭 Character Generator', component: CharacterGenerator },
@@ -15,11 +40,36 @@ const App = () => {
 
   const ActiveComponent = tabs.find(tab => tab.id === activeTab)?.component || CharacterGenerator;
 
+  if (loading) {
+    return (
+      <div className="app">
+        <div className="app-loading">
+          <div className="loading-spinner"></div>
+          <p>Loading Fabula Ultima Tools...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!user) {
+    return (
+      <div className="app">
+        <Auth onAuthenticated={setUser} />
+      </div>
+    );
+  }
+
   return (
     <div className="app">
       <header className="app-header">
-        <h1>🎮 Fabula Ultima Tools</h1>
-        <p>Digital tools for the ultimate JRPG tabletop experience</p>
+        <div className="header-content">
+          <div className="header-title">
+            <h1>🎮 Fabula Ultima Tools</h1>
+            <p>Digital tools for the ultimate JRPG tabletop experience</p>
+          </div>
+          
+          <Auth onAuthenticated={setUser} />
+        </div>
         
         <nav className="tab-navigation">
           {tabs.map(tab => (
@@ -35,7 +85,7 @@ const App = () => {
       </header>
       
       <main className="app-main">
-        <ActiveComponent />
+        <ActiveComponent user={user} />
       </main>
       
       <footer className="app-footer">
