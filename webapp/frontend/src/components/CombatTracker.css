@@ -1,245 +1,474 @@
-/* Combat Tracker Styles */
+/* Final Fantasy Style Combat Tracker */
 .combat-tracker {
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 12px;
-  padding: 2rem;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(10px);
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 25%, #16213e 50%, #0f3460 75%, #0a0a0a 100%);
+  color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  position: relative;
+  overflow: hidden;
 }
 
-.combat-tracker h1 {
+.combat-tracker::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.combat-tracker.preparation {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+}
+
+.combat-tracker.combat {
+  background: linear-gradient(135deg, #2d1b69 0%, #11998e 50%, #38ef7d 100%);
+  animation: battlePulse 4s ease-in-out infinite;
+}
+
+@keyframes battlePulse {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.1); }
+}
+
+.ff-header {
+  position: relative;
+  z-index: 2;
   text-align: center;
-  margin-bottom: 2rem;
-  font-size: 2.5rem;
-  background: linear-gradient(45deg, #667eea, #764ba2);
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  border-bottom: 3px solid #4a90e2;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.ff-header h1 {
+  font-size: 3rem;
+  margin: 0 0 1rem 0;
+  background: linear-gradient(45deg, #4a90e2, #7b68ee, #ff6b6b, #4ecdc4);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  text-shadow: 0 0 30px rgba(74, 144, 226, 0.5);
+  animation: titleGlow 3s ease-in-out infinite alternate;
 }
 
-.combat-interface {
-  display: grid;
+@keyframes titleGlow {
+  from { text-shadow: 0 0 30px rgba(74, 144, 226, 0.5); }
+  to { text-shadow: 0 0 50px rgba(74, 144, 226, 0.8); }
+}
+
+.battle-phase-indicator {
+  font-size: 1.5rem;
+  padding: 1rem 2rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 25px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  display: inline-block;
+  backdrop-filter: blur(10px);
+  animation: phaseGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes phaseGlow {
+  from { box-shadow: 0 0 20px rgba(255, 255, 255, 0.3); }
+  to { box-shadow: 0 0 40px rgba(255, 255, 255, 0.5); }
+}
+
+.ff-combat-interface {
+  position: relative;
+  z-index: 2;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
   gap: 2rem;
 }
 
-.combat-setup {
-  background: rgba(255, 255, 255, 0.5);
-  padding: 1.5rem;
-  border-radius: 12px;
-  border: 2px solid rgba(102, 126, 234, 0.2);
+/* Preparation Phase Styles */
+.ff-setup-panel {
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 20px;
+  padding: 2rem;
+  border: 2px solid #4a90e2;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
 }
 
-.combat-setup h2 {
-  margin-bottom: 1rem;
-  color: #333;
+.ff-setup-panel h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
   text-align: center;
+  color: #4a90e2;
+  text-shadow: 0 0 20px rgba(74, 144, 226, 0.5);
 }
 
 .combatant-form {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1rem;
   align-items: end;
 }
 
 .combatant-form input {
-  padding: 0.75rem;
-  border: 2px solid rgba(102, 126, 234, 0.3);
-  border-radius: 8px;
+  padding: 1rem;
+  border: 2px solid rgba(74, 144, 226, 0.5);
+  border-radius: 10px;
   font-size: 1rem;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
 }
 
-.combatant-form label {
+.combatant-form input:focus {
+  outline: none;
+  border-color: #4a90e2;
+  box-shadow: 0 0 20px rgba(74, 144, 226, 0.5);
+}
+
+.combatant-form input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.character-type-toggle {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  color: #333;
-  font-weight: bold;
-}
-
-.combatant-form button {
-  background: linear-gradient(45deg, #667eea, #764ba2);
   color: white;
-  border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 8px;
+  font-weight: bold;
   cursor: pointer;
-  font-size: 1rem;
+  padding: 0.5rem;
+  border-radius: 10px;
   transition: all 0.3s ease;
 }
 
-.combatant-form button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+.character-type-toggle:hover {
+  background: rgba(255, 255, 255, 0.1);
 }
 
-.combat-controls {
-  background: rgba(255, 255, 255, 0.5);
-  padding: 1.5rem;
-  border-radius: 12px;
-  border: 2px solid rgba(102, 126, 234, 0.2);
+.character-type-toggle input {
+  width: auto;
+  margin: 0;
+}
+
+.ff-add-btn {
+  background: linear-gradient(45deg, #4a90e2, #7b68ee);
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
+}
+
+.ff-add-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(74, 144, 226, 0.5);
+  background: linear-gradient(45deg, #7b68ee, #4a90e2);
+}
+
+.ff-start-section {
   text-align: center;
+  padding: 2rem;
 }
 
-.combat-controls h2 {
-  margin-bottom: 1rem;
-  color: #333;
+.ff-start-battle {
+  background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+  color: white;
+  border: none;
+  padding: 1.5rem 4rem;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 30px rgba(255, 107, 107, 0.4);
+  animation: battleButtonPulse 2s ease-in-out infinite;
 }
 
-.control-buttons {
+@keyframes battleButtonPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.ff-start-battle:hover:not(:disabled) {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 15px 40px rgba(255, 107, 107, 0.6);
+}
+
+.ff-start-battle:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  animation: none;
+}
+
+/* Combat Phase Styles */
+.ff-battle-controls {
+  background: rgba(0, 0, 0, 0.9);
+  border-radius: 20px;
+  padding: 2rem;
+  border: 2px solid #4ecdc4;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
+}
+
+.ff-combat-hud {
   display: flex;
-  justify-content: center;
-  gap: 1rem;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.turn-indicator {
+  flex: 1;
+  min-width: 250px;
+}
+
+.turn-indicator h2 {
+  font-size: 2rem;
   margin-bottom: 1rem;
+  color: #4ecdc4;
+  text-shadow: 0 0 20px rgba(78, 205, 196, 0.5);
+}
+
+.current-turn {
+  background: rgba(78, 205, 196, 0.2);
+  border: 2px solid #4ecdc4;
+  border-radius: 15px;
+  padding: 1rem;
+  backdrop-filter: blur(10px);
+}
+
+.active-combatant {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: all 0.5s ease;
+}
+
+.active-combatant.transitioning {
+  opacity: 0.5;
+  transform: scale(0.9);
+}
+
+.turn-name {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+}
+
+.turn-type {
+  font-size: 2rem;
+  animation: typeGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes typeGlow {
+  from { text-shadow: 0 0 10px rgba(255, 255, 255, 0.3); }
+  to { text-shadow: 0 0 20px rgba(255, 255, 255, 0.6); }
+}
+
+.ff-action-buttons {
+  display: flex;
+  gap: 1rem;
   flex-wrap: wrap;
 }
 
-.control-buttons button {
-  background: linear-gradient(45deg, #667eea, #764ba2);
+.ff-turn-btn {
+  background: linear-gradient(45deg, #4ecdc4, #44a08d);
   color: white;
   border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 8px;
+  padding: 1rem 2rem;
+  border-radius: 15px;
   cursor: pointer;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-}
-
-.control-buttons button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
-}
-
-.control-buttons button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-  transform: none;
-}
-
-.start-combat {
-  background: linear-gradient(45deg, #4CAF50, #45a049) !important;
-  box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
-}
-
-.start-combat:hover {
-  box-shadow: 0 6px 20px rgba(76, 175, 80, 0.6) !important;
-}
-
-.end-combat {
-  background: linear-gradient(45deg, #F44336, #D32F2F) !important;
-  box-shadow: 0 4px 15px rgba(244, 67, 54, 0.4);
-}
-
-.end-combat:hover {
-  box-shadow: 0 6px 20px rgba(244, 67, 54, 0.6) !important;
-}
-
-.combat-status {
-  background: rgba(102, 126, 234, 0.1);
-  padding: 1rem;
-  border-radius: 8px;
-  border: 2px solid rgba(102, 126, 234, 0.3);
-}
-
-.combat-status h3 {
-  margin-bottom: 0.5rem;
-  color: #333;
-  font-size: 1.5rem;
-}
-
-.combat-status p {
-  color: #666;
   font-size: 1.1rem;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(78, 205, 196, 0.3);
 }
 
-.combatants-list {
-  background: rgba(255, 255, 255, 0.5);
-  padding: 1.5rem;
-  border-radius: 12px;
-  border: 2px solid rgba(102, 126, 234, 0.2);
+.ff-turn-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(78, 205, 196, 0.5);
 }
 
-.combatants-list h2 {
-  margin-bottom: 1rem;
-  color: #333;
-  text-align: center;
+.ff-turn-btn.next {
+  background: linear-gradient(45deg, #44a08d, #4ecdc4);
 }
 
-.combatants-grid {
+.ff-end-btn {
+  background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+}
+
+.ff-end-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 107, 107, 0.5);
+}
+
+/* Battlefield Layout */
+.ff-battlefield {
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 20px;
+  padding: 2rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
+}
+
+.battlefield-layout {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.party-section {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  padding: 1.5rem;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+}
+
+.party-section.heroes {
+  border-color: #4a90e2;
+  background: rgba(74, 144, 226, 0.1);
+}
+
+.party-section.enemies {
+  border-color: #ff6b6b;
+  background: rgba(255, 107, 107, 0.1);
+}
+
+.party-section h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+}
+
+.party-grid {
+  display: grid;
   gap: 1rem;
 }
 
-.combatant-card {
-  background: rgba(255, 255, 255, 0.8);
-  border-radius: 12px;
+/* FF-Style Combatant Cards */
+.ff-combatant-card {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+  border-radius: 15px;
   padding: 1.5rem;
-  border: 2px solid rgba(102, 126, 234, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
   transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
 
-.combatant-card.player {
-  border-color: #4CAF50;
-  background: rgba(76, 175, 80, 0.1);
+.ff-combatant-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.5s ease;
 }
 
-.combatant-card.enemy {
-  border-color: #F44336;
-  background: rgba(244, 67, 54, 0.1);
+.ff-combatant-card:hover::before {
+  left: 100%;
 }
 
-.combatant-card.current-turn {
-  border-color: #FFD700;
-  background: rgba(255, 215, 0, 0.2);
-  box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+.ff-combatant-card.hero {
+  border-color: #4a90e2;
+  box-shadow: 0 4px 20px rgba(74, 144, 226, 0.2);
+}
+
+.ff-combatant-card.enemy {
+  border-color: #ff6b6b;
+  box-shadow: 0 4px 20px rgba(255, 107, 107, 0.2);
+}
+
+.ff-combatant-card.active-turn {
+  border-color: #ffd700;
+  box-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
   transform: scale(1.02);
+  animation: activeTurnGlow 2s ease-in-out infinite alternate;
 }
 
-.combatant-card.defeated {
-  opacity: 0.5;
+@keyframes activeTurnGlow {
+  from { box-shadow: 0 0 30px rgba(255, 215, 0, 0.6); }
+  to { box-shadow: 0 0 50px rgba(255, 215, 0, 0.8); }
+}
+
+.ff-combatant-card.defeated {
+  opacity: 0.4;
   filter: grayscale(100%);
+  transform: scale(0.95);
 }
 
-.combatant-header {
+.ff-combatant-header {
   display: flex;
   align-items: center;
   gap: 1rem;
   margin-bottom: 1rem;
 }
 
-.combatant-avatar {
+.ff-avatar {
   flex-shrink: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
-.combatant-avatar .character-avatar {
-  background: transparent;
-  padding: 0;
-  box-shadow: none;
-}
-
-.combatant-info {
+.ff-name-initiative {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 0.3rem;
+  gap: 0.5rem;
 }
 
-.combatant-info h3 {
+.ff-name-initiative h4 {
   margin: 0;
+  font-size: 1.2rem;
+  color: white;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.initiative-badge {
+  background: linear-gradient(45deg, #ffd700, #ffed4e);
   color: #333;
-  font-size: 1.1rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  display: inline-block;
+  width: fit-content;
+  box-shadow: 0 2px 10px rgba(255, 215, 0, 0.3);
 }
 
-.combatant-type {
-  font-size: 0.9rem;
-  color: #666;
-  font-weight: 500;
-}
-
-.remove-btn {
-  background: #F44336;
+.ff-remove-btn {
+  background: rgba(255, 107, 107, 0.8);
   color: white;
   border: none;
   width: 30px;
@@ -248,135 +477,271 @@
   cursor: pointer;
   font-size: 1.2rem;
   transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 10px rgba(255, 107, 107, 0.3);
 }
 
-.remove-btn:hover {
-  background: #D32F2F;
+.ff-remove-btn:hover {
+  background: rgba(255, 107, 107, 1);
   transform: scale(1.1);
+  box-shadow: 0 4px 15px rgba(255, 107, 107, 0.5);
 }
 
-.health-bars {
+/* FF-Style Status Bars */
+.ff-status-bars {
   margin-bottom: 1rem;
 }
 
-.health-bar {
+.ff-hp-bar, .ff-mp-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   margin-bottom: 0.5rem;
 }
 
-.health-bar label {
-  display: block;
+.bar-label {
   font-weight: bold;
-  margin-bottom: 0.25rem;
-  color: #333;
-  font-size: 0.9rem;
+  color: white;
+  min-width: 25px;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
 .bar-container {
-  background: rgba(0, 0, 0, 0.1);
+  flex: 1;
+  background: rgba(0, 0, 0, 0.5);
   border-radius: 10px;
   height: 20px;
   overflow: hidden;
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-.bar {
+.bar-fill {
   height: 100%;
-  border-radius: 10px;
   transition: all 0.3s ease;
+  position: relative;
 }
 
-.hp-bar {
-  background: #4CAF50;
+.hp-fill {
+  background: linear-gradient(90deg, #4CAF50, #8BC34A);
 }
 
-.mp-bar {
-  background: #2196F3;
+.mp-fill {
+  background: linear-gradient(90deg, #2196F3, #03A9F4);
 }
 
-.combatant-controls {
+.bar-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+  z-index: 1;
+}
+
+/* FF-Style Action Panel */
+.ff-action-panel {
+  margin-bottom: 1rem;
+}
+
+.ff-quick-actions {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, 1fr);
   gap: 0.5rem;
   margin-bottom: 1rem;
 }
 
-.hp-controls,
-.mp-controls {
-  display: flex;
-  gap: 0.5rem;
-}
-
-.hp-controls button,
-.mp-controls button {
-  flex: 1;
-  background: linear-gradient(45deg, #667eea, #764ba2);
+.ff-action-btn {
+  background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+  border: 2px solid rgba(255, 255, 255, 0.3);
   color: white;
-  border: none;
   padding: 0.5rem;
-  border-radius: 4px;
+  border-radius: 10px;
   cursor: pointer;
   font-size: 0.9rem;
-  transition: all 0.3s ease;
-}
-
-.hp-controls button:hover,
-.mp-controls button:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 10px rgba(102, 126, 234, 0.3);
-}
-
-.initiative-display {
-  text-align: center;
-  margin-bottom: 1rem;
-  padding: 0.5rem;
-  background: rgba(102, 126, 234, 0.1);
-  border-radius: 8px;
-}
-
-.initiative-display span {
   font-weight: bold;
-  color: #333;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
 }
 
-.status-effects h4 {
-  margin-bottom: 0.5rem;
-  color: #333;
-  font-size: 1rem;
+.ff-action-btn.attack {
+  border-color: #ff6b6b;
+  background: linear-gradient(45deg, rgba(255, 107, 107, 0.3), rgba(255, 107, 107, 0.1));
 }
 
-.effects-list {
+.ff-action-btn.magic {
+  border-color: #7b68ee;
+  background: linear-gradient(45deg, rgba(123, 104, 238, 0.3), rgba(123, 104, 238, 0.1));
+}
+
+.ff-action-btn.heal {
+  border-color: #4CAF50;
+  background: linear-gradient(45deg, rgba(76, 175, 80, 0.3), rgba(76, 175, 80, 0.1));
+}
+
+.ff-action-btn.defend {
+  border-color: #4a90e2;
+  background: linear-gradient(45deg, rgba(74, 144, 226, 0.3), rgba(74, 144, 226, 0.1));
+}
+
+.ff-action-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+}
+
+.ff-hp-mp-controls {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+}
+
+.control-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.control-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: all 0.3s ease;
+  min-width: 30px;
+}
+
+.control-btn.damage {
+  border-color: #ff6b6b;
+  background: rgba(255, 107, 107, 0.2);
+}
+
+.control-btn.heal {
+  border-color: #4CAF50;
+  background: rgba(76, 175, 80, 0.2);
+}
+
+.control-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 2px 10px rgba(255, 255, 255, 0.2);
+}
+
+/* FF-Style Status Effects */
+.ff-status-effects {
+  margin-top: 1rem;
+}
+
+.effects-display {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 0.25rem;
   margin-bottom: 0.5rem;
 }
 
-.status-effect {
+.status-badge {
   background: linear-gradient(45deg, #FF9800, #F57C00);
   color: white;
   padding: 0.25rem 0.5rem;
-  border-radius: 15px;
-  font-size: 0.8rem;
+  border-radius: 12px;
+  font-size: 0.7rem;
   cursor: pointer;
   transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(255, 152, 0, 0.3);
 }
 
-.status-effect:hover {
-  background: linear-gradient(45deg, #F57C00, #E65100);
+.status-badge:hover {
   transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(255, 152, 0, 0.5);
 }
 
-.status-effects select {
+.effect-selector {
   width: 100%;
   padding: 0.5rem;
-  border: 2px solid rgba(102, 126, 234, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 8px;
-  font-size: 0.9rem;
-  background: rgba(255, 255, 255, 0.9);
+  font-size: 0.8rem;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
   cursor: pointer;
+  backdrop-filter: blur(5px);
 }
 
+.effect-selector option {
+  background: #333;
+  color: white;
+}
+
+/* Action Log */
+.ff-action-log {
+  background: rgba(0, 0, 0, 0.9);
+  border-radius: 15px;
+  padding: 1.5rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
+}
+
+.ff-action-log h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #4ecdc4;
+  text-shadow: 0 0 15px rgba(78, 205, 196, 0.5);
+}
+
+.log-container {
+  max-height: 300px;
+  overflow-y: auto;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.log-entry {
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: white;
+  font-size: 0.9rem;
+  backdrop-filter: blur(5px);
+  animation: logEntrySlide 0.3s ease-out;
+}
+
+@keyframes logEntrySlide {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.log-entry:last-child {
+  background: rgba(78, 205, 196, 0.2);
+  border: 1px solid rgba(78, 205, 196, 0.3);
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
   .combat-tracker {
+    padding: 1rem;
+  }
+  
+  .ff-header h1 {
+    font-size: 2rem;
+  }
+  
+  .ff-combat-interface {
     padding: 1rem;
   }
   
@@ -384,21 +749,44 @@
     grid-template-columns: 1fr;
   }
   
-  .control-buttons {
+  .ff-combat-hud {
     flex-direction: column;
-    align-items: center;
+    gap: 1rem;
   }
   
-  .combatants-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .combatant-controls {
-    grid-template-columns: 1fr;
-  }
-  
-  .hp-controls,
-  .mp-controls {
+  .ff-action-buttons {
     justify-content: center;
   }
+  
+  .battlefield-layout {
+    grid-template-columns: 1fr;
+  }
+  
+  .ff-quick-actions {
+    grid-template-columns: 1fr;
+  }
+  
+  .ff-hp-mp-controls {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+/* Scrollbar Styling */
+.log-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.log-container::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+.log-container::-webkit-scrollbar-thumb {
+  background: rgba(78, 205, 196, 0.5);
+  border-radius: 4px;
+}
+
+.log-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(78, 205, 196, 0.7);
 }

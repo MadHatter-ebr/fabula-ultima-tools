@@ -39,6 +39,7 @@
 .attributes h2,
 .classes h2,
 .character-stats h2,
+.heroic-styles h2,
 .traits h2 {
   margin-bottom: 1rem;
   color: #333;
@@ -72,6 +73,19 @@
   gap: 1rem;
 }
 
+.attribute-distribution-info {
+  background: rgba(102, 126, 234, 0.1);
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  border-left: 4px solid #667eea;
+}
+
+.attribute-distribution-info p {
+  margin: 0.5rem 0;
+  color: #333;
+}
+
 .attribute-control {
   background: rgba(255, 255, 255, 0.5);
   padding: 1rem;
@@ -86,43 +100,76 @@
   color: #333;
 }
 
-.attribute-value {
+.attribute-selection {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   gap: 0.5rem;
 }
 
-.attribute-value button {
-  background: #667eea;
-  color: white;
-  border: none;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  cursor: pointer;
+.attribute-selection select {
+  padding: 0.5rem;
+  border: 2px solid rgba(102, 126, 234, 0.3);
+  border-radius: 6px;
   font-size: 1rem;
-  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.9);
 }
 
-.attribute-value button:hover {
-  background: #764ba2;
-  transform: scale(1.1);
+.attribute-display {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background: rgba(102, 126, 234, 0.1);
+  border-radius: 6px;
 }
 
-.attribute-value .value {
+.attribute-display .value {
   font-size: 1.2rem;
   font-weight: bold;
-  min-width: 30px;
-  text-align: center;
   color: #333;
 }
 
-.attribute-value .dice-type {
+.attribute-display .dice-type {
   background: linear-gradient(45deg, #667eea, #764ba2);
   color: white;
   padding: 0.25rem 0.5rem;
   border-radius: 15px;
   font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.attribute-display .clear-btn {
+  background: #e74c3c;
+  color: white;
+  border: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  margin-left: auto;
+}
+
+.attribute-display .clear-btn:hover {
+  background: #c0392b;
+  transform: scale(1.1);
+}
+
+.attribute-reminder {
+  background: rgba(241, 196, 15, 0.1);
+  padding: 1rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+  border-left: 4px solid #f1c40f;
+}
+
+.attribute-reminder p {
+  margin: 0;
+  color: #f39c12;
   font-weight: bold;
 }
 
@@ -164,6 +211,286 @@
 .class-info p {
   margin-bottom: 0.5rem;
   color: #555;
+}
+
+.heroic-style-selection {
+  background: rgba(255, 255, 255, 0.5);
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 2px solid rgba(102, 126, 234, 0.2);
+}
+
+.heroic-style-selection select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid rgba(102, 126, 234, 0.3);
+  border-radius: 8px;
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.9);
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+
+.heroic-style-info {
+  padding: 1rem;
+  background: rgba(118, 75, 162, 0.1);
+  border-radius: 8px;
+  border-left: 4px solid #764ba2;
+}
+
+.heroic-style-info p {
+  margin-bottom: 0.5rem;
+  color: #555;
+}
+
+.stat small {
+  font-size: 0.8rem;
+  color: #888;
+  font-weight: normal;
+}
+
+/* Multi-class system styles */
+.class-slot-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.remove-class-btn {
+  background: #e74c3c;
+  color: white;
+  border: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.remove-class-btn:hover {
+  background: #c0392b;
+  transform: scale(1.1);
+}
+
+.class-controls {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.class-controls select {
+  flex: 1;
+}
+
+.class-level-control {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: 2px solid rgba(102, 126, 234, 0.3);
+}
+
+.class-level-control label {
+  font-weight: bold;
+  color: #333;
+}
+
+.class-level-control button {
+  background: #667eea;
+  color: white;
+  border: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.class-level-control button:hover {
+  background: #764ba2;
+  transform: scale(1.1);
+}
+
+.level-value {
+  font-size: 1.1rem;
+  font-weight: bold;
+  min-width: 25px;
+  text-align: center;
+  color: #333;
+}
+
+.add-class-slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.3);
+  border: 2px dashed rgba(102, 126, 234, 0.5);
+  border-radius: 8px;
+  padding: 2rem;
+  min-height: 150px;
+}
+
+.add-class-btn {
+  background: linear-gradient(45deg, #27ae60, #2ecc71);
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 1rem;
+}
+
+.add-class-btn:hover {
+  background: linear-gradient(45deg, #2ecc71, #27ae60);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(46, 204, 113, 0.4);
+}
+
+.add-class-hint {
+  color: #666;
+  font-size: 0.9rem;
+  text-align: center;
+  font-style: italic;
+}
+
+/* Skills system styles */
+.skills-section {
+  margin-top: 1.5rem;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 8px;
+  border: 2px solid rgba(102, 126, 234, 0.3);
+}
+
+.skills-section h4 {
+  color: #667eea;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  border-bottom: 2px solid #667eea;
+  padding-bottom: 0.5rem;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+.skill-item {
+  background: linear-gradient(135deg, #f8f9ff, #e8f2ff);
+  border: 1px solid rgba(102, 126, 234, 0.2);
+  border-radius: 8px;
+  padding: 1rem;
+  transition: all 0.3s ease;
+}
+
+.skill-item:hover {
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
+  transform: translateY(-2px);
+}
+
+.skill-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.skill-header h5 {
+  color: #2c3e50;
+  margin: 0;
+  font-size: 1rem;
+}
+
+.skill-level-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.skill-level-controls button {
+  background: #667eea;
+  color: white;
+  border: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.skill-level-controls button:hover:not(:disabled) {
+  background: #764ba2;
+  transform: scale(1.1);
+}
+
+.skill-level-controls button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.skill-level {
+  font-weight: bold;
+  color: #2c3e50;
+  font-size: 0.9rem;
+  min-width: 30px;
+  text-align: center;
+}
+
+.skill-info {
+  margin-top: 0.5rem;
+}
+
+.skill-info p {
+  margin: 0 0 0.5rem 0;
+  color: #555;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.skill-details {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.skill-type {
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  color: white;
+  padding: 0.2rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.skill-mp {
+  background: rgba(52, 152, 219, 0.2);
+  color: #2980b9;
+  padding: 0.2rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: bold;
 }
 
 .stats-grid {

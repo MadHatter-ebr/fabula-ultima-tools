@@ -47,6 +47,24 @@ CREATE TABLE IF NOT EXISTS characters (
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
+-- Create inventory table
+CREATE TABLE IF NOT EXISTS inventory (
+    id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+    user_id UUID REFERENCES auth.users(id) ON DELETE CASCADE NOT NULL,
+    name TEXT NOT NULL,
+    type TEXT NOT NULL DEFAULT 'misc',
+    quantity INTEGER DEFAULT 1,
+    weight INTEGER DEFAULT 1,
+    description TEXT,
+    value INTEGER DEFAULT 0,
+    rarity TEXT DEFAULT 'common',
+    damage TEXT,
+    handedness TEXT,
+    special TEXT,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
 -- Create campaigns table
 CREATE TABLE IF NOT EXISTS campaigns (
     id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
@@ -169,6 +187,19 @@ CREATE POLICY "GMs can update their own combat sessions" ON combat_sessions
 CREATE POLICY "GMs can delete their own combat sessions" ON combat_sessions
     FOR DELETE USING (auth.uid() = gm_id);
 
+-- Create policies for inventory
+CREATE POLICY "Users can view their own inventory" ON inventory
+    FOR SELECT USING (auth.uid() = user_id);
+
+CREATE POLICY "Users can create their own inventory items" ON inventory
+    FOR INSERT WITH CHECK (auth.uid() = user_id);
+
+CREATE POLICY "Users can update their own inventory items" ON inventory
+    FOR UPDATE USING (auth.uid() = user_id);
+
+CREATE POLICY "Users can delete their own inventory items" ON inventory
+    FOR DELETE USING (auth.uid() = user_id);
+
 -- Create policies for dice_rolls
 CREATE POLICY "Users can view their own dice rolls" ON dice_rolls
     FOR SELECT USING (auth.uid() = user_id);
@@ -238,6 +269,10 @@ CREATE TRIGGER update_combat_sessions_updated_at
     BEFORE UPDATE ON combat_sessions
     FOR EACH ROW EXECUTE FUNCTION public.update_updated_at_column();
 
+CREATE TRIGGER update_inventory_updated_at
+    BEFORE UPDATE ON inventory
+    FOR EACH ROW EXECUTE FUNCTION public.update_updated_at_column();
+
 CREATE TRIGGER update_shared_content_updated_at
     BEFORE UPDATE ON shared_content
     FOR EACH ROW EXECUTE FUNCTION public.update_updated_at_column();
@@ -248,6 +283,8 @@ CREATE INDEX IF NOT EXISTS idx_campaigns_gm_id ON campaigns(gm_id);
 CREATE INDEX IF NOT EXISTS idx_combat_sessions_gm_id ON combat_sessions(gm_id);
 CREATE INDEX IF NOT EXISTS idx_dice_rolls_user_id ON dice_rolls(user_id);
 CREATE INDEX IF NOT EXISTS idx_dice_rolls_character_id ON dice_rolls(character_id);
+CREATE INDEX IF NOT EXISTS idx_inventory_user_id ON inventory(user_id);
+CREATE INDEX IF NOT EXISTS idx_inventory_type ON inventory(type);
 CREATE INDEX IF NOT EXISTS idx_shared_content_user_id ON shared_content(user_id);
 CREATE INDEX IF NOT EXISTS idx_shared_content_public ON shared_content(is_public);
 CREATE INDEX IF NOT EXISTS idx_shared_content_type ON shared_content(content_type);

@@ -1,0 +1,1332 @@
+z
+O
+This document contains
+playtest materials.
+These are mostly untested
+and might be poorly balanced.
+y
+y
+Fabula Ultima is being published by Need Games.
+Find more at:
+www.fabulaultima.com
+www.patreon.com/roosterema
+https://discord.com/invite/G9qGbn2CHANGELOG
+Below you can find the latest updates to the contents of this file.
+Previously Updated: January 23rd, 2025
+w Heroic Style Skills: Agile Defender Style has received a few further tweaks, with the hope of giving
+it a more unique identity. Prophetic Defender Style now grants three uses of Divination during
+conflicts. Fuma Shuriken Style now requires a ranged weapon and is not interrupted by using Crossfire.
+Gunbreaker Style no longer enables Breach on ranged weapons.
+w Core Book Variants (version 1.11): Spellblade no longer grants extra damage with Dexterity, instead
+granting a bonus to the Check (which is no longer automatic for all weapons, since non-DEX based
+weapons are assumed to be MIG + MIG, INS + INS, or WLP + WLP, all of which don't need further help or
+are already in line with a spellcaster's normal need, and said caster won't take Spellblade).
+Last Updated: December 5th, 2024
+w Heroic Style Skills: Agile Defender Style has been made a bit less excessive. Iaido Style now features
+more precise limitations. Palm and Step Style is also unavailable on characters with Triple Slash (due to
+Blade Adept allowing for quadruple hits). Punishing Style has been rewritten more clearly. Clarified that
+Piercing Sorcery Style only applies if the target is hit. Skyspear Style was modified to remove abuse
+from the Teamwork action and the possibility of "softlocking" yourself in the air.
+w Core Book Variants (version 1.10): Stolen Time had the HP loss slightly buffed. Encourage is not
+restricted to conflicts. Magitech Override now also affects elementals. Swapped the position of the
+Defense benefit and elemental benefit of Magitech Armament (the ability to create armaments of
+different elements encourages a more interactive gameplay compared to the Defense bonus, so it
+made sense for it to appear earlier); the armament now also states it always occupies both hand slots.
+Removed firearms from Monkey Grip.
+The rules for Pressure and Stagger now only apply to elites and champions (they proved way too fiddly
+on soldiers).
+Added an optional rule for Category-based Affinities.Previously Updated: November 7th, 2024
+w Heroic Style Skills: Gunbreaker Style is a little more restrictive in terms of applications. Palm and Step
+Style, which was extremely poorly received, has been completely remade. Duelist Style reduces MP costs
+by 5 instead of ignoring them, adding some nuance and preventing playtest Breach spam.
+w Core Book Variants (version 1.9): Condemn and Encourage have been rebuilt to put them a bit closer to
+their original function and mechanics, in the hopes of better qualifying for errata application outside of
+this playtest. The Magitech Armament branch has received some tweaks (+1 Accuracy, +2 damage, and a
+variable bonus to Defenses that scales with Gadgets). Stolen Time similarly has been tweaked to make
+it less attack-reliant and closer to the original version, but still improved in usefulness.
+Added a variant rule for the tonic.
+Modified the rules for battle stances.
+Previously Updated: September 9th, 2024
+Starting with this update, Arcanist Rework and Core Book Reworks will be renamed Variants, so
+as to avoid giving the impression that they are Errata. My fault for a poor naming choice and
+communication on these.
+w Heroic Style Skills: Collector Style is now more precise in its restrictions. Added Gunbreaker Style (once
+again, it's Tails' fault). Added Palm and Step Style. Skyspear Style deals 5 more extra damage. Punishing
+Style cannot be used twice in a row, but allows you to cover and can extend your counter to ranged
+attacks and offensive spells.
+w Core Book Variants (version 1.8): Fixed a typo on magitech armament (the first Accuracy choice is
+Dexterity and Insight, not Dexterity and Might). Reduced the extra damage from Condemn. Removed
+the reduced Accuracy/Magic Check scaling for NPCs, as I've mathed it out and if Players engage with
+the game as expected for those levels, they will absolutely be able to avoid 30-40% of the hits through
+status effects, equipment, and abilities. Breach had its support option slightly weakened, and lets
+physical damage have its time under the spotlight with Vulnerabilities. The Cheap Shot variant has
+also been removed, since I believe single-attack users don't need it (there are other benefits to it that
+compensate).
+Clarified that staggered flying enemies are forced to land.
+Previously Updated: August 11th, 2024
+w Heroic Style Skills: Seven Weapon Style became Collector Style. Added Dark Blessing Style.
+w Arcanist Rework: Arcane Regeneration is now a "may" Skill, no longer mandatory.
+w Core Book Reworks (version 1.7): Added numerous options for Tinkerer; you can now choose whether
+to try a mildly reworked version of the Magitech branch, or fully separate magicannon and magispheres
+into two different branches, each with its own 3 steps: Magitech Armament and Magispheres. Tempest
+Strike has been modified. Retaliation is back to "caring about" the Guard action and covering allies, but
+in a different way that hopefully encourages alternating between different strategies. Introduced the
+Battle Stances system (see end of the document).4
+W
+HEROIC STYLE SKILLS
+W
+The following Heroic Skills provide additional support to builds and playstyles that
+have been widely requested, underrepresented, or could use a bit more nuance.
+w None of these Heroic Skills require mastery of a specific Class; thus, you can acquire
+them whenever you master any Class, provided you fulfill all the listed requirements.
+w A Player Character can only have up to one Heroic Style Skill, and no two characters
+in the same group can share the same Heroic Style Skill.
+w As an optional rule, you might let each Player Character gain their Style Skill at
+character creation. If you do, characters who have no interest in a Style Skill can
+instead pick a Heroic Skill tied to one of their starting Classes. Obviously, this option
+makes the party a bit stronger than normal – one way to address this is to have each
+Player Character skip the first Heroic Skill they would normally gain.
+LIST OF HEROIC STYLE SKILLS
+Heroic Skill Requirements Effect summary
+Dodge 2+ and Become a defensive character
+Agile Defender Style
+Dexterity d10+ based on Dodge.
+Elementally imbue enemies
+Blast Gladiator Style Bone Crusher
+with Bone Crusher.
+Dexterity and/or Negate and deflect ranged
+Bullet Deflection Style
+Insight d10+ attacks with swords.
+Boost the first brawling attack
+Charged Punch Style Withstand
+after Withstand.
+Able to equip one type Gain benefits from always using
+Collector Style
+of martial weapon different weapons.
+Dark Blessing Style Shadow Strike Heal allies with Shadow Strike.
+Detonation Style Basic Alchemy Improve damage potions.
+Able to equip martial Fight better with a single one-
+Duelist Style
+melee weapons handed melee weapon.
+Send your two-handed thrown
+Fūma Shuriken Style Barrage
+weapons spinning.If these Heroic Skills prove solid during playtest, it is possible they will be
+released in the future; for now, please enjoy them and provide feedback!
+LIST OF HEROIC STYLE SKILLS
+Heroic Skill Requirements Effect summary
+Use melee Skills when using a
+Sharpshooter and
+Gunbreaker Style ranged transforming weapon
+Weaponmaster
+form and vice versa.
+Ranged Weapon Unleash three attacks from a
+Gunslinger Style
+Mastery 2+ one-handed firearm.
+Heightened 2+ spells that Change the damage type of
+Element Style deal damage spells and improve them.
+Seize the opportunity when an
+Hidden Weapon Style Cheap Shot
+enemy's Vulnerability is hit.
+Improves staves, improvised,
+Humble Style Willpower d8+
+and non-martial weapons.
+Melee Weapon Sheathe your sword, then strike
+Iaidō Style
+Mastery 2+ with unique effects.
+Investigator Style Flash of Insight Use your deductions in battle.
+Dodge and/or Improves unarmed strikes and
+Palm and Step Style
+Indomitable Spirit grants additional attacks.
+Concentrate Cataclysm upon a
+Piercing Sorcery Style Cataclysm
+single target.
+Prophetic Defender Become a defensive character
+Divination
+Style based on Insight.
+Punishing Style Counterattack Improves Counterattacks.
+Strengthen bows and trigger
+Ranger Style Resourceful
+traps when a conflict begins.
+High Speed and/or Attack or cast a spell after you
+Reaper Style
+Stolen Time defeat an enemy.
+Improves the reach and
+Scorpion Tail Style Dexterity d10+
+flexibility of flails.
+W
+56
+W
+W
+LIST OF HEROIC STYLE SKILLS
+Heroic Skill Requirements Effect summary
+Jump high into the air before
+Skyspear Style Soaring Strike
+Soaring Strike with spears.
+Treat brawling weapons
+Healing Power and
+Thaumaturge Style as arcane and cast Heal or
+Cleanse and/or Heal
+Cleanse after attacks.
+Dexterity and/or Strike twice with heavy and
+Vortex Warrior Style
+Might d10+ sword weapons.
+AGILE DEFENDER STYLE
+Requirements: you must have Skill Level 2 or higher in Dodge (see Rogue), and must
+have a Dexterity base die size of d10 or higher.
+As long as you have no shields and no martial armor equipped, you gain the following
+benefits:
+w You may use the Protect Skill (see Guardian) even if you have not acquired it.
+w You treat your Skill Level in Dodge as being increased by 2 (to a maximum of 5).
+w When you use the Protect Skill during another creature's turn, damage you suffer
+is reduced by an amount equal to【 your current Dexterity die size】 until the end
+of that turn (before applying Affinities).BLAST GLADIATOR STYLE
+Requirements: you must have acquired the Bone Crusher Skill (see Weaponmaster).
+Choose one damage type among air, bolt, dark, earth, fire, ice, light, physical, and
+poison.
+When you use the Bone Crusher Skill on one or more creatures, you may have each of
+those creatures become imbued until the end of the scene.
+After one or more imbued creatures lose Hit Points, each of those creatures stops
+being imbued and you deal an amount of damage of the chosen type equal to【 2 +
+(twice your Skill Level in Bone Crusher)】 to them. The type of this damage cannot be
+changed; this effect deals 5 extra damage if you are level 20 or higher, or 10 extra
+damage if you are level 40 or higher; it also deals an additional 5 extra damage if you
+have a brawling or firearm weapon equipped, or if you have a weapon module (see
+Pilot) equipped.
+BULLET DEFLECTION STYLE (inspired by Tails on Discord!)
+Requirements: you must have a Dexterity base die size of d10 or higher and/or an
+Insight base die size of d10 or higher.
+After a creature you can see performs a ranged attack, you may spend an amount of
+Mind Points equal to【 5 + the Result of their Accuracy Check】 in order to have the
+attack fail automatically against all targets. If you do and the Result of that Accuracy
+Check is an even number, you may have one enemy you can see lose an amount of Hit
+Points equal to that Check's High Roll.
+You can only use this Skill if you have a weapon of the sword Category equipped, and
+it has no effect if the Accuracy Check was a critical success.
+CHARGED PUNCH STYLE
+Requirements: you must have acquired the Withstand Skill (see Fury).
+When you perform the Guard action and activate the Withstand Skill, you may choose
+one brawling weapon you have equipped. If you do, choose one option: double the
+High Roll when determining damage of the next attack you perform with the chosen
+weapon before the end of your next turn; or if the next attack you perform with the
+chosen weapon before the end of your next turn would have its High Roll treated as
+being equal to 0 when determining damage, instead you may use its normal value.
+W
+78
+W
+W
+COLLECTOR STYLE
+Requirements: you must be able to equip martial melee weapons, and/or be able to
+equip martial ranged weapons.
+Your backpack can contain any number of weapons.
+At the end of your turn during a conflict scene, you may perform the Equipment action
+for free.
+When you attack with a weapon during a conflict, if this is the first time you attack with
+that weapon during this conflict, you gain a +5 bonus to your Accuracy Check and the
+attack deals 5 extra damage (the two forms of a transforming custom weapon are still
+considered "the same weapon" for the sake of this effect). This benefit does not apply
+to unarmed strikes, magicannon (see Tinkerer) and twin shields (see Guardian), but it
+does apply as usual to weapon modules (see Pilot).
+DARK BLESSING STYLE
+Requirements: you must have acquired the Shadow Strike Skill (see Darkblade).
+When you lose Hit Points due to your Shadow Strike Skill, if doing so does not reduce
+you to 0 Hit Points, every ally present on the scene recovers an equal amount of Hit
+Points. This amount increases by 5 Hit Points if you are level 20 or higher, or by 10 Hit
+Points if you are level 40 or higher.
+DETONATION STYLE
+Requirements: you must have acquired the basic Alchemy benefit from the Gadget
+Skill (see Tinkerer).
+When you use your Alchemy to create a potion, you can always select effects 3 to 8
+(you can treat those effects as if they had "Any" in the "Die" column of the table). If the
+potion is advanced or superior, its damage ignores Resistances.
+When you succeed on a Check to advance or turn back a Clock, if your approach relied
+on explosives, gunpowder or pyrotechnics, you may fill or erase 1 additional section
+of that Clock.DUELIST STYLE
+Requirements: you must be able to equip martial melee weapons.
+As long as you have a one-handed melee weapon equipped in your main hand slot, if
+that weapon is not an unarmed strike and you have an unarmed strike equipped in
+your off-hand slot, you gain the following benefits:
+w When you deal damage with a weapon that is not an unarmed strike, you may
+double your Accuracy Check's High Roll when determining the attack's damage.
+If you do, you cannot use this option again until the beginning of your next turn.
+w During conflicts, you reduce the MP cost of the following Skills by 5: Bladestorm,
+Breach, Condemn, Encourage, and Provoke (see Fury, Orator, and Weaponmaster).
+These benefits do not apply to weapon modules (see Pilot).
+FŪMA SHURIKEN STYLE
+Requirements: you must have acquired the Barrage Skill (see Sharpshooter).
+During a conflict, you may use an action to perform a free attack with a two-handed
+ranged thrown custom weapon you have equipped. If you do, that attack gains the
+multi (2) property (which can still be enhanced to 3 via the Barrage Skill); if the attack
+hits one or more creatures, you may send your equipped weapon spinning.
+At the start of your turn, if your equipped weapon is still spinning, it stops spinning and
+you choose up to two options: every enemy present on the scene loses 5 Hit Points; or
+every enemy present on the scene loses 5 Mind Points; or every enemy present on the
+scene suffers slow; or fill or erase 1 section of a Clock. The amount of Hit Points and/
+or Mind Points lost increases to 10 if you are level 30 or higher.
+Your weapon stops spinning immediately if you no longer have it equipped, if you
+perform another attack with it, or if the scene ends.
+W
+910
+W
+W
+GUNBREAKER STYLE (it's Tails' fault once again!)
+Requirements: you must have acquired both the Sharpshooter and Weaponmaster Classes.
+As long as you have a transforming custom weapon equipped, if one of its forms is
+melee and the other is ranged, you may use the Bone Crusher and Counterattack Skills
+(see Weaponmaster) with its ranged form, and may use the Crossfire and Warning
+Shot Skills (see Sharpshooter) with its melee form; however, you cannot use Bone
+Crusher and Warning Shot with the same attack. Additionally, both forms are treated
+as being firearms for the sake of allowing the second option of the Hawkeye Skill.
+When you perform the Bone Crusher Skill with a ranged weapon, or when you perform
+the Warning Shot Skill with a melee weapon, your Skill Level in them is treated as
+being increased by 2 (to a maximum of SL 6).
+GUNSLINGER STYLE
+Requirements: you must have Skill Level 2 or higher in Ranged Weapon Mastery (see
+Sharpshooter).
+You may use an action to perform up to three consecutive free attacks with a one-
+handed firearm weapon equipped in your main hand slot (against the same target
+or different targets). If you do, all attacks performed this way follow the rules for
+two-weapon fighting: they lose the multi property and cannot gain it, and you treat
+the High Roll of each Accuracy Check as being equal to 0 when determining damage.
+Additionally, if any attack made this way misses, you lose your rhythm and cannot
+perform the remaining attacks.
+You may use this Skill only if you have a one-handed firearm weapon equipped in your
+main hand slot, if that weapon is not a weapon module (see Pilot) whose text says "A
+personal vehicle with this module enabled cannot have any other weapon modules
+enabled", and if your off-hand slot is empty or contains an unarmed strike.
+HEIGHTENED ELEMENT STYLE
+Requirements: you must have learned two or more spells that deal damage.
+Choose a damage type among air, bolt, dark, earth, fire, ice, light, physical, and poison.
+When you deal damage with a spell, you may change that damage's type to the one
+you have chosen; and as long as a spell you cast deals damage of the chosen type, that
+spell deals 5 extra damage and all its damage ignores Resistances.HIDDEN WEAPON STYLE
+Requirements: you must have acquired the Cheap Shot Skill (see Rogue).
+Choose a status effect among dazed, shaken, slow, and weak.
+After one or more enemies you can see lose Hit Points due to damage dealt by one of
+your allies, if at least one of them is Vulnerable to the type of damage dealt by your
+ally, you may choose one of those enemies. If you do, that enemy loses an amount of
+Hit Points equal to【 half your level + (twice your Skill Level in Cheap Shot)】 and also
+suffer the chosen status effect.
+Once you use this Skill during a conflict, you may not use it again until the beginning
+of your next turn.
+HUMBLE STYLE
+Requirements: you must have a Willpower base die size of d8 or higher.
+When you acquire this Heroic Skill, choose two different Attributes among Dexterity,
+Insight, Might, and Willpower: when you perform an Accuracy Check with a non-
+martial weapon, you may replace the required Attributes with those you have chosen.
+As long as you have two or fewer weapons equipped, your attacks with non-martial
+weapons deal 5 extra damage and you may also treat those weapons as belonging
+to the spear and sword Categories for the sake of Skills that require it; this benefit
+does not apply to unarmed strikes, weapon modules (see Pilot), twin shields (see
+Guardian), and magicannon (see Tinkerer).
+As long as the only weapon you have equipped is a staff (see Core Rulebook, page
+130), you apply all of the above benefits but may also treat that staff as belonging
+to the brawling and heavy Categories for the sake of Skills that require it, and your
+attacks with it deal an additional 5 extra damage.
+Additionally, when you perform an attack using an improvised weapon, you deal 5
+extra damage and may have that weapon not be destroyed after the attack.
+W
+1112
+W
+W
+IAIDŌ STYLE
+Requirements: you must have Skill Level 2 or higher in Melee Weapon Mastery (see
+Weaponmaster).
+When you join a conflict and/or when you enter Crisis for the first time during a conflict,
+if you have exactly one weapon equipped and that weapon is a two-handed sword, or
+if you have exactly one weapon module equipped and that weapon module belongs
+to the sword Category (see Pilot), you may enter a iaidō stance.
+When an enemy you can see begins their turn, if you are in your iaidō stance, you may
+exit it. If you do, you perform a free attack with a weapon belonging to the sword
+Category you have equipped; this attack must include that enemy among its targets.
+When you perform an attack with a weapon belonging to the sword Category, if you
+are in your iaidō stance, you may exit it. If you do, the attack deals extra damage equal
+to【 your Skill Level in Melee Weapon Mastery, multiplied by 5】 and you choose up
+to one option: fill or erase 1 section of a Clock if the attack hits all its targets; or the
+attack can target creatures that cannot be targeted by melee attacks; or each creature
+hit by the attack cannot perform free attacks until the end of the current turn.
+You automatically exit iaidō stance as soon as you no longer have the same sword
+weapon equipped or have more than one weapon or weapon module equipped.
+INVESTIGATOR STYLE
+Requirements: you must have acquired the Flash of Insight Skill (see Loremaster).
+When you perform a Check to examine a creature, item or location during a conflict
+scene, you may memorize the High Roll of that Check.
+When a source deals damage to one or more creatures you can see, you may forget
+one of your memorized High Rolls to choose one option: that source deals extra
+damage to each creature equal to the forgotten High Roll; or reduce damage dealt
+by that source to each creature by an amount equal to the forgotten High Roll (before
+applying Affinities).
+You automatically forget all memorized High Rolls at the end of each scene.PALM AND STEP STYLE
+Requirements: you must have acquired the Dodge Skill (see Rogue) and/or the
+Indomitable Spirit Skill (see Fury), and must not have acquired the Empty Hands or
+The Beast Who Spoke Quirks, nor the Akromorphosis Skill (see Mutant) or the Triple
+Slash Heroic Skill (see High Fantasy Atlas).
+Your unarmed strikes deal extra damage equal to【 twice your Skill Level in
+Indomitable Spirit】, and your Accuracy Checks with them receive a bonus equal to
+【your Skill Level in Dodge】.
+At the end of your turn during a conflict, if you hit two or more times with attacks
+using brawling weapons during that turn, or if you hit two or more creatures with an
+attack using a brawling weapon during that turn, you may perform a free attack with
+a brawling weapon you have equipped. This attack must target a single creature, and
+you treat its High Roll as being equal to 0 when determining damage.
+As long as you have this Heroic Skill, you cannot acquire the Empty Hands or The Beast
+Who Spoke Quirks, and you cannot acquire the Akromorphosis Skill (see Mutant) or
+the Triple Slash Heroic Skill (see High Fantasy Atlas).
+PIERCING SORCERY STYLE
+Requirements: you must have acquired the Cataclysm Skill (see Elementalist).
+Once per turn, when you use the Cataclysm Skill to increase the total MP cost of an
+offensive spell (r) with a target of "Up to three creatures" by 10 or more, if that spell
+targets only one creature, you may double the extra damage granted by Cataclysm. If
+you do and the spell hits its target, you may choose up to two options: damage dealt
+by the spell ignores Resistances; or if the target of the spell is flying, you force them
+to land immediately; or the target of the spell suffers dazed; or the target of the spell
+cannot perform the Guard action during their next turn.
+W
+1314
+W
+W
+PROPHETIC DEFENDER STYLE
+Requirements: you must have learned the Divination spell (see Entropist).
+When you cast the Divination spell during a conflict scene, it will end after forcing
+three rerolls (instead of two).
+When a source causes one or more allies present on the scene to lose Hit Points, if
+you are currently affected by your Divination spell, you may expend one of the forced
+rerolls granted by the spell. If you do, you suffer all those Hit Point losses in place of
+those allies, as separate instances (you cannot choose to suffer only some of them);
+additionally, each of these Hit Point losses is reduced by 5 (example: if a source causes
+you and two of your allies to lose 20 Hit Points each, using this Skill would have
+you lose 15 Hit Points, then 15 Hit Points, and finally another 15 Hit Points). If your
+Divination spell has no forced rerolls remaining after you use this Skill, it ends.
+Additionally, your maximum Hit Points and Crisis score are now calculated based on
+your base Insight die size, instead of your base Might die size.
+PUNISHING STYLE
+Requirements: you must have acquired the Counterattack Skill (see Weaponmaster).
+When you perform the Guard action, if you did not perform the Guard action on your
+previous turn during this scene, choose one among ranged attacks and offensive spells
+(r). You gain the following benefits until the start of your next turn:
+w Your Counterattack Skill triggers against all melee attacks that hit or miss you,
+even if the Result of the Accuracy Check is not an even number.
+w If you chose ranged attacks, your Counterattack Skill also triggers against ranged
+attacks that hit or miss you, regardless of the Accuracy Check's Result.
+w If you chose offensive spells (r), your Counterattack Skill also triggers against
+offensive spells (r) that hit or miss you, regardless of the Magic Check's Result.
+w When you perform a free attack with your Counterattack Skill, if the triggering
+attack or spell hit you, you deal 5 extra damage.RANGER STYLE
+Requirements: you must have acquired the Resourceful Skill (see Wayfarer).
+At the start of a conflict scene, you may spend 20 Mind Points to reveal you set traps
+in the surrounding area and choose a status effect among dazed, shaken, slow, and
+weak: if you do, every enemy present on the scene suffers the chosen status effect,
+then every enemy present on the scene whose current Insight die size is equal to or
+lower than yours loses an amount of Hit Points and Mind Points equal to【 your Skill
+Level in Resourceful, multiplied by 5】. These amounts increase by 5 if you are level
+20 or higher, or by 10 if you are level 40 or higher.
+Additionally, your attacks with bows deal extra damage equal to【 1 + your Skill Level
+in Resourceful】 as long as you have no martial armor equipped.
+REAPER STYLE
+Requirements: you must have acquired the High Speed Skill (see Rogue) and/or the
+Stolen Time Skill (see Entropist).
+You gain a +5 bonus to your Accuracy Checks and Magic Checks for attacks and
+offensive spells (r) that include one or more enemies in Crisis among the targets.
+After you reduce one or more enemies to 0 Hit Points, if at least one of them is defeated
+this way, you recover from all status effects and may choose one option: perform a free
+attack with a weapon you have equipped, and that attack deals 5 extra damage; or
+perform the Spell action for free, casting an offensive spell (r) with a total MP cost
+equal to or lower than 10 without paying its MP cost. This attack or spell must target
+a single enemy; once you use this Skill during a conflict, you may not use it again until
+the beginning of your next turn.
+SCORPION TAIL STYLE
+Requirements: you must have a Dexterity base die size of d10 or higher.
+Your attacks with weapons belonging to the flail Category may target flying creatures
+and deal 5 extra damage as long as it is not your turn.
+After a creature you can see performs a ranged attack, you may spend an amount of
+Mind Points equal to【 5 + the total Result of their Accuracy Check】 in order to have
+the attack fail automatically against all targets. You can only use this Skill if you have
+a weapon belonging to the flail Category equipped, and it has no effect if the Accuracy
+Check was a critical success. W
+1516
+W
+W
+SKYSPEAR STYLE
+Requirements: you must have learned the Soaring Strike spell (see Elementalist).
+You unlock the hidden art of aerial spear combat, learning the Skyjump spell.
+Skyjump MP: 10 Target: Self Duration: Scene
+You become one with the speed and strength of wind. Until this spell ends, your melee
+attacks can target creatures that can only be targeted by ranged attacks, and no other
+creature present on the scene is able to see you.
+At the start of your turn, this spell ends; then, if you have at least one action available
+on this turn and you are able to perform the Spell action, you must use your first
+available action to perform the Spell action and cast the Soaring Strike spell, ignoring
+its MP cost. If you do and the weapon used belongs to the spear Category, the free
+attack granted by the Soaring Strike spell gains multi (2) and deals another 10 extra
+damage.
+You may only cast this spell if you have a spear equipped, and only if you have also
+learned the Soaring Strike spell.
+THAUMATURGE STYLE
+Requirements: you must have acquired the Healing Power Skill, and must have
+learned the Cleanse and/or Heal spells (see Spiritist).
+As long as you have one or more brawling weapons equipped, you may treat them
+as also belonging to the arcane Category for the purpose of Skills and effects that
+require it.
+You may use an action to perform a free attack with an arcane weapon you have
+equipped; this attack must target a single enemy. If the attack is successful, treat
+your High Roll (HR) as 0 when determining damage dealt by it; after the attack has
+been resolved, if it was successful, you may perform the Spell action for free, casting
+the Cleanse spell or the Heal spell on a single target of your choice (you must have
+learned the spell and must pay its MP cost).VORTEX WARRIOR STYLE
+Requirements: you must have a Dexterity base die size of d10 or higher, and/or a
+Might base die size of d10 or higher.
+When you perform the Attack action with a melee weapon that belongs to the heavy or
+sword Category, if you have no other weapon equipped, you may perform two separate
+attacks instead of one. If you do, both attacks follow the rules for two-weapon fighting:
+each attack loses the multi property and cannot gain it, and you treat the High Roll
+of each Accuracy Check as being equal to 0 when determining damage. Additionally,
+both attacks performed this way must target the same creature; if the first attack is
+successful, the second attack's Accuracy Check will trigger a critical success if both dice
+show the same number (and the Check is not a fumble).
+Note that this Heroic Skill does not stack with a custom weapon's quick customization
+(you will still only perform two attacks).
+W
+1718
+W
+ARCANIST
+(variant draft)
+W
+ALSO: Avatar, Chosen, Summoner
+ARCANIST FREE BENEFITS
+w Permanently increase your maximum Hit Points or Mind Points by 5 (your choice).
+ARCANIST SKILLS
+ARCANE REGENERATION (ç6)
+After you willingly dismiss an Arcanum you are merged with, if you are in Crisis, you
+may have yourself and every ally present on the scene recove【r SL × 5】 Hit Points.
+BIND AND SUMMON
+You may bind Arcana to your soul and summon them later. When you encounter a new
+Arcanum, the Game Master will reveal what you must do in order to bind them.
+You may use an action and spend 30 Mind Points to summon the power of one of the
+Arcana you have previously bound (see next page).
+If you take this Skill at character creation, you begin play with one Arcanum bound
+to you (you may choose it from the sample Arcana or create it with your group). Any
+further Arcana must be obtained through exploration and story progression.
+PHANTOM STRENGTH (ç6)
+When you perform a pulse, before resolving its effects, you may choose to have all
+damage you deal ignore Affinities until the end of this turn. If you do, the next time you
+deal damage before the end of this turn, you dea【l SL + 4】 extra damage.
+QUICK SUMMONING (ç2)
+When you summon an Arcanum on your turn during a conflict, choose up to two options:
+reduce its MP cost by【 SL × 5】; and/or after you summon the Arcanum, if you are
+merged with it, immediately perform its pulse. If you choose at least one option, you
+cannot willingly dismiss that Arcanum until the start of your next turn; if you choose
+both options, that Arcanum's dismiss effect will not be available for this summoning.
+RITUAL ARCANISM
+You may perform Rituals of the Arcanism discipline, as long as their effects fall within
+the domains of one or more Arcana you have bound (see next pages).
+Arcanism Rituals use【 WLP + WLP】 for the Magic Check.This is an attempt at an alternate version of the Arcanist Class after 2+ years of extensive
+feedback about how it felt in play. It is not the official version of the Class.
+MERGING WITH AN ARCANUM
+When you summon an Arcanum, you gain their merge benefits; those benefits last
+until the Arcanum is dismissed (see below).
+You cannot summon an Arcanum while already merged with one; you must first
+dismiss the current Arcanum.
+DISMISSING AN ARCANUM
+If you are merged with an Arcanum, they will be automatically dismissed at the end
+of the scene, if you die or fall unconscious, or if you leave the scene.
+You may also willingly dismiss the Arcanum you are currently merged with: this never
+requires an action, but during a conflict it can only be done on your turn, and never
+while another effect is being resolved.
+PULSE AND DISMISS EFFECTS
+In addition to their merge effects, most Arcana also grant the Arcanist a pulse effect
+and a dismiss effect.
+w As long as you are merged with a given Arcanum, you may use an action to unleash
+that Arcanum's pulse effect. You may only do so during a conflict scene, and only once
+per turn.
+w When you willingly dismiss an Arcanum, you may use their dismiss effect - if the
+Arcanum is dismissed for any other reason, this effect cannot be used. You are also
+free to ignore a dismiss effect if you don't want to use it.
+w If a pulse or dismiss effect deals damage, it will deal 5 extra damage if you are level
+20 or higher, or 10 extra damage if you are level 40 or higher.
+Some effects follow unique rules, explained within the Arcanum's text.
+DOMAINS
+Each Arcanum is associated with a few key concepts or domains. The Game Master
+should use these to establish the trials or conditions needed for the Arcanum to lend
+their power, and to adjudicate Rituals performed through the Ritual Arcanism Skill
+once that Arcanum has been bound.
+W
+1920
+W
+NEW SAMPLE ARCANA
+W
+ANTIKYTHERA
+The enigmatic custodian of time and space.
+Domains: space, time, void.
+MERGE KALEIDOSCOPE VEIL
+After you lose Hit Points due to damage, if that damage has a type and that type is not
+physical, you gain Resistance to that damage type and lose any previous Resistance
+granted by this effect.
+When this Arcanum is dismissed, you lose any Resistance gained through this effect.
+PULSE BINARY STARS
+You deal 10 fire damage to a creature you can see; then, you deal 10 ice damage to a
+creature you can see (the same or a different one).
+DISMISS SPACETIME SUBTRACTION
+Choose one option: every enemy present on the scene suffers slow; or every enemy
+present on the scene who is suffering from slow will perform one fewer action during
+their next turn (to a minimum of 0 actions); or you teleport yourself and up to five
+other nearby allies you can see to a location you visited in the past, provided that
+location is within 1 travel day of your position.
+Once the second or third option is chosen, this dismiss effect will not be available
+until the next dawn.
+ARCANA, OLD AND NEW
+A big part of Arcanist's charm is creating new Arcana for use in your campaign,
+and this variant aims to make any conversions from the official formula as
+painless as possible. Most of the time, it will be enough to reduce any damage
+or healing granted by dismiss effect by 10, and to add a pulse effect with power
+close to those you see in these examples – if the original Arcanum granted the
+ability to perform a given action or effect once per turn, make that its pulse.
+Some of the original Arcana also didn't have a dismiss effect, and they must
+be reworked to include it so that there is still a downside when using Quick
+Summoning (for a useful example of this process, see how Arcanum of the
+Sword was converted into Nimue).BANSHEE
+The ominous tyrant lord of winds.
+Domains: birds, storms, winds.
+MERGE IMPENDING CATASTROPHE
+You have Resistance to air damage, and when you deal air or physical damage, you
+deal extra damage equal to your current Whirlwind Points.
+When this Arcanum is dismissed, you lose all Whirlwind Points.
+PULSE ZEPHYR BLADES
+You deal 10 air damage to each of up to two creatures you can see. Then, you gain
+1 Whirlwind Point, or 2 Whirlwind Points if you dealt damage to only one creature.
+DISMISS HURRICANE SCREECH
+You deal an amount of air damage equal to【 the amount of Whirlwind Points you
+lost by dismissing this Arcanum, multiplied by 5】 to every enemy present on the
+scene. This damage ignores Resistances.
+CALADRIUS
+The winged master of healing magic.
+Domains: exorcism, healing, sunlight.
+MERGE PROTECTIVE GAZE
+When you summon this Arcanum, choose a status effect: dazed, enraged, poisoned,
+shaken, slow, or weak. As long as you are merged with this Arcanum, you and every
+ally present on the scene are immune to the chosen status effect.
+PULSE CLEANSING SUNLIGHT
+Choose one option: you deal 10 light damage to each of up to two creatures you can
+see; or one creature you can see recovers from all status effects.
+DISMISS HEALING FEATHERS
+You and every ally present on the scene recover 30 Hit Points. This amount increases
+to 40 if you are level 20 or higher, or to 50 if you are level 40 or higher.
+W
+2122
+W
+W
+DAHAKA
+The slithering prince of desert sands.
+Domains: earth, poison, sandstorms.
+MERGE HARDENED SCALES
+You have Resistance to earth damage and are immune to poisoned.
+Your melee attacks can target flying creatures.
+PULSE NUMBING BITE
+You deal 10 poison damage to each of up to two creatures you can see. Then, each
+creature who lost Hit Points due to this damage suffers slow.
+DISMISS TECTONIC CRUSH
+You deal 20 earth damage to every enemy present on the scene who isn't flying,
+floating, falling, or otherwise in mid-air. This damage ignores Resistances, and also
+ignores Immunities and Absorptions of creatures afflicted by slow.
+KUZUNOHA
+The fierce protector of witches and beasts.
+Domains: animals, lightning, sorcery.
+MERGE MANTLE OF THE WHITE FOX
+You have Resistance to bolt damage, and all bolt damage dealt by you and by every
+ally present on the scene ignores Resistances.
+You can communicate with creatures of the beast, monster, and plant Species.
+PULSE CRACKLING SIGIL
+Choose one option: you perform a free attack with a weapon you have equipped;
+or you perform the Spell action for free, casting an offensive (r) spell with a total
+Mind Point cost of 20 or lower. If this attack or spell deals damage, you may change
+its type to bolt.
+DISMISS ROARING THUNDERBOLTS
+You deal 20 bolt damage to every enemy present on the scene. This damage ignores
+Resistances; each creature who lost Hit Points due to this damage suffers dazed.LILITH
+She who wages war against Celestial Spheres.
+Domains: chaos, rebellion, revelation.
+MERGE WINGS OF EDEN
+You have Resistance to dark and light damage.
+You may never have more than 10 Gnosis Points, and you lose all Gnosis Points when
+this Arcanum is dismissed.
+PULSE CLAWS OF THE FALLEN
+You perform a free attack with a weapon you have equipped; if it is a melee attack,
+it can target flying creatures. This attack deals extra damage equal to your current
+Gnosis Points, and an additional 5 extra damage against creatures who Absorb light
+damage or are Immune to it. After this attack is resolved, you gain 1 Gnosis Point for
+every creature who lost Hit Points due to its damage.
+DISMISS PARADISE LOST
+Every enemy present on the scene loses an amount of Hit Points equal to【 the
+amount of Gnosis Points you lost by dismissing this Arcanum, multiplied by 5】.
+This Hit Point loss increases by 10 against Villains; additionally, it increases by 10 if
+you are level 20 or higher, or by 20 if you are level 40 or higher.
+W
+2324
+W
+W
+LORELEI
+The serene and inscrutable fey ruler of the glaciers.
+Domains: cold, ice, silence.
+MERGE SUBZERO SILENCE
+You have Resistance to ice damage and are immune to enraged.
+When you deal damage, you may change its type to ice.
+PULSE WINTER MELODY
+You deal 10 ice damage to each of up to two creatures you can see. Then, each creature
+who lost Hit Points due to this damage suffers weak.
+DISMISS GLACIER'S DISDAIN
+You deal 20 ice damage to every enemy present on the scene. This damage ignores
+Resistances; each creature who lost Hit Points due to this damage also loses an equal
+amount of Mind Points.
+NIMUE
+The wielder of ninety-nine swords.
+Domains: conquest, heroism, leadership.
+MERGE ROYAL ARMAMENTS
+When you deal damage, you deal 5 extra damage; all damage you deal loses its type
+and cannot gain a type (thus being unaffected by damage Affinities).
+PULSE ARONDIGHT
+You perform a free attack with a weapon you have equipped. This attack targets Magic
+Defense instead of Defense.
+DISMISS GORDIAN SLICE
+One creature you can see loses 30 Hit Points, or 40 Hit Points if you are level 30 or
+higher. Then, if that creature is not a Villain and their current Hit Points are equal to
+or lower than your Crisis score, you reduce that creature to 0 Hit Points.QILIN
+The elusive herald of wisdom and good fortune.
+Domains: knowledge, prosperity, temperance.
+MERGE ENLIGHTENED SERENITY
+You treat your Insight as if it were one die size higher (up to a maximum of d12).
+PULSE STEPS OF PROSPERITY
+Choose one option: one ally you can see treats their Insight as if it were one die size
+higher (up to a maximum of d12) until the start of your next turn; or you perform the
+Spell action for free, casting a non-offensive (r) spell with a total Mind Point cost
+of 10 or lower without paying its MP cost.
+DISMISS ORACLE
+You ask the Game Master a single question. The Game Master must answer truthfully,
+describing the vision shown to you by this Arcanum.
+Once used, this dismiss effect will not be available until the next dawn.
+SERAPH
+The guardian of one hundred gates.
+Domains: judgment, protection, sacrifice.
+MERGE GENTLE BASTION
+When you summon this Arcanum, choose a damage type: air, bolt, dark, earth, fire, ice,
+or poison. As long as you are merged with this Arcanum, your allies present on the
+scene have Resistance to the chosen type (you do not gain this Resistance).
+PULSE EXORCISM BOLT
+Choose one option: you deal 20 light damage to a creature you can see; or one
+creature you can see that is affected by one or more spells with a duration of "Scene"
+is no longer affected by any of those spells instead.
+DISMISS TWILIGHT OF JUDGMENT
+You deal 20 light damage to every enemy present on the scene. This damage ignores
+Resistances and Immunities.
+W
+2526
+W
+W
+TUBALCAIN
+The blazing guardian of the forge.
+Domains: fire, heat, metal.
+MERGE BLESSINGS OF THE ANVIL
+You have Resistance to fire damage, and fire damage you deal ignores Resistances.
+When you deal damage, you may change its type to fire.
+PULSE FORGE HAMMER
+Choose one weapon you have equipped; you may change that weapon's Category (see
+Core Rulebook, page 129) to another Category of your choice until the end of your
+next turn. Then, perform a free attack with that weapon: this attack gains multi (2).
+DISMISS MOLTEN WAVE
+Choose one option: you deal 20 fire damage to every enemy present on the scene,
+and this damage ignores Resistances; or, until the start of your next turn all damage
+dealt by you and your allies present on the scene becomes fire and its type cannot
+be changed.
+VANAGANDR
+The dark wolf of the End Times.
+Domains: death, despair, hunger.
+MERGE SHROUD OF HUNGER
+You have Resistance to dark damage, and all damage you deal ignores Resistances.
+PULSE DEVOURER OF MEN
+You deal 10 dark damage to each of up to two creatures you can see. This effect deals
+5 extra damage against humanoids.
+DISMISS DEVOURER OF GODS
+You deal 30 dark damage to a creature you can see; this damage ignores Resistances
+and Immunities. Then, if that creature is in Crisis and lost Hit Points due to this
+damage, you recover an amount of Hit Points equal to half the HP loss they suffered.HEROIC SKILLS
+The various Heroic Skills available to Arcanists need minor to no changes.
+w Arcane Echoes (Core Rulebook) can be kept identical.
+w Auramancer's Refraction (Natural Fantasy) can be kept identical.
+w Grand Summoning (High Fantasy Atlas) can be kept largely identical, but the
+summoned Arcanum also obtains the pulse benefits in your stead, and can use the
+Skill action to perform said pulse. However, Grand Summoning can only be used
+when an Arcanum is summoned without Quick Summoning.
+w Revelation (Core Rulebook) changes to the version below:
+REVELATION
+Requirements: you must have mastered the Arcanist Class.
+You make contact with a previously unknown Arcanum, which you design together
+with the rest of your group, and bind that Arcanum to your soul (feel free to make it a
+bit stronger than normal, since it was obtained through a Heroic Skill). For as long as
+you live, no one else in your world will be able to bind that Arcanum.
+When you summon an Arcanum, if you are in Crisis and choose both options of the
+Quick Summoning Skill, you only suffer the first penalty (the dismiss effect of the
+summoned Arcanum will be available for this summoning).
+W
+2728
+W
+CORE BOOK VARIANTS
+W
+The following pages contain a list of possible variants I have been considering for
+the rules, Classes, and Skills found in the Core Rulebook. Once again, these are
+not the official versions of these mechanics; rather, this is a collection of ideas,
+experimentations and alternatives resulting from years of feedback.
+In short, providing feedback on these options and reworks will help me as well as
+Need Games evaluate future errata and publications. Remember, these are not errata:
+the official errata documents for Fabula Ultima are found at https://drive.google.
+com/drive/u/1/folders/1-W0CYBCkyXjHTM_bI16qHuvX89YwkZZK !
+INITIATIVE
+Page 61. Initiative was never truly useful; a leftover from a previous initiative system
+that failed to evolve into something truly interesting, and a "futile" roll of dice.
+Conflict scenes now follow a simple rule for determining which side goes first: if the
+conflict features no Villains, the heroes' side wins initiative. If the conflict features
+one or more Villains, the enemy side wins initiative.
+This change has consequences throughout the system.
+w Rules and effects that affect initiative no longer exist.
+w Armor no longer gives initiative penalties; this makes the travel garb and combat
+tunic identical, so the combat tunic's stats should be changed to +2 Defense and
+no bonus to Magic Defense. Its cost can remain at 150 zenit.
+w NPCs no longer have Initiative, so elite and champion foes do not increase it.
+TONIC
+Page 104. Tonics are extremely not worth it in their official version.
+The effect of the tonic becomes: One creature recovers from all status effects.
+DARKBLADE FREE BENEFITS
+Page 185. More access to martial ranged weapons is good, and Shadow Strike never
+required melee weapons specifically.
+The second free benefit becomes "Gain the ability to equip martial armor, and choose
+one: gain the ability to equip martial melee weapons; or gain the ability to equip
+martial ranged weapons."version 1.11
+AGONY (ç5)
+Darkblade Skill, page 185. The amount of HP and MP regain granted to dual or triple
+weapon users spiraled out of control far too quickly. Limiting it to once per turn, and
+only to enemies, makes it a lot more reasonable and in line with the original design
+expectations, removing the lure of "cheesy" strategies that harm allies.
+The Skill's initial text becomes: "Once per turn (including other creatures' turns), after
+you deal damage to one or more enemies, if you have..."
+SPELLBLADE (ç3)
+Elementalist Skill, page 187. A few boosts and more flexibility in terms of weapon
+Categories, without changing the core (single target magic through weapon stats).
+When you cast an offensive (r) spell that targets a single creature and has a total
+Mind Point cost of【 SL × 20】 or lower, you may choose one non-arcane weapon
+among those you have equipped. If you do, your Magic Check for the spell uses the
+chosen weapon's Accuracy Check formula; if that formula includes Dexterity, the Magic
+Check also gains a bonus equal to【 SL】. For instance, casting an Elementalist spell
+through a bronze sword when you have Skill Level 2 in Spellblade will cause the
+Magic Check to be【 DEX + MIG】 +3 instead o【f INS + WLP】.
+SOARING STRIKE
+Elementalist Spell, page 188. Swords should have been included.
+The extra damage granted by the spell now also applies to swords.
+VORTEX > RIFT AND VORTEX
+Elementalist Spell, page 189. Old Vortex was terribly situational.
+Vortex becomes an air-based equivalent of the Flare/Iceberg/Thunderbolt spells.
+Add Rift, which follows the same rules but deals earth damage.
+W
+2930
+W
+W
+STOLEN TIME (ç4)
+Entropist Skill, page 191. The Skill is now cheaper and less action-intensive, and
+requires less investment. It is also more in line with the "time thief" design intent.
+During a conflict, you may use an action to interfere with the flow of time by spending
+up to【 SL × 5】 Mind Points. For every 5 Mind Points you spend this way, choose one
+option: one creature you can see suffers slow; or one creature you can see recovers
+from slow; or one enemy you can see who is suffering from slow loses【 10 + (SL × 5)
+】 Hit Points; or one creature you can see may perform the Equipment action for free;
+or choose one ally you can see who has yet to take a turn during this round: that ally
+may take their turn immediately after yours during this round.
+Each option can only be chosen once per use of this Skill.
+ACCELERATION
+Entropist Spell, page 192. The original version was too good, good enough to be a
+non-choice and put a lot of pressure on anyone who picked this Class.
+Acceleration 20 One creature Scene
+At the end of each of their turns, the target may choose one option: perform a free
+attack with a weapon they have equipped; or perform the Spell action for free, casting
+a spell with a total MP cost equal to or lower than 10 (paying its MP cost). After the
+same creature benefits from this effect a second time, this spell ends.
+DARK WEAPON
+Entropist Spell, page 192. This shouldn't have the same cost as Elemental Weapon.
+The cost of this spell is now 5 MP.
+DRAIN SPIRIT
+Entropist Spell, page 192. The spell was not impactful enough.
+The amount of Mind Points lost by the target is now【 HR + 20】, no【t HR + 15】.
+OMEGA
+Entropist Spell, page 193. This spell wasn't good enough for its cost.
+The cost of this spell is now 15 MP.BODYGUARD > RETALIATION (ç5)
+Guardian Skill, page 197. Bodyguard was passive and routine-inducing. This new skill
+encourages alternating actions, and allows mastery for non-armor/shield users.
+When you deal damage during your turn, if you performed the Guard action during
+your previous turn and chose to cover an ally, you dea【l SL】 extra damage.
+FORTRESS (ç4)
+Guardian Skill, page 197. The scaling is now simpler to calculate.
+The HP increase becomes【 SL × 5】, and this Skill's maximum Skill Level is now 4.
+FOCUSED (ç6)
+Loremaster Skill, page 199. The scaling is now simpler to calculate.
+The MP increase becomes【 SL × 5】, the bonus to【 INS + INS】 Open Checks remains
+equal to【 SL】, and this Skill's maximum Skill Level is now 6.
+CONDEMN (ç6)
+Orator Skill, page 201. Improved to make it more palatable, it now grants damage
+against the target. Max SL now 6.
+You may use an action and spend 5 Mind Points to perform an Opposed【 INS + WLP】
+Check against an enemy who can hear and understand you. If you succeed, that enemy
+loses【 SL × 5】 Mind Points, suffers a status effect of your choice among dazed and
+shaken, and all sources dea【l SL】 extra damage to them until the start of your next turn.
+You gain a bonus equal to【 SL】 to you【r INS + WLP】 Checks for this Skill.
+ENCOURAGE (ç6)
+Orator Skill, page 201. A general boost was needed.
+You may use an action and spend 5 Mind Points to choose an ally who can hear and
+understand you. That ally recovers【 10 + (SL × 5)】 Hit Points and chooses Dexterity,
+Insight, Might, or Willpower: until the start of your next turn, they treat the chosen
+Attribute as being one die size higher (up to a maximum of d12).
+W
+3132
+W
+W
+SOUL STEAL (ç5)
+Rogue Skill, page 203. Minor tweak to avoid confusion.
+The Skill now says "During a conflict, you may use an action..." at the start.
+CROSSFIRE
+Sharpshooter Skill, page 207. The MP cost was too manageable and spammable.
+The MP cost for this Skill is now【 5 + the Result of their Accuracy Check】.
+HAWKEYE (ç5)
+Sharpshooter Skill, page 207. The extra damage from the first option was too low
+compared to the action cost, and just like with Breach, I tried to provide an option for
+greatly increased damage at the cost of forgoing elemental Vulnerabilities.
+When you perform the Guard action and choose not to cover another creature, you
+may spend 10 Mind Points to choose one option: the next ranged attack you perform
+before the end of your next turn deals【 5 + (SL × 5)】 extra damage, and all its damage
+ignores Resistances and Vulnerabilities; or you perform a free attack with a bow or
+firearm weapon you have equipped, treating your High Roll as being equal to 0 when
+determining damage.
+HEALING POWER (ç2)
+Spiritist Skill, page 207. The recovery was too weak in early game.
+The recovery granted by the Skill becomes equal to【 3 + (SL, multiplied by the
+number of Bonds you have)】.
+AURA AND BARRIER
+Spiritist Spells, page 208. The old values did not scale well with enemy bonuses.
+Both spells have the following text added: "This score increases to 13 if you are level
+20 or higher, or to 14 if you are level 40 or higher."SOUL SHROUD
+New Spiritist spell, page 209.
+Soul Shroud 5 × T Up to three creatures Scene
+Choose a damage type: dark, light, or poison. Until this spell ends, each target gains
+Resistance to the chosen damage type.
+SOUL WEAPON
+Spiritist Spell, page 209. This shouldn't have the same cost as Elemental Weapon.
+The cost of this spell is now 5 MP.
+EFFECTS (ALCHEMY)
+Tinkerer gadgets, page 213. The first effect should have scaled with level.
+The first effect should say "As effect 3, but with poison damage."
+W
+3334
+W
+W
+TINKERER MAGITECH, OPTION A
+Page 215. The Magitech branch of Tinkerer gadgets always presented some issues.
+This option rebalances the three benefits, without changing too much.
+d
+MAGITECH OVERRIDE (Basic)
+During a conflict, you may use an action and spend 10 Mind Points to choose a construct
+or elemental enemy you can see that does not possess independent intelligence and
+is suffering from one or more status effects. If you do, that enemy recovers from all
+status effects, then the Game Master reveals its entire profile and you may force it
+to immediately perform an action of your choice; during that action, the creature is
+treated as an ally of your group.
+d
+MAGICANNON (Advanced)
+You may perform the Inventory action and spend 2 Inventory Points to create a
+magicannon (see below) and destroy any magicannon you previously created. If you do
+so and both your hand slots are empty, you may immediately equip the newly created
+magicannon and perform a free attack with it. Whenever you create a magicannon,
+choose what type of damage it deals (air, bolt, earth, fire, ice, or physical).
+WEAPON ACCURACY DAMAGE
+Magicannon 【DEX + INS】 +1 【HR + 10】
+Firearm w Two-handed w Ranged w Cannot have Qualities.
+d
+MAGISPHERES (Superior)
+You develop a magisphere for each of three spells from among those found in the
+Elementalist, Entropist, and Spiritist lists; these spells may come from the same list
+or from different lists (this does not count as "learning" or "knowing" these spells).
+You develop a new magisphere upon reaching level 20, and another upon reaching
+level 40 (the same applies if you already reached those levels).
+You may perform the Inventory action and spend 2 Inventory Points to perform the
+Spell action for free, casting one of the spells you have developed a magisphere for.
+The spell follows the normal rules (including MP costs and Magic Checks).TINKERER MAGITECH, OPTION B
+Page 215. This alternative directly removes Magitech Override (too situational), and
+splits Magicannon and Magispheres into their own separate branches.
+If you are playing with the Techno Fantasy Heroic Skill Quantum Magicannon, it
+becomes Quantum Armament and requires magitech armament advanced benefits.
+MAGISPHERES
+d
+BASIC MAGISPHERES
+Choose two different spells with a target of "Up to three creatures" from among those
+found in the Elementalist, Entropist, and Spiritist lists; these two spells may come
+from the same list or from different lists (for instance, you could select Lux from
+Spiritist and Elemental Shroud from Elementalist). You develop a magisphere for
+each of these spells (this does not count as "learning" or "knowing" these spells).
+You may perform the Inventory action and spend 2 Inventory Points to perform the
+Spell action for free, casting one of the spells you have developed a magisphere for.
+The spell follows the normal rules (including MP costs and Magic Checks), and the
+Magic Check for spells cast through magispheres is【 INS + WLP】.
+d
+ADVANCED MAGISPHERES
+Choose two different spells from the list of NPC spells (see page 310); you may
+not choose the Devastation spell. You develop a magisphere for each spell chosen
+this way (this does not count as "learning" or "knowing" these spells), and must
+customize the chosen spells as required (for instance, if you select Cursed Breath for a
+magisphere, you could choose ice and slow and rename it freezing grenade).
+d
+SUPERIOR MAGISPHERES
+Choose two different spells from among those found in the Elementalist, Entropist,
+and Spiritist lists, and/or the list of NPC spells; these two spells may come from the
+same list or from different lists (for instance, you could select Acceleration from
+Entropist and Area Status from the list of NPC spells). You may not choose the
+Devastation spell. You develop a magisphere for each spell chosen this way (this
+does not count as "learning" or "knowing" these spells), and must customize any NPC
+spells chosen this way as required.
+W
+3536
+W
+W
+MAGITECH ARMAMENT
+d
+BASIC ARMAMENT
+You may perform the Inventory action and spend 2 Inventory Points to create a
+magitech armament (see below) and destroy any magitech armament you previously
+created. Whenever you create a magitech armament, choose a Category for it, choose
+whether it is a melee or ranged weapon, and choose an Accuracy formula between
+【DEX + INS】 +1 and【 INS + MIG】 +1 for it. Magitech armaments are always two-
+handed weapons and cannot benefit from the Monkey Grip Heroic Skill (see Core
+Rulebook; in short, the armament will always occupy both hand slots).
+WEAPON ACCURACY DAMAGE
+Magitech Armament see above 【HR + 12】 physical
+One Category of your choice among arcane, brawling, firearm, heavy, spear,
+or sword w Two-handed w Melee or Ranged w Cannot have Qualities (but see
+Superior Armament, below).
+d
+ADVANCED ARMAMENT
+When you create a magitech armament using the Basic Armament benefit above, if
+both your hand slots are empty, you may immediately equip that magitech armament
+and perform a free attack with it.
+Additionally, whenever you create a magitech armament, you may have it deal air,
+bolt, earth, fire, or ice damage instead of physical.
+d
+SUPERIOR ARMAMENT
+If you have your magitech armament equipped, you may use an action to choose one
+weapon in your backpack. If you do, that weapon is destroyed and all your magitech
+armaments gain its Quality (if any) until you use this effect again (this includes any
+future magitech armaments you create as well).
+Additionally, as long as you have your magitech armament equipped, you gain a
+bonus to Defense and Magic Defense equal to【 half your Skill Level in Gadgets】.BREACH (ç4)
+Weaponmaster Skill, page 219. This change is tied to the choice of removing NPCs'
+ability to equip items (see next pages), and also the general wish for "non-elemental"
+fighter builds to be a thing.
+You may use an action and spend 10 Mind Points to perform a free attack with a
+melee weapon you have equipped; this attack must target only one creature. If the
+attack is successful, choose one option: the attack deals no damage and, until the
+start of your next turn, your allies deal【 SL + 4】 extra damage to its target; or the
+attack deals【 SL × 5】 extra damage and all its damage ignores Resistances, but it
+also ignores Vulnerabilities unless the type of damage dealt is physical.
+If you are playing with the High Fantasy Heroic Skill Pulverizing Strike, its effect
+changes to "When you use the Breach Skill, if you attack with a melee weapon
+belonging to the heavy Category, you may treat your Skill Level in the Breach Skill as
+being 2 points higher (to a maximum of 6)."
+ADVERSITY
+Page 234. This Heroic Skill was too strong.
+As long as you are suffering from one or more status effects, you gain a +1 bonus on
+all Checks you perform for every status effect you are suffering from (up to a maximum
+of +3), and you also deal 2 extra damage for every status effect you are suffering from
+(be it with attacks, spells, Arcana, items, or any other method; up to a maximum of 6
+extra damage).
+AMBIDEXTROUS
+Page 234. This Heroic Skill was in serious need of some love.
+You may apply the benefits of two-weapon fighting (page 69) to weapons belonging
+to different Categories, even if one is a melee weapon and the other is a ranged
+weapon (such as a dagger and a firearm, for instance).
+As long as you have exactly two weapons equipped and they share no Categories
+with each other, you gain a +2 bonus to Defense and the second attack you perform
+during each of your turns deals 5 extra damage.
+W
+3738
+W
+W
+COMET
+Heroic Skill, page 235. I am moving towards global effects that do not allow the user
+to not damage/cause effects on selected targets.
+The spell's text becomes:
+Comet 50 Special Istantaneous
+Choose one option: you deal 60 damage to one enemy you can see; or you deal 40
+damage to every enemy you can see. This damage increases by 5 if you are level 20 or
+higher, or by 10 if you are level 40 or higher.
+Damage dealt by this spell has no type (thus ignoring damage Affinities).
+MATHEMAGIC
+Heroic Skill, page 237. The original was very confusing in how it worked.
+When you cast a spell with a target of "One creature", you may choose an Attribute
+(Dexterity, Insight, Might, or Willpower) and a die size (d6, d8, d10, or d12). If you
+do, the spell's target becomes "Every creature present on the scene whose current die
+size in that Attribute matches your choice" and its total Mind Point cost is doubled.
+Additionally, all mentions of "the target" in the spell's text are replaced with "each
+target"; or they are replaced with "one or more targets" if the spell is Anomaly, Dispel,
+Mercy, or Mirror. When the spell ends on one or more of its targets, it automatically
+ends on all its targets.
+If you cast an offensive (r) spell this way, you perform a single Magic Check and
+confront it with the Magic Defense of each target.
+Note: this version of Mathemagic assumes you are using reworked Acceleration.
+MONKEY GRIP
+Heroic Skill, page 238. Official version is a "strictly worse" Powerful Strike 99% of the
+time, aside for super specific cases.
+You may now equip two-handed weapons belonging to the flail, heavy, spear, and
+sword Categories within a single hand slot.
+Additionally, the first attack you perform with a two-handed weapon during each turn
+deals 5 extra damage, and its damage ignores Resistances.RAMPART
+Heroic Skill, page 239. This heroic skill needed a boost to match Unbreakable.
+Once per conflict scene, at the beginning of a round, if you have a martial armor or a
+shield equipped, you may spend 20 Mind Points. If you do, you and every ally present
+on the scene have Resistance to all damage types and cannot suffer status effects until
+the end of the round (this does not let you recover from preexisting status effects).
+STATUS IMMUNITY > FAST LEARNER
+Heroic Skill, page 240. The original Status Immunity was boring and underwhelming,
+and Wayfarer deserves better. Fast Learner is an homage to the classic "Mime" .
+Once per conflict scene when another Player Character you can see performs the Skill
+or Spell action to cast a spell or activate a Skill or Heroic Skill, if you have not learned
+or acquired that spell or Skill, you can temporarily learn or acquire that spell or Skill
+until the end of the scene.
+If you acquire a Skill this way, you are treated as having 1 Skill Level in it, and you
+do not gain any of the additional benefits you would normally acquire when gaining
+that Skill through character progression: for instance, you would not create a new
+companion by temporarily acquiring the Faithful Companion Skill (see page 217), nor
+would you learn any volumes, keys, or tones by temporarily acquiring the Magichant
+Skill (see High Fantasy Atlas, page 137).
+TEMPEST STRIKE
+Heroic Skill, pag. 240. Made more flexible and reliable.
+When you perform a melee attack with the multi property, you gain a bonus to your
+Accuracy Check equal to the value of that multi property, and the attack deals 5 extra
+damage. If the attack targets only one creature, it deals another 5 extra damage.
+W
+3940
+W
+W
+UPGRADE
+Heroic Skill, page 241. The restrictions and costs on this Skill were unjustified.
+When you rest, you may choose any number of armors, shields, and/or weapons among
+those owned by your group. For each item chosen this way, you may either add a
+Quality to it (if it doesn't have one) or replace its current Quality with a different one.
+These new Qualities must come from the list of default Qualities available for items of
+that type, and must have an associated cost modifier of +1000 zenit or lower. At the
+end of the rest, you must pay an amount of zenit equal to the total sum of those cost
+modifiers, reduced by【 your Skill Level in Visionary, multiplied by 100】. If you do, the
+items will be modified according to your choices.
+The default list of weapon abilities can be found on page 269, while the default list of
+armor and shield abilities can be found on page 280.
+VOLCANO > ULTIMAGIC
+Heroic Skill, page 241. Many Players felt the mandatory fire element constraining.
+The Volcano Heroic Skill is now named Ultimagic, and allows the choice of a damage
+type among air, bolt, earth, fire, and ice when acquired. The spell's text becomes:
+Ultimagic 40 Special Istantaneous
+Choose one option: you deal 50 damage of the type you have chosen to one enemy
+you can see; or you deal 30 damage of the type you have chosen to every enemy you
+can see. This damage increases by 5 if you are level 20 or higher, or by 10 if you are
+level 40 or higher.
+Damage dealt by this spell ignores Immunities and Resistances.
+RARE WEAPON ACCURACY
+Designing rare weapons, page 268. The inability for weapons that start with a +1 to
+improve the inherent bonus to Accuracy devalues them compared to the rest.
+The third bullet point in step 3 should say: "You may add a +1 bonus to the weapon's
+Accuracy Check, or improve its existing bonus by 1 point. If you do, increase its cost by
+100 zenit; this cannot bring the weapon's bonus above +2."RARE WEAPON ADDITIONAL DAMAGE
+Designing rare weapons, page 268. The 4 damage increase for 200 zenit was too
+abrupt and, while simple, it became accessible way too early.
+The fourth bullet point in step 3 is removed.
+Add a step 5, which says: "Finally, the weapon's damage modifier is increased by 2 for
+every 1000 zenit of its cost (for instance, a rare weapon worth 1500 zenit and based
+on a steel dagger deals【 HR + 6】 damage)."
+Additionally, the rule that automatically made any weapon with a damage modifier of
++10 or higher into a martial weapon is removed.
+To convert existing rare weapons, simply reduce the cost of any weapon whose
+damage is higher than their base version by 200, then reduce their damage formula
+by 4, and finally increase their damage formula by [(cost/1000) x 2].
+If a weapon is given a new Quality via something like the Upgrade Heroic Skill, make
+sure to update the weapon's cost and also its damage bonus.
+DESIGNING NPCs
+Pages 303 and after. These changes are the result of years of people giving NPCs
+extremely overpowered equipment, or designing them mostly with PC Skills that
+are not really designed to work on NPCs; additionally, this makes it so a foe cannot
+be easily disarmed without some sort of Clock. Obviously, this change must be
+accompanied by the rework of the Breach Skill (see previous pages).
+w The Use Equipment Skill no longer exists. Humanoids have 4 free initial Skills, just
+like Monsters. They may wield equipment, from a narrative standpoint, but
+mechanically these are just normal basic attacks, spells, or unique actions.
+w NPCs can no longer choose Class Skills, only NPC Skills. Effects such as the Protect
+Skill (see Grey Howler, page 325), can be recreated via the "Reaction" NPC Skill,
+for instance.
+DEVASTATION
+NPC Spells, page 310. The effect has been uniformed to Comet and Ultimagic.
+The spell's text now says: "You deal 30 (choose type) damage to every enemy you can
+see." instead of "Choose any number of creatures you can see: each of them suffers 30
+(choose type) damage."
+W
+4142
+W
+W
+QUICKEN
+NPC Spells, page 310. This spell was too pricey.
+The cost of this spell is now 10 MP.
+STUDYING A NON-PLAYER CHARACTER
+Page 319. These changes allow more groups to examine foes with ease without
+investing heavily into Insight or Loremaster, and it also make it so the tiers are the
+same as standard Open Checks.
+Instead of being revealed at 10+, 13+ and 16+, the various degrees of NPC data are
+revealed at 7+, 10+, and 13+.d
+BATTLE SUPERIORITY
+This optional rule was already a bit problematic with the core rules, but as the game
+grew, it just suffered more and more. It had to be reworked.
+This optional rule adds another layer of strategy to battles and rewards a clever, non-
+impulsive use of elemental attacks and Affinities.
+If you use this rule, Player Characters (and only Player Characters) gain access to a
+special game resource called Superiority Points, which allows them to enter a special
+state known as boost.
+w When a Player Character deals damage to one or more enemies, if one or more of
+those enemies are Vulnerable to the damage dealt and none of them are Immune or
+Absorb it, the group gains 1 Superiority Point. A Player Character can only generate
+Superiority Points during their turn, and only once per turn.
+w When a Player Character deals damage to one or more enemies, if at least one of
+those enemies is Immune to or Absorbs that damage, the group loses all Superiority
+Points and any boosted characters lose their boost. Additionally, every creature on
+the Player Characters' side who is yet to take a turn during the current round loses
+the ability to do so; any turn-based effects will not end, begin, or recharge, but if any
+of those creatures were Guarding and/or covering someone else, those benefits end.
+If this happens during a Player Character's turn, that turn also ends immediately.
+At the end of each round, all boosted Player Characters lose their boost; then, if
+the group has a number of Superiority Points equal to or higher than the number
+of Player Characters currently in the conflict (ignoring PCs who left the scene,
+surrendered, or sacrificed themselves), they lose all Superiority Points and each of
+those Player Characters becomes boosted.
+w On their turn, a boosted character can perform an additional action; if they do so,
+they lose their boost.
+w Boosted characters lose their boost at the end of the scene.
+To make this optional rule shine, the Game Master should combine enemies with
+diametrically opposite Affinities, employ a lot of adversaries with Immunities and
+Absorptions, and also grant each boss they design the ability to alter their Affinities
+at least once over the course of the conflict.
+W
+4344
+W
+W
+d
+PRESSURE AND STAGGER
+This is a new optional rule that introduces a sort of break/stagger system.
+Under this optional rule, Vulnerabilities do not immediately increase Hit Point loss
+against the more powerful foes; instead, they can be exploited to pressure them up to
+a breaking point, where they become staggered and Vulnerable to most damage types,
+in addition to losing their actions for the rest of the round.
+If you use this rule, every elite and champion enemy faced in battle enters the scene
+with an empty Pressure Clock and a variable amount of pressure points: weapon
+Categories that are especially useful against them (the Categories are arcane, bow,
+brawling, dagger, firearm, flail, heavy, spear, sword, thrown).
+w An elite has a 4-section Pressure Clock and two pressure points.
+w A champion has a Pressure Clock with a number of sections equal to【 2 + twice the
+number of soldiers they replace】, and four pressure points.
+Rules for Pressure Clocks are described below.
+FILLING A PRESSURE CLOCK
+An enemy's Pressure Clock can be filled as per the normal rules (Opportunities,
+Objective actions and more), or through effects that explicitly mention Pressure
+Clocks. Not only that, it can also be filled in the following ways:
+w When a non-staggered enemy loses Hit Points due to damage of a type they are
+Vulnerable to, that enemy does not lose twice the normal amount of Hit Points as
+described on page 92 of the Core Rulebook; instead, their Pressure Clock fills by 1
+section, or by 2 sections if the HP loss they suffered is equal to or higher than【 10
++ half that enemy's level】. For instance, the Clock of a level 25 enemy will fill by 2
+sections if they lose 22 or more Hit Points from the blow.
+w When a non-staggered enemy loses Hit Points due to damage dealt by an attack
+with a weapon, if one or more of that weapon's Categories fall within that enemy's
+pressure points, their Pressure Clock fills by 1 section.
+These two effects are not cumulative; if an attack qualifies for both, only apply the
+first effect (thus ignoring pressure points).EMPTYING A PRESSURE CLOCK
+An enemy's Pressure Clock can only be emptied at the end of a round in which they've
+been staggered (see below), or through effects that explicitly mention Pressure
+Clocks. Be careful, however, because these effects can be very frustrating.
+STAGGERED ENEMIES
+As soon as an enemy's Pressure Clock becomes full, that enemy becomes staggered.
+A staggered enemy suffers the following penalties:
+w The enemy cannot take turns; any remaining turns they had available during the
+current round are simply wasted. If an enemy becomes staggered during their own
+turn, that turn ends immediately.
+w The enemy treats their neutral (-) and Resistance (RS) Affinities as if they were
+Vulnerabilities instead, and all their Vulnerabilities (the preexisting ones as well as
+those gained from stagger) function as normal, causing double Hit Point loss.
+w Any effects based on the enemy's turns will not end, begin, nor recharge. However, if
+this enemy was Guarding and/or covering someone else, their Guard is broken and
+all its benefits end immediately; when a flying enemy is staggered, they are forced to
+land immediately (and will resume flight at the end of the round).
+At the end of each round, each staggered enemy erases all sections of their Pressure
+Clocks and stop being staggered; due to this, it can be wise to wait a little bit and
+stagger a foe at the beginning of a new round to get the most out of it.
+ADDITIONAL ADVICE
+If you use this optional rule, consider the following:
+w An enemy's pressure points can be revealed much the same way as Affinities:
+any game option that reveals a creature's Affinities, such as an Open Check or the
+Loremaster's Quick Assessment Skill, can also be used to learn pressure points.
+w You can create special rare items whose Qualities improve the user's ability to fill
+Pressure Clocks, or grant additional benefits or damage against staggered foes.
+W
+4546
+W
+W
+d
+BATTLE STANCES
+This is a new optional rule that introduces a system resembling a front and back line
+logic, but without actually referencing the characters' physical position in space, thus
+leaving the Players free to describe any sort of action.
+This optional rule allows Players to better protect the more fragile members of the
+group, and is especially recommended if several characters have low maximum Hit
+Point values, if the heroes lack the ability to deny or mitigate enemy damage, or if the
+group simply prefers a more relaxed playstyle.
+At the start of each conflict scene and at the start of each round, all creatures that
+are part of the Player Character's side must decide whether their stance will be
+aggressive or defensive (Players make this decision together for any allied NPCs that
+may be participating alongside them).
+w Aggressive stance. Creatures in this stance follow the normal rules. Additionally,
+enemies must always include as many aggressive creatures as possible among the
+targets of their attacks and offensive (r) spells; however, if an aggressive creature
+has a targeting manipulation effect (such as the Fury's Provoke Skill or the Dancer's
+Peacock Dance), these effects have priority over this rule (the enemy will still give
+priority to these characters among the available aggressive targets).
+w Defensive stance. When a creature in this stance deals or suffers damage, the amount
+of damage is halved (before applying Affinities).
+Creatures must wait for the beginning of the next round if they want to change their
+stance, but they may also be forced to change it:
+If at any time during a conflict the number of creatures in defensive stance is higher
+than the number of creatures in aggressive stance, all creatures in defensive stance
+must immediately switch to aggressive stance.
+It can be a good idea to use coins or tokens to keep track of creature stances; and
+finally, it can be very interesting to create unique enemy abilities and item Qualities
+that interact with stances in new and dynamic ways.
+Examples: an ability that turns defensive enemies aggressive, a weapon that deals
+damage based on how many allies are aggressive, an attack that ignores aggressive
+enemies, a foe whose attacks change depending on enemy stances.d
+CATEGORY-BASED AFFINITIES
+This is a new optional rule that adds value to collecting weapons of various types.
+DO NOT use it together with Pressure and Stagger.
+This optional rule incentivizes variety in the weapons used by the heroes, and makes it
+so that collecting weapons belonging to many different Categories is just as valuable
+as gathering weapons that deal damage of different types.
+If you use this optional rule, apply the following changes to enemy creation:
+w Every enemy is Vulnerable to damage of all types dealt by weapons belonging to at
+least one of up to three different Categories.
+w For every Category an enemy is Vulnerable to, choose one option: that enemy has
+Resistance to damage of all types dealt by weapons belonging to at least one of two
+different Categories they're not Vulnerable or Immune to; or that enemy is Immune to
+damage of all types dealt by weapons belonging to a Category they're not Vulnerable
+or Resistant to.
+Example: a gelatinous, slimy enemy could be Vulnerable to damage dealt by bows,
+daggers and spears, Resistant to damage dealt by flails and thrown weapons, and
+Immune to damage dealt by brawling and heavy weapons.
+These Affinities combine with the standard Affinities following the standard rules
+found on page 92 of the Core Rulebook: for instance, if an enemy Vulnerable to bows
+and Resistant to fire is hit by a bow that deals fire damage, they will be treated as
+having neutral Affinity towards that damage.
+While this rule is great for groups that like collecting a great variety of weapons and
+switching between them, it can be frustrating for Players who have a specific aesthetic
+in mind for their hero (such as a dedicated spear warrior or a gunslinger). Only use it if
+everyone is enthusiastic about the idea.
+W
+47

@@ -5,6 +5,8 @@ import DiceRoller from './components/DiceRoller';
 import CombatTracker from './components/CombatTracker';
 import RuleReference from './components/RuleReference';
 import InventoryManager from './components/InventoryManager';
+import AdventureGenerator from './components/AdventureGenerator';
+import GameMap from './components/GameMap';
 import Auth from './components/Auth';
 import { supabase } from './lib/supabase';
 import './App.css';
@@ -41,6 +43,8 @@ const App = () => {
     { id: 'dice', name: '🎲 Dice Roller', component: DiceRoller },
     { id: 'combat', name: '⚔️ Combat Tracker', component: CombatTracker },
     { id: 'inventory', name: '🎒 Inventory', component: InventoryManager },
+    { id: 'adventure', name: '🎲 Adventure Generator', component: AdventureGenerator },
+    { id: 'map', name: '🗺️ Game Map', component: GameMap },
     { id: 'rules', name: '📖 Rule Reference', component: RuleReference }
   ];
 

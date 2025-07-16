@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { CHARACTER_CLASSES, ATTRIBUTES, DICE_TYPES, DAMAGE_TYPES, STATUS_EFFECTS, BASIC_WEAPONS, GAME_MECHANICS } from '../../../shared/game_data.js';
+import { CHARACTER_CLASSES, ATTRIBUTES, DICE_TYPES, DAMAGE_TYPES, STATUS_EFFECTS, BASIC_WEAPONS, GAME_MECHANICS, HEXER_SPELLS } from '../../../shared/game_data.js';
 import './RuleReference.css';
 
 const RuleReference = () => {
@@ -250,6 +250,10 @@ const RuleReference = () => {
             <strong>Chimerism</strong>
             <p>Transformation and beast magic</p>
           </div>
+          <div className="school-item">
+            <strong>Hexer Magic</strong>
+            <p>Dark magic specializing in curses and toxins</p>
+          </div>
         </div>
       </div>
 
@@ -268,6 +272,33 @@ const RuleReference = () => {
           <div className="rule-item">
             <strong>Spell Levels:</strong> Spells increase in power and cost with level
           </div>
+        </div>
+      </div>
+
+      <div className="rule-card">
+        <h4>Hexer Spells</h4>
+        <div className="hexer-spells">
+          {Object.entries(HEXER_SPELLS).map(([key, spell]) => (
+            <div key={key} className="spell-item">
+              <div className="spell-header">
+                <h5>{spell.name}</h5>
+                <div className="spell-stats">
+                  <span className="spell-mp">MP: {spell.mp}</span>
+                  <span className="spell-target">Target: {spell.target}</span>
+                  <span className="spell-duration">Duration: {spell.duration}</span>
+                  <span className={`spell-type ${spell.type}`}>
+                    {spell.type === 'offensive' ? '⚔️' : '🛡️'} {spell.type.charAt(0).toUpperCase() + spell.type.slice(1)}
+                  </span>
+                </div>
+              </div>
+              <div className="spell-description">
+                <p>{spell.description}</p>
+              </div>
+              <div className="spell-source">
+                <small>Source: {spell.source}</small>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>

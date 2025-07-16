@@ -1,0 +1,343 @@
+/* Adventure Generator Styles */
+.adventure-generator {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  color: white;
+}
+
+.generator-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 2rem;
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+}
+
+.generator-header h1 {
+  font-size: 3rem;
+  margin: 0 0 1rem 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.generator-header p {
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
+
+.generator-controls {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 2rem;
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+}
+
+.control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.control-group label {
+  font-weight: bold;
+  color: white;
+  font-size: 1rem;
+}
+
+.control-group select,
+.control-group input {
+  padding: 0.75rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #333;
+  font-size: 1rem;
+}
+
+.control-group select:focus,
+.control-group input:focus {
+  outline: none;
+  border-color: #fff;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+}
+
+.generator-actions {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.generate-btn {
+  background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+  color: white;
+  border: none;
+  padding: 1rem 3rem;
+  font-size: 1.3rem;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+}
+
+.generate-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
+}
+
+.generate-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.generated-adventure {
+  background: rgba(255, 255, 255, 0.95);
+  color: #333;
+  border-radius: 15px;
+  padding: 2rem;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+.adventure-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  border-bottom: 2px solid #667eea;
+  padding-bottom: 1rem;
+}
+
+.adventure-header h2 {
+  font-size: 2.5rem;
+  color: #2c3e50;
+  margin: 0 0 1rem 0;
+}
+
+.adventure-tags {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.tag {
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: white;
+}
+
+.theme-tag {
+  background: #667eea;
+}
+
+.difficulty-tag {
+  /* Color set dynamically via style prop */
+}
+
+.duration-tag {
+  background: #f39c12;
+}
+
+.setting-tag {
+  background: #27ae60;
+}
+
+.adventure-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.adventure-content section {
+  background: rgba(255, 255, 255, 0.8);
+  padding: 1.5rem;
+  border-radius: 10px;
+  border-left: 4px solid #667eea;
+}
+
+.adventure-content h3 {
+  color: #2c3e50;
+  margin: 0 0 1rem 0;
+  font-size: 1.5rem;
+  border-bottom: 2px solid #667eea;
+  padding-bottom: 0.5rem;
+}
+
+.adventure-summary p {
+  margin: 0.5rem 0;
+  line-height: 1.6;
+}
+
+.acts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+.act-card {
+  background: linear-gradient(135deg, #f8f9ff, #e8f2ff);
+  padding: 1.5rem;
+  border-radius: 10px;
+  border: 2px solid rgba(102, 126, 234, 0.3);
+}
+
+.act-card h4 {
+  color: #667eea;
+  margin: 0 0 0.5rem 0;
+  font-size: 1.2rem;
+}
+
+.act-card p {
+  color: #555;
+  margin: 0.5rem 0;
+}
+
+.objectives {
+  margin-top: 1rem;
+}
+
+.objectives ul {
+  margin: 0.5rem 0;
+  padding-left: 1.5rem;
+}
+
+.objectives li {
+  margin: 0.3rem 0;
+  color: #666;
+}
+
+.npcs-grid, .locations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.npc-card, .location-card {
+  background: linear-gradient(135deg, #fff5f5, #ffe8e8);
+  padding: 1rem;
+  border-radius: 8px;
+  border: 2px solid rgba(231, 76, 60, 0.3);
+  transition: all 0.3s ease;
+}
+
+.npc-card:hover, .location-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(231, 76, 60, 0.2);
+}
+
+.npc-card h4, .location-card h4 {
+  color: #e74c3c;
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+}
+
+.npc-card p, .location-card p {
+  color: #666;
+  margin: 0.3rem 0;
+  font-size: 0.9rem;
+}
+
+.encounter-type {
+  background: #3498db;
+  color: white;
+  padding: 0.2rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.rewards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.reward-item {
+  background: linear-gradient(135deg, #f0fff4, #e8f5e8);
+  padding: 1rem;
+  border-radius: 8px;
+  border: 2px solid rgba(46, 204, 113, 0.3);
+}
+
+.reward-item strong {
+  color: #27ae60;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.adventure-complications ul {
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+}
+
+.adventure-complications li {
+  margin: 0.5rem 0;
+  color: #e67e22;
+  font-weight: 500;
+}
+
+.adventure-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 2px solid #ecf0f1;
+}
+
+.export-btn, .regenerate-btn {
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.export-btn {
+  background: linear-gradient(45deg, #27ae60, #2ecc71);
+  color: white;
+}
+
+.regenerate-btn {
+  background: linear-gradient(45deg, #3498db, #5dade2);
+  color: white;
+}
+
+.export-btn:hover, .regenerate-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .adventure-generator {
+    padding: 1rem;
+  }
+  
+  .generator-controls {
+    grid-template-columns: 1fr;
+  }
+  
+  .adventure-tags {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .acts-grid,
+  .npcs-grid,
+  .locations-grid,
+  .rewards-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .adventure-actions {
+    flex-direction: column;
+  }
+}
