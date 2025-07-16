@@ -1,0 +1,385 @@
+/* Combat Tracker Styles */
+.combat-tracker {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.combat-tracker h1 {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.combat-interface {
+  display: grid;
+  gap: 2rem;
+}
+
+.combat-setup {
+  background: rgba(255, 255, 255, 0.5);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 2px solid rgba(102, 126, 234, 0.2);
+}
+
+.combat-setup h2 {
+  margin-bottom: 1rem;
+  color: #333;
+  text-align: center;
+}
+
+.combatant-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  align-items: end;
+}
+
+.combatant-form input {
+  padding: 0.75rem;
+  border: 2px solid rgba(102, 126, 234, 0.3);
+  border-radius: 8px;
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.combatant-form label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #333;
+  font-weight: bold;
+}
+
+.combatant-form button {
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.combatant-form button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.combat-controls {
+  background: rgba(255, 255, 255, 0.5);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 2px solid rgba(102, 126, 234, 0.2);
+  text-align: center;
+}
+
+.combat-controls h2 {
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.control-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.control-buttons button {
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.control-buttons button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.control-buttons button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.start-combat {
+  background: linear-gradient(45deg, #4CAF50, #45a049) !important;
+  box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
+}
+
+.start-combat:hover {
+  box-shadow: 0 6px 20px rgba(76, 175, 80, 0.6) !important;
+}
+
+.end-combat {
+  background: linear-gradient(45deg, #F44336, #D32F2F) !important;
+  box-shadow: 0 4px 15px rgba(244, 67, 54, 0.4);
+}
+
+.end-combat:hover {
+  box-shadow: 0 6px 20px rgba(244, 67, 54, 0.6) !important;
+}
+
+.combat-status {
+  background: rgba(102, 126, 234, 0.1);
+  padding: 1rem;
+  border-radius: 8px;
+  border: 2px solid rgba(102, 126, 234, 0.3);
+}
+
+.combat-status h3 {
+  margin-bottom: 0.5rem;
+  color: #333;
+  font-size: 1.5rem;
+}
+
+.combat-status p {
+  color: #666;
+  font-size: 1.1rem;
+}
+
+.combatants-list {
+  background: rgba(255, 255, 255, 0.5);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 2px solid rgba(102, 126, 234, 0.2);
+}
+
+.combatants-list h2 {
+  margin-bottom: 1rem;
+  color: #333;
+  text-align: center;
+}
+
+.combatants-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+.combatant-card {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 2px solid rgba(102, 126, 234, 0.2);
+  transition: all 0.3s ease;
+}
+
+.combatant-card.player {
+  border-color: #4CAF50;
+  background: rgba(76, 175, 80, 0.1);
+}
+
+.combatant-card.enemy {
+  border-color: #F44336;
+  background: rgba(244, 67, 54, 0.1);
+}
+
+.combatant-card.current-turn {
+  border-color: #FFD700;
+  background: rgba(255, 215, 0, 0.2);
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+  transform: scale(1.02);
+}
+
+.combatant-card.defeated {
+  opacity: 0.5;
+  filter: grayscale(100%);
+}
+
+.combatant-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.combatant-header h3 {
+  margin: 0;
+  color: #333;
+  font-size: 1.3rem;
+}
+
+.combatant-type {
+  font-size: 1.5rem;
+}
+
+.remove-btn {
+  background: #F44336;
+  color: white;
+  border: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+}
+
+.remove-btn:hover {
+  background: #D32F2F;
+  transform: scale(1.1);
+}
+
+.health-bars {
+  margin-bottom: 1rem;
+}
+
+.health-bar {
+  margin-bottom: 0.5rem;
+}
+
+.health-bar label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.25rem;
+  color: #333;
+  font-size: 0.9rem;
+}
+
+.bar-container {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  height: 20px;
+  overflow: hidden;
+}
+
+.bar {
+  height: 100%;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.hp-bar {
+  background: #4CAF50;
+}
+
+.mp-bar {
+  background: #2196F3;
+}
+
+.combatant-controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.hp-controls,
+.mp-controls {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.hp-controls button,
+.mp-controls button {
+  flex: 1;
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  color: white;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.hp-controls button:hover,
+.mp-controls button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(102, 126, 234, 0.3);
+}
+
+.initiative-display {
+  text-align: center;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  background: rgba(102, 126, 234, 0.1);
+  border-radius: 8px;
+}
+
+.initiative-display span {
+  font-weight: bold;
+  color: #333;
+}
+
+.status-effects h4 {
+  margin-bottom: 0.5rem;
+  color: #333;
+  font-size: 1rem;
+}
+
+.effects-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.status-effect {
+  background: linear-gradient(45deg, #FF9800, #F57C00);
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.status-effect:hover {
+  background: linear-gradient(45deg, #F57C00, #E65100);
+  transform: scale(1.05);
+}
+
+.status-effects select {
+  width: 100%;
+  padding: 0.5rem;
+  border: 2px solid rgba(102, 126, 234, 0.3);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  background: rgba(255, 255, 255, 0.9);
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .combat-tracker {
+    padding: 1rem;
+  }
+  
+  .combatant-form {
+    grid-template-columns: 1fr;
+  }
+  
+  .control-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .combatants-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .combatant-controls {
+    grid-template-columns: 1fr;
+  }
+  
+  .hp-controls,
+  .mp-controls {
+    justify-content: center;
+  }
+}

@@ -1,0 +1,468 @@
+/* Dice Roller Styles */
+.dice-roller {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.dice-roller h1 {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.roller-interface {
+  display: grid;
+  gap: 2rem;
+}
+
+.roll-setup {
+  background: rgba(255, 255, 255, 0.5);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 2px solid rgba(102, 126, 234, 0.2);
+}
+
+.roll-setup h2 {
+  margin-bottom: 1rem;
+  color: #333;
+  text-align: center;
+}
+
+.dice-selection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.attribute-dice {
+  text-align: center;
+}
+
+.attribute-dice label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.attribute-dice select {
+  padding: 0.5rem;
+  border: 2px solid rgba(102, 126, 234, 0.3);
+  border-radius: 8px;
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.9);
+  cursor: pointer;
+  min-width: 80px;
+}
+
+.plus-sign {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #667eea;
+  margin: 0 0.5rem;
+}
+
+.modifier-input {
+  text-align: center;
+}
+
+.modifier-input label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.modifier-input input {
+  padding: 0.5rem;
+  border: 2px solid rgba(102, 126, 234, 0.3);
+  border-radius: 8px;
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.9);
+  text-align: center;
+  width: 80px;
+}
+
+.roll-button {
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  font-size: 1.3rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+  display: block;
+  margin: 0 auto;
+}
+
+.roll-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+}
+
+.roll-button:active {
+  transform: translateY(-1px);
+}
+
+.current-result {
+  background: rgba(255, 255, 255, 0.5);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 2px solid rgba(102, 126, 234, 0.2);
+  text-align: center;
+}
+
+.current-result h2 {
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.result-display {
+  background: rgba(255, 255, 255, 0.8);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 3px solid rgba(102, 126, 234, 0.3);
+  transition: all 0.3s ease;
+}
+
+.result-display.critical {
+  border-color: #FFD700;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+  background: linear-gradient(45deg, #FFD700, #FFA500);
+  color: white;
+}
+
+.result-display.fumble {
+  border-color: #F44336;
+  box-shadow: 0 0 20px rgba(244, 67, 54, 0.5);
+  background: linear-gradient(45deg, #F44336, #D32F2F);
+  color: white;
+}
+
+.result-display.high-roll {
+  border-color: #4CAF50;
+  box-shadow: 0 0 15px rgba(76, 175, 80, 0.4);
+  background: linear-gradient(45deg, #4CAF50, #45a049);
+  color: white;
+}
+
+.dice-results {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.die-result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.die-type {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #666;
+}
+
+.die-value {
+  font-size: 2rem;
+  font-weight: bold;
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  min-width: 40px;
+  text-align: center;
+}
+
+.modifier-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.modifier-value {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #666;
+}
+
+.total-result {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.equals {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #666;
+}
+
+.total {
+  font-size: 3rem;
+  font-weight: bold;
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.result-status {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  text-align: center;
+  animation: pulse 2s infinite;
+}
+
+.result-status.critical {
+  background: rgba(255, 215, 0, 0.2);
+  color: #FFD700;
+  border: 2px solid #FFD700;
+}
+
+.result-status.fumble {
+  background: rgba(244, 67, 54, 0.2);
+  color: #F44336;
+  border: 2px solid #F44336;
+}
+
+.result-status.high-roll {
+  background: rgba(76, 175, 80, 0.2);
+  color: #4CAF50;
+  border: 2px solid #4CAF50;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.quick-rolls {
+  background: rgba(255, 255, 255, 0.5);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 2px solid rgba(102, 126, 234, 0.2);
+}
+
+.quick-rolls h2 {
+  margin-bottom: 1rem;
+  color: #333;
+  text-align: center;
+}
+
+.quick-roll-buttons {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.quick-roll-btn {
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  color: white;
+  border: none;
+  padding: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.quick-roll-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.roll-name {
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.roll-description {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.difficulty-reference {
+  background: rgba(255, 255, 255, 0.5);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 2px solid rgba(102, 126, 234, 0.2);
+}
+
+.difficulty-reference h2 {
+  margin-bottom: 1rem;
+  color: #333;
+  text-align: center;
+}
+
+.difficulty-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+.difficulty-level {
+  background: rgba(255, 255, 255, 0.8);
+  padding: 1rem;
+  border-radius: 8px;
+  border: 2px solid rgba(102, 126, 234, 0.2);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.difficulty-level.success {
+  background: rgba(76, 175, 80, 0.2);
+  border-color: #4CAF50;
+}
+
+.difficulty-level.failure {
+  background: rgba(244, 67, 54, 0.2);
+  border-color: #F44336;
+}
+
+.level-name {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.target-number {
+  display: block;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #667eea;
+  margin-bottom: 0.5rem;
+}
+
+.result-indicator {
+  font-size: 1.5rem;
+}
+
+.roll-history {
+  background: rgba(255, 255, 255, 0.5);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 2px solid rgba(102, 126, 234, 0.2);
+}
+
+.roll-history h2 {
+  margin-bottom: 1rem;
+  color: #333;
+  text-align: center;
+}
+
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.history-item {
+  background: rgba(255, 255, 255, 0.8);
+  padding: 0.75rem;
+  border-radius: 8px;
+  border: 1px solid rgba(102, 126, 234, 0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.history-item.critical {
+  background: rgba(255, 215, 0, 0.2);
+  border-color: #FFD700;
+}
+
+.history-item.fumble {
+  background: rgba(244, 67, 54, 0.2);
+  border-color: #F44336;
+}
+
+.history-item.high-roll {
+  background: rgba(76, 175, 80, 0.2);
+  border-color: #4CAF50;
+}
+
+.timestamp {
+  font-size: 0.9rem;
+  color: #666;
+  min-width: 80px;
+}
+
+.roll-details {
+  flex: 1;
+  font-family: monospace;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.roll-total {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #667eea;
+  min-width: 40px;
+  text-align: center;
+}
+
+.status {
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  color: white;
+  padding: 0.2rem 0.5rem;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .dice-roller {
+    padding: 1rem;
+  }
+  
+  .dice-selection {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .quick-roll-buttons,
+  .difficulty-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .history-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
