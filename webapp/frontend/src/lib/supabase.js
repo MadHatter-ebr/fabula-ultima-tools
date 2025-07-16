@@ -13,7 +13,8 @@ export const TABLES = {
   CAMPAIGNS: 'campaigns',
   COMBAT_SESSIONS: 'combat_sessions',
   DICE_ROLLS: 'dice_rolls',
-  USER_PROFILES: 'user_profiles'
+  USER_PROFILES: 'user_profiles',
+  INVENTORY: 'inventory'
 }
 
 // Authentication helpers
@@ -168,5 +169,54 @@ export const dbHelpers = {
         id: user.id,
         updated_at: new Date().toISOString()
       })
+  },
+
+  // Inventory operations
+  saveInventory: async (inventory) => {
+    const { data: { user } } = await supabase.auth.getUser()
+    if (!user) throw new Error('User not authenticated')
+
+    // Delete existing inventory items for this user
+    await supabase
+      .from(TABLES.INVENTORY)
+      .delete()
+      .eq('user_id', user.id)
+
+    // Insert new inventory items
+    if (inventory.length > 0) {
+      const inventoryItems = inventory.map(item => ({
+        ...item,
+        user_id: user.id,
+        updated_at: new Date().toISOString()
+      }))
+
+      return await supabase
+        .from(TABLES.INVENTORY)
+        .insert(inventoryItems)
+    }
+
+    return { data: [], error: null }
+  },
+
+  loadInventory: async () => {
+    const { data: { user } } = await supabase.auth.getUser()
+    if (!user) throw new Error('User not authenticated')
+
+    return await supabase
+      .from(TABLES.INVENTORY)
+      .select('*')
+      .eq('user_id', user.id)
+      .order('created_at', { ascending: false })
+  },
+
+  deleteInventoryItem: async (itemId) => {
+    const { data: { user } } = await supabase.auth.getUser()
+    if (!user) throw new Error('User not authenticated')
+
+    return await supabase
+      .from(TABLES.INVENTORY)
+      .delete()
+      .eq('id', itemId)
+      .eq('user_id', user.id)
   }
 }

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import CharacterGenerator from './components/CharacterGenerator';
 import DiceRoller from './components/DiceRoller';
 import CombatTracker from './components/CombatTracker';
+import RuleReference from './components/RuleReference';
+import InventoryManager from './components/InventoryManager';
 import Auth from './components/Auth';
 import { supabase } from './lib/supabase';
 import './App.css';
@@ -35,7 +37,9 @@ const App = () => {
   const tabs = [
     { id: 'character', name: '🎭 Character Generator', component: CharacterGenerator },
     { id: 'dice', name: '🎲 Dice Roller', component: DiceRoller },
-    { id: 'combat', name: '⚔️ Combat Tracker', component: CombatTracker }
+    { id: 'combat', name: '⚔️ Combat Tracker', component: CombatTracker },
+    { id: 'inventory', name: '🎒 Inventory', component: InventoryManager },
+    { id: 'rules', name: '📖 Rule Reference', component: RuleReference }
   ];
 
   const ActiveComponent = tabs.find(tab => tab.id === activeTab)?.component || CharacterGenerator;

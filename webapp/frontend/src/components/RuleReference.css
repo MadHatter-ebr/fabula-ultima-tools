@@ -1,0 +1,473 @@
+/* Rule Reference Styles */
+.rule-reference {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #f8f9ff 0%, #e8f2ff 100%);
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.rule-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.rule-header h2 {
+  color: #2c3e50;
+  font-size: 2.2rem;
+  margin: 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-box input {
+  padding: 0.75rem 3rem 0.75rem 1rem;
+  border: 2px solid #ddd;
+  border-radius: 25px;
+  font-size: 1rem;
+  width: 300px;
+  transition: all 0.3s ease;
+}
+
+.search-box input:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+}
+
+.search-icon {
+  position: absolute;
+  right: 1rem;
+  font-size: 1.2rem;
+  color: #666;
+}
+
+.rule-tabs {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding: 0 1rem;
+  overflow-x: auto;
+}
+
+.tab-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 1.5rem;
+  background: rgba(255, 255, 255, 0.8);
+  border: 2px solid transparent;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #555;
+  white-space: nowrap;
+}
+
+.tab-button:hover {
+  background: rgba(255, 255, 255, 0.95);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.tab-button.active {
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  color: white;
+  border-color: #667eea;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+}
+
+.tab-icon {
+  font-size: 1.5rem;
+}
+
+.rule-content {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 15px;
+  padding: 2rem;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+.rule-section h3 {
+  color: #2c3e50;
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.rule-card {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid #e1e8ed;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.rule-card:hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.rule-card h4 {
+  color: #667eea;
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #667eea;
+  padding-bottom: 0.5rem;
+}
+
+.rule-card h5 {
+  color: #764ba2;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Attributes Grid */
+.attribute-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.attribute-item {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  background: linear-gradient(135deg, #f8f9ff, #e8f2ff);
+  border-radius: 8px;
+  border-left: 4px solid #667eea;
+}
+
+.attr-name {
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+}
+
+.attr-desc {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* Dice Progression */
+.dice-progression {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.dice-item {
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  color: white;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-weight: bold;
+  text-align: center;
+  min-width: 80px;
+}
+
+/* Resources Grid */
+.resources-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.resource-item {
+  padding: 1rem;
+  background: linear-gradient(135deg, #fff5f5, #ffe8e8);
+  border-radius: 8px;
+  border-left: 4px solid #e74c3c;
+}
+
+.resource-item strong {
+  color: #c0392b;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+/* Class Grid */
+.class-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+.class-card {
+  background: linear-gradient(135deg, #f8f9ff, #e8f2ff);
+  border: 2px solid #ddd;
+  border-radius: 12px;
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.class-card:hover {
+  border-color: #667eea;
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.2);
+  transform: translateY(-2px);
+}
+
+.class-card.selected {
+  border-color: #667eea;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+}
+
+.class-card h4 {
+  color: inherit;
+  border-bottom: 2px solid currentColor;
+  margin-bottom: 1rem;
+}
+
+.class-attributes {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+.class-details {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.class-details ul {
+  margin: 0.5rem 0;
+  padding-left: 1.5rem;
+}
+
+/* Damage Types */
+.damage-types {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 1rem;
+}
+
+.damage-type {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  background: linear-gradient(135deg, #f8f9ff, #e8f2ff);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.damage-icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.damage-name {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+/* Status Effects */
+.status-effects {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.status-effect {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  background: linear-gradient(135deg, #fff5f5, #ffe8e8);
+  border-radius: 8px;
+  border-left: 4px solid #e74c3c;
+}
+
+.status-name {
+  font-weight: bold;
+  color: #c0392b;
+  margin-bottom: 0.5rem;
+}
+
+.status-desc {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* Combat Flow */
+.combat-flow {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.flow-step {
+  background: linear-gradient(135deg, #f8f9ff, #e8f2ff);
+  padding: 1rem;
+  border-radius: 8px;
+  border-left: 4px solid #667eea;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+/* Weapon Grid */
+.weapon-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.weapon-card {
+  background: linear-gradient(135deg, #f8f9ff, #e8f2ff);
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+  transition: all 0.3s ease;
+}
+
+.weapon-card:hover {
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.weapon-card h5 {
+  color: #667eea;
+  margin-bottom: 0.5rem;
+}
+
+.weapon-stats div {
+  margin-bottom: 0.3rem;
+  color: #555;
+}
+
+/* Equipment Categories */
+.equipment-categories {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.category-item {
+  padding: 1rem;
+  background: linear-gradient(135deg, #f8f9ff, #e8f2ff);
+  border-radius: 8px;
+  border-left: 4px solid #667eea;
+}
+
+.category-item strong {
+  color: #2c3e50;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+/* Spell Schools */
+.spell-schools {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.school-item {
+  padding: 1rem;
+  background: linear-gradient(135deg, #f8f9ff, #e8f2ff);
+  border-radius: 8px;
+  border-left: 4px solid #9b59b6;
+}
+
+.school-item strong {
+  color: #8e44ad;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+/* Spellcasting Rules */
+.spellcasting-rules {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.rule-item {
+  padding: 1rem;
+  background: linear-gradient(135deg, #f8f9ff, #e8f2ff);
+  border-radius: 8px;
+  border-left: 4px solid #9b59b6;
+}
+
+.rule-item strong {
+  color: #8e44ad;
+}
+
+/* Footer */
+.rule-footer {
+  text-align: center;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  color: #666;
+}
+
+.rule-footer p {
+  margin: 0.5rem 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .rule-reference {
+    padding: 1rem;
+  }
+  
+  .rule-header {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .rule-header h2 {
+    font-size: 1.8rem;
+  }
+  
+  .search-box input {
+    width: 250px;
+  }
+  
+  .rule-tabs {
+    flex-wrap: wrap;
+  }
+  
+  .tab-button {
+    flex: 1;
+    min-width: 120px;
+  }
+  
+  .rule-content {
+    padding: 1rem;
+  }
+  
+  .class-grid,
+  .weapon-grid,
+  .damage-types,
+  .status-effects {
+    grid-template-columns: 1fr;
+  }
+  
+  .dice-progression {
+    flex-direction: column;
+    align-items: center;
+  }
+}
