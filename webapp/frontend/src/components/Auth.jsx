@@ -9,6 +9,13 @@ const Auth = ({ onAuthenticated }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // Check if Supabase is properly configured
+    if (!import.meta.env.VITE_SUPABASE_URL || import.meta.env.VITE_SUPABASE_URL.includes('placeholder')) {
+      console.warn('Supabase not configured - running in demo mode');
+      setLoading(false);
+      return;
+    }
+
     // Check current session
     const checkUser = async () => {
       try {
@@ -78,6 +85,39 @@ const Auth = ({ onAuthenticated }) => {
         <button className="sign-out-btn" onClick={handleSignOut}>
           Sign Out
         </button>
+      </div>
+    );
+  }
+
+  // Show demo mode if Supabase is not configured
+  if (!import.meta.env.VITE_SUPABASE_URL || import.meta.env.VITE_SUPABASE_URL.includes('placeholder')) {
+    return (
+      <div className="auth-container">
+        <div className="auth-header">
+          <h1>🎮 Fabula Ultima Tools - Demo Mode</h1>
+          <p>Database not configured - running in demo mode</p>
+        </div>
+        
+        <div className="demo-notice">
+          <h3>⚠️ Demo Mode Active</h3>
+          <p>Your data will not be saved between sessions.</p>
+          <p>To enable full functionality, configure Supabase integration.</p>
+          <button 
+            className="demo-continue-btn"
+            onClick={() => {
+              const demoUser = { id: 'demo', email: 'demo@example.com' };
+              setUser(demoUser);
+              if (onAuthenticated) onAuthenticated(demoUser);
+            }}
+          >
+            Continue in Demo Mode
+          </button>
+        </div>
+        
+        <div className="auth-footer">
+          <p>🎭 Create characters • 🎲 Track rolls • ⚔️ Manage combat</p>
+          <p>See SETUP.md for configuration instructions</p>
+        </div>
       </div>
     );
   }
