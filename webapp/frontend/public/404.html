@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/fabula-ultima-tools/vite.svg" />
+    <link rel="alternate icon" href="/fabula-ultima-tools/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fabula Ultima Tools</title>
+    <meta name="description" content="Digital tools for Fabula Ultima JRPG tabletop game" />
+    <meta name="theme-color" content="#646cff" />
+    <script>
+      // SPA fallback for GitHub Pages
+      // This script redirects 404 errors to the index.html page
+      const pathPrefix = '/fabula-ultima-tools';
+      const redirect = pathPrefix + '/';
+      
+      // Store the current path so the app can handle routing
+      sessionStorage.setItem('redirect', location.pathname.slice(pathPrefix.length) + location.search + location.hash);
+      
+      // Redirect to index.html
+      location.replace(redirect);
+    </script>
+  </head>
+  <body>
+    <p>Redirecting to Fabula Ultima Tools...</p>
+  </body>
+</html>
