@@ -1,34 +1,14 @@
 import React, { useState } from 'react';
-import { CHARACTER_CLASSES, ATTRIBUTES, STARTING_ATTRIBUTES, DICE_PROGRESSION, HEROIC_STYLE_SKILLS, HEXER_SPELLS, CLASS_SKILLS } from '../../../shared/game_data.js';
+import { CHARACTER_CLASSES, ATTRIBUTES, STARTING_ATTRIBUTES, HEROIC_STYLE_SKILLS, DEFAULT_CHARACTER } from '../../../shared/complete_game_data.js';
 import CharacterAvatar from './CharacterAvatar';
 import './CharacterGenerator.css';
 
 const CharacterGenerator = () => {
   const [character, setCharacter] = useState({
-    name: '',
-    level: 1,
-    identity: '',
-    theme: '',
-    origin: '',
-    attributes: {
-      might: null,
-      dexterity: null,
-      intellect: null,
-      willpower: null
-    },
+    ...DEFAULT_CHARACTER,
     classes: [
-      { classKey: null, level: 1, slot: 'primary', skills: {} },
-      { classKey: null, level: 1, slot: 'secondary', skills: {} }
-    ],
-    heroicStyle: null,
-    hitPoints: 40,
-    mindPoints: 40,
-    inventoryPoints: 6,
-    fabulaPoints: 3,
-    traits: [],
-    bonds: [],
-    equipment: [],
-    avatar_url: null
+      { classKey: null, level: 1, abilities: {}, slot: 'primary' }
+    ]
   });
 
   const [availableValues, setAvailableValues] = useState(STARTING_ATTRIBUTES.distribution.values);
@@ -84,187 +64,218 @@ const CharacterGenerator = () => {
     return Object.values(character.attributes).every(val => val !== null);
   };
 
-  const getAvailableSkillPoints = (classIndex) => {
-    const classData = character.classes[classIndex];
-    if (!classData.classKey) return 0;
-    
-    const totalSkillPoints = classData.level; // 1 skill point per level
-    const usedSkillPoints = Object.values(classData.skills).reduce((sum, skillLevel) => sum + skillLevel, 0);
-    return totalSkillPoints - usedSkillPoints;
+  const updateClass = (classIndex, classKey) => {
+    setCharacter(prev => ({
+      ...prev,
+      classes: prev.classes.map((cls, index) => 
+        index === classIndex 
+          ? { ...cls, classKey: classKey, level: 1, abilities: {} }
+          : cls
+      )
+    }));
   };
 
-  const updateSkillLevel = (classIndex, skillName, newLevel) => {
+  const removeClass = (classIndex) => {
+    setCharacter(prev => ({
+      ...prev,
+      classes: prev.classes.filter((_, index) => index !== classIndex)
+    }));
+  };
+
+  const addNewClass = () => {
+    // Check if character has a class at level 10
+    const hasLevel10Class = character.classes.some(cls => cls.level >= 10);
+    if (!hasLevel10Class && character.classes.length >= 2) {
+      alert('You need at least one class at level 10 to add more classes.');
+      return;
+    }
+
+    setCharacter(prev => ({
+      ...prev,
+      classes: [...prev.classes, { classKey: null, level: 1, abilities: {}, slot: 'additional' }]
+    }));
+  };
+
+  const toggleAbility = (classIndex, abilityKey) => {
     const classData = character.classes[classIndex];
     if (!classData.classKey) return;
+
+    const classInfo = CHARACTER_CLASSES[classData.classKey];
+    const ability = classInfo.abilities[abilityKey];
     
-    const skillData = CLASS_SKILLS[classData.classKey][skillName];
-    if (!skillData) return;
+    if (!ability) return;
+
+    const currentlyHasAbility = classData.abilities[abilityKey];
     
-    const maxLevel = skillData.max_level;
-    const currentLevel = classData.skills[skillName] || 0;
-    const availablePoints = getAvailableSkillPoints(classIndex);
-    
-    // Check if we can increase/decrease the skill level
-    if (newLevel > currentLevel && availablePoints <= 0) return;
-    if (newLevel < 0 || newLevel > maxLevel) return;
-    
-    setCharacter(prev => ({
-      ...prev,
-      classes: prev.classes.map((cls, i) => {
-        if (i === classIndex) {
-          const newSkills = { ...cls.skills };
-          if (newLevel === 0) {
-            delete newSkills[skillName];
-          } else {
-            newSkills[skillName] = newLevel;
-          }
-          return { ...cls, skills: newSkills };
-        }
-        return cls;
+    if (currentlyHasAbility) {
+      // Remove ability and decrease level
+      setCharacter(prev => ({
+        ...prev,
+        classes: prev.classes.map((cls, index) => 
+          index === classIndex 
+            ? { 
+                ...cls, 
+                level: Math.max(1, cls.level - 1),
+                abilities: {
+                  ...cls.abilities,
+                  [abilityKey]: false
+                }
+              }
+            : cls
+        )
+      }));
+    } else {
+      // Add ability and increase level
+      setCharacter(prev => ({
+        ...prev,
+        classes: prev.classes.map((cls, index) => 
+          index === classIndex 
+            ? { 
+                ...cls, 
+                level: cls.level + 1,
+                abilities: {
+                  ...cls.abilities,
+                  [abilityKey]: true
+                }
+              }
+            : cls
+        )
+      }));
+    }
+  };
+
+  const getAvailableAbilities = (classIndex) => {
+    const classData = character.classes[classIndex];
+    if (!classData.classKey) return [];
+
+    const classInfo = CHARACTER_CLASSES[classData.classKey];
+    if (!classInfo.abilities) return [];
+
+    return Object.entries(classInfo.abilities)
+      .filter(([key, ability]) => {
+        // Check if ability is available based on class level
+        const requiredLevel = ability.level || 1;
+        const currentLevel = classData.level;
+        
+        // If ability is already selected, always show it
+        if (classData.abilities[key]) return true;
+        
+        // If not selected, check if we have enough level
+        return currentLevel >= requiredLevel;
       })
-    }));
-  };
-
-  const selectClass = (classKey, index) => {
-    setCharacter(prev => ({
-      ...prev,
-      classes: prev.classes.map((classData, i) => 
-        i === index ? { ...classData, classKey } : classData
-      )
-    }));
-  };
-
-  const updateClassLevel = (index, level) => {
-    setCharacter(prev => ({
-      ...prev,
-      classes: prev.classes.map((classData, i) => 
-        i === index ? { ...classData, level: Math.max(1, Math.min(10, level)) } : classData
-      )
-    }));
-  };
-
-  const canAddMoreClasses = () => {
-    return character.classes.some(classData => classData.level >= 10);
-  };
-
-  const addNewClassSlot = () => {
-    if (canAddMoreClasses() && character.classes.length < 6) {
-      setCharacter(prev => ({
-        ...prev,
-        classes: [...prev.classes, { classKey: null, level: 1, slot: `tertiary-${prev.classes.length - 1}`, skills: {} }]
+      .map(([key, ability]) => ({
+        key,
+        ...ability,
+        hasAbility: classData.abilities[key] || false
       }));
-    }
   };
 
-  const removeClassSlot = (index) => {
-    if (index >= 2) { // Can't remove primary or secondary slots
-      setCharacter(prev => ({
-        ...prev,
-        classes: prev.classes.filter((_, i) => i !== index)
-      }));
-    }
-  };
-
-  const getClassesBySource = () => {
-    const classesBySource = {};
-    Object.entries(CHARACTER_CLASSES).forEach(([key, cls]) => {
-      const source = cls.source || 'Unknown';
-      if (!classesBySource[source]) {
-        classesBySource[source] = [];
-      }
-      classesBySource[source].push({ key, ...cls });
-    });
-    return classesBySource;
-  };
-
-  const renderClassOptions = () => {
-    const classesBySource = getClassesBySource();
-    const sourceOrder = ['Core Rules', 'Dark Fantasy Classes', 'Playtest Materials'];
+  const addHeroicStyle = (styleName) => {
+    if (character.heroicStyles.includes(styleName)) return;
     
-    return sourceOrder.map(source => {
-      if (!classesBySource[source]) return null;
-      
-      return (
-        <optgroup key={source} label={source}>
-          {classesBySource[source].map(cls => (
-            <option key={cls.key} value={cls.key}>{cls.name}</option>
-          ))}
-        </optgroup>
-      );
-    });
+    setCharacter(prev => ({
+      ...prev,
+      heroicStyles: [...prev.heroicStyles, styleName]
+    }));
+  };
+
+  const removeHeroicStyle = (styleName) => {
+    setCharacter(prev => ({
+      ...prev,
+      heroicStyles: prev.heroicStyles.filter(style => style !== styleName)
+    }));
   };
 
   const addTrait = (trait) => {
-    if (character.traits.length < 3) {
+    if (trait.trim() && !character.traits.includes(trait.trim())) {
       setCharacter(prev => ({
         ...prev,
-        traits: [...prev.traits, trait]
+        traits: [...prev.traits, trait.trim()]
       }));
     }
   };
 
-  const handleAvatarChange = (avatarData) => {
-    if (avatarData) {
-      setCharacter(prev => ({
-        ...prev,
-        avatar_url: avatarData.url,
-        avatar_file: avatarData.file
-      }));
-    } else {
-      setCharacter(prev => ({
-        ...prev,
-        avatar_url: null,
-        avatar_file: null
-      }));
-    }
+  const removeTrait = (trait) => {
+    setCharacter(prev => ({
+      ...prev,
+      traits: prev.traits.filter(t => t !== trait)
+    }));
+  };
+
+  const calculateTotalLevel = () => {
+    return character.classes.reduce((total, cls) => total + cls.level, 0);
+  };
+
+  const calculateResources = () => {
+    let hp = 40;
+    let mp = 40;
+    let ip = 5; // SET TO 5 AS REQUESTED
+    
+    // Add class benefits
+    character.classes.forEach(cls => {
+      if (cls.classKey) {
+        const classInfo = CHARACTER_CLASSES[cls.classKey];
+        if (classInfo.freeBenefits) {
+          classInfo.freeBenefits.forEach(benefit => {
+            if (benefit.includes('HP +5')) hp += 5;
+            if (benefit.includes('MP +5')) mp += 5;
+            if (benefit.includes('IP +2')) ip += 2;
+          });
+        }
+      }
+    });
+
+    return { hp, mp, ip };
   };
 
   const exportCharacter = () => {
-    if (!isAttributeDistributionComplete()) {
-      alert('Please assign all attribute values before exporting!');
-      return;
-    }
-    
-    const totalLevel = character.classes.reduce((sum, classData) => sum + classData.level, 0);
-    const characterData = {
+    const resources = calculateResources();
+    const exportData = {
       ...character,
-      totalLevel,
-      diceTypes: {
-        might: calculateDiceType(character.attributes.might),
-        dexterity: calculateDiceType(character.attributes.dexterity),
-        intellect: calculateDiceType(character.attributes.intellect),
-        willpower: calculateDiceType(character.attributes.willpower)
-      },
-      inventoryPoints: character.attributes.might + character.attributes.dexterity,
-      created: new Date().toISOString()
+      resources,
+      totalLevel: calculateTotalLevel(),
+      exportDate: new Date().toISOString()
     };
     
-    // Remove file reference for JSON export (keep only URL)
-    const { avatar_file, ...exportData } = characterData;
+    const dataStr = JSON.stringify(exportData, null, 2);
+    const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
     
-    const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `${character.name || 'character'}-fabula-ultima.json`;
-    a.click();
+    const exportFileDefaultName = `${character.name || 'character'}_fabula_ultima.json`;
+    
+    const linkElement = document.createElement('a');
+    linkElement.setAttribute('href', dataUri);
+    linkElement.setAttribute('download', exportFileDefaultName);
+    linkElement.click();
   };
+
+  const resetCharacter = () => {
+    if (confirm('Are you sure you want to reset the character? This will clear all data.')) {
+      setCharacter({
+        ...DEFAULT_CHARACTER,
+        classes: [
+          { classKey: null, level: 1, abilities: {}, slot: 'primary' }
+        ]
+      });
+      setAvailableValues(STARTING_ATTRIBUTES.distribution.values);
+    }
+  };
+
+  const resources = calculateResources();
 
   return (
     <div className="character-generator">
-      <h1>🎮 Fabula Ultima Character Generator</h1>
+      <h1>🎭 Fabula Ultima Character Generator</h1>
       
       <div className="character-form">
-        {/* Character Avatar Section */}
+        {/* Character Avatar */}
         <section className="character-avatar-section">
           <CharacterAvatar 
-            character={character}
-            onAvatarChange={handleAvatarChange}
-            size="large"
-            showUpload={true}
+            character={character} 
+            onAvatarChange={(avatar_url) => setCharacter(prev => ({ ...prev, avatar_url }))}
           />
         </section>
 
+        {/* Basic Information */}
         <section className="basic-info">
           <h2>Basic Information</h2>
           <div className="form-grid">
@@ -295,67 +306,66 @@ const CharacterGenerator = () => {
           </div>
         </section>
 
+        {/* Attributes */}
         <section className="attributes">
-          <h2>Attributes Distribution</h2>
+          <h2>Attributes</h2>
           <div className="attribute-distribution-info">
-            <p>Assign these values to your attributes: <strong>10, 10, 8, 6</strong></p>
-            <p>Available values: {availableValues.sort((a, b) => b - a).join(', ')}</p>
+            <p><strong>Attribute Distribution:</strong> {STARTING_ATTRIBUTES.distribution.description}</p>
+            <p><strong>Available Values:</strong> {availableValues.join(', ')}</p>
           </div>
+          
           <div className="attribute-grid">
-            {Object.entries(character.attributes).map(([attr, value]) => (
+            {Object.keys(ATTRIBUTES).map(attr => (
               <div key={attr} className="attribute-control">
                 <label>{attr.charAt(0).toUpperCase() + attr.slice(1)}</label>
-                <div className="attribute-selection">
-                  <select 
-                    value={value || ''}
-                    onChange={(e) => assignAttributeValue(attr, parseInt(e.target.value))}
-                  >
-                    <option value="">Select value</option>
-                    {availableValues.map(val => (
-                      <option key={val} value={val}>{val}</option>
-                    ))}
-                    {value && <option value={value}>{value}</option>}
-                  </select>
-                  {value && (
-                    <div className="attribute-display">
-                      <span className="value">{value}</span>
-                      <span className="dice-type">{calculateDiceType(value)}</span>
-                      <button 
-                        className="clear-btn"
-                        onClick={() => clearAttribute(attr)}
-                        title="Clear this attribute"
-                      >
-                        ×
-                      </button>
-                    </div>
-                  )}
-                </div>
+                {character.attributes[attr] !== null ? (
+                  <div className="attribute-display">
+                    <span className="value">{character.attributes[attr]}</span>
+                    <span className="dice-type">{calculateDiceType(character.attributes[attr])}</span>
+                    <button 
+                      className="clear-btn"
+                      onClick={() => clearAttribute(attr)}
+                      title="Clear attribute"
+                    >
+                      ×
+                    </button>
+                  </div>
+                ) : (
+                  <div className="attribute-selection">
+                    <select 
+                      onChange={(e) => assignAttributeValue(attr, parseInt(e.target.value))}
+                      value=""
+                    >
+                      <option value="">Select Value</option>
+                      {availableValues.map(value => (
+                        <option key={value} value={value}>{value}</option>
+                      ))}
+                    </select>
+                  </div>
+                )}
               </div>
             ))}
           </div>
-          {!isAttributeDistributionComplete() && (
+          
+          {availableValues.length > 0 && (
             <div className="attribute-reminder">
-              <p>💡 Remember to assign all four values to your attributes!</p>
+              <p>You still have {availableValues.length} attribute value(s) to assign.</p>
             </div>
           )}
         </section>
 
+        {/* Classes */}
         <section className="classes">
-          <h2>Character Classes</h2>
+          <h2>Classes & Abilities</h2>
           <div className="class-selection">
             {character.classes.map((classData, index) => (
               <div key={index} className="class-slot">
                 <div className="class-slot-header">
-                  <h3>
-                    {index === 0 ? 'Primary Class' : 
-                     index === 1 ? 'Secondary Class' : 
-                     `Additional Class ${index - 1}`}
-                  </h3>
-                  {index >= 2 && (
+                  <h3>Class {index + 1} {classData.slot && `(${classData.slot})`}</h3>
+                  {character.classes.length > 1 && (
                     <button 
                       className="remove-class-btn"
-                      onClick={() => removeClassSlot(index)}
-                      title="Remove this class slot"
+                      onClick={() => removeClass(index)}
                     >
                       ×
                     </button>
@@ -365,124 +375,131 @@ const CharacterGenerator = () => {
                 <div className="class-controls">
                   <select
                     value={classData.classKey || ''}
-                    onChange={(e) => selectClass(e.target.value, index)}
+                    onChange={(e) => updateClass(index, e.target.value)}
                   >
                     <option value="">Select Class</option>
-                    {renderClassOptions()}
+                    {Object.entries(CHARACTER_CLASSES).map(([key, cls]) => (
+                      <option key={key} value={key}>{cls.name}</option>
+                    ))}
                   </select>
                   
-                  {classData.classKey && (
-                    <div className="class-level-control">
-                      <label>Level:</label>
-                      <button onClick={() => updateClassLevel(index, classData.level - 1)}>-</button>
-                      <span className="level-value">{classData.level}</span>
-                      <button onClick={() => updateClassLevel(index, classData.level + 1)}>+</button>
-                    </div>
-                  )}
+                  <div className="class-level-display">
+                    <span>Level: {classData.level}</span>
+                  </div>
                 </div>
-
+                
                 {classData.classKey && (
                   <div className="class-info">
-                    <p>{CHARACTER_CLASSES[classData.classKey].description}</p>
-                    <p><strong>Source:</strong> {CHARACTER_CLASSES[classData.classKey].source}</p>
+                    <p><strong>Description:</strong> {CHARACTER_CLASSES[classData.classKey].description}</p>
                     <p><strong>Primary Attributes:</strong> {CHARACTER_CLASSES[classData.classKey].primaryAttributes.join(', ')}</p>
-                    {CHARACTER_CLASSES[classData.classKey].abilities && (
-                      <p><strong>Abilities:</strong> {CHARACTER_CLASSES[classData.classKey].abilities.join(', ')}</p>
-                    )}
-                    {CHARACTER_CLASSES[classData.classKey].freeBenefits && (
-                      <p><strong>Free Benefits:</strong> {CHARACTER_CLASSES[classData.classKey].freeBenefits.join(', ')}</p>
-                    )}
-                    {CHARACTER_CLASSES[classData.classKey].startingEquipment && (
-                      <p><strong>Starting Equipment:</strong> {CHARACTER_CLASSES[classData.classKey].startingEquipment.join(', ')}</p>
-                    )}
+                    <p><strong>Free Benefits:</strong> {CHARACTER_CLASSES[classData.classKey].freeBenefits.join(', ')}</p>
+                    <p><strong>Source:</strong> {CHARACTER_CLASSES[classData.classKey].source}</p>
+                  </div>
+                )}
+
+                {/* Abilities Section */}
+                {classData.classKey && (
+                  <div className="abilities-section">
+                    <h4>🎯 Class Abilities</h4>
+                    <p><em>Select abilities to level up your class. Each ability selection increases class level by 1.</em></p>
                     
-                    {/* Skills Section */}
-                    {classData.level > 0 && CLASS_SKILLS[classData.classKey] && (
-                      <div className="skills-section">
-                        <h4>Skills (Available Points: {getAvailableSkillPoints(index)})</h4>
-                        <div className="skills-grid">
-                          {Object.entries(CLASS_SKILLS[classData.classKey]).map(([skillName, skillData]) => {
-                            const currentLevel = classData.skills[skillName] || 0;
-                            return (
-                              <div key={skillName} className="skill-item">
-                                <div className="skill-header">
-                                  <h5>{skillName}</h5>
-                                  <div className="skill-level-controls">
-                                    <button 
-                                      onClick={() => updateSkillLevel(index, skillName, currentLevel - 1)}
-                                      disabled={currentLevel <= 0}
-                                    >
-                                      -
-                                    </button>
-                                    <span className="skill-level">{currentLevel}/{skillData.max_level}</span>
-                                    <button 
-                                      onClick={() => updateSkillLevel(index, skillName, currentLevel + 1)}
-                                      disabled={currentLevel >= skillData.max_level || getAvailableSkillPoints(index) <= 0}
-                                    >
-                                      +
-                                    </button>
-                                  </div>
-                                </div>
-                                <div className="skill-info">
-                                  <p>{skillData.description}</p>
-                                  <div className="skill-details">
-                                    <span className="skill-type">{skillData.type}</span>
-                                    {skillData.mp_cost > 0 && (
-                                      <span className="skill-mp">MP: {skillData.mp_cost}</span>
-                                    )}
-                                  </div>
-                                </div>
-                              </div>
-                            );
-                          })}
+                    <div className="abilities-grid">
+                      {getAvailableAbilities(index).map(ability => (
+                        <div key={ability.key} className="ability-item">
+                          <div className="ability-header">
+                            <h5>{ability.key}</h5>
+                            <label className="ability-toggle">
+                              <input
+                                type="checkbox"
+                                checked={ability.hasAbility}
+                                onChange={() => toggleAbility(index, ability.key)}
+                              />
+                              <span className="ability-checkbox"></span>
+                            </label>
+                          </div>
+                          
+                          <div className="ability-info">
+                            <p><strong>Type:</strong> {ability.type}</p>
+                            <p><strong>Cost:</strong> {ability.cost}</p>
+                            <p><strong>Required Level:</strong> {ability.level || 1}</p>
+                            <p><strong>Description:</strong> {ability.description}</p>
+                          </div>
                         </div>
-                      </div>
-                    )}
+                      ))}
+                    </div>
                   </div>
                 )}
               </div>
             ))}
             
-            {canAddMoreClasses() && character.classes.length < 6 && (
-              <div className="add-class-slot">
-                <button 
-                  className="add-class-btn"
-                  onClick={addNewClassSlot}
-                  title="Add another class (requires level 10+ in any class)"
-                >
-                  + Add Class
-                </button>
-                <p className="add-class-hint">
-                  You can add more classes when you reach level 10 in any class
-                </p>
-              </div>
-            )}
+            {/* Add New Class Button */}
+            <div className="add-class-slot">
+              <button 
+                className="add-class-btn"
+                onClick={addNewClass}
+              >
+                ➕ Add New Class
+              </button>
+              <p className="add-class-hint">
+                {character.classes.length >= 2 && !character.classes.some(cls => cls.level >= 10) 
+                  ? 'Need one class at level 10 to add more classes'
+                  : 'Unlimited multiclassing supported'
+                }
+              </p>
+            </div>
           </div>
         </section>
 
+        {/* Heroic Style Skills */}
+        <section className="heroic-styles">
+          <h2>Heroic Style Skills</h2>
+          <div className="heroic-style-selection">
+            <select 
+              onChange={(e) => {
+                if (e.target.value) {
+                  addHeroicStyle(e.target.value);
+                  e.target.value = '';
+                }
+              }}
+            >
+              <option value="">Add Heroic Style</option>
+              {Object.entries(HEROIC_STYLE_SKILLS)
+                .filter(([key, _]) => !character.heroicStyles.includes(key))
+                .map(([key, style]) => (
+                  <option key={key} value={key}>{key}</option>
+                ))}
+            </select>
+            
+            <div className="heroic-styles-list">
+              {character.heroicStyles.map(styleName => (
+                <div key={styleName} className="heroic-style-tag">
+                  <span>{styleName}</span>
+                  <button onClick={() => removeHeroicStyle(styleName)}>×</button>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Character Stats */}
         <section className="character-stats">
-          <h2>Character Statistics</h2>
+          <h2>Character Stats</h2>
           <div className="stats-grid">
             <div className="stat">
+              <label>Total Level</label>
+              <span>{calculateTotalLevel()}</span>
+            </div>
+            <div className="stat">
               <label>Hit Points</label>
-              <span>{character.hitPoints + (character.level - 1) * 5}</span>
+              <span>{resources.hp}</span>
             </div>
             <div className="stat">
               <label>Mind Points</label>
-              <span>
-                {character.mindPoints + (character.level - 1) * 5 + 
-                (character.classes.some(classData => classData.classKey === 'HEXER') ? 5 : 0)}
-                {character.classes.some(classData => classData.classKey === 'HEXER') && 
-                  <small> (+5 from Hexer)</small>
-                }
-              </span>
+              <span>{resources.mp}</span>
             </div>
             <div className="stat">
               <label>Inventory Points</label>
-              <span>
-                {(character.attributes.might || 0) + (character.attributes.dexterity || 0)}
-                {!isAttributeDistributionComplete() && <small> (incomplete)</small>}
-              </span>
+              <span>{resources.ip}</span>
             </div>
             <div className="stat">
               <label>Fabula Points</label>
@@ -491,63 +508,38 @@ const CharacterGenerator = () => {
           </div>
         </section>
 
-        <section className="heroic-styles">
-          <h2>Heroic Style Skills (Optional)</h2>
-          <div className="heroic-style-selection">
-            <select
-              value={character.heroicStyle || ''}
-              onChange={(e) => setCharacter(prev => ({ ...prev, heroicStyle: e.target.value || null }))}
-            >
-              <option value="">No Heroic Style</option>
-              {Object.entries(HEROIC_STYLE_SKILLS).map(([key, style]) => (
-                <option key={key} value={key}>{style.name}</option>
-              ))}
-            </select>
-            {character.heroicStyle && (
-              <div className="heroic-style-info">
-                <p>{HEROIC_STYLE_SKILLS[character.heroicStyle].description}</p>
-                <p><strong>Requirements:</strong> {HEROIC_STYLE_SKILLS[character.heroicStyle].requirements.join(', ')}</p>
-                <p><strong>Source:</strong> {HEROIC_STYLE_SKILLS[character.heroicStyle].source}</p>
-              </div>
-            )}
-          </div>
-        </section>
-
+        {/* Character Traits */}
         <section className="traits">
-          <h2>Traits ({character.traits.length}/3)</h2>
+          <h2>Character Traits</h2>
           <div className="trait-input">
             <input
               type="text"
-              placeholder="Enter a trait..."
+              placeholder="Add a character trait"
               onKeyPress={(e) => {
-                if (e.key === 'Enter' && e.target.value.trim()) {
-                  addTrait(e.target.value.trim());
+                if (e.key === 'Enter') {
+                  addTrait(e.target.value);
                   e.target.value = '';
                 }
               }}
             />
           </div>
           <div className="trait-list">
-            {character.traits.map((trait, index) => (
-              <span key={index} className="trait-tag">
-                {trait}
-                <button onClick={() => {
-                  setCharacter(prev => ({
-                    ...prev,
-                    traits: prev.traits.filter((_, i) => i !== index)
-                  }));
-                }}>×</button>
-              </span>
+            {character.traits.map(trait => (
+              <div key={trait} className="trait-tag">
+                <span>{trait}</span>
+                <button onClick={() => removeTrait(trait)}>×</button>
+              </div>
             ))}
           </div>
         </section>
 
+        {/* Actions */}
         <section className="actions">
           <button className="export-btn" onClick={exportCharacter}>
-            💾 Export Character
+            📄 Export Character
           </button>
-          <button className="reset-btn" onClick={() => window.location.reload()}>
-            🔄 Reset
+          <button className="reset-btn" onClick={resetCharacter}>
+            🔄 Reset Character
           </button>
         </section>
       </div>

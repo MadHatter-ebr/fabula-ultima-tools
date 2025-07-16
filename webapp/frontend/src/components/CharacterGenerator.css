@@ -368,6 +368,155 @@
   font-style: italic;
 }
 
+/* Abilities system styles */
+.abilities-section {
+  margin-top: 1.5rem;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 8px;
+  border: 2px solid rgba(102, 126, 234, 0.3);
+}
+
+.abilities-section h4 {
+  color: #667eea;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  border-bottom: 2px solid #667eea;
+  padding-bottom: 0.5rem;
+}
+
+.abilities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+.ability-item {
+  background: linear-gradient(135deg, #f8f9ff, #e8f2ff);
+  border: 1px solid rgba(102, 126, 234, 0.2);
+  border-radius: 8px;
+  padding: 1rem;
+  transition: all 0.3s ease;
+}
+
+.ability-item:hover {
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
+  transform: translateY(-2px);
+}
+
+.ability-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.ability-header h5 {
+  color: #2c3e50;
+  margin: 0;
+  font-size: 1rem;
+}
+
+.ability-toggle {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.ability-toggle input[type="checkbox"] {
+  display: none;
+}
+
+.ability-checkbox {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #667eea;
+  border-radius: 4px;
+  display: inline-block;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.ability-checkbox::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-weight: bold;
+  font-size: 12px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.ability-toggle input[type="checkbox"]:checked + .ability-checkbox {
+  background: #667eea;
+  border-color: #667eea;
+}
+
+.ability-toggle input[type="checkbox"]:checked + .ability-checkbox::after {
+  opacity: 1;
+}
+
+.ability-info {
+  margin-top: 0.5rem;
+}
+
+.ability-info p {
+  margin: 0 0 0.5rem 0;
+  color: #555;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.class-level-display {
+  background: rgba(102, 126, 234, 0.1);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-weight: bold;
+  color: #667eea;
+  text-align: center;
+  border: 2px solid rgba(102, 126, 234, 0.3);
+}
+
+.heroic-styles-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.heroic-style-tag {
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.heroic-style-tag button {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.heroic-style-tag button:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
 /* Skills system styles */
 .skills-section {
   margin-top: 1.5rem;
