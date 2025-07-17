@@ -6,9 +6,59 @@ import CharacterAvatar from './CharacterAvatar';
 import './CharacterSheet.css';
 
 const CharacterSheet = ({ character: initialCharacter, onCharacterChange }) => {
-  const [character, setCharacter] = useState(initialCharacter || DEFAULT_CHARACTER);
+  // Create a demo character with sample data
+  const createDemoCharacter = () => ({
+    ...DEFAULT_CHARACTER,
+    name: 'Demo Character',
+    identity: 'Brave Warrior',
+    theme: 'Justice',
+    origin: 'Noble House',
+    attributes: {
+      dexterity: 10,
+      insight: 8,
+      might: 12,
+      willpower: 6
+    },
+    classes: [
+      { 
+        classKey: 'guardian', 
+        level: 5, 
+        abilities: {
+          'Martial Melee': true,
+          'Protect': true,
+          'Taunt': true
+        }, 
+        slot: 'primary' 
+      }
+    ],
+    traits: ['Brave', 'Loyal', 'Protective'],
+    heroicStyles: ['Bodyguard', 'Counterattack']
+  });
+
+  const [character, setCharacter] = useState(initialCharacter || createDemoCharacter());
   const [activeTab, setActiveTab] = useState('overview');
-  const [inventory, setInventory] = useState([]);
+  const [inventory, setInventory] = useState([
+    {
+      id: 1,
+      name: 'Steel Sword',
+      type: 'weapons',
+      quantity: 1,
+      weight: 2,
+      value: 200,
+      damage: 'HR + 5',
+      handedness: 'One-handed',
+      equipped: true
+    },
+    {
+      id: 2,
+      name: 'Iron Shield',
+      type: 'armor',
+      quantity: 1,
+      weight: 3,
+      value: 150,
+      equipped: true
+    }
+  ]);
   const [combat, setCombat] = useState({
     hp: { current: 40, max: 40 },
     mp: { current: 40, max: 40 },

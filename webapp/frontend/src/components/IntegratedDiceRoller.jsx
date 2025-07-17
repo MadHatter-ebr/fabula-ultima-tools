@@ -30,8 +30,8 @@ const IntegratedDiceRoller = ({ character, onRollResult }) => {
   };
 
   const getAttributeDiceType = (attributeName) => {
-    if (!character.attributes || !character.attributes[attributeName.toLowerCase()]) {
-      return 'd6';
+    if (!character || !character.attributes || !character.attributes[attributeName.toLowerCase()]) {
+      return 'd8'; // Default to d8 in demo mode
     }
     
     const value = character.attributes[attributeName.toLowerCase()];
@@ -42,7 +42,7 @@ const IntegratedDiceRoller = ({ character, onRollResult }) => {
       12: 'd12'
     };
     
-    return diceMapping[value] || 'd6';
+    return diceMapping[value] || 'd8';
   };
 
   const performRoll = () => {
@@ -65,7 +65,7 @@ const IntegratedDiceRoller = ({ character, onRollResult }) => {
       isCritical,
       isFumble,
       timestamp: new Date().toLocaleTimeString(),
-      character: character.name || 'Unknown'
+      character: (character && character.name) || 'Demo Character'
     };
 
     setCurrentRoll(newRoll);
@@ -148,7 +148,7 @@ const IntegratedDiceRoller = ({ character, onRollResult }) => {
         isCritical,
         isFumble,
         timestamp: new Date().toLocaleTimeString(),
-        character: character.name || 'Unknown'
+        character: (character && character.name) || 'Demo Character'
       };
 
       setCurrentRoll(newRoll);
