@@ -8,6 +8,7 @@ import RuleReference from './components/RuleReference';
 import InventoryManager from './components/InventoryManager';
 import AdventureGenerator from './components/AdventureGenerator';
 import GameMap from './components/GameMap';
+import AdminDashboard from './components/AdminDashboard';
 import Auth from './components/Auth';
 import ErrorBoundary from './components/ErrorBoundary';
 import { supabase } from './lib/supabase';
@@ -49,7 +50,8 @@ const App = () => {
     { id: 'inventory', name: '🎒 Inventory', component: InventoryManager },
     { id: 'adventure', name: '🎲 Adventure Generator', component: AdventureGenerator },
     { id: 'map', name: '🗺️ Game Map', component: GameMap },
-    { id: 'rules', name: '📖 Rule Reference', component: RuleReference }
+    { id: 'rules', name: '📖 Rule Reference', component: RuleReference },
+    { id: 'admin', name: '🛡️ Admin Dashboard', component: AdminDashboard }
   ];
 
   const ActiveComponent = tabs.find(tab => tab.id === activeTab)?.component || CharacterGenerator;

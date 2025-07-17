@@ -1,0 +1,595 @@
+/* Admin Dashboard Styles - FF9 Theme */
+
+.admin-dashboard {
+  background: var(--ff9-bg-panel);
+  border-radius: 20px;
+  border: 2px solid var(--ff9-border-primary);
+  box-shadow: 0 12px 40px var(--ff9-shadow-primary);
+  backdrop-filter: blur(15px);
+  overflow: hidden;
+  position: relative;
+}
+
+.admin-dashboard::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, var(--ff9-crystal-blue), var(--ff9-crystal-purple), var(--ff9-gold-light), var(--ff9-crystal-green));
+  border-radius: 20px;
+  z-index: -1;
+  opacity: 0.3;
+  animation: adminGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes adminGlow {
+  0% { opacity: 0.3; }
+  100% { opacity: 0.6; }
+}
+
+/* Admin Header */
+.admin-header {
+  background: var(--ff9-bg-accent);
+  padding: 2rem;
+  text-align: center;
+  border-bottom: 3px solid var(--ff9-border-gold);
+  position: relative;
+}
+
+.admin-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 20%;
+  right: 20%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--ff9-gold-light), transparent);
+  box-shadow: 0 0 15px var(--ff9-gold-light);
+}
+
+.admin-header h1 {
+  font-family: var(--ff9-font-title);
+  font-size: 2.5rem;
+  font-weight: 700;
+  background: linear-gradient(45deg, var(--ff9-gold-light), var(--ff9-crystal-blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 20px var(--ff9-shadow-gold);
+  margin-bottom: 0.5rem;
+  letter-spacing: 1px;
+}
+
+.admin-header p {
+  color: var(--ff9-text-secondary);
+  font-size: 1.2rem;
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+
+/* Demo Notice */
+.demo-notice {
+  background: rgba(212, 160, 23, 0.2);
+  border: 1px solid var(--ff9-border-gold);
+  border-radius: 10px;
+  padding: 0.8rem 1.2rem;
+  color: var(--ff9-text-gold);
+  font-weight: bold;
+  text-shadow: 0 0 10px var(--ff9-shadow-gold);
+  animation: demo-pulse 2s ease-in-out infinite;
+  margin-top: 1rem;
+  display: inline-block;
+}
+
+/* Admin Tabs */
+.admin-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1.5rem;
+  background: rgba(42, 33, 56, 0.4);
+  border-bottom: 2px solid var(--ff9-border-primary);
+}
+
+.admin-tab {
+  background: var(--ff9-bg-card);
+  color: var(--ff9-text-primary);
+  border: 2px solid var(--ff9-border-primary);
+  padding: 0.8rem 1.2rem;
+  border-radius: 12px;
+  font-family: var(--ff9-font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px var(--ff9-shadow-secondary);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.admin-tab::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(79, 195, 247, 0.2), transparent);
+  transition: left 0.4s ease;
+}
+
+.admin-tab:hover::before {
+  left: 100%;
+}
+
+.admin-tab:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px var(--ff9-shadow-accent);
+  border-color: var(--ff9-border-secondary);
+  color: var(--ff9-crystal-blue);
+}
+
+.admin-tab.active {
+  background: var(--ff9-bg-accent);
+  border-color: var(--ff9-border-gold);
+  color: var(--ff9-text-gold);
+  box-shadow: 0 6px 20px var(--ff9-shadow-gold);
+  transform: translateY(-1px);
+}
+
+.tab-icon {
+  font-size: 1.1rem;
+}
+
+/* Admin Content */
+.admin-content {
+  padding: 2rem;
+  min-height: 600px;
+}
+
+/* Overview Section */
+.overview-section h2 {
+  font-family: var(--ff9-font-title);
+  font-size: 2rem;
+  color: var(--ff9-text-primary);
+  margin-bottom: 2rem;
+  text-align: center;
+  text-shadow: 0 0 10px var(--ff9-shadow-crystal);
+}
+
+/* Stats Grid */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.stat-card {
+  background: var(--ff9-bg-card);
+  border: 2px solid var(--ff9-border-primary);
+  border-radius: 15px;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  box-shadow: 0 8px 25px var(--ff9-shadow-secondary);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--ff9-crystal-blue), var(--ff9-crystal-purple), var(--ff9-gold-light));
+  opacity: 0.7;
+}
+
+.stat-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px var(--ff9-shadow-accent);
+  border-color: var(--ff9-border-secondary);
+}
+
+.stat-icon {
+  font-size: 3rem;
+  text-shadow: 0 0 15px var(--ff9-shadow-crystal);
+}
+
+.stat-content {
+  flex: 1;
+}
+
+.stat-number {
+  font-family: var(--ff9-font-title);
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--ff9-text-primary);
+  text-shadow: 0 0 10px var(--ff9-shadow-gold);
+  margin-bottom: 0.2rem;
+}
+
+.stat-label {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--ff9-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.stat-sub {
+  font-size: 0.9rem;
+  color: var(--ff9-text-accent);
+  margin-top: 0.3rem;
+}
+
+/* Role Distribution */
+.role-distribution {
+  background: var(--ff9-bg-card);
+  border: 2px solid var(--ff9-border-primary);
+  border-radius: 15px;
+  padding: 2rem;
+  box-shadow: 0 8px 25px var(--ff9-shadow-secondary);
+}
+
+.role-distribution h3 {
+  font-family: var(--ff9-font-title);
+  font-size: 1.5rem;
+  color: var(--ff9-text-primary);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.role-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.role-stat {
+  background: var(--ff9-bg-accent);
+  border: 1px solid var(--ff9-border-secondary);
+  border-radius: 10px;
+  padding: 1rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 100px;
+  transition: all 0.3s ease;
+}
+
+.role-stat:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px var(--ff9-shadow-accent);
+}
+
+.role-name {
+  font-weight: 600;
+  color: var(--ff9-text-secondary);
+  text-transform: capitalize;
+  font-size: 0.9rem;
+}
+
+.role-count {
+  font-family: var(--ff9-font-title);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--ff9-text-primary);
+  text-shadow: 0 0 8px var(--ff9-shadow-crystal);
+}
+
+/* Data Tables */
+.data-table {
+  background: var(--ff9-bg-card);
+  border: 2px solid var(--ff9-border-primary);
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px var(--ff9-shadow-secondary);
+}
+
+.data-table table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--ff9-font-body);
+}
+
+.data-table thead {
+  background: var(--ff9-bg-accent);
+  border-bottom: 2px solid var(--ff9-border-gold);
+}
+
+.data-table th {
+  padding: 1.2rem 1rem;
+  text-align: left;
+  font-weight: 700;
+  color: var(--ff9-text-primary);
+  font-family: var(--ff9-font-title);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 0.9rem;
+}
+
+.data-table td {
+  padding: 1rem;
+  border-bottom: 1px solid var(--ff9-border-primary);
+  color: var(--ff9-text-primary);
+  vertical-align: middle;
+}
+
+.data-table tbody tr {
+  transition: all 0.2s ease;
+}
+
+.data-table tbody tr:hover {
+  background: rgba(107, 76, 122, 0.1);
+  transform: scale(1.01);
+}
+
+.data-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Role and Status Badges */
+.role-badge, .status-badge {
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  border: 1px solid;
+}
+
+.role-badge.role-admin {
+  background: rgba(212, 160, 23, 0.2);
+  color: var(--ff9-gold-light);
+  border-color: var(--ff9-gold-dark);
+  text-shadow: 0 0 5px var(--ff9-shadow-gold);
+}
+
+.role-badge.role-moderator {
+  background: rgba(79, 195, 247, 0.2);
+  color: var(--ff9-crystal-blue);
+  border-color: var(--ff9-blue-mid);
+  text-shadow: 0 0 5px var(--ff9-shadow-crystal);
+}
+
+.role-badge.role-user {
+  background: rgba(107, 76, 122, 0.2);
+  color: var(--ff9-purple-light);
+  border-color: var(--ff9-purple-mid);
+}
+
+.status-badge.status-active {
+  background: rgba(102, 187, 106, 0.2);
+  color: var(--ff9-crystal-green);
+  border-color: #4caf50;
+}
+
+.status-badge.status-archived {
+  background: rgba(158, 158, 158, 0.2);
+  color: #9e9e9e;
+  border-color: #757575;
+}
+
+.status-badge.status-dead {
+  background: rgba(239, 83, 80, 0.2);
+  color: var(--ff9-crystal-red);
+  border-color: #d32f2f;
+}
+
+/* Action Buttons */
+.action-buttons {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.promote-btn, .action-buttons select {
+  background: var(--ff9-bg-accent);
+  color: var(--ff9-text-primary);
+  border: 1px solid var(--ff9-border-secondary);
+  padding: 0.5rem 0.8rem;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: var(--ff9-font-body);
+}
+
+.promote-btn:hover, .action-buttons select:hover {
+  background: var(--ff9-gold-dark);
+  color: var(--ff9-text-gold);
+  border-color: var(--ff9-border-gold);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px var(--ff9-shadow-gold);
+}
+
+/* Roll Results */
+.roll-total {
+  font-family: var(--ff9-font-title);
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--ff9-text-primary);
+  text-shadow: 0 0 8px var(--ff9-shadow-crystal);
+}
+
+.roll-special {
+  padding: 0.2rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.roll-special.critical {
+  background: rgba(212, 160, 23, 0.3);
+  color: var(--ff9-gold-bright);
+  border: 1px solid var(--ff9-gold-light);
+  text-shadow: 0 0 5px var(--ff9-shadow-gold);
+}
+
+.roll-special.fumble {
+  background: rgba(239, 83, 80, 0.3);
+  color: var(--ff9-crystal-red);
+  border: 1px solid var(--ff9-crystal-red);
+}
+
+.roll-special.high {
+  background: rgba(79, 195, 247, 0.3);
+  color: var(--ff9-crystal-blue);
+  border: 1px solid var(--ff9-crystal-blue);
+  text-shadow: 0 0 5px var(--ff9-shadow-crystal);
+}
+
+/* Access Denied */
+.admin-access-denied {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  text-align: center;
+  background: var(--ff9-bg-card);
+  border: 2px solid var(--ff9-crystal-red);
+  border-radius: 15px;
+  padding: 3rem;
+  box-shadow: 0 8px 25px rgba(239, 83, 80, 0.3);
+}
+
+.admin-access-denied h2 {
+  font-family: var(--ff9-font-title);
+  font-size: 2.5rem;
+  color: var(--ff9-crystal-red);
+  text-shadow: 0 0 15px rgba(239, 83, 80, 0.5);
+  margin-bottom: 1rem;
+}
+
+.admin-access-denied p {
+  color: var(--ff9-text-secondary);
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+/* Section Headers */
+.users-section h2,
+.characters-section h2,
+.campaigns-section h2,
+.dice-rolls-section h2,
+.logs-section h2 {
+  font-family: var(--ff9-font-title);
+  font-size: 2rem;
+  color: var(--ff9-text-primary);
+  margin-bottom: 2rem;
+  text-align: center;
+  text-shadow: 0 0 10px var(--ff9-shadow-crystal);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .stats-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+  
+  .stat-card {
+    padding: 1.5rem;
+  }
+  
+  .stat-number {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .admin-header {
+    padding: 1.5rem;
+  }
+  
+  .admin-header h1 {
+    font-size: 2rem;
+  }
+  
+  .admin-tabs {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .admin-tab {
+    width: 200px;
+    justify-content: center;
+  }
+  
+  .admin-content {
+    padding: 1rem;
+  }
+  
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .stat-card {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+  
+  .role-stats {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .data-table {
+    overflow-x: auto;
+  }
+  
+  .data-table table {
+    min-width: 600px;
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-header h1 {
+    font-size: 1.8rem;
+  }
+  
+  .admin-header p {
+    font-size: 1rem;
+  }
+  
+  .admin-tab {
+    width: 180px;
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .stat-card {
+    padding: 1rem;
+  }
+  
+  .stat-number {
+    font-size: 1.8rem;
+  }
+  
+  .data-table th,
+  .data-table td {
+    padding: 0.8rem 0.5rem;
+    font-size: 0.9rem;
+  }
+}
