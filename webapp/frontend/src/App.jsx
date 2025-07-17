@@ -11,7 +11,7 @@ import GameMap from './components/GameMap';
 import AdminDashboard from './components/AdminDashboard';
 import Auth from './components/Auth';
 import ErrorBoundary from './components/ErrorBoundary';
-import { supabase } from './lib/supabase';
+import { supabase, isDemoMode } from './lib/supabase';
 import './App.css';
 
 const App = () => {
@@ -93,8 +93,16 @@ const App = () => {
     );
   }
 
-  // Demo mode: Always show the full app
-  const isDemo = !user;
+  // Check if we're in demo mode from Supabase config
+  const isDemo = isDemoMode;
+  
+  // Debug output (remove in production)
+  console.log('🔍 Debug App.jsx:', {
+    isDemoMode,
+    user: user?.id || 'none',
+    supabaseUrl: import.meta.env.VITE_SUPABASE_URL || 'fallback',
+    demoModeEnv: import.meta.env.VITE_DEMO_MODE
+  });
 
   return (
     <div className="app">
