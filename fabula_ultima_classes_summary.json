@@ -1,0 +1,228 @@
+{
+  "metadata": {
+    "extraction_date": "2025-07-16",
+    "total_confirmed_classes": 18,
+    "total_estimated_classes": 24,
+    "sources_analyzed": [
+      "Fabula Ultima.pdf (Core Rulebook)",
+      "Dark_Fantasy_Classes_v0.2.pdf",
+      "Fabula Ultima Playtest Materials (ENG) (January 23rd, 2025) (single page).pdf",
+      "Fabula Ultima-Natural Fantasy Atlas v1.0.pdf",
+      "Fabula_Ultima_Atlas_Techno_Fantasy.pdf",
+      "The Low Fantasy Atlas.pdf",
+      "Bonus PDFs (Ace of Cards, Edgar)"
+    ]
+  },
+  "core_classes": [
+    {
+      "name": "ARCANIST",
+      "category": "Magic",
+      "primary_attribute": "Willpower",
+      "free_benefits": ["HP or MP +5", "Bind and Summon Arcana"],
+      "key_skills": ["Bind and Summon", "Arcane Regeneration", "Phantom Strength", "Quick Summoning"]
+    },
+    {
+      "name": "DARKBLADE",
+      "category": "Combat/Magic",
+      "primary_attribute": "Dexterity/Willpower",
+      "free_benefits": ["Martial armor", "Martial melee OR ranged weapons"],
+      "key_skills": ["Shadow Strike", "Agony", "Umbral Form"]
+    },
+    {
+      "name": "ELEMENTALIST",
+      "category": "Magic",
+      "primary_attribute": "Insight/Willpower",
+      "free_benefits": ["MP +5", "Elementalism Rituals"],
+      "key_skills": ["Elemental Magic", "Spellblade", "Cataclysm", "Elemental Shroud"]
+    },
+    {
+      "name": "ENTROPIST",
+      "category": "Magic",
+      "primary_attribute": "Insight/Willpower",
+      "free_benefits": ["MP +5", "Entropism Rituals"],
+      "key_skills": ["Entropic Magic", "Stolen Time", "Accelerated Casting"]
+    },
+    {
+      "name": "FURY",
+      "category": "Combat",
+      "primary_attribute": "Might/Willpower",
+      "free_benefits": ["HP +5", "Martial armor and melee weapons"],
+      "key_skills": ["Withstand", "Indomitable Spirit", "Provoke", "Berserker"]
+    },
+    {
+      "name": "GUARDIAN",
+      "category": "Defense",
+      "primary_attribute": "Might",
+      "free_benefits": ["HP +5", "Martial armor and shields"],
+      "key_skills": ["Protect", "Fortress", "Dual Shieldbearer", "Retaliation"]
+    },
+    {
+      "name": "LOREMASTER",
+      "category": "Support",
+      "primary_attribute": "Insight",
+      "free_benefits": ["MP +5"],
+      "key_skills": ["Flash of Insight", "Focused", "Quick Assessment", "Well-Versed"]
+    },
+    {
+      "name": "ORATOR",
+      "category": "Support",
+      "primary_attribute": "Insight/Willpower",
+      "free_benefits": ["MP +5"],
+      "key_skills": ["Condemn", "Encourage", "Persuasion", "Leadership"]
+    },
+    {
+      "name": "PILOT",
+      "category": "Combat/Tech",
+      "primary_attribute": "Dexterity/Might",
+      "free_benefits": ["HP +5", "Martial armor"],
+      "key_skills": ["Vehicle Bond", "Weapon Modules", "Enhanced Systems", "Emergency Protocols"]
+    },
+    {
+      "name": "ROGUE",
+      "category": "Combat/Stealth",
+      "primary_attribute": "Dexterity",
+      "free_benefits": ["HP +5", "Martial armor and ranged weapons"],
+      "key_skills": ["Dodge", "Cheap Shot", "High Speed", "Soul Steal"]
+    },
+    {
+      "name": "SHARPSHOOTER",
+      "category": "Combat",
+      "primary_attribute": "Dexterity/Insight",
+      "free_benefits": ["HP +5", "Martial armor and ranged weapons"],
+      "key_skills": ["Ranged Weapon Mastery", "Barrage", "Crossfire", "Hawkeye"]
+    },
+    {
+      "name": "SPIRITIST",
+      "category": "Magic/Healing",
+      "primary_attribute": "Insight/Willpower",
+      "free_benefits": ["MP +5", "Spiritism Rituals"],
+      "key_skills": ["Ritual Spiritism", "Healing Power", "Cleanse", "Barrier Spells"]
+    },
+    {
+      "name": "TINKERER",
+      "category": "Support/Tech",
+      "primary_attribute": "Dexterity/Insight",
+      "free_benefits": ["IP +2"],
+      "key_skills": ["Gadgets", "Alchemy", "Magitech", "Invention"]
+    },
+    {
+      "name": "WAYFARER",
+      "category": "Support/Exploration",
+      "primary_attribute": "Insight/Willpower",
+      "free_benefits": ["HP +5"],
+      "key_skills": ["Resourceful", "Faithful Companion", "Travel Skills", "Survival Instincts"]
+    },
+    {
+      "name": "WEAPONMASTER",
+      "category": "Combat",
+      "primary_attribute": "Dexterity/Might",
+      "free_benefits": ["HP +5", "Martial armor and melee weapons"],
+      "key_skills": ["Melee Weapon Mastery", "Breach", "Bone Crusher", "Counterattack"]
+    }
+  ],
+  "dark_fantasy_classes": [
+    {
+      "name": "HEXER",
+      "category": "Magic/Curse",
+      "primary_attribute": "Insight/Willpower",
+      "free_benefits": ["MP +5", "Ritualism"],
+      "key_skills": ["Curse Magic", "Encroaching Hex", "Fell Resonance", "Where Evil Treads"],
+      "spells": ["Acid Splash", "Blind", "Plague", "Venomous Weapon", "Shadow Mask"]
+    },
+    {
+      "name": "SLAYER",
+      "category": "Combat/Hunter",
+      "primary_attribute": "Dexterity/Might",
+      "free_benefits": ["IP +2", "Martial melee and ranged weapons"],
+      "key_skills": ["Bane Oils", "Exploit", "Giant Killer", "Lockdown", "Wildlife Expert"]
+    },
+    {
+      "name": "TAMER",
+      "category": "Support/Summoner",
+      "primary_attribute": "Willpower",
+      "free_benefits": ["MP +5"],
+      "key_skills": ["All-Out Attack", "Hybridization", "Interceptor", "Negotiate", "Creature Mastery"]
+    }
+  ],
+  "estimated_atlas_classes": [
+    {
+      "name": "CHANTER",
+      "category": "Magic/Music",
+      "source": "Natural Fantasy Atlas",
+      "description": "Music-based spellcaster focused on songs and performances"
+    },
+    {
+      "name": "DANCER",
+      "category": "Combat/Grace",
+      "source": "Natural Fantasy Atlas",
+      "description": "Graceful combatant using dance-based combat techniques"
+    },
+    {
+      "name": "MUTANT",
+      "category": "Variable",
+      "source": "Natural Fantasy Atlas",
+      "description": "Class that gains random mutations and transformations"
+    },
+    {
+      "name": "CYBORG",
+      "category": "Combat/Tech",
+      "source": "Techno Fantasy Atlas",
+      "description": "Part-machine characters with technological enhancements"
+    },
+    {
+      "name": "ESPER",
+      "category": "Magic/Psychic",
+      "source": "Techno Fantasy Atlas",
+      "description": "Psychic/psionic abilities class"
+    },
+    {
+      "name": "NOBLE",
+      "category": "Support/Social",
+      "source": "Low Fantasy Atlas",
+      "description": "Social/political class focused on leadership and resources"
+    },
+    {
+      "name": "COMMANDER",
+      "category": "Combat/Leadership",
+      "source": "Low Fantasy Atlas",
+      "description": "Military leadership class for tactical combat"
+    }
+  ],
+  "heroic_style_skills": [
+    "Agile Defender Style",
+    "Blast Gladiator Style",
+    "Bullet Deflection Style",
+    "Charged Punch Style",
+    "Collector Style",
+    "Dark Blessing Style",
+    "Detonation Style",
+    "Duelist Style",
+    "Fūma Shuriken Style",
+    "Gunbreaker Style",
+    "Gunslinger Style",
+    "Heightened Element Style",
+    "Hidden Weapon Style",
+    "Humble Style",
+    "Iaidō Style",
+    "Investigator Style",
+    "Palm and Step Style",
+    "Piercing Sorcery Style",
+    "Prophetic Defender Style",
+    "Punishing Style",
+    "Ranger Style",
+    "Reaper Style",
+    "Scorpion Tail Style",
+    "Skyspear Style",
+    "Thaumaturge Style",
+    "Vortex Warrior Style"
+  ],
+  "game_mechanics": {
+    "attributes": ["Dexterity", "Insight", "Might", "Willpower"],
+    "attribute_range": "d6 to d12",
+    "level_range": "5 to 50",
+    "resources": ["Hit Points", "Mind Points", "Inventory Points", "Fabula Points"],
+    "magic_schools": ["Elementalism", "Entropism", "Spiritism", "Ritualism", "Arcanism"],
+    "equipment_types": ["Weapons", "Armor", "Shields", "Accessories"],
+    "multiclassing": "Fully supported - no restrictions"
+  }
+}

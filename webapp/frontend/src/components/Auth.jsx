@@ -9,6 +9,15 @@ const Auth = ({ onAuthenticated }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // Debug logging for Supabase configuration
+    console.log('🔍 Auth Debug:', {
+      supabaseUrl: import.meta.env.VITE_SUPABASE_URL || 'fallback used',
+      hasAnonymousKey: !!import.meta.env.VITE_SUPABASE_ANON_KEY,
+      demoMode: import.meta.env.VITE_DEMO_MODE,
+      supabaseClientUrl: supabase.supabaseUrl,
+      supabaseKeyPrefix: supabase.supabaseKey?.substring(0, 20) + '...'
+    });
+    
     // Check if Supabase is properly configured
     if (!import.meta.env.VITE_SUPABASE_URL || import.meta.env.VITE_SUPABASE_URL.includes('placeholder')) {
       console.warn('Supabase not configured - running in demo mode');
