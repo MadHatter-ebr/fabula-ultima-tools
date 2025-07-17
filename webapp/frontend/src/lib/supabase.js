@@ -1,11 +1,11 @@
 import { createClient } from '@supabase/supabase-js'
 
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || 'https://placeholder.supabase.co'
-const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY || 'placeholder-key'
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || 'https://mlojxgkhadtrmgaoegen.supabase.co'
+const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1sb2p4Z2toYWR0cm1nYW9lZ2VuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTI3Mzk1NDUsImV4cCI6MjA2ODMxNTU0NX0.0Ii8w_Om0safzY-icgH7VkTaQpHzKxJQ81kkfM99a0E'
 const demoMode = import.meta.env.VITE_DEMO_MODE === 'true'
 
 export const supabase = createClient(supabaseUrl, supabaseKey)
-export const isDemoMode = demoMode || (!import.meta.env.VITE_SUPABASE_URL || !import.meta.env.VITE_SUPABASE_ANON_KEY)
+export const isDemoMode = demoMode
 
 // Database table names
 export const TABLES = {
