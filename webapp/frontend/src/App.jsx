@@ -12,6 +12,7 @@ import AdminDashboard from './components/AdminDashboard';
 import Auth from './components/Auth';
 import ErrorBoundary from './components/ErrorBoundary';
 import { supabase, isDemoMode } from './lib/supabase';
+import './debug-supabase.js'; // Debug import
 import './App.css';
 
 const App = () => {
