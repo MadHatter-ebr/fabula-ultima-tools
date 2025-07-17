@@ -42,33 +42,38 @@ export const CHARACTER_CLASSES = {
     abilities: {
       'Bind and Summon': {
         level: 1,
-        description: 'Bind and summon Arcana to fight alongside you',
+        description: 'You can bind and summon Arcana to fight alongside you. As an action, spend MP equal to the Arcana\'s level to summon it. The Arcana acts on your turn and follows your commands. You can have multiple Arcana summoned at once, but their combined levels cannot exceed your Arcanist level.',
         type: 'active',
-        cost: 'MP varies'
+        cost: 'MP varies',
+        maxTimes: 1
       },
       'Ritual Arcanism': {
         level: 1,
-        description: 'Perform rituals of the Arcanism discipline',
+        description: 'You can perform rituals of the Arcanism discipline during rest scenes. These rituals allow you to research new Arcana, improve existing ones, or create magical items. Each ritual requires specific components and time to complete.',
         type: 'ritual',
-        cost: 'Special'
+        cost: 'Special',
+        maxTimes: 1
       },
       'Quick Summoning': {
         level: 2,
-        description: 'Summon Arcana faster in combat',
+        description: 'You can summon Arcana as a free action instead of a full action. This allows you to summon during combat more efficiently and react to changing battlefield conditions.',
         type: 'passive',
-        cost: 'None'
+        cost: 'None',
+        maxTimes: 1
       },
       'Arcane Regeneration': {
         level: 6,
-        description: 'Regenerate MP each turn',
+        description: 'At the start of each of your turns, you recover 5 MP. This regeneration continues as long as you have at least one Arcana summoned and are conscious.',
         type: 'passive',
-        cost: 'None'
+        cost: 'None',
+        maxTimes: 1
       },
       'Phantom Strength': {
         level: 6,
-        description: 'Your Arcana become more powerful',
+        description: 'Your summoned Arcana gain +1 to all attributes and +5 to all derived statistics (HP, MP, Initiative). This bonus applies to all Arcana you summon while you have this skill.',
         type: 'passive',
-        cost: 'None'
+        cost: 'None',
+        maxTimes: 1
       }
     },
     source: 'Core Rules'

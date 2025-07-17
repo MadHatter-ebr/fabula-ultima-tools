@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import CharacterGenerator from './components/CharacterGenerator';
+import ImprovedCharacterGenerator from './components/ImprovedCharacterGenerator';
+import './components/ImprovedCharacterGenerator.css';
 import CharacterSheet from './components/CharacterSheet';
 import CharacterGallery from './components/CharacterGallery';
 import DiceRoller from './components/DiceRoller';
@@ -60,7 +62,7 @@ const App = () => {
     try {
       switch (activeTab) {
         case 'character':
-          return <CharacterGenerator user={user || { id: 'demo' }} onCharacterChange={setCurrentCharacter} />;
+          return <ImprovedCharacterGenerator user={user || { id: 'demo' }} onCharacterChange={setCurrentCharacter} />;
         case 'sheet':
           return <CharacterSheet character={currentCharacter} onCharacterChange={setCurrentCharacter} user={user || { id: 'demo' }} />;
         case 'combat':
