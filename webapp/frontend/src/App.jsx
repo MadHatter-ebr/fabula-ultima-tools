@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import CharacterGenerator from './components/CharacterGenerator';
+import CharacterSheet from './components/CharacterSheet';
 import CharacterGallery from './components/CharacterGallery';
 import DiceRoller from './components/DiceRoller';
 import CombatTracker from './components/CombatTracker';
@@ -15,6 +16,7 @@ const App = () => {
   const [activeTab, setActiveTab] = useState('character');
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [currentCharacter, setCurrentCharacter] = useState(null);
 
   useEffect(() => {
     // Get initial session
@@ -39,6 +41,7 @@ const App = () => {
 
   const tabs = [
     { id: 'character', name: '🎭 Character Generator', component: CharacterGenerator },
+    { id: 'sheet', name: '📋 Character Sheet', component: CharacterSheet },
     { id: 'gallery', name: '🖼️ Character Gallery', component: CharacterGallery },
     { id: 'dice', name: '🎲 Dice Roller', component: DiceRoller },
     { id: 'combat', name: '⚔️ Combat Tracker', component: CombatTracker },
@@ -49,6 +52,21 @@ const App = () => {
   ];
 
   const ActiveComponent = tabs.find(tab => tab.id === activeTab)?.component || CharacterGenerator;
+
+  const renderActiveComponent = () => {
+    switch (activeTab) {
+      case 'character':
+        return <CharacterGenerator user={user} onCharacterChange={setCurrentCharacter} />;
+      case 'sheet':
+        return <CharacterSheet character={currentCharacter} onCharacterChange={setCurrentCharacter} user={user} />;
+      case 'combat':
+        return <CombatTracker user={user} character={currentCharacter} />;
+      case 'inventory':
+        return <InventoryManager user={user} character={currentCharacter} />;
+      default:
+        return <ActiveComponent user={user} />;
+    }
+  };
 
   if (loading) {
     return (
@@ -95,7 +113,7 @@ const App = () => {
       </header>
       
       <main className="app-main">
-        <ActiveComponent user={user} />
+        {renderActiveComponent()}
       </main>
       
       <footer className="app-footer">

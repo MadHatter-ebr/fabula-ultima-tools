@@ -1,4 +1,73 @@
-/* Main App Styles */
+/* Final Fantasy 9 Style UI - Dark Theme */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap');
+
+/* CSS Variables for FF9 Dark Theme */
+:root {
+  /* Primary Dark Colors */
+  --ff9-dark-primary: #1a1525;
+  --ff9-dark-secondary: #2a2138;
+  --ff9-dark-tertiary: #3a2d4a;
+  --ff9-dark-accent: #4a3957;
+  
+  /* Rich Purple/Violet Tones */
+  --ff9-purple-deep: #2d1b3d;
+  --ff9-purple-mid: #4a2c5a;
+  --ff9-purple-light: #6b4c7a;
+  --ff9-purple-bright: #8f6bb1;
+  
+  /* Magical Blue Tones */
+  --ff9-blue-deep: #1a2344;
+  --ff9-blue-mid: #2d3a5f;
+  --ff9-blue-light: #4a5d7c;
+  --ff9-blue-bright: #6b8fb5;
+  
+  /* Golden/Amber Accents */
+  --ff9-gold-dark: #8b6914;
+  --ff9-gold-mid: #d4a017;
+  --ff9-gold-light: #ffcc33;
+  --ff9-gold-bright: #ffe55c;
+  
+  /* Crystal Colors */
+  --ff9-crystal-blue: #4fc3f7;
+  --ff9-crystal-purple: #ab47bc;
+  --ff9-crystal-green: #66bb6a;
+  --ff9-crystal-red: #ef5350;
+  --ff9-crystal-orange: #ff7043;
+  
+  /* Text Colors */
+  --ff9-text-primary: #e8e3f0;
+  --ff9-text-secondary: #c8c3d0;
+  --ff9-text-accent: #a8a3b0;
+  --ff9-text-gold: #ffcc33;
+  --ff9-text-crystal: #4fc3f7;
+  
+  /* Border Colors */
+  --ff9-border-primary: #6b4c7a;
+  --ff9-border-secondary: #8f6bb1;
+  --ff9-border-gold: #d4a017;
+  --ff9-border-crystal: #4fc3f7;
+  
+  /* Background Gradients */
+  --ff9-bg-primary: linear-gradient(135deg, var(--ff9-dark-primary) 0%, var(--ff9-dark-secondary) 50%, var(--ff9-purple-deep) 100%);
+  --ff9-bg-secondary: linear-gradient(135deg, var(--ff9-purple-deep) 0%, var(--ff9-blue-deep) 50%, var(--ff9-dark-secondary) 100%);
+  --ff9-bg-accent: linear-gradient(135deg, var(--ff9-purple-mid) 0%, var(--ff9-blue-mid) 100%);
+  --ff9-bg-panel: linear-gradient(135deg, rgba(42, 33, 56, 0.95) 0%, rgba(45, 27, 61, 0.95) 100%);
+  --ff9-bg-card: linear-gradient(135deg, rgba(58, 45, 74, 0.9) 0%, rgba(74, 57, 87, 0.9) 100%);
+  
+  /* Shadow Colors */
+  --ff9-shadow-primary: rgba(26, 21, 37, 0.8);
+  --ff9-shadow-secondary: rgba(42, 33, 56, 0.6);
+  --ff9-shadow-accent: rgba(107, 76, 122, 0.4);
+  --ff9-shadow-gold: rgba(212, 160, 23, 0.4);
+  --ff9-shadow-crystal: rgba(79, 195, 247, 0.4);
+  
+  /* Fonts */
+  --ff9-font-title: 'Cinzel', serif;
+  --ff9-font-body: 'Cormorant Garamond', serif;
+  --ff9-font-ui: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Base Styles */
 * {
   margin: 0;
   padding: 0;
@@ -6,33 +75,99 @@
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  font-family: var(--ff9-font-body);
+  background: var(--ff9-bg-primary);
   min-height: 100vh;
-  color: #333;
+  color: var(--ff9-text-primary);
+  position: relative;
+  overflow-x: hidden;
 }
 
+/* Magical Background Effects */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 20%, rgba(79, 195, 247, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(171, 71, 188, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 60%, rgba(212, 160, 23, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Floating Crystal Animation */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(2px 2px at 20% 30%, var(--ff9-crystal-blue), transparent),
+    radial-gradient(2px 2px at 40% 70%, var(--ff9-crystal-purple), transparent),
+    radial-gradient(1px 1px at 90% 40%, var(--ff9-crystal-green), transparent),
+    radial-gradient(1px 1px at 60% 10%, var(--ff9-gold-light), transparent);
+  background-repeat: repeat;
+  background-size: 100px 100px;
+  animation: crystalFloat 20s linear infinite;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.3;
+}
+
+@keyframes crystalFloat {
+  0% { transform: translateY(0px) rotate(0deg); }
+  100% { transform: translateY(-100px) rotate(360deg); }
+}
+
+/* App Container */
 .app {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
+/* Header Styles */
 .app-header {
-  background: rgba(255, 255, 255, 0.95);
-  padding: 1rem;
+  background: var(--ff9-bg-panel);
+  padding: 2rem;
   text-align: center;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 30px var(--ff9-shadow-primary);
+  backdrop-filter: blur(15px);
+  border-bottom: 3px solid var(--ff9-border-primary);
+  position: relative;
+  overflow: hidden;
+}
+
+.app-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--ff9-crystal-blue), var(--ff9-crystal-purple), var(--ff9-gold-light), var(--ff9-crystal-green));
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%, 100% { opacity: 0.6; transform: translateX(-100%); }
+  50% { opacity: 1; transform: translateX(100%); }
 }
 
 .header-content {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 }
 
 .header-title {
@@ -41,70 +176,139 @@ body {
 }
 
 .app-header h1 {
-  font-size: 2.5rem;
+  font-family: var(--ff9-font-title);
+  font-size: 3.5rem;
+  font-weight: 700;
   margin-bottom: 0.5rem;
-  background: linear-gradient(45deg, #667eea, #764ba2);
+  background: linear-gradient(45deg, var(--ff9-gold-light), var(--ff9-crystal-blue), var(--ff9-crystal-purple), var(--ff9-gold-bright));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  text-shadow: 0 0 30px var(--ff9-shadow-gold);
+  animation: titleGlow 4s ease-in-out infinite alternate;
+  letter-spacing: 2px;
+}
+
+@keyframes titleGlow {
+  0% { text-shadow: 0 0 30px var(--ff9-shadow-gold); }
+  100% { text-shadow: 0 0 50px var(--ff9-shadow-crystal); }
 }
 
 .app-header p {
-  color: #666;
-  font-size: 1.1rem;
+  color: var(--ff9-text-secondary);
+  font-size: 1.3rem;
   margin-bottom: 1rem;
+  font-style: italic;
+  font-weight: 500;
 }
 
+/* Tab Navigation */
 .tab-navigation {
   display: flex;
   justify-content: center;
   gap: 1rem;
   flex-wrap: wrap;
+  padding: 1rem;
+  background: rgba(42, 33, 56, 0.3);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  border: 2px solid var(--ff9-border-primary);
 }
 
 .tab-button {
-  background: linear-gradient(45deg, #667eea, #764ba2);
-  color: white;
-  border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 25px;
-  font-size: 1rem;
+  background: var(--ff9-bg-card);
+  color: var(--ff9-text-primary);
+  border: 2px solid var(--ff9-border-primary);
+  padding: 1rem 2rem;
+  border-radius: 15px;
+  font-family: var(--ff9-font-body);
+  font-size: 1.1rem;
+  font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 4px 15px var(--ff9-shadow-secondary);
+  position: relative;
+  overflow: hidden;
+}
+
+.tab-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(79, 195, 247, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.tab-button:hover::before {
+  left: 100%;
 }
 
 .tab-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px var(--ff9-shadow-accent);
+  border-color: var(--ff9-border-secondary);
+  color: var(--ff9-crystal-blue);
 }
 
 .tab-button.active {
-  background: linear-gradient(45deg, #764ba2, #667eea);
-  transform: translateY(-1px);
-  box-shadow: 0 5px 18px rgba(118, 75, 162, 0.6);
+  background: var(--ff9-bg-accent);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px var(--ff9-shadow-gold);
+  border-color: var(--ff9-border-gold);
+  color: var(--ff9-text-gold);
 }
 
+.tab-button.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 10%;
+  right: 10%;
+  height: 2px;
+  background: var(--ff9-gold-light);
+  box-shadow: 0 0 10px var(--ff9-gold-light);
+}
+
+/* Main Content */
 .app-main {
   flex: 1;
   padding: 2rem;
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
   width: 100%;
 }
 
+/* Footer */
 .app-footer {
-  background: rgba(255, 255, 255, 0.9);
-  padding: 1rem;
+  background: var(--ff9-bg-panel);
+  padding: 2rem;
   text-align: center;
-  color: #666;
-  backdrop-filter: blur(10px);
+  color: var(--ff9-text-secondary);
+  backdrop-filter: blur(15px);
+  border-top: 2px solid var(--ff9-border-primary);
+  position: relative;
+}
+
+.app-footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 20%;
+  right: 20%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--ff9-crystal-blue), transparent);
+  box-shadow: 0 0 10px var(--ff9-crystal-blue);
 }
 
 .app-footer p {
-  margin: 0.25rem 0;
+  margin: 0.5rem 0;
+  font-size: 1.1rem;
 }
 
+/* Loading Spinner */
 .app-loading {
   display: flex;
   flex-direction: column;
@@ -115,25 +319,187 @@ body {
 }
 
 .app-loading .loading-spinner {
-  width: 60px;
-  height: 60px;
-  border: 6px solid rgba(102, 126, 234, 0.3);
-  border-top: 6px solid #667eea;
+  width: 80px;
+  height: 80px;
+  border: 4px solid var(--ff9-purple-mid);
+  border-top: 4px solid var(--ff9-crystal-blue);
+  border-right: 4px solid var(--ff9-gold-light);
   border-radius: 50%;
   animation: spin 1s linear infinite;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 0 20px var(--ff9-shadow-crystal);
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 .app-loading p {
-  font-size: 1.2rem;
-  color: #333;
-  font-weight: 500;
+  font-size: 1.5rem;
+  color: var(--ff9-text-primary);
+  font-weight: 600;
+  font-family: var(--ff9-font-body);
+}
+
+/* Common UI Elements */
+.ff9-panel {
+  background: var(--ff9-bg-panel);
+  border: 2px solid var(--ff9-border-primary);
+  border-radius: 15px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 8px 25px var(--ff9-shadow-secondary);
+  backdrop-filter: blur(10px);
+  position: relative;
+}
+
+.ff9-panel::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  right: -1px;
+  bottom: -1px;
+  background: linear-gradient(45deg, var(--ff9-crystal-blue), var(--ff9-crystal-purple), var(--ff9-gold-light));
+  border-radius: 15px;
+  z-index: -1;
+  opacity: 0.3;
+}
+
+.ff9-card {
+  background: var(--ff9-bg-card);
+  border: 1px solid var(--ff9-border-primary);
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 15px var(--ff9-shadow-secondary);
+  transition: all 0.3s ease;
+}
+
+.ff9-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px var(--ff9-shadow-accent);
+  border-color: var(--ff9-border-secondary);
+}
+
+.ff9-button {
+  background: var(--ff9-bg-accent);
+  color: var(--ff9-text-primary);
+  border: 2px solid var(--ff9-border-primary);
+  padding: 0.8rem 1.5rem;
+  border-radius: 10px;
+  font-family: var(--ff9-font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px var(--ff9-shadow-secondary);
+  position: relative;
+  overflow: hidden;
+}
+
+.ff9-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(79, 195, 247, 0.3), transparent);
+  transition: left 0.5s ease;
+}
+
+.ff9-button:hover::before {
+  left: 100%;
+}
+
+.ff9-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px var(--ff9-shadow-accent);
+  border-color: var(--ff9-border-secondary);
+  color: var(--ff9-crystal-blue);
+}
+
+.ff9-button.primary {
+  background: linear-gradient(45deg, var(--ff9-gold-dark), var(--ff9-gold-mid));
+  border-color: var(--ff9-border-gold);
+  color: var(--ff9-text-gold);
+}
+
+.ff9-button.primary:hover {
+  box-shadow: 0 6px 20px var(--ff9-shadow-gold);
+  color: var(--ff9-gold-bright);
+}
+
+.ff9-input {
+  background: var(--ff9-bg-card);
+  border: 2px solid var(--ff9-border-primary);
+  border-radius: 8px;
+  padding: 0.8rem;
+  font-family: var(--ff9-font-body);
+  font-size: 1rem;
+  color: var(--ff9-text-primary);
+  transition: all 0.3s ease;
+}
+
+.ff9-input:focus {
+  outline: none;
+  border-color: var(--ff9-border-secondary);
+  box-shadow: 0 0 15px var(--ff9-shadow-crystal);
+}
+
+.ff9-input::placeholder {
+  color: var(--ff9-text-accent);
+}
+
+.ff9-select {
+  background: var(--ff9-bg-card);
+  border: 2px solid var(--ff9-border-primary);
+  border-radius: 8px;
+  padding: 0.8rem;
+  font-family: var(--ff9-font-body);
+  font-size: 1rem;
+  color: var(--ff9-text-primary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.ff9-select:focus {
+  outline: none;
+  border-color: var(--ff9-border-secondary);
+  box-shadow: 0 0 15px var(--ff9-shadow-crystal);
+}
+
+.ff9-select option {
+  background: var(--ff9-dark-secondary);
+  color: var(--ff9-text-primary);
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--ff9-dark-secondary);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, var(--ff9-purple-mid), var(--ff9-blue-mid));
+  border-radius: 6px;
+  border: 2px solid var(--ff9-dark-secondary);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, var(--ff9-purple-light), var(--ff9-blue-light));
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
   .app-header h1 {
-    font-size: 2rem;
+    font-size: 2.5rem;
   }
   
   .header-content {
@@ -151,10 +517,30 @@ body {
   }
   
   .tab-button {
-    width: 200px;
+    width: 250px;
   }
   
   .app-main {
     padding: 1rem;
+  }
+  
+  .ff9-panel {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-header h1 {
+    font-size: 2rem;
+  }
+  
+  .tab-button {
+    width: 200px;
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+  }
+  
+  .app-main {
+    padding: 0.5rem;
   }
 }

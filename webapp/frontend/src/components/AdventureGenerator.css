@@ -1,31 +1,41 @@
-/* Adventure Generator Styles */
+/* Adventure Generator - Final Fantasy 9 Style */
 .adventure-generator {
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--ff9-bg-primary);
   min-height: 100vh;
-  color: white;
+  color: var(--ff9-text-primary);
+  font-family: var(--ff9-font-body);
 }
 
 .generator-header {
   text-align: center;
   margin-bottom: 3rem;
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--ff9-bg-panel);
   padding: 2rem;
   border-radius: 15px;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(15px);
+  border: 2px solid var(--ff9-border-primary);
+  box-shadow: 0 8px 30px var(--ff9-shadow-primary);
 }
 
 .generator-header h1 {
   font-size: 3rem;
   margin: 0 0 1rem 0;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  font-family: var(--ff9-font-title);
+  background: linear-gradient(45deg, var(--ff9-gold-light), var(--ff9-crystal-blue), var(--ff9-crystal-purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 30px var(--ff9-shadow-gold);
 }
 
 .generator-header p {
   font-size: 1.2rem;
-  opacity: 0.9;
+  color: var(--ff9-text-secondary);
+  font-style: italic;
+  margin-bottom: 0;
 }
 
 .generator-controls {
@@ -33,10 +43,12 @@
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1.5rem;
   margin-bottom: 2rem;
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--ff9-bg-panel);
   padding: 2rem;
   border-radius: 15px;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(15px);
+  border: 2px solid var(--ff9-border-primary);
+  box-shadow: 0 8px 30px var(--ff9-shadow-primary);
 }
 
 .control-group {
@@ -47,25 +59,39 @@
 
 .control-group label {
   font-weight: bold;
-  color: white;
+  color: var(--ff9-text-gold);
   font-size: 1rem;
+  font-family: var(--ff9-font-title);
+  text-shadow: 0 0 10px var(--ff9-shadow-gold);
 }
 
 .control-group select,
 .control-group input {
   padding: 0.75rem;
-  border: 2px solid rgba(255, 255, 255, 0.3);
+  border: 2px solid var(--ff9-border-primary);
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.9);
-  color: #333;
+  background: var(--ff9-bg-card);
+  color: var(--ff9-text-primary);
   font-size: 1rem;
+  font-family: var(--ff9-font-body);
+  transition: all 0.3s ease;
 }
 
 .control-group select:focus,
 .control-group input:focus {
   outline: none;
-  border-color: #fff;
-  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+  border-color: var(--ff9-border-secondary);
+  box-shadow: 0 0 20px var(--ff9-shadow-crystal);
+}
+
+.control-group select option {
+  background: var(--ff9-dark-secondary);
+  color: var(--ff9-text-primary);
+}
+
+.control-group input::placeholder {
+  color: var(--ff9-text-accent);
+  font-style: italic;
 }
 
 .generator-actions {
@@ -74,7 +100,7 @@
 }
 
 .generate-btn {
-  background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+  background: linear-gradient(45deg, var(--ff9-crystal-red), #f44336);
   color: white;
   border: none;
   padding: 1rem 3rem;
@@ -82,12 +108,16 @@
   border-radius: 50px;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+  box-shadow: 0 4px 15px rgba(239, 83, 80, 0.4);
+  font-family: var(--ff9-font-title);
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .generate-btn:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
+  box-shadow: 0 6px 20px rgba(239, 83, 80, 0.6);
 }
 
 .generate-btn:disabled {
@@ -97,24 +127,28 @@
 }
 
 .generated-adventure {
-  background: rgba(255, 255, 255, 0.95);
-  color: #333;
+  background: var(--ff9-bg-panel);
+  color: var(--ff9-text-primary);
   border-radius: 15px;
   padding: 2rem;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 30px var(--ff9-shadow-primary);
+  border: 2px solid var(--ff9-border-primary);
+  backdrop-filter: blur(15px);
 }
 
 .adventure-header {
   text-align: center;
   margin-bottom: 2rem;
-  border-bottom: 2px solid #667eea;
+  border-bottom: 2px solid var(--ff9-border-gold);
   padding-bottom: 1rem;
 }
 
 .adventure-header h2 {
   font-size: 2.5rem;
-  color: #2c3e50;
+  color: var(--ff9-text-gold);
   margin: 0 0 1rem 0;
+  font-family: var(--ff9-font-title);
+  text-shadow: 0 0 20px var(--ff9-shadow-gold);
 }
 
 .adventure-tags {
@@ -130,22 +164,28 @@
   font-size: 0.9rem;
   font-weight: bold;
   color: white;
+  font-family: var(--ff9-font-body);
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
 .theme-tag {
-  background: #667eea;
+  background: linear-gradient(45deg, var(--ff9-crystal-purple), var(--ff9-purple-light));
+  box-shadow: 0 2px 10px rgba(171, 71, 188, 0.4);
 }
 
 .difficulty-tag {
   /* Color set dynamically via style prop */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 .duration-tag {
-  background: #f39c12;
+  background: linear-gradient(45deg, var(--ff9-gold-mid), var(--ff9-gold-light));
+  box-shadow: 0 2px 10px var(--ff9-shadow-gold);
 }
 
 .setting-tag {
-  background: #27ae60;
+  background: linear-gradient(45deg, var(--ff9-crystal-green), #4caf50);
+  box-shadow: 0 2px 10px rgba(102, 187, 106, 0.4);
 }
 
 .adventure-content {
@@ -155,23 +195,28 @@
 }
 
 .adventure-content section {
-  background: rgba(255, 255, 255, 0.8);
+  background: var(--ff9-bg-card);
   padding: 1.5rem;
   border-radius: 10px;
-  border-left: 4px solid #667eea;
+  border-left: 4px solid var(--ff9-border-gold);
+  box-shadow: 0 4px 15px var(--ff9-shadow-secondary);
+  backdrop-filter: blur(10px);
 }
 
 .adventure-content h3 {
-  color: #2c3e50;
+  color: var(--ff9-text-gold);
   margin: 0 0 1rem 0;
   font-size: 1.5rem;
-  border-bottom: 2px solid #667eea;
+  font-family: var(--ff9-font-title);
+  border-bottom: 2px solid var(--ff9-border-gold);
   padding-bottom: 0.5rem;
+  text-shadow: 0 0 15px var(--ff9-shadow-gold);
 }
 
 .adventure-summary p {
   margin: 0.5rem 0;
   line-height: 1.6;
+  color: var(--ff9-text-primary);
 }
 
 .acts-grid {
@@ -181,21 +226,33 @@
 }
 
 .act-card {
-  background: linear-gradient(135deg, #f8f9ff, #e8f2ff);
+  background: var(--ff9-bg-card);
   padding: 1.5rem;
   border-radius: 10px;
-  border: 2px solid rgba(102, 126, 234, 0.3);
+  border: 2px solid var(--ff9-border-primary);
+  box-shadow: 0 4px 15px var(--ff9-shadow-secondary);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.act-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px var(--ff9-shadow-crystal);
+  border-color: var(--ff9-border-secondary);
 }
 
 .act-card h4 {
-  color: #667eea;
+  color: var(--ff9-crystal-blue);
   margin: 0 0 0.5rem 0;
   font-size: 1.2rem;
+  font-family: var(--ff9-font-title);
+  text-shadow: 0 0 10px var(--ff9-shadow-crystal);
 }
 
 .act-card p {
-  color: #555;
+  color: var(--ff9-text-secondary);
   margin: 0.5rem 0;
+  line-height: 1.4;
 }
 
 .objectives {
@@ -209,7 +266,7 @@
 
 .objectives li {
   margin: 0.3rem 0;
-  color: #666;
+  color: var(--ff9-text-primary);
 }
 
 .npcs-grid, .locations-grid {
@@ -219,37 +276,44 @@
 }
 
 .npc-card, .location-card {
-  background: linear-gradient(135deg, #fff5f5, #ffe8e8);
+  background: var(--ff9-bg-card);
   padding: 1rem;
   border-radius: 8px;
-  border: 2px solid rgba(231, 76, 60, 0.3);
+  border: 2px solid var(--ff9-border-primary);
   transition: all 0.3s ease;
+  box-shadow: 0 4px 15px var(--ff9-shadow-secondary);
+  backdrop-filter: blur(10px);
 }
 
 .npc-card:hover, .location-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(231, 76, 60, 0.2);
+  box-shadow: 0 6px 20px var(--ff9-shadow-crystal);
+  border-color: var(--ff9-border-secondary);
 }
 
 .npc-card h4, .location-card h4 {
-  color: #e74c3c;
+  color: var(--ff9-crystal-red);
   margin: 0 0 0.5rem 0;
   font-size: 1.1rem;
+  font-family: var(--ff9-font-title);
+  text-shadow: 0 0 10px rgba(239, 83, 80, 0.5);
 }
 
 .npc-card p, .location-card p {
-  color: #666;
+  color: var(--ff9-text-secondary);
   margin: 0.3rem 0;
   font-size: 0.9rem;
 }
 
 .encounter-type {
-  background: #3498db;
+  background: linear-gradient(45deg, var(--ff9-crystal-blue), var(--ff9-blue-light));
   color: white;
   padding: 0.2rem 0.5rem;
   border-radius: 12px;
   font-size: 0.8rem;
   font-weight: bold;
+  font-family: var(--ff9-font-body);
+  box-shadow: 0 2px 8px var(--ff9-shadow-crystal);
 }
 
 .rewards-grid {
@@ -259,16 +323,27 @@
 }
 
 .reward-item {
-  background: linear-gradient(135deg, #f0fff4, #e8f5e8);
+  background: var(--ff9-bg-card);
   padding: 1rem;
   border-radius: 8px;
-  border: 2px solid rgba(46, 204, 113, 0.3);
+  border: 2px solid var(--ff9-border-primary);
+  box-shadow: 0 4px 15px var(--ff9-shadow-secondary);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.reward-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px var(--ff9-shadow-crystal);
+  border-color: var(--ff9-border-secondary);
 }
 
 .reward-item strong {
-  color: #27ae60;
+  color: var(--ff9-crystal-green);
   display: block;
   margin-bottom: 0.5rem;
+  font-family: var(--ff9-font-title);
+  text-shadow: 0 0 10px rgba(102, 187, 106, 0.5);
 }
 
 .adventure-complications ul {
@@ -278,8 +353,9 @@
 
 .adventure-complications li {
   margin: 0.5rem 0;
-  color: #e67e22;
+  color: var(--ff9-crystal-orange);
   font-weight: 500;
+  text-shadow: 0 0 5px rgba(255, 112, 67, 0.5);
 }
 
 .adventure-actions {
@@ -288,7 +364,7 @@
   justify-content: center;
   margin-top: 2rem;
   padding-top: 2rem;
-  border-top: 2px solid #ecf0f1;
+  border-top: 2px solid var(--ff9-border-primary);
 }
 
 .export-btn, .regenerate-btn {
@@ -298,27 +374,44 @@
   font-size: 1.1rem;
   cursor: pointer;
   transition: all 0.3s ease;
+  font-family: var(--ff9-font-title);
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .export-btn {
-  background: linear-gradient(45deg, #27ae60, #2ecc71);
+  background: linear-gradient(45deg, var(--ff9-crystal-green), #4caf50);
   color: white;
+  box-shadow: 0 4px 15px rgba(102, 187, 106, 0.4);
 }
 
 .regenerate-btn {
-  background: linear-gradient(45deg, #3498db, #5dade2);
+  background: linear-gradient(45deg, var(--ff9-crystal-blue), var(--ff9-blue-light));
   color: white;
+  box-shadow: 0 4px 15px var(--ff9-shadow-crystal);
 }
 
 .export-btn:hover, .regenerate-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.export-btn:hover {
+  box-shadow: 0 6px 20px rgba(102, 187, 106, 0.6);
+}
+
+.regenerate-btn:hover {
+  box-shadow: 0 6px 20px var(--ff9-shadow-crystal);
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
   .adventure-generator {
     padding: 1rem;
+  }
+  
+  .generator-header h1 {
+    font-size: 2rem;
   }
   
   .generator-controls {
@@ -339,5 +432,11 @@
   
   .adventure-actions {
     flex-direction: column;
+  }
+  
+  .export-btn,
+  .regenerate-btn {
+    width: 100%;
+    max-width: 300px;
   }
 }

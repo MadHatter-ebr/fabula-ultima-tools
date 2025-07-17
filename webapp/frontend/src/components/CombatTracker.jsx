@@ -3,7 +3,7 @@ import { STATUS_EFFECTS, DAMAGE_TYPES } from '../../../shared/game_data.js';
 import CharacterAvatar from './CharacterAvatar';
 import './CombatTracker.css';
 
-const CombatTracker = () => {
+const CombatTracker = ({ character }) => {
   const [combatants, setCombatants] = useState([]);
   const [currentTurn, setCurrentTurn] = useState(0);
   const [round, setRound] = useState(1);

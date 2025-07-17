@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { BASIC_WEAPONS, EQUIPMENT_TYPES, GAME_MECHANICS } from '../../../shared/game_data.js';
+import { CHARACTER_CLASSES } from '../../../shared/complete_game_data.js';
 import { dbHelpers } from '../lib/supabase';
 import './InventoryManager.css';
 
-const InventoryManager = ({ user }) => {
+const InventoryManager = ({ user, character }) => {
   const [inventory, setInventory] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
@@ -24,6 +25,37 @@ const InventoryManager = ({ user }) => {
     inventoryPoints: 16,
     usedPoints: 0
   });
+
+  // Update character stats when character prop changes
+  useEffect(() => {
+    if (character && character.attributes) {
+      const resources = calculateCharacterResources(character);
+      setCharacterStats(prev => ({
+        ...prev,
+        might: character.attributes.might || 8,
+        dexterity: character.attributes.dexterity || 8,
+        inventoryPoints: resources.ip || 16
+      }));
+    }
+  }, [character]);
+
+  const calculateCharacterResources = (char) => {
+    let ip = 5;
+    
+    // Add class benefits
+    char.classes.forEach(cls => {
+      if (cls.classKey) {
+        const classInfo = CHARACTER_CLASSES[cls.classKey];
+        if (classInfo && classInfo.freeBenefits) {
+          classInfo.freeBenefits.forEach(benefit => {
+            if (benefit.includes('IP +2')) ip += 2;
+          });
+        }
+      }
+    });
+
+    return { ip };
+  };
   const [loading, setLoading] = useState(false);
 
   // Load inventory on component mount

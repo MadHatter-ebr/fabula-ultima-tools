@@ -3,7 +3,7 @@ import { CHARACTER_CLASSES, ATTRIBUTES, STARTING_ATTRIBUTES, HEROIC_STYLE_SKILLS
 import CharacterAvatar from './CharacterAvatar';
 import './CharacterGenerator.css';
 
-const CharacterGenerator = () => {
+const CharacterGenerator = ({ onCharacterChange }) => {
   const [character, setCharacter] = useState({
     ...DEFAULT_CHARACTER,
     classes: [
@@ -12,6 +12,13 @@ const CharacterGenerator = () => {
   });
 
   const [availableValues, setAvailableValues] = useState(STARTING_ATTRIBUTES.distribution.values);
+
+  // Notify parent component when character changes
+  useEffect(() => {
+    if (onCharacterChange) {
+      onCharacterChange(character);
+    }
+  }, [character, onCharacterChange]);
 
   const calculateDiceType = (attributeValue) => {
     return STARTING_ATTRIBUTES.dice_mapping[attributeValue] || 'd6';
