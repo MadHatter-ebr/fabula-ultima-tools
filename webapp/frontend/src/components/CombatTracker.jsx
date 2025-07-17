@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { STATUS_EFFECTS, DAMAGE_TYPES } from '../shared/game_data.js';
 import CharacterAvatar from './CharacterAvatar';
+import IntegratedDiceRoller from './IntegratedDiceRoller';
 import './CombatTracker.css';
 
 const CombatTracker = ({ character }) => {
@@ -157,6 +158,38 @@ const CombatTracker = ({ character }) => {
   const addToActionLog = (message) => {
     setActionLog(prev => [...prev.slice(-19), `${new Date().toLocaleTimeString()}: ${message}`]);
   };
+
+  // Handle dice roll results in combat context
+  const handleDiceRollResult = useCallback((result) => {
+    const currentCombatant = combatants[currentTurn];
+    if (!currentCombatant) return;
+
+    const rollType = result.description.toLowerCase();
+    const rollResult = result.isCritical ? 'CRITICAL' : result.isFumble ? 'FUMBLE' : result.isHighRoll ? 'HIGH ROLL' : 'NORMAL';
+    
+    addToActionLog(`${currentCombatant.name} rolls ${result.description}: ${result.total} (${rollResult})`);
+    
+    // Apply combat effects based on roll type
+    if (rollType.includes('attack')) {
+      if (result.isCritical) {
+        addToActionLog(`${currentCombatant.name} scores a critical hit!`);
+        // Could apply extra damage here
+      } else if (result.isFumble) {
+        addToActionLog(`${currentCombatant.name} fumbles the attack!`);
+        // Could apply negative effects here
+      }
+    } else if (rollType.includes('defense')) {
+      if (result.isCritical) {
+        addToActionLog(`${currentCombatant.name} performs a perfect defense!`);
+      } else if (result.isFumble) {
+        addToActionLog(`${currentCombatant.name} fails to defend properly!`);
+      }
+    } else if (rollType.includes('initiative')) {
+      // Update initiative for combatant
+      updateCombatant(currentCombatant.id, 'initiative', result.total);
+      addToActionLog(`${currentCombatant.name} new initiative: ${result.total}`);
+    }
+  }, [combatants, currentTurn]);
 
   const executeAction = (actionType, combatantId, value) => {
     const combatant = combatants.find(c => c.id === combatantId);
@@ -532,6 +565,14 @@ const CombatTracker = ({ character }) => {
             </div>
           </section>
         )}
+
+        {/* Integrated Dice Roller for Combat */}
+        <section className="combat-dice-roller">
+          <IntegratedDiceRoller 
+            character={combatants[currentTurn] || character} 
+            onRollResult={handleDiceRollResult}
+          />
+        </section>
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
 // Complete Fabula Ultima Game Data - All Classes and Abilities
 // Based on comprehensive PDF extraction including Core, Dark Fantasy, and Atlas classes
+// Includes: Core Rulebook, Dark Fantasy Classes, Natural Fantasy Atlas, Techno Fantasy Atlas, Low Fantasy Atlas
 
 export const ATTRIBUTES = {
   DEXTERITY: 'dexterity',
@@ -674,6 +675,324 @@ export const CHARACTER_CLASSES = {
       }
     },
     source: 'Dark Fantasy'
+  },
+
+  // ATLAS CLASSES - NATURAL FANTASY
+  chanter: {
+    name: 'Chanter',
+    description: 'Music-based spellcaster focused on songs and performances',
+    primaryAttributes: ['insight', 'willpower'],
+    freeBenefits: ['MP +5', 'Chanting Rituals'],
+    equipmentProficiencies: ['Basic weapons', 'Basic armor'],
+    abilities: {
+      'Chanting Magic': {
+        level: 1,
+        description: 'Cast spells through song and performance',
+        type: 'active',
+        cost: 'MP varies'
+      },
+      'Inspiring Song': {
+        level: 2,
+        description: 'Boost allies with inspiring melodies',
+        type: 'active',
+        cost: '10 MP'
+      },
+      'Harmony': {
+        level: 4,
+        description: 'Create protective harmonies',
+        type: 'active',
+        cost: '15 MP'
+      },
+      'Grand Anthem': {
+        level: 8,
+        description: 'Powerful group enhancement through epic song',
+        type: 'active',
+        cost: '25 MP'
+      }
+    },
+    source: 'Natural Fantasy Atlas'
+  },
+
+  dancer: {
+    name: 'Dancer',
+    description: 'Graceful combatant using dance-based combat techniques',
+    primaryAttributes: ['dexterity', 'insight'],
+    freeBenefits: ['HP +5', 'Martial melee weapons'],
+    equipmentProficiencies: ['Martial weapons', 'Basic armor'],
+    abilities: {
+      'Combat Dance': {
+        level: 1,
+        description: 'Fluid combat style combining dance and martial arts',
+        type: 'active',
+        cost: 'None'
+      },
+      'Grace': {
+        level: 2,
+        description: 'Enhanced mobility and evasion',
+        type: 'passive',
+        cost: 'None'
+      },
+      'Whirlwind': {
+        level: 4,
+        description: 'Spinning attack hitting multiple enemies',
+        type: 'active',
+        cost: '10 MP'
+      },
+      'Perfect Form': {
+        level: 8,
+        description: 'Ultimate dance technique',
+        type: 'active',
+        cost: '20 MP'
+      }
+    },
+    source: 'Natural Fantasy Atlas'
+  },
+
+  mutant: {
+    name: 'Mutant',
+    description: 'Class that gains random mutations and transformations',
+    primaryAttributes: ['might', 'willpower'],
+    freeBenefits: ['HP +5', 'Random Mutation'],
+    equipmentProficiencies: ['Basic weapons', 'Basic armor'],
+    abilities: {
+      'Mutation': {
+        level: 1,
+        description: 'Gain random beneficial mutations',
+        type: 'passive',
+        cost: 'None'
+      },
+      'Adapt': {
+        level: 2,
+        description: 'Temporary adaptation to circumstances',
+        type: 'active',
+        cost: '5 MP'
+      },
+      'Evolve': {
+        level: 4,
+        description: 'Controlled mutation development',
+        type: 'active',
+        cost: '15 MP'
+      },
+      'Transcend': {
+        level: 8,
+        description: 'Ultimate evolutionary form',
+        type: 'active',
+        cost: '25 MP'
+      }
+    },
+    source: 'Natural Fantasy Atlas'
+  },
+
+  // ATLAS CLASSES - TECHNO FANTASY
+  cyborg: {
+    name: 'Cyborg',
+    description: 'Cybernetically enhanced warrior with technological augmentations',
+    primaryAttributes: ['might', 'dexterity'],
+    freeBenefits: ['HP +5', 'Cybernetic Enhancement'],
+    equipmentProficiencies: ['Martial weapons', 'Martial armor'],
+    abilities: {
+      'Cybernetic Systems': {
+        level: 1,
+        description: 'Enhanced physical capabilities through technology',
+        type: 'passive',
+        cost: 'None'
+      },
+      'Data Analysis': {
+        level: 2,
+        description: 'Analyze enemies and situations with computer precision',
+        type: 'active',
+        cost: '10 MP'
+      },
+      'System Overload': {
+        level: 4,
+        description: 'Push cybernetic systems beyond normal limits',
+        type: 'active',
+        cost: '15 MP'
+      },
+      'Neural Interface': {
+        level: 8,
+        description: 'Direct mind-machine connection',
+        type: 'active',
+        cost: '20 MP'
+      }
+    },
+    source: 'Techno Fantasy Atlas'
+  },
+
+  pilot: {
+    name: 'Pilot',
+    description: 'Expert vehicle operator and mechanical specialist',
+    primaryAttributes: ['dexterity', 'insight'],
+    freeBenefits: ['IP +2', 'Vehicle Proficiency'],
+    equipmentProficiencies: ['Ranged weapons', 'Basic armor'],
+    abilities: {
+      'Vehicle Mastery': {
+        level: 1,
+        description: 'Enhanced control over vehicles and machines',
+        type: 'passive',
+        cost: 'None'
+      },
+      'Evasive Maneuvers': {
+        level: 2,
+        description: 'Superior evasion in vehicles',
+        type: 'active',
+        cost: '5 MP'
+      },
+      'Precision Strike': {
+        level: 4,
+        description: 'Accurate attacks from vehicles',
+        type: 'active',
+        cost: '10 MP'
+      },
+      'Ace Pilot': {
+        level: 8,
+        description: 'Legendary piloting skills',
+        type: 'active',
+        cost: '15 MP'
+      }
+    },
+    source: 'Techno Fantasy Atlas'
+  },
+
+  hacker: {
+    name: 'Hacker',
+    description: 'Digital infiltrator and information specialist',
+    primaryAttributes: ['insight', 'willpower'],
+    freeBenefits: ['MP +5', 'Digital Access'],
+    equipmentProficiencies: ['Basic weapons', 'Basic armor'],
+    abilities: {
+      'Data Breach': {
+        level: 1,
+        description: 'Access digital systems and networks',
+        type: 'active',
+        cost: '10 MP'
+      },
+      'System Manipulation': {
+        level: 2,
+        description: 'Control electronic devices and systems',
+        type: 'active',
+        cost: '15 MP'
+      },
+      'Viral Code': {
+        level: 4,
+        description: 'Create destructive digital attacks',
+        type: 'active',
+        cost: '20 MP'
+      },
+      'Ghost Protocol': {
+        level: 8,
+        description: 'Become untraceable in digital space',
+        type: 'active',
+        cost: '25 MP'
+      }
+    },
+    source: 'Techno Fantasy Atlas'
+  },
+
+  // ATLAS CLASSES - LOW FANTASY
+  merchant: {
+    name: 'Merchant',
+    description: 'Skilled trader and negotiator with business acumen',
+    primaryAttributes: ['insight', 'willpower'],
+    freeBenefits: ['IP +2', 'Trade Network'],
+    equipmentProficiencies: ['Basic weapons', 'Basic armor'],
+    abilities: {
+      'Appraise': {
+        level: 1,
+        description: 'Determine the true value of items and situations',
+        type: 'active',
+        cost: '5 MP'
+      },
+      'Negotiate': {
+        level: 2,
+        description: 'Superior bargaining and persuasion skills',
+        type: 'active',
+        cost: '10 MP'
+      },
+      'Trade Routes': {
+        level: 4,
+        description: 'Access to rare goods and information',
+        type: 'passive',
+        cost: 'None'
+      },
+      'Market Domination': {
+        level: 8,
+        description: 'Control local markets and trade',
+        type: 'active',
+        cost: '20 MP'
+      }
+    },
+    source: 'Low Fantasy Atlas'
+  },
+
+  scholar: {
+    name: 'Scholar',
+    description: 'Learned researcher and keeper of knowledge',
+    primaryAttributes: ['insight', 'willpower'],
+    freeBenefits: ['MP +5', 'Scholarly Research'],
+    equipmentProficiencies: ['Basic weapons', 'Basic armor'],
+    abilities: {
+      'Research': {
+        level: 1,
+        description: 'Gather and analyze information effectively',
+        type: 'active',
+        cost: '5 MP'
+      },
+      'Expertise': {
+        level: 2,
+        description: 'Deep knowledge in specialized subjects',
+        type: 'passive',
+        cost: 'None'
+      },
+      'Ancient Knowledge': {
+        level: 4,
+        description: 'Access to forgotten lore and secrets',
+        type: 'active',
+        cost: '15 MP'
+      },
+      'Sage Wisdom': {
+        level: 8,
+        description: 'Profound understanding of the world',
+        type: 'active',
+        cost: '25 MP'
+      }
+    },
+    source: 'Low Fantasy Atlas'
+  },
+
+  peasant: {
+    name: 'Peasant',
+    description: 'Hardy commoner with practical skills and resilience',
+    primaryAttributes: ['might', 'willpower'],
+    freeBenefits: ['HP +5', 'Common Sense'],
+    equipmentProficiencies: ['Basic weapons', 'Basic armor'],
+    abilities: {
+      'Hard Work': {
+        level: 1,
+        description: 'Tireless dedication to tasks',
+        type: 'passive',
+        cost: 'None'
+      },
+      'Survival Instinct': {
+        level: 2,
+        description: 'Natural ability to survive harsh conditions',
+        type: 'active',
+        cost: '5 MP'
+      },
+      'Folk Wisdom': {
+        level: 4,
+        description: 'Practical knowledge and common sense',
+        type: 'passive',
+        cost: 'None'
+      },
+      'Heroic Determination': {
+        level: 8,
+        description: 'Extraordinary willpower in dire situations',
+        type: 'active',
+        cost: '20 MP'
+      }
+    },
+    source: 'Low Fantasy Atlas'
   }
 };
 
