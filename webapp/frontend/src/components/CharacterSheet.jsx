@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { CHARACTER_CLASSES, ATTRIBUTES, STARTING_ATTRIBUTES, HEROIC_STYLE_SKILLS, DEFAULT_CHARACTER } from '../../../shared/complete_game_data.js';
-import { BASIC_WEAPONS } from '../../../shared/game_data.js';
+import { CHARACTER_CLASSES, ATTRIBUTES, STARTING_ATTRIBUTES, HEROIC_STYLE_SKILLS, DEFAULT_CHARACTER } from '../shared/complete_game_data.js';
+import { BASIC_WEAPONS } from '../shared/game_data.js';
 import IntegratedDiceRoller from './IntegratedDiceRoller';
 import CharacterAvatar from './CharacterAvatar';
 import './CharacterSheet.css';

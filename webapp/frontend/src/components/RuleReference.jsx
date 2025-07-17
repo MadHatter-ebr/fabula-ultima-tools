@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { CHARACTER_CLASSES, ATTRIBUTES, DICE_TYPES, DAMAGE_TYPES, STATUS_EFFECTS, BASIC_WEAPONS, GAME_MECHANICS, HEXER_SPELLS } from '../../../shared/game_data.js';
+import { CHARACTER_CLASSES, ATTRIBUTES, DICE_TYPES, DAMAGE_TYPES, STATUS_EFFECTS, BASIC_WEAPONS, GAME_MECHANICS, HEXER_SPELLS } from '../shared/game_data.js';
 import './RuleReference.css';
 
 const RuleReference = () => {

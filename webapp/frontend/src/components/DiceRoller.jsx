@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { DICE_TYPES, ATTRIBUTES } from '../../../shared/game_data.js';
+import { DICE_TYPES, ATTRIBUTES } from '../shared/game_data.js';
 import './DiceRoller.css';
 
 const DiceRoller = () => {

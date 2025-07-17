@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { BASIC_WEAPONS, EQUIPMENT_TYPES, GAME_MECHANICS } from '../../../shared/game_data.js';
-import { CHARACTER_CLASSES } from '../../../shared/complete_game_data.js';
+import { BASIC_WEAPONS, EQUIPMENT_TYPES, GAME_MECHANICS } from '../shared/game_data.js';
+import { CHARACTER_CLASSES } from '../shared/complete_game_data.js';
 import { dbHelpers } from '../lib/supabase';
 import './InventoryManager.css';
 

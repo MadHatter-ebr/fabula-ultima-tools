@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { STATUS_EFFECTS, DAMAGE_TYPES } from '../../../shared/game_data.js';
+import { STATUS_EFFECTS, DAMAGE_TYPES } from '../shared/game_data.js';
 import CharacterAvatar from './CharacterAvatar';
 import './CombatTracker.css';
 
