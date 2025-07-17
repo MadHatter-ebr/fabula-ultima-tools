@@ -9,6 +9,7 @@ import InventoryManager from './components/InventoryManager';
 import AdventureGenerator from './components/AdventureGenerator';
 import GameMap from './components/GameMap';
 import Auth from './components/Auth';
+import ErrorBoundary from './components/ErrorBoundary';
 import { supabase } from './lib/supabase';
 import './App.css';
 
@@ -54,17 +55,28 @@ const App = () => {
   const ActiveComponent = tabs.find(tab => tab.id === activeTab)?.component || CharacterGenerator;
 
   const renderActiveComponent = () => {
-    switch (activeTab) {
-      case 'character':
-        return <CharacterGenerator user={user} onCharacterChange={setCurrentCharacter} />;
-      case 'sheet':
-        return <CharacterSheet character={currentCharacter} onCharacterChange={setCurrentCharacter} user={user} />;
-      case 'combat':
-        return <CombatTracker user={user} character={currentCharacter} />;
-      case 'inventory':
-        return <InventoryManager user={user} character={currentCharacter} />;
-      default:
-        return <ActiveComponent user={user} />;
+    try {
+      switch (activeTab) {
+        case 'character':
+          return <CharacterGenerator user={user || { id: 'demo' }} onCharacterChange={setCurrentCharacter} />;
+        case 'sheet':
+          return <CharacterSheet character={currentCharacter} onCharacterChange={setCurrentCharacter} user={user || { id: 'demo' }} />;
+        case 'combat':
+          return <CombatTracker user={user || { id: 'demo' }} character={currentCharacter} />;
+        case 'inventory':
+          return <InventoryManager user={user || { id: 'demo' }} character={currentCharacter} />;
+        default:
+          return <ActiveComponent user={user || { id: 'demo' }} />;
+      }
+    } catch (error) {
+      console.error('Error rendering component:', error);
+      return (
+        <div className="error-fallback">
+          <h2>🛠️ Oops! Something went wrong</h2>
+          <p>Please try refreshing the page or selecting a different tab.</p>
+          <button onClick={() => window.location.reload()}>Refresh Page</button>
+        </div>
+      );
     }
   };
 
@@ -79,13 +91,8 @@ const App = () => {
     );
   }
 
-  if (!user) {
-    return (
-      <div className="app">
-        <Auth onAuthenticated={setUser} />
-      </div>
-    );
-  }
+  // Demo mode: Always show the full app
+  const isDemo = !user;
 
   return (
     <div className="app">
@@ -94,6 +101,7 @@ const App = () => {
           <div className="header-title">
             <h1>🎮 Fabula Ultima Tools</h1>
             <p>Digital tools for the ultimate JRPG tabletop experience</p>
+            {isDemo && <p className="demo-notice">🎭 Demo Mode - All features available!</p>}
           </div>
           
           <Auth onAuthenticated={setUser} />
@@ -113,7 +121,9 @@ const App = () => {
       </header>
       
       <main className="app-main">
-        {renderActiveComponent()}
+        <ErrorBoundary>
+          {renderActiveComponent()}
+        </ErrorBoundary>
       </main>
       
       <footer className="app-footer">
