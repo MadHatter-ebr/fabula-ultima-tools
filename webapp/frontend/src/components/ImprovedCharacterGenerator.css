@@ -7,8 +7,28 @@
   padding: 1.5rem;
   box-shadow: 0 8px 25px var(--ff9-shadow-secondary);
   backdrop-filter: blur(10px);
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
+}
+
+/* Two Column Layout */
+.character-generator.two-column .generator-content.two-column-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.character-generator.two-column .left-column,
+.character-generator.two-column .right-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.character-generator.two-column .special-rules-section {
+  grid-column: 1 / -1;
+  margin-top: 2rem;
 }
 
 .generator-header {
@@ -18,6 +38,59 @@
   margin-bottom: 1.5rem;
   padding-bottom: 1rem;
   border-bottom: 2px solid var(--ff9-border-primary);
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.character-actions {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.save-btn, .load-select {
+  background: var(--ff9-bg-card);
+  border: 2px solid var(--ff9-border-primary);
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  color: var(--ff9-text-primary);
+  font-family: var(--ff9-font-body);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.save-btn:hover, .load-select:hover {
+  background: var(--ff9-bg-hover);
+  border-color: var(--ff9-accent-crystal);
+  box-shadow: 0 0 15px var(--ff9-shadow-crystal);
+}
+
+.bottom-character-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 2px solid var(--ff9-border-primary);
+}
+
+.preview-btn, .reset-btn {
+  background: var(--ff9-bg-card);
+  border: 2px solid var(--ff9-border-primary);
+  border-radius: 8px;
+  padding: 0.75rem 1.5rem;
+  color: var(--ff9-text-primary);
+  font-family: var(--ff9-font-body);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.preview-btn:hover, .reset-btn:hover {
+  background: var(--ff9-bg-hover);
+  border-color: var(--ff9-accent-crystal);
+  box-shadow: 0 0 15px var(--ff9-shadow-crystal);
 }
 
 .generator-header h2 {

@@ -393,8 +393,42 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
   const resources = calculateResources();
   const classesWithSpecialRules = getClassesWithSpecialRules();
 
+  const saveCharacter = () => {
+    const savedCharacters = JSON.parse(localStorage.getItem('savedCharacters') || '[]');
+    const characterToSave = {
+      ...character,
+      id: character.id || Date.now().toString(),
+      savedAt: new Date().toISOString(),
+      name: character.name || 'Unnamed Character'
+    };
+    
+    const existingIndex = savedCharacters.findIndex(c => c.id === characterToSave.id);
+    if (existingIndex >= 0) {
+      savedCharacters[existingIndex] = characterToSave;
+    } else {
+      savedCharacters.push(characterToSave);
+    }
+    
+    localStorage.setItem('savedCharacters', JSON.stringify(savedCharacters));
+    setCharacter(prev => ({ ...prev, id: characterToSave.id }));
+    alert('Character saved successfully!');
+  };
+
+  const loadCharacter = (characterId) => {
+    const savedCharacters = JSON.parse(localStorage.getItem('savedCharacters') || '[]');
+    const foundCharacter = savedCharacters.find(c => c.id === characterId);
+    if (foundCharacter) {
+      setCharacter(foundCharacter);
+      alert('Character loaded successfully!');
+    }
+  };
+
+  const getSavedCharacters = () => {
+    return JSON.parse(localStorage.getItem('savedCharacters') || '[]');
+  };
+
   return (
-    <div className="character-generator improved">
+    <div className="character-generator improved two-column">
       <div className="generator-header">
         <h2>🎭 Character Generator</h2>
         <div className="character-summary compact">
@@ -403,10 +437,28 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
           <span>MP: {resources.mp}</span>
           <span>IP: {resources.ip}</span>
         </div>
+        <div className="character-actions">
+          <button onClick={saveCharacter} className="save-btn">
+            💾 Save Character
+          </button>
+          <select 
+            onChange={(e) => e.target.value && loadCharacter(e.target.value)}
+            defaultValue=""
+            className="load-select"
+          >
+            <option value="">Load Character...</option>
+            {getSavedCharacters().map(char => (
+              <option key={char.id} value={char.id}>
+                {char.name} (Level {char.classes?.reduce((sum, cls) => sum + (cls.level || 1), 0) || 1})
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
 
-      <div className="generator-content">
-        {/* Basic Information - Compact */}
+      <div className="generator-content two-column-layout">
+        <div className="left-column">
+          {/* Basic Information - Compact */}
         <div className="basic-info-section compact">
           <h3>Basic Information</h3>
           <div className="basic-info-grid">
@@ -499,8 +551,10 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
             renderClassSection(cls, index)
           )}
         </div>
+        </div>
 
-        {/* Advanced Character Systems */}
+        <div className="right-column">
+          {/* Advanced Character Systems */}
         <div className="advanced-systems">
           <FabulaPoints 
             character={character} 
@@ -572,9 +626,11 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
             } 
           />
         </div>
+        </div>
+      </div>
 
-        {/* Special Class Rules */}
-        {classesWithSpecialRules.length > 0 && (
+      {/* Special Class Rules */}
+      {classesWithSpecialRules.length > 0 && (
           <div className="special-rules-section">
             <h3>Special Class Rules</h3>
             {classesWithSpecialRules.map((classInfo, index) => (
@@ -699,18 +755,17 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
           </div>
         )}
 
-        {/* Character Actions */}
-        <div className="character-actions">
-          <button onClick={() => setShowCharacterSheet(true)} className="preview-btn">
-            View Character Sheet
-          </button>
-          <button onClick={() => console.log(character)} className="preview-btn">
-            Export Character
-          </button>
-          <button onClick={() => setCharacter({...DEFAULT_CHARACTER, classes: [{ classKey: null, level: 1, abilities: {}, slot: 'primary' }]})} className="reset-btn">
-            Reset Character
-          </button>
-        </div>
+      {/* Character Actions */}
+      <div className="bottom-character-actions">
+        <button onClick={() => setShowCharacterSheet(true)} className="preview-btn">
+          View Character Sheet
+        </button>
+        <button onClick={() => console.log(character)} className="preview-btn">
+          Export Character
+        </button>
+        <button onClick={() => setCharacter({...DEFAULT_CHARACTER, classes: [{ classKey: null, level: 1, abilities: {}, slot: 'primary' }]})} className="reset-btn">
+          Reset Character
+        </button>
       </div>
       
       {/* Character Sheet Modal */}
