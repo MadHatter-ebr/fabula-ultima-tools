@@ -16,7 +16,7 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
   const [character, setCharacter] = useState({
     ...DEFAULT_CHARACTER,
     classes: [
-      { classKey: null, level: 1, abilities: {}, slot: 'primary' }
+      { classKey: null, level: 5, abilities: {}, slot: 'primary' }
     ]
   });
 
@@ -266,7 +266,7 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
                   onChange={(e) => updateClassLevel(classIndex, e.target.value)}
                   className="level-select compact"
                 >
-                  {[1,2,3,4,5,6,7,8,9,10].map(level => (
+                  {Array.from({ length: 50 }, (_, i) => i + 1).map(level => (
                     <option key={level} value={level}>{level}</option>
                   ))}
                 </select>
@@ -327,7 +327,7 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
         ...prev,
         classes: [
           ...prev.classes,
-          { classKey: null, level: 1, abilities: {}, slot: slotName }
+          { classKey: null, level: 5, abilities: {}, slot: slotName }
         ]
       }));
     }
@@ -859,7 +859,7 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
         <button onClick={() => console.log(character)} className="preview-btn">
           Export Character
         </button>
-        <button onClick={() => setCharacter({...DEFAULT_CHARACTER, classes: [{ classKey: null, level: 1, abilities: {}, slot: 'primary' }]})} className="reset-btn">
+        <button onClick={() => setCharacter({...DEFAULT_CHARACTER, classes: [{ classKey: null, level: 5, abilities: {}, slot: 'primary' }]})} className="reset-btn">
           Reset Character
         </button>
       </div>
