@@ -96,7 +96,7 @@ export const CHARACTER_CLASSES = {
           {
             title: 'DISMISSING AN ARCANUM',
             type: 'dropdown',
-            content: 'An Arcanum can be dismissed in several ways: • Once the current scene ends, all Arcana are automatically dismissed. • If you die or fall unconscious while merged with an Arcanum, they are dismissed. • If you leave the scene while merged with an Arcanum, they are dismissed. • You may willingly dismiss your Arcanum: this does not require an action, but during a conflict it can only be done on your turn, before or after an action.'
+            content: 'An Arcanum can be dismissed in several ways: - Once the current scene ends, all Arcana are automatically dismissed. - If you die or fall unconscious while merged with an Arcanum, they are dismissed. - If you leave the scene while merged with an Arcanum, they are dismissed. - You may willingly dismiss your Arcanum: this does not require an action, but during a conflict it can only be done on your turn, before or after an action.'
           },
           {
             title: 'DISMISS EFFECTS',
