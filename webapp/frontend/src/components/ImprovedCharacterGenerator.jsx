@@ -7,7 +7,6 @@ import FabulaPoints from './FabulaPoints';
 import EquipmentManager from './EquipmentManager';
 import CombatSystem from './CombatSystem';
 import CraftingSystem from './CraftingSystem';
-import GMTools from './GMTools';
 import CharacterSheet from './CharacterSheet';
 import ResistanceDisplay from './ResistanceDisplay';
 import './CharacterGenerator.css';
@@ -676,16 +675,6 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
                 craftingMaterials: craftingData.craftingMaterials,
                 craftingSkill: craftingData.craftingSkill,
                 craftingRecipes: craftingData.recipes
-              }))
-            } 
-          />
-          
-          <GMTools 
-            character={character} 
-            onGMDataChange={(gmData) => 
-              setCharacter(prev => ({ 
-                ...prev, 
-                gmData: gmData
               }))
             } 
           />

@@ -4309,12 +4309,6 @@ export const DAMAGE_TYPES = {
     icon: '✨',
     color: '#FFD700',
     description: 'Holy and light damage'
-  },
-  POISON: {
-    name: 'Poison',
-    icon: '☠️',
-    color: '#32CD32',
-    description: 'Poison and toxic damage'
   }
 };
 
@@ -4324,29 +4318,41 @@ export const AFFINITY_TYPES = {
     name: 'Vulnerable',
     icon: '🔻',
     color: '#FF4444',
-    modifier: '+5',
-    description: 'Takes +5 extra damage from this type'
+    modifier: '2x',
+    multiplier: 2,
+    description: 'Takes double damage from this type'
   },
   NORMAL: {
     name: 'Normal',
     icon: '➖',
     color: '#888888',
-    modifier: '±0',
+    modifier: '1x',
+    multiplier: 1,
     description: 'Normal damage from this type'
   },
   RESISTANT: {
     name: 'Resistant',
     icon: '🛡️',
     color: '#4444FF',
-    modifier: '-5',
-    description: 'Takes 5 less damage from this type'
+    modifier: '½',
+    multiplier: 0.5,
+    description: 'Takes half damage from this type'
   },
   IMMUNE: {
     name: 'Immune',
     icon: '🚫',
     color: '#00FF00',
     modifier: '0',
+    multiplier: 0,
     description: 'Takes no damage from this type'
+  },
+  ABSORB: {
+    name: 'Absorb',
+    icon: '💚',
+    color: '#00AA00',
+    modifier: 'Heal',
+    multiplier: -1,
+    description: 'Damage heals instead of hurts'
   }
 };
 
@@ -4379,8 +4385,7 @@ export const DEFAULT_CHARACTER = {
     earth: 'NORMAL',
     bolt: 'NORMAL',
     dark: 'NORMAL',
-    light: 'NORMAL',
-    poison: 'NORMAL'
+    light: 'NORMAL'
   }
 };
 

@@ -65,6 +65,11 @@
   background: rgba(255, 68, 68, 0.1);
 }
 
+.resistance-item.absorb {
+  border-color: #00AA00;
+  background: rgba(0, 170, 0, 0.1);
+}
+
 .resistance-stack {
   position: relative;
   display: flex;

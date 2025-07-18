@@ -125,13 +125,16 @@ const ResistanceDisplay = ({ character, onAffinityChange, editable = false }) =>
       {!editable && (
         <div className="resistance-legend">
           <div className="legend-item">
-            <span className="legend-icon">🛡️</span> Resistant (-5 dmg)
+            <span className="legend-icon">🛡️</span> Resistant (½ dmg)
           </div>
           <div className="legend-item">
             <span className="legend-icon">🚫</span> Immune (0 dmg)
           </div>
           <div className="legend-item">
-            <span className="legend-icon">🔻</span> Vulnerable (+5 dmg)
+            <span className="legend-icon">🔻</span> Vulnerable (2x dmg)
+          </div>
+          <div className="legend-item">
+            <span className="legend-icon">💚</span> Absorb (heal)
           </div>
         </div>
       )}
