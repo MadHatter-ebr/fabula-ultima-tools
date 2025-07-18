@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import CharacterGenerator from './components/CharacterGenerator';
 import ImprovedCharacterGenerator from './components/ImprovedCharacterGenerator';
 import './components/ImprovedCharacterGenerator.css';
-import CharacterSheet from './components/CharacterSheet';
 import CharacterGallery from './components/CharacterGallery';
 import DiceRoller from './components/DiceRoller';
 import CombatTracker from './components/CombatTracker';
@@ -45,7 +44,6 @@ const App = () => {
 
   const tabs = [
     { id: 'character', name: '🎭 Character Generator', component: CharacterGenerator },
-    { id: 'sheet', name: '📋 Character Sheet', component: CharacterSheet },
     { id: 'gallery', name: '🖼️ Character Gallery', component: CharacterGallery },
     { id: 'dice', name: '🎲 Dice Roller', component: DiceRoller },
     { id: 'combat', name: '⚔️ Combat Tracker', component: CombatTracker },
@@ -63,8 +61,6 @@ const App = () => {
       switch (activeTab) {
         case 'character':
           return <ImprovedCharacterGenerator user={user || { id: 'demo' }} onCharacterChange={setCurrentCharacter} />;
-        case 'sheet':
-          return <CharacterSheet character={currentCharacter} onCharacterChange={setCurrentCharacter} user={user || { id: 'demo' }} />;
         case 'combat':
           return <CombatTracker user={user || { id: 'demo' }} character={currentCharacter} />;
         case 'inventory':
