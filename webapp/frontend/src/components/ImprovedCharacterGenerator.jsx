@@ -318,10 +318,11 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
 
   const addCharacterClass = () => {
     const totalLevel = calculateTotalLevel();
-    const maxClasses = totalLevel >= 10 ? 3 : 2; // Ab Level 10 sind 3 Klassen erlaubt
+    const maxClasses = totalLevel >= 10 ? 4 : 3; // 3 Klassen standardmäßig, 4. ab Level 10
     
     if (character.classes.length < maxClasses) {
-      const slotName = character.classes.length === 1 ? 'secondary' : 'tertiary';
+      const slotNames = ['primary', 'secondary', 'tertiary', 'quaternary'];
+      const slotName = slotNames[character.classes.length] || 'additional';
       setCharacter(prev => ({
         ...prev,
         classes: [
@@ -624,13 +625,12 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
             <h3>Classes</h3>
             {(() => {
               const totalLevel = calculateTotalLevel();
-              const maxClasses = totalLevel >= 10 ? 3 : 2;
+              const maxClasses = totalLevel >= 10 ? 4 : 3;
               const canAddClass = character.classes.length < maxClasses;
               
               if (canAddClass) {
-                const buttonText = character.classes.length === 1 
-                  ? "+ Add Second Class" 
-                  : "+ Add Third Class";
+                const classNames = ['First', 'Second', 'Third', 'Fourth'];
+                const buttonText = `+ Add ${classNames[character.classes.length]} Class`;
                 return (
                   <button onClick={addCharacterClass} className="add-class-btn compact">
                     {buttonText}
@@ -638,10 +638,10 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
                 );
               }
               
-              if (totalLevel < 10 && character.classes.length >= 2) {
+              if (totalLevel < 10 && character.classes.length >= 3) {
                 return (
                   <span className="class-requirement">
-                    Reach level 10+ to add a third class
+                    Reach level 10+ to add a fourth class
                   </span>
                 );
               }
