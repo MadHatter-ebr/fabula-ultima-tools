@@ -37,8 +37,14 @@ const CharacterSheet = ({ character, onClose }) => {
   const allSkills = getAllSkills();
   const totalLevel = calculateTotalLevel();
 
+  const handleOverlayClick = (e) => {
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  };
+
   return (
-    <div className="character-sheet-overlay">
+    <div className="character-sheet-overlay" onClick={handleOverlayClick}>
       <div className="character-sheet">
         <div className="sheet-header">
           <div className="character-title">

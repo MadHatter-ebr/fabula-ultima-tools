@@ -83,22 +83,32 @@
 .close-sheet-btn {
   background: var(--ff9-crystal-red);
   color: white;
-  border: none;
-  width: 40px;
-  height: 40px;
+  border: 2px solid white;
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
-  font-size: 1.8rem;
+  font-size: 2rem;
+  font-weight: bold;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
+  z-index: 10;
+  position: relative;
+  line-height: 1;
+  flex-shrink: 0;
 }
 
 .close-sheet-btn:hover {
   background: #d32f2f;
-  transform: scale(1.1);
-  box-shadow: 0 4px 15px rgba(244, 67, 54, 0.4);
+  transform: scale(1.15);
+  box-shadow: 0 4px 20px rgba(244, 67, 54, 0.6);
+  border-color: var(--ff9-gold-light);
+}
+
+.close-sheet-btn:active {
+  transform: scale(1.05);
 }
 
 /* Sheet Tabs */
