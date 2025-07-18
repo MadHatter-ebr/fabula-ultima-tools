@@ -7,7 +7,6 @@ import FabulaPoints from './FabulaPoints';
 import EquipmentManager from './EquipmentManager';
 import CombatSystem from './CombatSystem';
 import CraftingSystem from './CraftingSystem';
-import CharacterSheet from './CharacterSheet';
 import ResistanceDisplay from './ResistanceDisplay';
 import './CharacterGenerator.css';
 import characterStorage from '../services/characterStorage';
@@ -22,7 +21,6 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
 
   const [selectedSkillDescriptions, setSelectedSkillDescriptions] = useState({});
   const [showSkillDetails, setShowSkillDetails] = useState({});
-  const [showCharacterSheet, setShowCharacterSheet] = useState(false);
 
   // Safe evaluation function for simple math formulas
   const safeEval = (expression) => {
@@ -838,9 +836,6 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
 
       {/* Character Actions */}
       <div className="bottom-character-actions">
-        <button onClick={() => setShowCharacterSheet(true)} className="preview-btn">
-          View Character Sheet
-        </button>
         <button onClick={() => console.log(character)} className="preview-btn">
           Export Character
         </button>
@@ -848,14 +843,6 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
           Reset Character
         </button>
       </div>
-      
-      {/* Character Sheet Modal */}
-      {showCharacterSheet && (
-        <CharacterSheet 
-          character={character} 
-          onClose={() => setShowCharacterSheet(false)} 
-        />
-      )}
     </div>
   );
 };

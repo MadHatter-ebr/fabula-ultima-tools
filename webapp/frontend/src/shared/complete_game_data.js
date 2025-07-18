@@ -3409,50 +3409,110 @@ export const BOND_TYPES = {
 
 // Status Effects System
 export const STATUS_EFFECTS = {
-  // Positive Effects
+  // Core Fabula Ultima Status Effects (from official rules)
+  DAZED: {
+    name: 'Dazed',
+    type: 'negative',
+    description: 'Temporarily reduces your Insight die size by one.',
+    duration: 'until recovered',
+    effects: { insight_penalty: -1 },
+    attribute_affected: 'INSIGHT',
+    stackable: true,
+    minimum_die: 6
+  },
+  ENRAGED: {
+    name: 'Enraged',
+    type: 'negative', 
+    description: 'Temporarily reduces your Dexterity and Insight die sizes by one.',
+    duration: 'until recovered',
+    effects: { dexterity_penalty: -1, insight_penalty: -1 },
+    attribute_affected: ['DEXTERITY', 'INSIGHT'],
+    stackable: true,
+    minimum_die: 6
+  },
+  POISONED: {
+    name: 'Poisoned',
+    type: 'negative',
+    description: 'Temporarily reduces your Might and Willpower die sizes by one.',
+    duration: 'until recovered',
+    effects: { might_penalty: -1, willpower_penalty: -1 },
+    attribute_affected: ['MIGHT', 'WILLPOWER'],
+    stackable: true,
+    minimum_die: 6
+  },
+  SHAKEN: {
+    name: 'Shaken',
+    type: 'negative',
+    description: 'Temporarily reduces your Willpower die size by one.',
+    duration: 'until recovered',
+    effects: { willpower_penalty: -1 },
+    attribute_affected: 'WILLPOWER',
+    stackable: true,
+    minimum_die: 6
+  },
+  SLOW: {
+    name: 'Slow',
+    type: 'negative',
+    description: 'Temporarily reduces your Dexterity die size by one.',
+    duration: 'until recovered',
+    effects: { dexterity_penalty: -1 },
+    attribute_affected: 'DEXTERITY',
+    stackable: true,
+    minimum_die: 6
+  },
+  WEAK: {
+    name: 'Weak',
+    type: 'negative',
+    description: 'Temporarily reduces your Might die size by one.',
+    duration: 'until recovered',
+    effects: { might_penalty: -1 },
+    attribute_affected: 'MIGHT',
+    stackable: true,
+    minimum_die: 6
+  },
+  
+  // Additional Custom Effects
   BLESSED: {
     name: 'Blessed',
     type: 'positive',
-    description: 'Divine favor grants bonuses to all actions.',
+    description: 'Divine favor grants bonuses to actions.',
     duration: 'scene',
-    effects: { accuracy: '+1', damage: '+2', resistance: '+1' }
+    effects: { accuracy: '+1', damage: '+2' },
+    stackable: false
   },
   HASTE: {
     name: 'Haste',
     type: 'positive',
     description: 'Increased speed allows for extra actions.',
     duration: 'scene',
-    effects: { actions: '+1', dodge: '+2' }
+    effects: { actions: '+1', dodge: '+2' },
+    stackable: false
   },
   REGENERATION: {
     name: 'Regeneration',
     type: 'positive',
     description: 'Slowly recover HP over time.',
     duration: 'scene',
-    effects: { hp_regen: '5 per turn' }
+    effects: { hp_regen: '5 per turn' },
+    stackable: false
   },
   
-  // Negative Effects
+  // Other Negative Effects
   CURSED: {
     name: 'Cursed',
     type: 'negative',
     description: 'Dark magic causes penalties to all actions.',
     duration: 'scene',
-    effects: { accuracy: '-1', damage: '-2', resistance: '-1' }
-  },
-  POISONED: {
-    name: 'Poisoned',
-    type: 'negative',
-    description: 'Toxins cause ongoing damage.',
-    duration: 'scene',
-    effects: { hp_damage: '3 per turn' }
+    effects: { accuracy: '-1', damage: '-2' },
+    stackable: false
   },
   PARALYZED: {
     name: 'Paralyzed',
     type: 'negative',
     description: 'Unable to take actions.',
     duration: '3 turns',
-    effects: { actions: 'none' }
+    effects: { actions: 'none' },
+    stackable: false
   },
   CONFUSED: {
     name: 'Confused',

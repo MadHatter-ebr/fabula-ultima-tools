@@ -69,11 +69,18 @@ const StatusEffects = ({ character, onStatusChange }) => {
 
   const getEffectIcon = (effectType) => {
     const icons = {
+      // Core Fabula Ultima Status Effects
+      DAZED: '😵‍💫',
+      ENRAGED: '😡',
+      POISONED: '☠️',
+      SHAKEN: '😰',
+      SLOW: '🐌',
+      WEAK: '💪❌',
+      // Additional Effects
       BLESSED: '✨',
       HASTE: '⚡',
       REGENERATION: '💚',
       CURSED: '💀',
-      POISONED: '☠️',
       PARALYZED: '🥶',
       CONFUSED: '😵',
       FRIGHTENED: '😨'
