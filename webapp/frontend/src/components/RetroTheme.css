@@ -1,0 +1,231 @@
+/* 8-Bit Oldschool Final Fantasy Theme */
+
+:root.retro-theme {
+  /* Background Colors - Classic FF Blue Gradient */
+  --ff9-bg-panel: linear-gradient(135deg, #0a1929, #1e3a5f, #2d5aa0);
+  --ff9-bg-card: #1a237e;
+  --ff9-bg-accent: #3949ab;
+  --ff9-bg-hover: #303f9f;
+  --ff9-bg-tooltip: #0d47a1;
+  
+  /* Text Colors - Classic White/Yellow */
+  --ff9-text-primary: #ffffff;
+  --ff9-text-secondary: #e3f2fd;
+  --ff9-text-accent: #ffeb3b;
+  --ff9-text-gold: #ffc107;
+  
+  /* Border Colors - Pixelated Style */
+  --ff9-border-primary: #64b5f6;
+  --ff9-border-secondary: #42a5f5;
+  --ff9-border-gold: #ffc107;
+  
+  /* Crystal/Accent Colors - Classic FF Palette */
+  --ff9-crystal-blue: #03a9f4;
+  --ff9-crystal-purple: #9c27b0;
+  --ff9-crystal-red: #f44336;
+  --ff9-accent-crystal: #00bcd4;
+  --ff9-accent-primary: #2196f3;
+  --ff9-accent-success: #4caf50;
+  --ff9-accent-warning: #ff9800;
+  --ff9-accent-error: #f44336;
+  
+  /* Gold Colors */
+  --ff9-gold-light: #ffeb3b;
+  --ff9-gold-dark: #ffa000;
+  
+  /* Shadows - Pixelated/Hard Shadows */
+  --ff9-shadow-primary: rgba(0, 0, 0, 0.8);
+  --ff9-shadow-secondary: rgba(0, 0, 0, 0.6);
+  --ff9-shadow-crystal: rgba(3, 169, 244, 0.4);
+  --ff9-shadow-gold: rgba(255, 193, 7, 0.4);
+  --ff9-shadow-accent: rgba(33, 150, 243, 0.3);
+  
+  /* Fonts - Pixel Perfect */
+  --ff9-font-title: 'Courier New', 'Monaco', 'Menlo', monospace;
+  --ff9-font-body: 'Courier New', 'Monaco', 'Menlo', monospace;
+}
+
+/* Retro Theme Specific Styling */
+.character-generator.improved.retro {
+  background: var(--ff9-bg-panel);
+  border: 2px solid var(--ff9-border-primary);
+  border-radius: 0; /* Sharp corners for 8-bit feel */
+  box-shadow: 
+    0 0 0 2px #000000,
+    2px 2px 0 4px var(--ff9-border-secondary),
+    4px 4px 0 6px #000000;
+  image-rendering: pixelated;
+  font-family: var(--ff9-font-body);
+}
+
+.character-generator.improved.retro .generator-header {
+  background: linear-gradient(90deg, #1565c0, #1976d2, #1565c0);
+  border-bottom: 2px solid var(--ff9-border-primary);
+  padding: 0.75rem;
+  margin: -0.5rem -0.5rem 0.5rem -0.5rem;
+  position: relative;
+}
+
+.character-generator.improved.retro .generator-header::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0px,
+    transparent 1px,
+    rgba(255, 255, 255, 0.1) 1px,
+    rgba(255, 255, 255, 0.1) 2px
+  );
+  pointer-events: none;
+}
+
+.character-generator.improved.retro h2 {
+  font-family: var(--ff9-font-title);
+  font-size: 1.5rem;
+  color: var(--ff9-text-gold);
+  text-shadow: 
+    1px 1px 0 #000000,
+    2px 2px 0 rgba(0, 0, 0, 0.5);
+  letter-spacing: 1px;
+  margin: 0;
+}
+
+.character-generator.improved.retro .character-summary.compact span {
+  background: #0d47a1;
+  border: 1px solid var(--ff9-border-primary);
+  border-radius: 0;
+  padding: 0.25rem 0.5rem;
+  font-family: var(--ff9-font-body);
+  font-size: 0.75rem;
+  color: var(--ff9-text-primary);
+  text-shadow: 1px 1px 0 #000000;
+}
+
+/* Retro Buttons */
+.character-generator.improved.retro button {
+  background: linear-gradient(180deg, #1976d2, #1565c0);
+  border: 1px solid var(--ff9-border-primary);
+  border-radius: 0;
+  color: var(--ff9-text-primary);
+  font-family: var(--ff9-font-body);
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-shadow: 1px 1px 0 #000000;
+  box-shadow: 
+    inset 1px 1px 0 rgba(255, 255, 255, 0.2),
+    1px 1px 0 rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  transition: none;
+}
+
+.character-generator.improved.retro button:hover {
+  background: linear-gradient(180deg, #1e88e5, #1976d2);
+  box-shadow: 
+    inset 1px 1px 0 rgba(255, 255, 255, 0.3),
+    1px 1px 0 rgba(0, 0, 0, 0.4);
+}
+
+.character-generator.improved.retro button:active {
+  background: linear-gradient(180deg, #1565c0, #0d47a1);
+  box-shadow: 
+    inset 2px 2px 0 rgba(0, 0, 0, 0.3),
+    0 0 0 rgba(0, 0, 0, 0);
+  transform: translate(1px, 1px);
+}
+
+/* Retro Sections */
+.character-generator.improved.retro .basic-info-section.compact,
+.character-generator.improved.retro .attributes-section.compact,
+.character-generator.improved.retro .classes-section {
+  background: rgba(26, 35, 126, 0.8);
+  border: 1px solid var(--ff9-border-primary);
+  border-radius: 0;
+  box-shadow: 
+    inset 0 0 0 1px rgba(255, 255, 255, 0.1),
+    2px 2px 0 rgba(0, 0, 0, 0.3);
+  margin-bottom: 0.5rem;
+  padding: 0.75rem;
+}
+
+.character-generator.improved.retro .basic-info-section.compact h3,
+.character-generator.improved.retro .attributes-section.compact h3,
+.character-generator.improved.retro .classes-section h3 {
+  font-family: var(--ff9-font-title);
+  color: var(--ff9-text-gold);
+  font-size: 1rem;
+  margin: 0 0 0.5rem 0;
+  text-shadow: 1px 1px 0 #000000;
+  letter-spacing: 1px;
+}
+
+/* Retro Form Elements */
+.character-generator.improved.retro input,
+.character-generator.improved.retro select {
+  background: #0d47a1;
+  border: 1px solid var(--ff9-border-secondary);
+  border-radius: 0;
+  color: var(--ff9-text-primary);
+  font-family: var(--ff9-font-body);
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.3);
+}
+
+.character-generator.improved.retro input:focus,
+.character-generator.improved.retro select:focus {
+  outline: none;
+  border-color: var(--ff9-text-gold);
+  box-shadow: 
+    inset 1px 1px 0 rgba(0, 0, 0, 0.3),
+    0 0 0 1px var(--ff9-text-gold);
+}
+
+/* Retro Class Sections */
+.character-generator.improved.retro .class-section.compact {
+  background: rgba(13, 71, 161, 0.6);
+  border: 1px solid var(--ff9-border-secondary);
+  border-radius: 0;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+  box-shadow: 
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05),
+    1px 1px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* Retro Advanced Systems */
+.character-generator.improved.retro .advanced-systems > div {
+  background: rgba(26, 35, 126, 0.7);
+  border: 1px solid var(--ff9-border-primary);
+  border-radius: 0;
+  margin-bottom: 0.5rem;
+  box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* Pixelated Effects */
+.character-generator.improved.retro * {
+  image-rendering: pixelated;
+  -ms-interpolation-mode: nearest-neighbor;
+}
+
+/* Scanlines Effect */
+.character-generator.improved.retro::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0px,
+    transparent 2px,
+    rgba(0, 0, 0, 0.1) 2px,
+    rgba(0, 0, 0, 0.1) 4px
+  );
+  pointer-events: none;
+  z-index: 1000;
+}

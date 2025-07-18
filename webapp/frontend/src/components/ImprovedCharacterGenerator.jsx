@@ -9,6 +9,7 @@ import CombatSystem from './CombatSystem';
 import CraftingSystem from './CraftingSystem';
 import ResistanceDisplay from './ResistanceDisplay';
 import './CharacterGenerator.css';
+import './RetroTheme.css';
 import characterStorage from '../services/characterStorage';
 
 const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
@@ -395,12 +396,22 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
   const [savedCharacters, setSavedCharacters] = useState([]);
   const [storageStatus, setStorageStatus] = useState({ storage: 'localStorage' });
   const [zoomLevel, setZoomLevel] = useState(1);
+  const [isRetroTheme, setIsRetroTheme] = useState(false);
 
   // Load saved characters on component mount
   useEffect(() => {
     loadSavedCharacters();
     updateStorageStatus();
   }, []);
+
+  // Theme management
+  useEffect(() => {
+    if (isRetroTheme) {
+      document.documentElement.classList.add('retro-theme');
+    } else {
+      document.documentElement.classList.remove('retro-theme');
+    }
+  }, [isRetroTheme]);
 
   const loadSavedCharacters = async () => {
     try {
@@ -470,34 +481,43 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
   };
 
   return (
-    <div className="character-generator improved two-column" style={{ '--zoom-level': zoomLevel }}>
+    <div className={`character-generator improved two-column ${isRetroTheme ? 'retro' : ''}`} style={{ '--zoom-level': zoomLevel }}>
       <div className="generator-header">
-        <h2>🎭 Character Generator</h2>
+        <h2>{isRetroTheme ? '⚔️ FABULA ULTIMA ⚔️' : '🎭 Character Generator'}</h2>
         <div className="character-summary compact">
           <span>Total Level: {calculateTotalLevel()}</span>
           <span>HP: {resources.hp}</span>
           <span>MP: {resources.mp}</span>
           <span>IP: {resources.ip}</span>
         </div>
-        <div className="zoom-controls">
+        <div className="controls-group">
+          <div className="zoom-controls">
+            <button 
+              onClick={() => setZoomLevel(prev => Math.max(0.5, prev - 0.1))}
+              className="zoom-btn"
+            >
+              🔍-
+            </button>
+            <span className="zoom-level">{Math.round(zoomLevel * 100)}%</span>
+            <button 
+              onClick={() => setZoomLevel(prev => Math.min(2, prev + 0.1))}
+              className="zoom-btn"
+            >
+              🔍+
+            </button>
+            <button 
+              onClick={() => setZoomLevel(1)}
+              className="zoom-reset"
+            >
+              Reset
+            </button>
+          </div>
           <button 
-            onClick={() => setZoomLevel(prev => Math.max(0.5, prev - 0.1))}
-            className="zoom-btn"
+            onClick={() => setIsRetroTheme(!isRetroTheme)}
+            className="theme-toggle-btn"
+            title={isRetroTheme ? 'Switch to Modern Theme' : 'Switch to 8-Bit Theme'}
           >
-            🔍-
-          </button>
-          <span className="zoom-level">{Math.round(zoomLevel * 100)}%</span>
-          <button 
-            onClick={() => setZoomLevel(prev => Math.min(2, prev + 0.1))}
-            className="zoom-btn"
-          >
-            🔍+
-          </button>
-          <button 
-            onClick={() => setZoomLevel(1)}
-            className="zoom-reset"
-          >
-            Reset
+            {isRetroTheme ? '🎨 Modern' : '👾 8-Bit'}
           </button>
         </div>
         <div className="character-actions">
