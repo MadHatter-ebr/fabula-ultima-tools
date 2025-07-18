@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { EQUIPMENT_CATEGORIES } from '../shared/complete_game_data.js';
+import { EQUIPMENT_CATEGORIES, MAGISPHERES, INVENTORY_POINTS_SYSTEM } from '../shared/complete_game_data.js';
 import './EquipmentManager.css';
 
 const EquipmentManager = ({ character, onEquipmentChange }) => {
@@ -14,7 +14,16 @@ const EquipmentManager = ({ character, onEquipmentChange }) => {
   const [zenit, setZenit] = useState(character?.zenit || 500);
   const [showShop, setShowShop] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState('WEAPONS');
-  const [selectedSubCategory, setSelectedSubCategory] = useState('melee');
+  const [selectedSubCategory, setSelectedSubCategory] = useState('BASIC_MELEE');
+
+  // Update subcategory when main category changes
+  useEffect(() => {
+    if (selectedCategory === 'WEAPONS') {
+      setSelectedSubCategory('BASIC_MELEE');
+    } else if (selectedCategory === 'CONSUMABLES') {
+      setSelectedSubCategory('POTIONS');
+    }
+  }, [selectedCategory]);
 
   useEffect(() => {
     if (onEquipmentChange) {
@@ -77,94 +86,197 @@ const EquipmentManager = ({ character, onEquipmentChange }) => {
   };
 
   const sellItem = (item) => {
-    const sellPrice = Math.floor(item.cost * 0.5);
+    const sellPrice = Math.floor(item.cost * 0.5); // Sell for half price
     setZenit(prev => prev + sellPrice);
-    setEquipment(prev => 
-      prev.map(e =>
-        e.id === item.id
-          ? { ...e, quantity: e.quantity - 1 }
-          : e
-      ).filter(e => e.quantity > 0)
+    
+    setEquipment(prev => {
+      const existingItem = prev.find(e => e.name === item.name);
+      if (existingItem && existingItem.quantity > 1) {
+        return prev.map(e =>
+          e.name === item.name
+            ? { ...e, quantity: e.quantity - 1 }
+            : e
+        );
+      } else {
+        return prev.filter(e => e.id !== item.id);
+      }
+    });
+  };
+
+  const renderShopCategory = () => {
+    if (selectedCategory === 'MAGISPHERES') {
+      return (
+        <div className="shop-items">
+          <h4>Magispheres</h4>
+          <div className="shop-grid">
+            {Object.values(MAGISPHERES).map((sphere, index) => (
+              <div key={index} className="shop-item">
+                <div className="item-header">
+                  <span className="item-name">{sphere.name}</span>
+                  <span className="item-cost">{sphere.cost}z</span>
+                </div>
+                <div className="item-details">
+                  <span className="ip-cost">IP Cost: {sphere.ipCost}</span>
+                  <span className="item-effect">{sphere.effect}</span>
+                </div>
+                <p className="item-description">{sphere.description}</p>
+                <button
+                  onClick={() => buyItem({...sphere, type: 'magisphere'})}
+                  disabled={zenit < sphere.cost}
+                  className="buy-btn"
+                >
+                  Buy
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+      );
+    }
+
+    const categoryData = EQUIPMENT_CATEGORIES[selectedCategory];
+    if (!categoryData) return null;
+
+    if (selectedCategory === 'WEAPONS') {
+      const subCategoryData = categoryData[selectedSubCategory];
+      if (!subCategoryData) return null;
+
+      return (
+        <div className="shop-items">
+          <div className="subcategory-tabs">
+            {Object.keys(categoryData).map(subCat => (
+              <button
+                key={subCat}
+                className={`tab-btn ${selectedSubCategory === subCat ? 'active' : ''}`}
+                onClick={() => setSelectedSubCategory(subCat)}
+              >
+                {subCat.replace('_', ' ')}
+              </button>
+            ))}
+          </div>
+          <div className="shop-grid">
+            {Object.values(subCategoryData).map((item, index) => (
+              <div key={index} className="shop-item">
+                <div className="item-header">
+                  <span className="item-name">{item.name}</span>
+                  <span className="item-cost">{item.cost}z</span>
+                </div>
+                <div className="item-stats">
+                  <span className="damage">Damage: {item.damage}</span>
+                  <span className="accuracy">Accuracy: {item.accuracy}</span>
+                  <span className="hands">Hands: {item.hands}</span>
+                </div>
+                {item.quality && item.quality.length > 0 && (
+                  <div className="item-qualities">
+                    Qualities: {item.quality.join(', ')}
+                  </div>
+                )}
+                <p className="item-description">{item.description}</p>
+                <button
+                  onClick={() => buyItem(item)}
+                  disabled={zenit < item.cost}
+                  className="buy-btn"
+                >
+                  Buy
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+      );
+    }
+
+    // For ARMOR, SHIELDS, ACCESSORIES, CONSUMABLES
+    if (selectedCategory === 'CONSUMABLES') {
+      return (
+        <div className="shop-items">
+          <div className="subcategory-tabs">
+            {Object.keys(categoryData).map(subCat => (
+              <button
+                key={subCat}
+                className={`tab-btn ${selectedSubCategory === subCat ? 'active' : ''}`}
+                onClick={() => setSelectedSubCategory(subCat)}
+              >
+                {subCat.replace('_', ' ')}
+              </button>
+            ))}
+          </div>
+          <div className="shop-grid">
+            {categoryData[selectedSubCategory] && Object.values(categoryData[selectedSubCategory]).map((item, index) => (
+              <div key={index} className="shop-item">
+                <div className="item-header">
+                  <span className="item-name">{item.name}</span>
+                  <span className="item-cost">{item.cost}z</span>
+                </div>
+                <div className="item-stats">
+                  {item.effect && <span className="effect">Effect: {item.effect}</span>}
+                </div>
+                <p className="item-description">{item.description}</p>
+                <button
+                  onClick={() => buyItem(item)}
+                  disabled={zenit < item.cost}
+                  className="buy-btn"
+                >
+                  Buy
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+      );
+    }
+
+    return (
+      <div className="shop-items">
+        <div className="shop-grid">
+          {Object.values(categoryData).map((item, index) => (
+            <div key={index} className="shop-item">
+              <div className="item-header">
+                <span className="item-name">{item.name}</span>
+                <span className="item-cost">{item.cost}z</span>
+              </div>
+              <div className="item-stats">
+                {item.defense && <span className="defense">DEF: {item.defense}</span>}
+                {item.magic_defense && <span className="mdef">M.DEF: {item.magic_defense}</span>}
+                {item.initiative_modifier && <span className="init">Init: {item.initiative_modifier}</span>}
+                {item.effect && <span className="effect">Effect: {item.effect}</span>}
+              </div>
+              <p className="item-description">{item.description}</p>
+              <button
+                onClick={() => buyItem(item)}
+                disabled={zenit < item.cost}
+                className="buy-btn"
+              >
+                Buy
+              </button>
+            </div>
+          ))}
+        </div>
+      </div>
     );
   };
 
-  const calculateDefense = () => {
-    let defense = 10; // Base defense
-    let magicDefense = 10; // Base magic defense
-    
-    if (equippedItems.armor) {
-      defense += equippedItems.armor.defense || 0;
-      magicDefense += equippedItems.armor.magicDefense || 0;
-    }
-
-    // Add accessory bonuses
-    [equippedItems.accessory1, equippedItems.accessory2].forEach(accessory => {
-      if (accessory?.effect?.includes('Defense')) {
-        const bonus = parseInt(accessory.effect.match(/\d+/)[0]);
-        defense += bonus;
-      }
-    });
-
-    return { defense, magicDefense };
-  };
-
-  const getEquipmentStats = () => {
-    const stats = calculateDefense();
-    const mainHandDamage = equippedItems.mainHand?.damage || 'None';
-    const offHandDamage = equippedItems.offHand?.damage || 'None';
-    
-    return {
-      ...stats,
-      mainHandDamage,
-      offHandDamage,
-      totalWeight: equipment.reduce((sum, item) => sum + (item.weight || 0) * item.quantity, 0),
-      totalValue: equipment.reduce((sum, item) => sum + item.cost * item.quantity, 0)
-    };
-  };
-
-  const canEquip = (item, slot) => {
-    if (slot === 'mainHand' || slot === 'offHand') {
-      return item.type === 'weapon';
-    }
-    if (slot === 'armor') {
-      return item.type === 'armor';
-    }
-    if (slot === 'accessory1' || slot === 'accessory2') {
-      return item.category === 'accessory';
-    }
-    return false;
-  };
-
-  const getAllItems = () => {
-    const items = [];
-    Object.values(EQUIPMENT_CATEGORIES).forEach(category => {
-      Object.values(category).forEach(subCategory => {
-        if (subCategory.items) {
-          Object.values(subCategory.items).forEach(item => {
-            items.push(item);
-          });
-        }
-      });
-    });
-    return items;
-  };
-
-  const getFilteredItems = () => {
-    const category = EQUIPMENT_CATEGORIES[selectedCategory];
-    if (category && category[selectedSubCategory]) {
-      return Object.values(category[selectedSubCategory].items);
+  const getItemSlotType = (item) => {
+    if (item.type === 'weapon') return ['mainHand', 'offHand'];
+    if (item.type === 'armor') return ['armor'];
+    if (item.type === 'shield') return ['offHand'];
+    if (item.type === 'ring' || item.type === 'amulet' || item.category === 'accessory') {
+      return ['accessory1', 'accessory2'];
     }
     return [];
   };
 
-  const stats = getEquipmentStats();
+  const canEquip = (item, slot) => {
+    const validSlots = getItemSlotType(item);
+    return validSlots.includes(slot);
+  };
 
   return (
     <div className="equipment-manager">
       <div className="equipment-header">
         <h3>⚔️ Equipment & Inventory</h3>
-        <div className="zenit-display">
-          <span className="zenit-amount">💰 {zenit.toLocaleString()} Zenit</span>
+        <div className="currency-display">
+          <span className="zenit">💰 {zenit} Zenit</span>
           <button onClick={() => setShowShop(!showShop)} className="shop-btn">
             {showShop ? 'Close Shop' : 'Open Shop'}
           </button>
@@ -172,26 +284,22 @@ const EquipmentManager = ({ character, onEquipmentChange }) => {
       </div>
 
       <div className="equipment-content">
-        {/* Equipment Stats */}
-        <div className="equipment-stats">
-          <h4>Combat Stats</h4>
-          <div className="stats-grid">
-            <div className="stat-item">
-              <span className="stat-label">Defense:</span>
-              <span className="stat-value">{stats.defense}</span>
-            </div>
-            <div className="stat-item">
-              <span className="stat-label">Magic Defense:</span>
-              <span className="stat-value">{stats.magicDefense}</span>
-            </div>
-            <div className="stat-item">
-              <span className="stat-label">Main Hand:</span>
-              <span className="stat-value">{stats.mainHandDamage}</span>
-            </div>
-            <div className="stat-item">
-              <span className="stat-label">Off Hand:</span>
-              <span className="stat-value">{stats.offHandDamage}</span>
-            </div>
+        {/* IP Information Panel */}
+        <div className="ip-info-panel">
+          <h4>📦 Inventory Points (IP) System</h4>
+          <div className="ip-description">
+            <p><strong>Current IP:</strong> {character?.resources?.ip || 5}</p>
+            <p><strong>Base Value:</strong> {INVENTORY_POINTS_SYSTEM.baseValue}</p>
+            <p className="ip-usage"><strong>Uses:</strong></p>
+            <ul>
+              <li>Use potions in combat (1 IP)</li>
+              <li>Apply Magispheres to enemies (1-2 IP)</li>
+              <li>Use Tent during rest (3 IP from one person)</li>
+              <li>Use Cottage during rest (3 IP from two people)</li>
+            </ul>
+            <p className="ip-note">
+              <em>Note: Equipment does not consume IP - it's used for consumables and camping!</em>
+            </p>
           </div>
         </div>
 
@@ -199,47 +307,91 @@ const EquipmentManager = ({ character, onEquipmentChange }) => {
         <div className="equipment-slots">
           <h4>Equipped Items</h4>
           <div className="slots-grid">
-            {Object.entries(equippedItems).map(([slot, item]) => (
-              <div key={slot} className="equipment-slot">
-                <div className="slot-header">
-                  <span className="slot-name">
-                    {slot === 'mainHand' ? 'Main Hand' : 
-                     slot === 'offHand' ? 'Off Hand' : 
-                     slot === 'accessory1' ? 'Accessory 1' : 
-                     slot === 'accessory2' ? 'Accessory 2' : 
-                     slot.charAt(0).toUpperCase() + slot.slice(1)}
-                  </span>
-                </div>
-                <div className="slot-content">
-                  {item ? (
-                    <div className="equipped-item">
-                      <div className="item-info">
-                        <span className="item-name">{item.name}</span>
-                        <span className="item-effect">
-                          {item.damage || item.effect || `Def: ${item.defense || 0}`}
-                        </span>
-                      </div>
-                      <button 
-                        onClick={() => unequipItem(slot)}
-                        className="unequip-btn"
-                      >
-                        Unequip
-                      </button>
-                    </div>
-                  ) : (
-                    <div className="empty-slot">
-                      <span>Empty</span>
-                    </div>
-                  )}
-                </div>
+            <div className="equipment-slot">
+              <span className="slot-label">Main Hand</span>
+              <div className="slot-content">
+                {equippedItems.mainHand ? (
+                  <div className="equipped-item">
+                    <span className="item-name">{equippedItems.mainHand.name}</span>
+                    <button onClick={() => unequipItem('mainHand')} className="unequip-btn">
+                      Unequip
+                    </button>
+                  </div>
+                ) : (
+                  <span className="empty-slot">Empty</span>
+                )}
               </div>
-            ))}
+            </div>
+
+            <div className="equipment-slot">
+              <span className="slot-label">Off Hand</span>
+              <div className="slot-content">
+                {equippedItems.offHand ? (
+                  <div className="equipped-item">
+                    <span className="item-name">{equippedItems.offHand.name}</span>
+                    <button onClick={() => unequipItem('offHand')} className="unequip-btn">
+                      Unequip
+                    </button>
+                  </div>
+                ) : (
+                  <span className="empty-slot">Empty</span>
+                )}
+              </div>
+            </div>
+
+            <div className="equipment-slot">
+              <span className="slot-label">Armor</span>
+              <div className="slot-content">
+                {equippedItems.armor ? (
+                  <div className="equipped-item">
+                    <span className="item-name">{equippedItems.armor.name}</span>
+                    <button onClick={() => unequipItem('armor')} className="unequip-btn">
+                      Unequip
+                    </button>
+                  </div>
+                ) : (
+                  <span className="empty-slot">Empty</span>
+                )}
+              </div>
+            </div>
+
+            <div className="equipment-slot">
+              <span className="slot-label">Accessory 1</span>
+              <div className="slot-content">
+                {equippedItems.accessory1 ? (
+                  <div className="equipped-item">
+                    <span className="item-name">{equippedItems.accessory1.name}</span>
+                    <button onClick={() => unequipItem('accessory1')} className="unequip-btn">
+                      Unequip
+                    </button>
+                  </div>
+                ) : (
+                  <span className="empty-slot">Empty</span>
+                )}
+              </div>
+            </div>
+
+            <div className="equipment-slot">
+              <span className="slot-label">Accessory 2</span>
+              <div className="slot-content">
+                {equippedItems.accessory2 ? (
+                  <div className="equipped-item">
+                    <span className="item-name">{equippedItems.accessory2.name}</span>
+                    <button onClick={() => unequipItem('accessory2')} className="unequip-btn">
+                      Unequip
+                    </button>
+                  </div>
+                ) : (
+                  <span className="empty-slot">Empty</span>
+                )}
+              </div>
+            </div>
           </div>
         </div>
 
         {/* Inventory */}
         <div className="inventory">
-          <h4>Inventory ({equipment.length} items)</h4>
+          <h4>Inventory</h4>
           {equipment.length === 0 ? (
             <div className="empty-inventory">
               <span>No items in inventory</span>
@@ -252,65 +404,21 @@ const EquipmentManager = ({ character, onEquipmentChange }) => {
                     <span className="item-name">{item.name}</span>
                     <span className="item-quantity">x{item.quantity}</span>
                   </div>
-                  <div className="item-description">{item.description}</div>
-                  <div className="item-stats">
-                    {item.damage && <span>Damage: {item.damage}</span>}
-                    {item.defense && <span>Defense: {item.defense}</span>}
-                    {item.effect && <span>Effect: {item.effect}</span>}
-                  </div>
                   <div className="item-actions">
-                    {item.type === 'weapon' && (
-                      <>
-                        <button 
-                          onClick={() => equipItem(item, 'mainHand')}
-                          className="equip-btn"
-                          disabled={!canEquip(item, 'mainHand')}
-                        >
-                          Main Hand
-                        </button>
-                        <button 
-                          onClick={() => equipItem(item, 'offHand')}
-                          className="equip-btn"
-                          disabled={!canEquip(item, 'offHand') || item.hands === 2}
-                        >
-                          Off Hand
-                        </button>
-                      </>
-                    )}
-                    {item.type === 'armor' && (
-                      <button 
-                        onClick={() => equipItem(item, 'armor')}
+                    {getItemSlotType(item).map(slot => (
+                      <button
+                        key={slot}
+                        onClick={() => equipItem(item, slot)}
+                        disabled={!canEquip(item, slot) || equippedItems[slot]}
                         className="equip-btn"
                       >
-                        Equip
+                        Equip to {slot}
                       </button>
-                    )}
-                    {item.category === 'accessory' && (
-                      <>
-                        <button 
-                          onClick={() => equipItem(item, 'accessory1')}
-                          className="equip-btn"
-                        >
-                          Slot 1
-                        </button>
-                        <button 
-                          onClick={() => equipItem(item, 'accessory2')}
-                          className="equip-btn"
-                        >
-                          Slot 2
-                        </button>
-                      </>
-                    )}
-                    <button 
-                      onClick={() => sellItem(item)}
-                      className="sell-btn"
-                    >
-                      Sell ({Math.floor(item.cost * 0.5)}z)
+                    ))}
+                    <button onClick={() => sellItem(item)} className="sell-btn">
+                      Sell (${Math.floor(item.cost * 0.5)}z)
                     </button>
-                    <button 
-                      onClick={() => removeItem(item.id)}
-                      className="remove-btn"
-                    >
+                    <button onClick={() => removeItem(item.id)} className="remove-btn">
                       Remove
                     </button>
                   </div>
@@ -323,56 +431,21 @@ const EquipmentManager = ({ character, onEquipmentChange }) => {
         {/* Shop */}
         {showShop && (
           <div className="shop">
-            <h4>🏪 Equipment Shop</h4>
-            <div className="shop-filters">
-              <select 
-                value={selectedCategory}
-                onChange={(e) => {
-                  setSelectedCategory(e.target.value);
-                  setSelectedSubCategory(Object.keys(EQUIPMENT_CATEGORIES[e.target.value])[0]);
-                }}
-                className="category-select"
-              >
-                {Object.entries(EQUIPMENT_CATEGORIES).map(([key, category]) => (
-                  <option key={key} value={key}>{key.replace('_', ' ')}</option>
-                ))}
-              </select>
-              
-              <select 
-                value={selectedSubCategory}
-                onChange={(e) => setSelectedSubCategory(e.target.value)}
-                className="subcategory-select"
-              >
-                {Object.entries(EQUIPMENT_CATEGORIES[selectedCategory]).map(([key, subCategory]) => (
-                  <option key={key} value={key}>{subCategory.name}</option>
-                ))}
-              </select>
-            </div>
-            
-            <div className="shop-items">
-              {getFilteredItems().map(item => (
-                <div key={item.name} className="shop-item">
-                  <div className="item-header">
-                    <span className="item-name">{item.name}</span>
-                    <span className="item-cost">💰 {item.cost.toLocaleString()}z</span>
-                  </div>
-                  <div className="item-description">{item.description}</div>
-                  <div className="item-stats">
-                    {item.damage && <span>Damage: {item.damage}</span>}
-                    {item.defense && <span>Defense: {item.defense}</span>}
-                    {item.effect && <span>Effect: {item.effect}</span>}
-                    {item.hands && <span>Hands: {item.hands}</span>}
-                  </div>
-                  <button 
-                    onClick={() => buyItem(item)}
-                    className="buy-btn"
-                    disabled={zenit < item.cost}
+            <div className="shop-header">
+              <h4>🏪 Equipment Shop</h4>
+              <div className="category-tabs">
+                {['WEAPONS', 'ARMOR', 'SHIELDS', 'ACCESSORIES', 'CONSUMABLES', 'MAGISPHERES'].map(category => (
+                  <button
+                    key={category}
+                    className={`tab-btn ${selectedCategory === category ? 'active' : ''}`}
+                    onClick={() => setSelectedCategory(category)}
                   >
-                    Buy
+                    {category}
                   </button>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
+            {renderShopCategory()}
           </div>
         )}
       </div>

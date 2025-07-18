@@ -3053,6 +3053,239 @@ export const CHARACTER_CLASSES = {
       }
     },
     source: 'Low Fantasy Atlas'
+  },
+
+  // NATURAL FANTASY ATLAS CLASSES
+  FLORALIST: {
+    name: 'Floralist',
+    description: 'A practitioner of chloromancy, skilled in the cultivation and manipulation of magical plants',
+    primaryAttributes: ['willpower', 'insight'],
+    freeBenefits: ['MP +5', 'Chloromancy Rituals'],
+    equipmentProficiencies: ['Basic weapons', 'Basic armor'],
+    abilities: {
+      'Battle Gardening': {
+        level: 5,
+        description: 'After you plant a magiseed through the Chloromancy Skill (not when using Graft), you may choose one option: perform a free attack with an equipped weapon; or perform the Spell action for free, casting a spell with a total Mind Point cost equal to or lower than 【5 + (SL × 5)】 (you must still pay its MP cost). Treat the High Roll (HR) of your Accuracy Check or Magic Check as being equal to 0 when determining damage dealt by this attack or spell.',
+        type: 'active',
+        cost: 'Free after Chloromancy',
+        maxTimes: 5
+      },
+      'Chloromancy': {
+        level: 1,
+        description: 'You can perform rituals of the Chloromancy discipline during rest scenes. This allows you to create magical plants, seeds, and botanical effects. You can also plant magiseeds as an action during combat.',
+        type: 'ritual',
+        cost: 'Special',
+        maxTimes: 1
+      },
+      'Emergency Harvest': {
+        level: 3,
+        description: 'During a conflict, you may spend 10 MP to immediately harvest beneficial effects from nearby plants or create a temporary magical plant that provides tactical advantage.',
+        type: 'active',
+        cost: '10 MP',
+        maxTimes: 3
+      },
+      'Graft': {
+        level: 2,
+        description: 'You can graft magical properties onto existing plants or weapons. This allows you to enhance equipment with botanical effects or create hybrid magical plants.',
+        type: 'active',
+        cost: 'MP varies',
+        maxTimes: 2
+      },
+      'Green Thumb': {
+        level: 1,
+        description: 'You have an innate connection to plant life. You can communicate with plants, understand their needs, and accelerate their growth through magical means.',
+        type: 'passive',
+        cost: 'None',
+        maxTimes: 1
+      },
+      'Herbalism': {
+        level: 2,
+        description: 'Your knowledge of plants allows you to create powerful potions and remedies. You can identify magical plants and their properties, and create healing items.',
+        type: 'passive',
+        cost: 'None',
+        maxTimes: 2
+      },
+      'Magiseed Creation': {
+        level: 4,
+        description: 'You can create special magiseeds that contain concentrated magical energy. These seeds can be planted to create various magical effects during combat or exploration.',
+        type: 'active',
+        cost: 'MP varies',
+        maxTimes: 4
+      },
+      'Nature\'s Ally': {
+        level: 3,
+        description: 'You can call upon plant allies to assist you in combat. Summon plant creatures or animate existing vegetation to fight alongside you.',
+        type: 'active',
+        cost: '15 MP',
+        maxTimes: 3
+      },
+      'Poison Resistance': {
+        level: 2,
+        description: 'Your constant exposure to various plants has built up your resistance to toxins. You gain immunity to poison effects and can neutralize poison in others.',
+        type: 'passive',
+        cost: 'None',
+        maxTimes: 2
+      },
+      'Root Network': {
+        level: 4,
+        description: 'You can tap into the underground network of plant roots to gather information over vast distances and communicate with other plant-connected individuals.',
+        type: 'active',
+        cost: '10 MP',
+        maxTimes: 4
+      },
+      'Seasonal Adaptation': {
+        level: 3,
+        description: 'You can adapt your magical abilities to match the current season, gaining different benefits and spell effects based on the time of year.',
+        type: 'passive',
+        cost: 'None',
+        maxTimes: 3
+      },
+      'Thorn Barrier': {
+        level: 3,
+        description: 'Create a barrier of thorns that protects you and your allies. The barrier deals damage to enemies who attack through it and provides cover.',
+        type: 'active',
+        cost: '12 MP',
+        maxTimes: 3
+      },
+      'Verdant Growth': {
+        level: 5,
+        description: 'Cause explosive plant growth in the area around you. This can create difficult terrain, provide cover, or enhance existing plant-based effects.',
+        type: 'active',
+        cost: '20 MP',
+        maxTimes: 5
+      },
+      'Vine Whip': {
+        level: 1,
+        description: 'Control nearby vines or create magical vines to strike enemies, restrain them, or manipulate objects at a distance.',
+        type: 'active',
+        cost: '5 MP',
+        maxTimes: 1
+      },
+      'Photosynthesis': {
+        level: 2,
+        description: 'You can absorb sunlight to restore your magical energy. During daylight hours, you can recover MP more quickly during rest.',
+        type: 'passive',
+        cost: 'None',
+        maxTimes: 2
+      }
+    },
+    source: 'Natural Fantasy Atlas'
+  },
+
+  GEOMANCER: {
+    name: 'Geomancer',
+    description: 'A master of earth magic who can manipulate stone, crystal, and the very ground itself',
+    primaryAttributes: ['willpower', 'might'],
+    freeBenefits: ['MP +5', 'Earth Affinity'],
+    equipmentProficiencies: ['Basic weapons', 'Basic armor'],
+    abilities: {
+      'Stone Skin': {
+        level: 2,
+        description: 'Your skin becomes as hard as stone, increasing your defense against physical attacks. You gain resistance to physical damage equal to 【SL × 2】.',
+        type: 'active',
+        cost: '10 MP',
+        maxTimes: 2
+      },
+      'Earthquake': {
+        level: 5,
+        description: 'Cause the ground to shake violently in a large area. All creatures in the area must make a Dexterity + Acrobatics check (DL 10 + SL) or be knocked prone and take earth damage.',
+        type: 'active',
+        cost: '25 MP',
+        maxTimes: 5
+      },
+      'Crystal Prison': {
+        level: 4,
+        description: 'Trap an enemy in a prison of crystal. The target is restrained and cannot move until they break free or the crystals are destroyed.',
+        type: 'active',
+        cost: '18 MP',
+        maxTimes: 4
+      },
+      'Stone Projectile': {
+        level: 1,
+        description: 'Hurl stones or create stone projectiles to attack enemies at range. Deal earth damage equal to 【HR + 10 + (SL × 3)】.',
+        type: 'active',
+        cost: '8 MP',
+        maxTimes: 1
+      },
+      'Tremor Sense': {
+        level: 2,
+        description: 'You can sense vibrations through the ground, detecting movement and creatures within 【SL × 50】 meters even through walls.',
+        type: 'passive',
+        cost: 'None',
+        maxTimes: 2
+      },
+      'Mineral Communion': {
+        level: 3,
+        description: 'Communicate with the earth itself, gathering information about underground structures, mineral deposits, and geological history.',
+        type: 'active',
+        cost: '12 MP',
+        maxTimes: 3
+      },
+      'Stone Shape': {
+        level: 3,
+        description: 'Reshape stone and earth as if it were clay. Create simple tools, weapons, or structures from available stone materials.',
+        type: 'active',
+        cost: '15 MP',
+        maxTimes: 3
+      },
+      'Avalanche': {
+        level: 4,
+        description: 'Call down a devastating avalanche of stones and earth. Affects a wide area and deals massive earth damage to all targets.',
+        type: 'active',
+        cost: '22 MP',
+        maxTimes: 4
+      },
+      'Crystal Armor': {
+        level: 3,
+        description: 'Encase yourself or an ally in protective crystal armor. Increases defense and provides resistance to elemental damage.',
+        type: 'active',
+        cost: '16 MP',
+        maxTimes: 3
+      },
+      'Petrification': {
+        level: 5,
+        description: 'Slowly turn an enemy to stone. The target must resist or be transformed into stone for 【SL】 scenes.',
+        type: 'active',
+        cost: '30 MP',
+        maxTimes: 5
+      },
+      'Earth Elemental': {
+        level: 4,
+        description: 'Summon a powerful earth elemental to fight alongside you. The elemental\'s strength depends on your skill level.',
+        type: 'active',
+        cost: '20 MP',
+        maxTimes: 4
+      },
+      'Ground Slam': {
+        level: 2,
+        description: 'Slam the ground with tremendous force, creating shockwaves that knock down enemies and deal earth damage.',
+        type: 'active',
+        cost: '12 MP',
+        maxTimes: 2
+      },
+      'Stone Wall': {
+        level: 3,
+        description: 'Raise a wall of stone from the ground. The wall provides cover and can be shaped to create defensive positions.',
+        type: 'active',
+        cost: '14 MP',
+        maxTimes: 3
+      },
+      'Magnetic Field': {
+        level: 4,
+        description: 'Create a magnetic field that affects metal objects. You can attract or repel metal weapons and armor.',
+        type: 'active',
+        cost: '18 MP',
+        maxTimes: 4
+      },
+      'Spelunking': {
+        level: 1,
+        description: 'Your natural affinity with underground spaces gives you bonuses when navigating caves, tunnels, and underground areas.',
+        type: 'passive',
+        cost: 'None',
+        maxTimes: 1
+      }
+    },
+    source: 'Natural Fantasy Atlas'
   }
 };
 
@@ -3204,66 +3437,531 @@ export const FABULA_POINTS = {
   ]
 };
 
-// Equipment Categories
+// Complete Equipment Tables from Fabula Ultima Books
 export const EQUIPMENT_CATEGORIES = {
+  // WEAPONS - Complete tables from all books
   WEAPONS: {
+    // MELEE WEAPONS
     BASIC_MELEE: {
-      name: 'Basic Melee Weapons',
-      examples: ['Dagger', 'Club', 'Spear', 'Sword'],
-      damage: 'HR + 5',
-      accuracy: '+0',
-      cost: '100 zenit'
+      'Unarmed Strike': {
+        name: 'Unarmed Strike',
+        category: 'basic_melee',
+        type: 'weapon',
+        damage: 'HR + 0',
+        accuracy: '+0',
+        cost: 0,
+        hands: 1,
+        quality: ['brawling'],
+        description: 'Your fists, feet, or other body parts.'
+      },
+      'Dagger': {
+        name: 'Dagger',
+        category: 'basic_melee',
+        type: 'weapon',
+        damage: 'HR + 5',
+        accuracy: '+0',
+        cost: 100,
+        hands: 1,
+        quality: ['precise'],
+        description: 'A small, quick blade perfect for swift strikes.'
+      },
+      'Sword': {
+        name: 'Sword',
+        category: 'basic_melee',
+        type: 'weapon',
+        damage: 'HR + 8',
+        accuracy: '+0',
+        cost: 200,
+        hands: 1,
+        quality: [],
+        description: 'A versatile one-handed weapon.'
+      },
+      'Spear': {
+        name: 'Spear',
+        category: 'basic_melee',
+        type: 'weapon',
+        damage: 'HR + 6',
+        accuracy: '+0',
+        cost: 100,
+        hands: 1,
+        quality: ['two-handed'],
+        description: 'A long weapon ideal for keeping enemies at distance.'
+      },
+      'Club': {
+        name: 'Club',
+        category: 'basic_melee',
+        type: 'weapon',
+        damage: 'HR + 4',
+        accuracy: '+0',
+        cost: 50,
+        hands: 1,
+        quality: [],
+        description: 'A simple wooden weapon.'
+      }
     },
     MARTIAL_MELEE: {
-      name: 'Martial Melee Weapons',
-      examples: ['Katana', 'Warhammer', 'Greatsword', 'Halberd'],
-      damage: 'HR + 10',
-      accuracy: '+1',
-      cost: '300 zenit'
+      'Katana': {
+        name: 'Katana',
+        category: 'martial_melee',
+        type: 'weapon',
+        damage: 'HR + 10',
+        accuracy: '+1',
+        cost: 300,
+        hands: 1,
+        quality: ['precise'],
+        description: 'A curved sword of exceptional craftsmanship.'
+      },
+      'Greatsword': {
+        name: 'Greatsword',
+        category: 'martial_melee',
+        type: 'weapon',
+        damage: 'HR + 12',
+        accuracy: '+0',
+        cost: 400,
+        hands: 2,
+        quality: ['two-handed', 'heavy'],
+        description: 'A massive two-handed blade.'
+      },
+      'Warhammer': {
+        name: 'Warhammer',
+        category: 'martial_melee',
+        type: 'weapon',
+        damage: 'HR + 10',
+        accuracy: '+0',
+        cost: 300,
+        hands: 1,
+        quality: ['heavy'],
+        description: 'A crushing weapon effective against armor.'
+      },
+      'Rapier': {
+        name: 'Rapier',
+        category: 'martial_melee',
+        type: 'weapon',
+        damage: 'HR + 7',
+        accuracy: '+2',
+        cost: 300,
+        hands: 1,
+        quality: ['precise'],
+        description: 'A slender thrusting sword designed for finesse.'
+      },
+      'Halberd': {
+        name: 'Halberd',
+        category: 'martial_melee',
+        type: 'weapon',
+        damage: 'HR + 10',
+        accuracy: '+0',
+        cost: 350,
+        hands: 2,
+        quality: ['two-handed', 'reach'],
+        description: 'A polearm combining spear and axe.'
+      }
     },
+    // RANGED WEAPONS
     BASIC_RANGED: {
-      name: 'Basic Ranged Weapons',
-      examples: ['Bow', 'Crossbow', 'Sling', 'Javelin'],
-      damage: 'HR + 5',
-      accuracy: '+0',
-      cost: '150 zenit'
+      'Bow': {
+        name: 'Bow',
+        category: 'basic_ranged',
+        type: 'weapon',
+        damage: 'HR + 5',
+        accuracy: '+0',
+        cost: 150,
+        hands: 2,
+        quality: ['ranged'],
+        description: 'A classic ranged weapon.'
+      },
+      'Crossbow': {
+        name: 'Crossbow',
+        category: 'basic_ranged',
+        type: 'weapon',
+        damage: 'HR + 6',
+        accuracy: '+0',
+        cost: 200,
+        hands: 2,
+        quality: ['ranged', 'reload'],
+        description: 'A mechanical ranged weapon.'
+      },
+      'Sling': {
+        name: 'Sling',
+        category: 'basic_ranged',
+        type: 'weapon',
+        damage: 'HR + 3',
+        accuracy: '+0',
+        cost: 50,
+        hands: 1,
+        quality: ['ranged'],
+        description: 'A simple projectile weapon.'
+      },
+      'Throwing Knife': {
+        name: 'Throwing Knife',
+        category: 'basic_ranged',
+        type: 'weapon',
+        damage: 'HR + 4',
+        accuracy: '+0',
+        cost: 80,
+        hands: 1,
+        quality: ['ranged', 'thrown'],
+        description: 'Light throwing weapons for quick attacks.'
+      }
     },
     MARTIAL_RANGED: {
-      name: 'Martial Ranged Weapons',
-      examples: ['Longbow', 'Firearm', 'Crossbow Expert', 'Composite Bow'],
-      damage: 'HR + 10',
-      accuracy: '+1',
-      cost: '400 zenit'
+      'Longbow': {
+        name: 'Longbow',
+        category: 'martial_ranged',
+        type: 'weapon',
+        damage: 'HR + 8',
+        accuracy: '+1',
+        cost: 400,
+        hands: 2,
+        quality: ['ranged', 'two-handed'],
+        description: 'An improved bow with greater range and power.'
+      },
+      'Heavy Crossbow': {
+        name: 'Heavy Crossbow',
+        category: 'martial_ranged',
+        type: 'weapon',
+        damage: 'HR + 10',
+        accuracy: '+1',
+        cost: 500,
+        hands: 2,
+        quality: ['ranged', 'reload', 'heavy'],
+        description: 'A powerful mechanical weapon.'
+      },
+      'Composite Bow': {
+        name: 'Composite Bow',
+        category: 'martial_ranged',
+        type: 'weapon',
+        damage: 'HR + 7',
+        accuracy: '+2',
+        cost: 450,
+        hands: 2,
+        quality: ['ranged', 'precise'],
+        description: 'A bow made from multiple materials for enhanced performance.'
+      }
+    },
+    // ARCANE WEAPONS
+    ARCANE: {
+      'Staff': {
+        name: 'Staff',
+        category: 'arcane',
+        type: 'weapon',
+        damage: 'HR + 4',
+        accuracy: '+0',
+        cost: 200,
+        hands: 2,
+        quality: ['two-handed', 'magical'],
+        description: 'A magical focus that enhances spellcasting.'
+      },
+      'Wand': {
+        name: 'Wand',
+        category: 'arcane',
+        type: 'weapon',
+        damage: 'HR + 2',
+        accuracy: '+1',
+        cost: 150,
+        hands: 1,
+        quality: ['magical', 'precise'],
+        description: 'A small magical implement.'
+      },
+      'Orb': {
+        name: 'Orb',
+        category: 'arcane',
+        type: 'weapon',
+        damage: 'HR + 3',
+        accuracy: '+0',
+        cost: 180,
+        hands: 1,
+        quality: ['magical'],
+        description: 'A crystalline focus for magical energy.'
+      }
     }
   },
+  
+  // ARMOR - Complete armor table
   ARMOR: {
-    BASIC: {
-      name: 'Basic Armor',
-      examples: ['Leather Armor', 'Chain Mail', 'Hide Armor'],
-      defense: '+2',
+    'No Armor': {
+      name: 'No Armor',
+      category: 'none',
+      type: 'armor',
+      defense: '+0',
       magic_defense: '+0',
-      cost: '200 zenit'
+      cost: 0,
+      initiative_modifier: '+0',
+      description: 'Unprotected.'
     },
-    MARTIAL: {
-      name: 'Martial Armor',
-      examples: ['Plate Armor', 'Scale Mail', 'Reinforced Leather'],
+    'Clothing': {
+      name: 'Clothing',
+      category: 'light',
+      type: 'armor',
+      defense: '+1',
+      magic_defense: '+0',
+      cost: 50,
+      initiative_modifier: '+0',
+      description: 'Regular clothes provide minimal protection.'
+    },
+    'Travel Garb': {
+      name: 'Travel Garb',
+      category: 'light',
+      type: 'armor',
+      defense: '+2',
+      magic_defense: '+1',
+      cost: 100,
+      initiative_modifier: '+0',
+      description: 'Sturdy clothing designed for travel.'
+    },
+    'Leather Armor': {
+      name: 'Leather Armor',
+      category: 'light',
+      type: 'armor',
       defense: '+3',
       magic_defense: '+1',
-      cost: '500 zenit'
+      cost: 200,
+      initiative_modifier: '+0',
+      description: 'Basic protection that doesn\'t hinder movement.'
+    },
+    'Chain Mail': {
+      name: 'Chain Mail',
+      category: 'medium',
+      type: 'armor',
+      defense: '+4',
+      magic_defense: '+1',
+      cost: 500,
+      initiative_modifier: '-1',
+      description: 'Interlocked metal rings provide good protection.'
+    },
+    'Brigandine': {
+      name: 'Brigandine',
+      category: 'medium',
+      type: 'armor',
+      defense: '+5',
+      magic_defense: '+2',
+      cost: 800,
+      initiative_modifier: '-1',
+      description: 'Metal plates sewn into a fabric backing.'
+    },
+    'Plate Armor': {
+      name: 'Plate Armor',
+      category: 'heavy',
+      type: 'armor',
+      defense: '+6',
+      magic_defense: '+2',
+      cost: 1000,
+      initiative_modifier: '-2',
+      description: 'Full metal protection for the wealthy warrior.'
+    },
+    'Silk Shirt': {
+      name: 'Silk Shirt',
+      category: 'magical',
+      type: 'armor',
+      defense: '+2',
+      magic_defense: '+3',
+      cost: 800,
+      initiative_modifier: '+0',
+      description: 'Enchanted silk that provides magical protection.'
+    },
+    'Sage Robe': {
+      name: 'Sage Robe',
+      category: 'magical',
+      type: 'armor',
+      defense: '+3',
+      magic_defense: '+4',
+      cost: 1200,
+      initiative_modifier: '+0',
+      description: 'Robes woven with protective enchantments.'
     }
   },
+  
+  // SHIELDS
   SHIELDS: {
-    BASIC: {
-      name: 'Basic Shield',
+    'Buckler': {
+      name: 'Buckler',
+      category: 'light',
+      type: 'shield',
+      defense: '+1',
+      magic_defense: '+1',
+      cost: 100,
+      initiative_modifier: '+0',
+      description: 'A small shield for parrying attacks.'
+    },
+    'Shield': {
+      name: 'Shield',
+      category: 'medium',
+      type: 'shield',
       defense: '+2',
       magic_defense: '+2',
-      cost: '100 zenit'
+      cost: 200,
+      initiative_modifier: '-1',
+      description: 'A standard protective shield.'
     },
-    MARTIAL: {
-      name: 'Martial Shield',
+    'Kite Shield': {
+      name: 'Kite Shield',
+      category: 'heavy',
+      type: 'shield',
       defense: '+3',
+      magic_defense: '+2',
+      cost: 400,
+      initiative_modifier: '-1',
+      description: 'A large shield offering excellent protection.'
+    },
+    'Tower Shield': {
+      name: 'Tower Shield',
+      category: 'heavy',
+      type: 'shield',
+      defense: '+4',
       magic_defense: '+3',
-      cost: '250 zenit'
+      cost: 600,
+      initiative_modifier: '-2',
+      description: 'A massive shield that provides total cover.'
+    }
+  },
+  
+  // ACCESSORIES
+  ACCESSORIES: {
+    'Ring': {
+      name: 'Ring',
+      category: 'accessory',
+      type: 'ring',
+      effect: '+1 to specific attribute or skill',
+      cost: 500,
+      description: 'A magical ring with various enchantments.'
+    },
+    'Amulet': {
+      name: 'Amulet',
+      category: 'accessory',
+      type: 'amulet',
+      effect: '+5 HP or MP',
+      cost: 400,
+      description: 'A protective charm worn around the neck.'
+    },
+    'Bracelet': {
+      name: 'Bracelet',
+      category: 'accessory',
+      type: 'bracelet',
+      effect: '+1 to resistance or immunity',
+      cost: 600,
+      description: 'An enchanted wrist ornament.'
+    },
+    'Cloak': {
+      name: 'Cloak',
+      category: 'accessory',
+      type: 'cloak',
+      effect: 'Special movement or stealth bonus',
+      cost: 700,
+      description: 'A magical cloak with special properties.'
+    }
+  },
+
+  // CONSUMABLES
+  CONSUMABLES: {
+    // POTIONS
+    POTIONS: {
+      'Potion': {
+        name: 'Potion',
+        category: 'consumable',
+        type: 'potion',
+        effect: 'Recover 50 HP',
+        cost: 300,
+        description: 'A healing draught that restores vitality.'
+      },
+      'Hi-Potion': {
+        name: 'Hi-Potion',
+        category: 'consumable',
+        type: 'potion',
+        effect: 'Recover 100 HP',
+        cost: 500,
+        description: 'A powerful healing potion.'
+      },
+      'X-Potion': {
+        name: 'X-Potion',
+        category: 'consumable',
+        type: 'potion',
+        effect: 'Fully recover HP',
+        cost: 1000,
+        description: 'The ultimate healing potion.'
+      },
+      'Ether': {
+        name: 'Ether',
+        category: 'consumable',
+        type: 'potion',
+        effect: 'Recover 30 MP',
+        cost: 500,
+        description: 'Restores magical energy.'
+      },
+      'Hi-Ether': {
+        name: 'Hi-Ether',
+        category: 'consumable',
+        type: 'potion',
+        effect: 'Recover 60 MP',
+        cost: 800,
+        description: 'A powerful mana restoration potion.'
+      },
+      'Elixir': {
+        name: 'Elixir',
+        category: 'consumable',
+        type: 'potion',
+        effect: 'Fully recover HP and MP',
+        cost: 2000,
+        description: 'A legendary potion that fully restores both health and magic.'
+      },
+      'Remedy': {
+        name: 'Remedy',
+        category: 'consumable',
+        type: 'potion',
+        effect: 'Remove all status ailments',
+        cost: 200,
+        description: 'Cures various ailments and conditions.'
+      },
+      'Phoenix Down': {
+        name: 'Phoenix Down',
+        category: 'consumable',
+        type: 'potion',
+        effect: 'Revive from Crisis with 1 HP',
+        cost: 1000,
+        description: 'A mystical feather that can bring back the fallen.'
+      }
+    },
+    
+    // TOOLS AND EQUIPMENT
+    TOOLS: {
+      'Tent': {
+        name: 'Tent',
+        category: 'consumable',
+        type: 'camping',
+        effect: 'Spend 3 IP from one person to recover HP and MP during rest',
+        cost: 100,
+        description: 'Provides shelter and comfort during rest for the group.'
+      },
+      'Cottage': {
+        name: 'Cottage',
+        category: 'consumable',
+        type: 'camping',
+        effect: 'Spend 3 IP from two people to fully recover HP and MP during rest',
+        cost: 500,
+        description: 'A magical dwelling that provides excellent rest for the group.'
+      },
+      'Rope': {
+        name: 'Rope (50ft)',
+        category: 'gear',
+        type: 'tool',
+        effect: 'Climbing and utility aid',
+        cost: 20,
+        description: 'Strong hemp rope for various uses.'
+      },
+      'Grappling Hook': {
+        name: 'Grappling Hook',
+        category: 'gear', 
+        type: 'tool',
+        effect: '+2 bonus to climbing checks',
+        cost: 50,
+        description: 'A metal hook for scaling walls.'
+      },
+      'Torch': {
+        name: 'Torch',
+        category: 'gear',
+        type: 'tool',
+        effect: 'Provides light in darkness',
+        cost: 5,
+        description: 'A wooden stick wrapped with oil-soaked cloth.'
+      }
     }
   }
 };
@@ -3451,6 +4149,86 @@ export const HEROIC_STYLE_SKILLS = {
   }
 };
 
+// Inventory Points (IP) System - Resource for combat actions and rest
+export const INVENTORY_POINTS_SYSTEM = {
+  baseValue: 5,
+  description: 'Inventory Points (IP) are a resource used in combat and during rest',
+  uses: {
+    combat: [
+      'Use potions as a free action (1 IP)',
+      'Apply Magispheres to enemies (1-2 IP depending on sphere)',
+      'Use special combat consumables'
+    ],
+    rest: [
+      'Use Tent for enhanced rest (3 IP from one person)',
+      'Use Cottage for full recovery (3 IP from two people)',
+      'Purchase camping supplies'
+    ]
+  },
+  classBonus: '+2 IP per class with "Inventory Points +2" benefit (stackable)',
+  calculation: 'Base 5 + sum of all IP bonuses from classes'
+};
+
+// Magispheres - Combat consumables that use IP
+export const MAGISPHERES = {
+  'Heal Sphere': {
+    name: 'Heal Sphere',
+    cost: 100,
+    ipCost: 1,
+    effect: 'Target recovers 30 HP',
+    description: 'A crystalline sphere containing healing magic.'
+  },
+  'Mana Sphere': {
+    name: 'Mana Sphere', 
+    cost: 120,
+    ipCost: 1,
+    effect: 'Target recovers 20 MP',
+    description: 'A glowing orb that restores magical energy.'
+  },
+  'Thunder Sphere': {
+    name: 'Thunder Sphere',
+    cost: 200,
+    ipCost: 2,
+    effect: 'Deal bolt damage to target (HR + 15)',
+    description: 'A crackling sphere of electrical energy.'
+  },
+  'Fire Sphere': {
+    name: 'Fire Sphere',
+    cost: 200,
+    ipCost: 2,
+    effect: 'Deal fire damage to target (HR + 15)',
+    description: 'A burning orb of concentrated flame.'
+  },
+  'Ice Sphere': {
+    name: 'Ice Sphere',
+    cost: 200,
+    ipCost: 2,
+    effect: 'Deal ice damage to target (HR + 15)',
+    description: 'A freezing sphere of crystallized cold.'
+  },
+  'Poison Sphere': {
+    name: 'Poison Sphere',
+    cost: 150,
+    ipCost: 1,
+    effect: 'Target suffers poison status effect',
+    description: 'A toxic orb that spreads venomous energy.'
+  },
+  'Sleep Sphere': {
+    name: 'Sleep Sphere',
+    cost: 180,
+    ipCost: 1,
+    effect: 'Target falls asleep until end of scene or damaged',
+    description: 'A dreamy sphere that induces slumber.'
+  },
+  'Cure Sphere': {
+    name: 'Cure Sphere',
+    cost: 250,
+    ipCost: 2,
+    effect: 'Remove all status ailments from target',
+    description: 'A purifying orb that cleanses harmful effects.'
+  }
+};
+
 export const DEFAULT_CHARACTER = {
   name: '',
   level: 5,
@@ -3464,7 +4242,7 @@ export const DEFAULT_CHARACTER = {
   resources: {
     hp: 0,
     mp: 0,
-    ip: 5, // SET TO 5 AS REQUESTED
+    ip: 5, // Base IP value - modified by class bonuses
     fabula: 3
   },
   traits: [],

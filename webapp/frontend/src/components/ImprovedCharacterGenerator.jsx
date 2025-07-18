@@ -174,12 +174,42 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
             {showSkillDetails[`${classIndex}-${currentSkill}`] && (
               <div className="skill-description-full">
                 <div className="skill-meta">
-                  <span className="skill-level">Level: {availableSkills[currentSkill].level}</span>
+                  <span className="skill-level">Max Level: {availableSkills[currentSkill].level}</span>
                   <span className="skill-type">Type: {availableSkills[currentSkill].type}</span>
                   <span className="skill-cost">Cost: {availableSkills[currentSkill].cost}</span>
+                  <span className="skill-current-level">Current SL: {(() => {
+                    const timesAlreadyTaken = Object.values(currentClass.abilities).filter(
+                      skill => skill === currentSkill
+                    ).length;
+                    return timesAlreadyTaken;
+                  })()}</span>
                 </div>
                 <div className="skill-description">
-                  {availableSkills[currentSkill].description}
+                  {(() => {
+                    const timesAlreadyTaken = Object.values(currentClass.abilities).filter(
+                      skill => skill === currentSkill
+                    ).length;
+                    const skillLevel = timesAlreadyTaken; // Current SL
+                    
+                    // Replace SL in description with actual skill level
+                    let description = availableSkills[currentSkill].description;
+                    description = description.replace(/SL/g, skillLevel);
+                    
+                    // Replace formulas like 【5 + (SL × 5)】 with calculated values
+                    description = description.replace(/【([^】]+)】/g, (match, formula) => {
+                      try {
+                        // Replace SL in formula with actual skill level
+                        const calculatedFormula = formula.replace(/SL/g, skillLevel);
+                        // Basic math evaluation for simple formulas
+                        const result = eval(calculatedFormula.replace(/×/g, '*'));
+                        return `【${result}】`;
+                      } catch (e) {
+                        return match; // Return original if evaluation fails
+                      }
+                    });
+                    
+                    return description;
+                  })()}
                 </div>
               </div>
             )}
@@ -328,7 +358,7 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
           classInfo.freeBenefits.forEach(benefit => {
             if (benefit.includes('HP +5')) hp += 5;
             if (benefit.includes('MP +5')) mp += 5;
-            if (benefit.includes('IP +2')) ip += 2;
+            if (benefit.includes('IP +2')) ip += 2; // Stackable IP bonuses from classes
           });
         }
       }

@@ -366,6 +366,11 @@
   color: var(--ff9-gold-light) !important;
 }
 
+.skill-current-level {
+  color: var(--ff9-crystal-red) !important;
+  font-weight: bold;
+}
+
 .skill-description {
   color: var(--ff9-text-primary);
   line-height: 1.4;
