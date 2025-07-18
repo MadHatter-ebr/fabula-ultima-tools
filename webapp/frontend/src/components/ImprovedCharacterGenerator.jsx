@@ -23,6 +23,22 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
   const [showSkillDetails, setShowSkillDetails] = useState({});
   const [showCharacterSheet, setShowCharacterSheet] = useState(false);
 
+  // Safe evaluation function for simple math formulas
+  const safeEval = (expression) => {
+    // Only allow numbers, basic operators, and parentheses
+    if (!/^[0-9+\-*/()\s]+$/.test(expression)) {
+      throw new Error('Invalid expression');
+    }
+    
+    try {
+      // Parse and evaluate simple math expressions
+      const result = Function('"use strict"; return (' + expression + ')')();
+      return result;
+    } catch (e) {
+      throw new Error('Evaluation failed');
+    }
+  };
+
   useEffect(() => {
     if (onCharacterChange) {
       onCharacterChange(character);
@@ -200,8 +216,8 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
                       try {
                         // Replace SL in formula with actual skill level
                         const calculatedFormula = formula.replace(/SL/g, skillLevel);
-                        // Basic math evaluation for simple formulas
-                        const result = eval(calculatedFormula.replace(/×/g, '*'));
+                        // Safe math evaluation for simple formulas
+                        const result = safeEval(calculatedFormula.replace(/×/g, '*'));
                         return `【${result}】`;
                       } catch (e) {
                         return match; // Return original if evaluation fails
