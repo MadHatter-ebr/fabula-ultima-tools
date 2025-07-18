@@ -35,140 +35,218 @@ export const CHARACTER_CLASSES = {
   // CORE CLASSES
   ARCANIST: {
     name: 'Arcanist',
-    description: 'Masters of ancient magic and summoning',
+    description: 'A scholar of magic who forms bonds with powerful spirits called Arcana',
     primaryAttributes: ['willpower'],
     freeBenefits: ['HP or MP +5', 'Bind and Summon Arcana'],
     equipmentProficiencies: ['Basic weapons', 'Basic armor'],
     abilities: {
+      // NORMAL SKILLS
       'Bind and Summon': {
         level: 1,
-        description: 'You can bind and summon Arcana to fight alongside you. As an action, spend MP equal to the Arcana\'s level to summon it. The Arcana acts on your turn and follows your commands. You can have multiple Arcana summoned at once, but their combined levels cannot exceed your Arcanist level.',
+        description: 'You may bind Arcana to your soul and summon them later. The Game Master will tell you the details of each binding process when you first encounter the Arcanum in question. You may use an action and spend 40 Mind Points to summon an Arcanum you have bound: the details of this process are explained on the next page. If you take this Skill at character creation, you begin play with one Arcanum of your choice already bound to you, chosen from the list on the next pages. Other than that, you may only obtain new Arcana through exploration and story progression.',
         type: 'active',
-        cost: 'MP varies',
+        cost: '40 MP',
         maxTimes: 1
       },
       'Ritual Arcanism': {
         level: 1,
-        description: 'You can perform rituals of the Arcanism discipline during rest scenes. These rituals allow you to research new Arcana, improve existing ones, or create magical items. Each ritual requires specific components and time to complete.',
+        description: 'You may perform Rituals of the Arcanism discipline, as long as their effects fall within the domains of one or more Arcana you have bound (see next pages). Arcanism Rituals use 【WLP + WLP】 for the Magic Check',
         type: 'ritual',
         cost: 'Special',
         maxTimes: 1
       },
       'Arcane Circle': {
-        level: 1,
-        description: 'You can create protective circles that enhance spellcasting. During a rest scene, you can inscribe a circle that provides bonuses to magical activities performed within it.',
-        type: 'ritual',
-        cost: 'Special',
-        maxTimes: 1
-      },
-      'Emergency Summoning': {
-        level: 1,
-        description: 'Once per scene, you can summon an Arcana as a free action during combat, even if you have already acted this turn.',
-        type: 'active',
-        cost: 'MP varies',
-        maxTimes: 1
-      },
-      'Merge': {
-        level: 2,
-        description: 'You can temporarily merge with one of your summoned Arcana, gaining some of its abilities and characteristics while it is merged with you.',
-        type: 'active',
-        cost: '10 MP',
-        maxTimes: 1
-      },
-      'Quick Summoning': {
-        level: 2,
-        description: 'You can summon Arcana as a free action instead of a full action. This allows you to summon during combat more efficiently and react to changing battlefield conditions.',
-        type: 'passive',
-        cost: 'None',
-        maxTimes: 1
-      },
-      'Arcane Knowledge': {
-        level: 2,
-        description: 'Your understanding of magic is exceptional. You gain bonuses when identifying magical phenomena and can sense the presence of magic.',
-        type: 'passive',
-        cost: 'None',
-        maxTimes: 1
-      },
-      'Dismissal': {
-        level: 3,
-        description: 'You can forcibly dismiss summoned creatures, including enemy summons. Make a Magic Check against the summoner\'s Magic Defense.',
-        type: 'active',
-        cost: '10 MP',
-        maxTimes: 1
-      },
-      'Spell Steal': {
-        level: 3,
-        description: 'You can steal beneficial magical effects from enemies and apply them to yourself or allies.',
-        type: 'active',
-        cost: '15 MP',
-        maxTimes: 1
-      },
-      'Arcane Synthesis': {
         level: 4,
-        description: 'You can combine two Arcana temporarily, creating a more powerful hybrid creature with combined abilities.',
+        description: 'After you willingly dismiss an Arcanum on your turn during a conflict (see next page), if that Arcanum had not been summoned during this same turn and you have an arcane weapon equipped, you may immediately perform the Spell action for free. The spell you cast this way must have a total Mind Point cost of 【SL × 5】 or lower (you must still pay the spell\'s MP cost).',
         type: 'active',
-        cost: '20 MP',
-        maxTimes: 1
-      },
-      'Mana Shield': {
-        level: 4,
-        description: 'You can use MP to absorb damage. When you take damage, you can spend MP to reduce it on a 1:1 basis.',
-        type: 'reaction',
-        cost: 'MP varies',
-        maxTimes: 1
+        cost: 'Free after dismissal',
+        maxTimes: 4
       },
       'Arcane Regeneration': {
+        level: 2,
+        description: 'When you summon an Arcanum, you immediately recover 【SL × 5】 Hit Points.',
+        type: 'passive',
+        cost: 'None',
+        maxTimes: 2
+      },
+      'Emergency Arcanum': {
         level: 6,
-        description: 'At the start of each of your turns, you recover 5 MP. This regeneration continues as long as you have at least one Arcana summoned and are conscious.',
+        description: 'As long as you are in Crisis, the cost for summoning your Arcana is reduced by 【SL × 5】 Mind Points.',
         type: 'passive',
         cost: 'None',
-        maxTimes: 1
+        maxTimes: 6
       },
-      'Phantom Strength': {
-        level: 6,
-        description: 'Your summoned Arcana gain +1 to all attributes and +5 to all derived statistics (HP, MP, Initiative). This bonus applies to all Arcana you summon while you have this skill.',
-        type: 'passive',
-        cost: 'None',
-        maxTimes: 1
-      },
-      'Arcane Mastery': {
-        level: 8,
-        description: 'Your mastery of magic is unparalleled. Reduce the MP cost of all your abilities by 5 (minimum 1).',
-        type: 'passive',
-        cost: 'None',
-        maxTimes: 1
-      },
-      'Greater Summoning': {
-        level: 8,
-        description: 'You can summon more powerful Arcana and maintain more of them simultaneously. Your level limit for combined Arcana increases by 5.',
-        type: 'passive',
-        cost: 'None',
-        maxTimes: 1
-      },
-      'Arcane Transcendence': {
-        level: 10,
-        description: 'You become one with magic itself. Once per scene, you can cast any spell or use any magical ability you have seen, regardless of class restrictions.',
-        type: 'active',
-        cost: '30 MP',
-        maxTimes: 1
-      }
     },
     specialRules: {
       title: 'Arcana System',
-      description: 'Arcanists work with powerful magical entities called Arcana. Each Arcana has its own level, abilities, and characteristics. The Arcanist can bind multiple Arcana but their combined levels cannot exceed the Arcanist\'s class level.',
-      arcanaTypes: [
-        { name: 'Elemental Arcana', description: 'Fire, Ice, Lightning, Earth, Air, and Water spirits' },
-        { name: 'Conceptual Arcana', description: 'Arcana representing abstract concepts like Time, Space, Life, Death' },
-        { name: 'Heroic Arcana', description: 'Legendary heroes and mythical figures' },
-        { name: 'Beast Arcana', description: 'Powerful magical creatures and monsters' }
-      ],
-      bindingRules: [
-        'Arcana must be discovered through gameplay or rituals',
-        'Each Arcana has a level from 1-10',
-        'Total bound Arcana levels cannot exceed Arcanist level',
-        'Summoning costs MP equal to Arcana level',
-        'Arcana act on the Arcanist\'s turn and follow their commands'
-      ]
+      description: 'Arcanists work with powerful magical entities called Arcana. Each Arcana has its own level, abilities, and characteristics.',
+      characterSheetRules: {
+        displayCondition: 'character_has_arcanist_level >= 1',
+        sections: [
+          {
+            title: 'THE ARCANA',
+            type: 'dropdown',
+            content: 'General information about the Arcana system and how it works with the Arcanist class.'
+          },
+          {
+            title: 'MERGING WITH AN ARCANUM',
+            type: 'dropdown',
+            content: 'When you summon an Arcanum, you gain its merge benefits; those benefits last until the Arcanum is dismissed (see below). You cannot summon an Arcanum while already merged with one; you must first dismiss the current Arcanum.'
+          },
+          {
+            title: 'DISMISSING AN ARCANUM',
+            type: 'dropdown',
+            content: 'An Arcanum can be dismissed in several ways:\\n• Once the current scene ends, all Arcana are automatically dismissed.\\n• If you die or fall unconscious while merged with an Arcanum, they are dismissed.\\n• If you leave the scene while merged with an Arcanum, they are dismissed.\\n• You may willingly dismiss your Arcanum: this doesn\\'t require an action, but during a conflict it can only be done on your turn, before or after an action.'
+          },
+          {
+            title: 'DISMISS EFFECTS',
+            type: 'dropdown',
+            content: 'Most Arcana have a powerful dismiss effect, which may only be activated when you willingly dismiss the Arcanum as described above — if the Arcanum is dismissed for any other reason, the dismiss effect cannot be triggered. If the dismiss effect of an Arcanum deals damage, it will deal 10 extra damage if you are level 20 or higher, or 20 extra damage if you are level 40 or higher. You are also free to ignore the dismiss effect if you don\\'t want to use it.'
+          },
+          {
+            title: 'DOMAINS',
+            type: 'dropdown',
+            content: 'Each Arcanum is associated with a few key concepts or domains. The Game Master should use these to establish the trials needed to bind the Arcanum, and to adjudicate Rituals performed through the Ritual Arcanism Skill. If you create new Arcana for your world, make sure to associate them with domains that allow for interesting Rituals'
+          }
+        ]
+      },
+      arcanaSelection: {
+        displayCondition: 'character_has_arcanist_level >= 1',
+        claimArcanaButton: {
+          title: 'Claim Arcana',
+          type: 'large_plus_button',
+          action: 'open_arcana_selection_popup',
+          description: 'Select an Arcanum to bind to your character'
+        },
+        availableArcana: {
+          'CUSTOM_ARCANUM': {
+            name: 'Custom Arcanum',
+            type: 'custom_creation',
+            description: 'Create your own unique Arcanum with custom domains, merge benefits, and dismiss effects.',
+            creationForm: {
+              name: { label: 'Arcanum Name', type: 'text', required: true, maxLength: 50 },
+              domains: { label: 'Domains (choose 2-4)', type: 'multiselect', minSelections: 2, maxSelections: 4, allowCustom: true },
+              mergeBenefits: { label: 'Merge Benefits (1-3)', type: 'textarea_list', minEntries: 1, maxEntries: 3 },
+              dismissEffect: { label: 'Dismiss Effect', type: 'complex_form', required: true },
+              gmApproval: { label: 'GM Approval Required', type: 'checkbox', checked: true, disabled: true }
+            }
+          },
+          'ARCANUM_OF_THE_FORGE': {
+            name: 'Arcanum of the Forge',
+            domains: ['fire', 'heat', 'metal'],
+            mergeBenefits: [
+              'You have Resistance to fire damage.',
+              'Any fire damage you deal ignores Resistances.'
+            ],
+            dismissEffect: {
+              name: 'Forge or Inferno',
+              description: 'When you dismiss this Arcanum, choose Forge or Inferno:',
+              options: [
+                { name: 'Forge', effect: 'You create a basic armor, shield or weapon of your choice. If you select this option again, the previously created item vanishes. If you create a weapon this way, it deals fire damage instead of physical.' },
+                { name: 'Inferno', effect: 'Choose any number of creatures you can see: each of them suffers 30 fire damage. This damage ignores Resistances.' }
+              ]
+            }
+          },
+          'ARCANUM_OF_THE_FROST': {
+            name: 'Arcanum of the Frost',
+            domains: ['cold', 'ice', 'silence'],
+            mergeBenefits: [
+              'You have Resistance to ice damage and are immune to enraged.',
+              'Any ice damage you deal ignores Resistances.'
+            ],
+            dismissEffect: {
+              name: 'Ice Age',
+              description: 'Choose any number of creatures you can see: each of them suffers 30 ice damage. This damage ignores Resistances.'
+            }
+          },
+          'ARCANUM_OF_THE_GATE': {
+            name: 'Arcanum of the Gate',
+            domains: ['space', 'travel', 'void'],
+            mergeBenefits: [
+              'You have Resistance to dark damage.',
+              'You gain a +1 bonus to your Magic Defense.'
+            ],
+            dismissEffect: {
+              name: 'Oblivion or Warp',
+              description: 'When you dismiss this Arcanum, choose Oblivion or Warp:',
+              options: [
+                { name: 'Oblivion', effect: 'Choose any number of creatures you can see: each of them suffers 30 dark damage. This damage ignores Resistances.' },
+                { name: 'Warp', effect: 'You teleport yourself and up to five other nearby willing creatures to a location you previously visited, if that location is within 1 travel day.' }
+              ]
+            }
+          },
+          'ARCANUM_OF_THE_GRIMOIRE': {
+            name: 'Arcanum of the Grimoire',
+            domains: ['knowledge', 'revelations', 'understanding'],
+            mergeBenefits: [
+              'You are able to read, write, speak and understand all languages.',
+              'You treat your Insight as if it were one die size higher (up to a maximum of d12).'
+            ],
+            dismissEffect: {
+              name: 'Oracle',
+              description: 'You ask the Game Master a single question. The Game Master must answer truthfully, describing the vision shown to you by the Grimoire. Once used, this dismiss effect will not be available until the next dawn. Furthermore, the same question may never be asked more than once. The Game Master has final say on which questions are too similar to be asked again.'
+            }
+          },
+          'ARCANUM_OF_THE_OAK': {
+            name: 'Arcanum of the Oak',
+            domains: ['earth', 'plants', 'poison'],
+            mergeBenefits: [
+              'You have Resistance to earth and poison damage and are immune to poisoned.',
+              'Whenever you recover Hit Points, you recover 5 extra Hit Points.'
+            ],
+            dismissEffect: {
+              name: 'Blossom',
+              description: 'Choose any number of creatures you can see (you may also choose yourself): each of them recovers from the poisoned status effect and recovers 40 Hit Points. This amount increases to 50 Hit Points if you are level 20 or higher, or to 60 Hit Points if you are level 40 or higher.'
+            }
+          },
+          'ARCANUM_OF_THE_SKY': {
+            name: 'Arcanum of the Sky',
+            domains: ['fog', 'rain', 'storms'],
+            mergeBenefits: [
+              'You have Resistance to air and bolt damage.',
+              'You may use an action to accurately predict weather conditions for the next day within a range of two travel days — the Game Master will tell you what the weather conditions will be.'
+            ],
+            dismissEffect: {
+              name: 'Thunderstorm',
+              description: 'Choose any number of creatures you can see: each of them suffers 30 bolt damage. This damage ignores Resistances.'
+            }
+          },
+          'ARCANUM_OF_THE_SWORD': {
+            name: 'Arcanum of the Sword',
+            domains: ['conquest', 'heroism', 'leadership'],
+            mergeBenefits: [
+              'Your attacks deal 5 extra damage, and all damage dealt by your attacks is treated as having no type (thus being unaffected by damage Affinities). Damage dealt by your attacks cannot gain a type as long as you are merged with this Arcanum.'
+            ],
+            dismissEffect: {
+              name: 'Multi-Attack',
+              description: 'When you perform an attack, you may have that attack gain the multi (any number of targets) property. If you do, this Arcanum will be automatically dismissed after the attack is resolved (this is not considered a willing dismiss).'
+            }
+          },
+          'ARCANUM_OF_THE_TOWER': {
+            name: 'Arcanum of the Tower',
+            domains: ['judgment', 'protection', 'sacrifice'],
+            mergeBenefits: [
+              'When you summon this Arcanum, choose a damage type: air, bolt, dark, earth, fire, or ice. Until this Arcanum is dismissed, each of your allies present on the scene has Resistance to the chosen damage type (you do not gain this Resistance).'
+            ],
+            dismissEffect: {
+              name: 'Judgment',
+              description: 'Choose any number of creatures you can see: each of them suffers 30 light damage. This damage ignores Resistances.'
+            }
+          },
+          'ARCANUM_OF_THE_WHEEL': {
+            name: 'Arcanum of the Wheel',
+            domains: ['destiny', 'speed', 'time'],
+            mergeBenefits: [
+              'You are immune to slow.',
+              'You gain a +1 bonus to your Defense.'
+            ],
+            dismissEffect: {
+              name: 'Time Freeze',
+              description: 'Choose any number of creatures you can see: each of them suffers slow. If a creature chosen this way is already slow, that creature will instead perform one fewer action during their next turn (to a minimum of 0 actions).'
+            }
+          }
+        }
+      }
     },
     source: 'Core Rules'
   },
@@ -182,42 +260,42 @@ export const CHARACTER_CLASSES = {
     abilities: {
       'Shadow Strike': {
         level: 1,
-        description: 'Strike from the shadows with bonus damage. When you attack a target that cannot see you or is surprised, deal extra damage equal to your Willpower die.',
+        description: 'You may only use this skill if you have not acted yet during this turn. Choose one creature you can see. You deal 【HR + SL × 5】 physical damage to that creature; this is a ranged attack that can target any creature you can see.',
         type: 'active',
         cost: '5 MP',
         maxTimes: 1
       },
       'Umbral Blade': {
         level: 1,
-        description: 'Infuse your weapons with shadow energy. For the rest of the scene, your weapons deal dark damage and can strike incorporeal enemies.',
+        description: 'Until the end of this scene, your melee attacks deal dark damage instead of physical damage.',
         type: 'active',
         cost: '10 MP',
         maxTimes: 1
       },
       'Cloak of Shadows': {
         level: 2,
-        description: 'Wrap yourself in darkness. Until the start of your next turn, enemies have disadvantage on attacks against you.',
+        description: 'Until the start of your next turn, you cannot be targeted by attacks unless you are the only valid target present on the scene.',
         type: 'active',
         cost: '8 MP',
         maxTimes: 1
       },
       'Dark Healing': {
         level: 2,
-        description: 'Draw power from pain and darkness. When you deal damage with a dark attack, recover HP equal to half the damage dealt.',
+        description: 'After you deal damage to a creature with a dark attack, you recover Hit Points equal to 【SL × 3】.',
         type: 'passive',
         cost: 'None',
         maxTimes: 1
       },
       'Shadow Step': {
         level: 3,
-        description: 'Teleport through shadows. Move to any position within range where shadows exist, ignoring obstacles.',
+        description: 'You may perform a free movement without spending actions. Additionally, this movement ignores the presence of other creatures and can cross through obstacles.',
         type: 'active',
         cost: '12 MP',
         maxTimes: 1
       },
       'Curse': {
         level: 3,
-        description: 'Place a dark curse on your enemy. Target suffers ongoing penalties to their actions until the curse is lifted.',
+        description: 'Choose one creature you can see. Until the end of this scene, that creature suffers a -【SL × 2】 penalty to Accuracy Checks; this is elemental magic of the dark type.',
         type: 'active',
         cost: '15 MP',
         maxTimes: 1
@@ -297,8 +375,8 @@ export const CHARACTER_CLASSES = {
     equipmentProficiencies: ['Basic weapons', 'Basic armor'],
     abilities: {
       'Elemental Magic': {
-        level: 1,
-        description: 'Cast powerful elemental spells of fire, ice, lightning, earth, air, and water. Each element has unique properties and effects.',
+        level: 10,
+        description: 'You may learn and cast spells from any of these types: earth, air, fire, water, ice, or bolt. Spells you cast can target any creature you can see.',
         type: 'active',
         cost: 'MP varies',
         skillLevel: 10,
@@ -306,35 +384,35 @@ export const CHARACTER_CLASSES = {
       },
       'Ritual Elementalism': {
         level: 1,
-        description: 'Perform elemental rituals during rest scenes to create magical items, alter weather, or commune with elemental spirits.',
+        description: 'You may perform Elementalism rituals without needing to learn them.',
         type: 'ritual',
         cost: 'Special',
         maxTimes: 1
       },
       'Elemental Resistance': {
         level: 2,
-        description: 'Gain resistance to one chosen element. You take half damage from that element and can resist its effects.',
+        description: 'Choose one damage type: air, bolt, earth, fire, ice, or water. You gain Resistance to that damage type.',
         type: 'passive',
         cost: 'None',
         maxTimes: 1
       },
       'Elemental Weapon': {
         level: 2,
-        description: 'Imbue a weapon with elemental power. The weapon deals additional elemental damage for the rest of the scene.',
+        description: 'Choose one damage type: air, bolt, earth, fire, ice, or water. Until the end of this scene, your weapon attacks deal damage of the chosen type (instead of physical damage).',
         type: 'active',
         cost: '10 MP',
         maxTimes: 1
       },
       'Spellblade': {
         level: 3,
-        description: 'Infuse weapons with elemental power and cast spells through weapon attacks. Combine weapon and spell damage.',
+        description: 'Choose one damage type: air, bolt, earth, fire, ice, or water. Until the end of this scene, after you hit with a weapon attack, you deal 【SL × 5】 additional damage of the chosen type.',
         type: 'active',
         cost: '10 MP',
         maxTimes: 1
       },
       'Elemental Shield': {
         level: 3,
-        description: 'Create a protective barrier of elemental energy. Absorbs damage and can reflect attacks back at enemies.',
+        description: 'Choose one damage type: air, bolt, earth, fire, ice, or water. Until the start of your next turn, you gain Resistance to that damage type.',
         type: 'active',
         cost: '15 MP',
         maxTimes: 1
@@ -532,42 +610,42 @@ export const CHARACTER_CLASSES = {
     abilities: {
       'Withstand': {
         level: 1,
-        description: 'Ignore damage through sheer will. Reduce incoming damage by spending MP on a 2:1 ratio.',
+        description: 'You may use this skill when you suffer damage. If you spend 2 Mind Points, you reduce that damage by 【SL × 2】.',
         type: 'reaction',
         cost: 'MP varies',
         maxTimes: 1
       },
       'Adrenaline': {
         level: 1,
-        description: 'Channel your rage into increased speed and strength. Gain bonus actions and damage when below half HP.',
+        description: 'If your Hit Points are equal to or less than half your maximum Hit Points, you gain a +【SL × 2】 bonus to damage rolls.',
         type: 'passive',
         cost: 'None',
         maxTimes: 1
       },
       'Intimidate': {
         level: 2,
-        description: 'Strike fear into your enemies with your fierce presence. Enemies may flee or be paralyzed by fear.',
+        description: 'Choose one creature you can see. You and that creature must make opposed Willpower + Intimidate Checks. If you win, that creature is shaken until the end of the scene.',
         type: 'active',
         cost: '8 MP',
         maxTimes: 1
       },
       'Rage Strike': {
         level: 2,
-        description: 'Attack with uncontrolled fury. Deal massive damage but become vulnerable to counterattacks.',
+        description: 'Choose one creature you can see and make a melee attack against it. This attack deals 【SL × 5】 extra damage, but you cannot use Guard until the start of your next turn.',
         type: 'active',
         cost: '10 MP',
         maxTimes: 1
       },
       'Provoke': {
         level: 3,
-        description: 'Force enemies to attack you through taunts and aggressive behavior. Enemies must focus their attacks on you.',
+        description: 'Choose up to 【SL】 creatures you can see. Until the start of your next turn, each of those creatures can only target you with their attacks and offensive spells.',
         type: 'active',
         cost: '10 MP',
         maxTimes: 1
       },
       'Reckless Attack': {
         level: 3,
-        description: 'Attack without regard for defense. Gain bonus damage but take increased damage from all sources.',
+        description: 'Until the start of your next turn, you deal 【SL × 3】 extra damage with attacks, but you also suffer 【SL × 3】 extra damage from all sources.',
         type: 'active',
         cost: '12 MP',
         maxTimes: 1
@@ -648,42 +726,42 @@ export const CHARACTER_CLASSES = {
     abilities: {
       'Protect': {
         level: 1,
-        description: 'Shield allies from harm by intercepting attacks meant for them. Redirect enemy attacks to yourself.',
+        description: 'You may use this skill when an ally you can see suffers damage. You suffer that damage instead of them.',
         type: 'reaction',
         cost: '5 MP',
         maxTimes: 1
       },
       'Taunt': {
         level: 1,
-        description: 'Draw enemy attention to yourself. Force enemies to target you instead of your allies.',
+        description: 'Choose up to 【SL】 creatures you can see. Until the start of your next turn, each of those creatures can only target you with their attacks and offensive spells.',
         type: 'active',
         cost: '8 MP',
         maxTimes: 1
       },
       'Shield Wall': {
         level: 2,
-        description: 'Create a defensive barrier that provides cover for allies. Blocks projectiles and provides defensive bonuses.',
+        description: 'Until the start of your next turn, you and all allies you can see gain a +【SL × 2】 bonus to Defense.',
         type: 'active',
         cost: '10 MP',
         maxTimes: 1
       },
       'Guardian\'s Resolve': {
         level: 2,
-        description: 'Gain bonuses to defense and resistance when protecting allies. The more allies you protect, the stronger you become.',
+        description: 'You gain a +【SL】 bonus to Accuracy Checks and damage rolls for each ally other than yourself that is present on the scene.',
         type: 'passive',
         cost: 'None',
         maxTimes: 1
       },
       'Defensive Stance': {
         level: 3,
-        description: 'Adopt a defensive posture that greatly increases your defense but reduces your attack capability.',
+        description: 'Until the start of your next turn, you gain a +【SL × 3】 bonus to Defense, but you also suffer a -【SL × 3】 penalty to Accuracy Checks.',
         type: 'active',
         cost: '12 MP',
         maxTimes: 1
       },
       'Shield Bash': {
         level: 3,
-        description: 'Attack with your shield to stun and knock back enemies. Can interrupt enemy actions.',
+        description: 'You may only use this skill if you have a shield equipped. Choose one creature you can see and make a melee attack against it. If this attack hits, you deal no damage, but that creature is dazed until the end of your next turn.',
         type: 'active',
         cost: '10 MP',
         maxTimes: 1
@@ -764,42 +842,42 @@ export const CHARACTER_CLASSES = {
     abilities: {
       'Flash of Insight': {
         level: 1,
-        description: 'Gain sudden understanding of any situation, problem, or mystery. Instantly know the best course of action.',
+        description: 'You may use this skill at the start of your turn. You recover 【SL × 5】 Mind Points.',
         type: 'active',
         cost: '5 MP',
         maxTimes: 1
       },
       'Lore': {
         level: 1,
-        description: 'Access your vast knowledge on any topic. Automatically succeed on knowledge checks and gain insight into any subject.',
+        description: 'When you make an Open Check to recall information, you may spend 3 Mind Points to automatically succeed with two raises (no need to roll dice).',
         type: 'passive',
         cost: 'None',
         maxTimes: 1
       },
       'Identify': {
         level: 2,
-        description: 'Instantly identify any object, creature, or magical effect. Learn its properties, weaknesses, and abilities.',
+        description: 'Choose one option: identify the effects of an item, or learn if there are any hints or clues in the current scene and their location.',
         type: 'active',
         cost: '8 MP',
         maxTimes: 1
       },
       'Tactical Advice': {
         level: 2,
-        description: 'Provide tactical guidance to allies. Grant bonuses to allies\' actions based on your strategic knowledge.',
+        description: 'Choose one ally you can see. That ally gains a +【SL × 2】 bonus to their next Accuracy Check.',
         type: 'active',
         cost: '10 MP',
         maxTimes: 1
       },
       'Quick Assessment': {
         level: 3,
-        description: 'Quickly analyze enemies and situations. Instantly learn enemy weaknesses, resistances, and optimal strategies.',
+        description: 'Choose one creature you can see. Learn their current Hit Points, Mind Points, and any Affinities they might have.',
         type: 'active',
         cost: '10 MP',
         maxTimes: 1
       },
       'Sage Advice': {
         level: 3,
-        description: 'Provide wise counsel that grants allies bonuses to their next actions. Your wisdom guides their decisions.',
+        description: 'Choose up to 【SL】 allies you can see. Each of those allies gains a +【SL × 2】 bonus to Magic Checks until the start of your next turn.',
         type: 'active',
         cost: '12 MP',
         maxTimes: 1
@@ -880,42 +958,42 @@ export const CHARACTER_CLASSES = {
     abilities: {
       'Condemn': {
         level: 1,
-        description: 'Weaken enemies with cutting words and condemnation. Reduce enemy stats and morale through verbal assault.',
+        description: 'Choose one creature you can see. Until the end of this scene, that creature suffers a -【SL × 2】 penalty to Accuracy Checks and Magic Checks.',
         type: 'active',
         cost: '10 MP',
         maxTimes: 1
       },
       'Inspiring Speech': {
         level: 1,
-        description: 'Deliver speeches that inspire allies. Grant bonuses to ally actions and remove negative status effects.',
+        description: 'Choose yourself and up to 【SL】 allies you can see. Until the end of this scene, each chosen creature gains a +【SL】 bonus to Accuracy Checks and Magic Checks.',
         type: 'active',
         cost: '8 MP',
         maxTimes: 1
       },
       'Encourage': {
         level: 2,
-        description: 'Inspire allies to greatness with words of encouragement. Provide bonuses to ally rolls and actions.',
+        description: 'Choose one ally you can see. That ally may immediately retry one failed Check they performed during this scene.',
         type: 'active',
         cost: '10 MP',
         maxTimes: 1
       },
       'Debate': {
         level: 2,
-        description: 'Engage in intellectual combat. Counter enemy arguments and social attacks with superior rhetoric.',
+        description: 'You may use this skill when you or an ally you can see are targeted by an Insight + Empathy, Insight + Persuasion, or Willpower + Intimidate Check. The Check automatically fails.',
         type: 'reaction',
         cost: '12 MP',
         maxTimes: 1
       },
       'Rally': {
         level: 3,
-        description: 'Rally allies from defeat. Restore ally morale and grant temporary bonuses to all actions.',
+        description: 'Choose yourself and up to 【SL】 allies you can see. Each chosen creature recovers from all status effects and recovers 【SL × 10】 Hit Points and 【SL × 5】 Mind Points.',
         type: 'active',
         cost: '15 MP',
         maxTimes: 1
       },
       'Demoralize': {
         level: 3,
-        description: 'Break enemy morale with harsh words and intimidation. Cause enemies to flee or become paralyzed.',
+        description: 'Choose up to 【SL】 creatures you can see. Each chosen creature is shaken until the end of this scene.',
         type: 'active',
         cost: '15 MP',
         maxTimes: 1
@@ -1112,42 +1190,42 @@ export const CHARACTER_CLASSES = {
     abilities: {
       'Dodge': {
         level: 1,
-        description: 'Avoid attacks with supernatural agility. Reduce damage taken by spending MP.',
+        description: 'You may use this skill when you are targeted by an attack. If you spend 2 Mind Points, you gain a +【SL × 2】 bonus to Defense against that attack.',
         type: 'reaction',
         cost: 'MP varies',
         maxTimes: 1
       },
       'Stealth': {
         level: 1,
-        description: 'Become invisible to enemies. Move unseen and gain bonuses to surprise attacks.',
+        description: 'Until the start of your next turn, you cannot be targeted by attacks unless you are the only valid target present on the scene.',
         type: 'active',
         cost: '8 MP',
         maxTimes: 1
       },
       'Lockpicking': {
         level: 2,
-        description: 'Open any lock or bypass security systems. Gain access to restricted areas.',
+        description: 'You automatically succeed on any Check made to open a lock, disable a trap, or overcome a similar mechanical obstacle.',
         type: 'active',
         cost: '5 MP',
         maxTimes: 1
       },
       'Poison': {
         level: 2,
-        description: 'Apply poison to weapons or use poison attacks. Deal ongoing damage to enemies.',
+        description: 'Until the end of this scene, your attacks gain the following additional effect: the target is poisoned.',
         type: 'active',
         cost: '10 MP',
         maxTimes: 1
       },
       'Cheap Shot': {
         level: 3,
-        description: 'Strike vital points for extra damage. Attack enemy weak spots for devastating effect.',
+        description: 'You may only use this skill if you have not acted yet during this turn. Choose one creature you can see and make a ranged attack against it. If this attack hits, it deals 【SL × 10】 extra damage.',
         type: 'active',
         cost: '10 MP',
         maxTimes: 1
       },
       'Shadow Clone': {
         level: 3,
-        description: 'Create illusory duplicates of yourself. Confuse enemies and gain tactical advantages.',
+        description: 'You may perform up to 【SL】 additional attacks during your turn. Each of these attacks deals halved damage.',
         type: 'active',
         cost: '15 MP',
         maxTimes: 1
@@ -1344,49 +1422,49 @@ export const CHARACTER_CLASSES = {
     abilities: {
       'Ritual Spiritism': {
         level: 1,
-        description: 'Perform healing and protective rituals during rest scenes. Create blessed items and sanctify areas.',
+        description: 'You may perform Spiritism rituals without needing to learn them.',
         type: 'ritual',
         cost: 'Special',
         maxTimes: 1
       },
       'Light Magic': {
-        level: 1,
-        description: 'Cast spells of light and healing. Banish darkness and undead creatures.',
+        level: 10,
+        description: 'You may learn spells of the light type. Spells you cast can target any creature you can see.',
         type: 'active',
         cost: 'MP varies',
         maxTimes: 1
       },
       'Healing Power': {
         level: 2,
-        description: 'Restore HP to allies with divine healing light. Heal multiple allies simultaneously.',
+        description: 'Choose up to 【SL】 creatures you can see. Each chosen creature recovers 【SL × 10】 Hit Points.',
         type: 'active',
         cost: 'MP varies',
         maxTimes: 1
       },
       'Bless': {
         level: 2,
-        description: 'Grant divine blessings to allies. Provide bonuses to all ally actions.',
+        description: 'Choose one creature you can see. Until the end of this scene, that creature gains a +【SL】 bonus to all Checks and adds 【SL × 5】 damage to all damage rolls.',
         type: 'active',
         cost: '10 MP',
         maxTimes: 1
       },
       'Sanctuary': {
         level: 3,
-        description: 'Create a holy sanctuary that prevents enemies from entering. Provide safe haven.',
+        description: 'Choose yourself and up to 【SL】 allies you can see. Until the end of this scene, chosen creatures cannot be targeted by attacks unless they are the only valid targets present on the scene.',
         type: 'active',
         cost: '15 MP',
         maxTimes: 1
       },
       'Turn Undead': {
         level: 3,
-        description: 'Repel undead creatures with holy light. Force undead to flee or be destroyed.',
+        description: 'Choose up to 【SL】 creatures you can see that have the Beast or Undead species. Each chosen creature suffers 【SL × 10】 light damage.',
         type: 'active',
         cost: '12 MP',
         maxTimes: 1
       },
       'Cleanse': {
         level: 4,
-        description: 'Remove negative conditions and curses. Purify allies of all harmful effects.',
+        description: 'Choose one creature you can see. Remove all status effects from that creature.',
         type: 'active',
         cost: '15 MP',
         maxTimes: 1
@@ -1407,14 +1485,14 @@ export const CHARACTER_CLASSES = {
       },
       'Banish': {
         level: 5,
-        description: 'Banish evil creatures to other planes. Remove powerful enemies from battle.',
+        description: 'Choose one creature you can see that is affected by at least one status effect. That creature suffers【SL × 5】light damage; this is elemental magic of the light type.',
         type: 'active',
         cost: '25 MP',
         maxTimes: 1
       },
       'Barrier Spells': {
         level: 6,
-        description: 'Create protective barriers of light. Block attacks and harmful effects.',
+        description: 'Choose yourself or one creature you can see. Until the start of your next turn, that creature gains Resistance to all damage types.',
         type: 'active',
         cost: '20 MP',
         maxTimes: 1
@@ -1495,42 +1573,42 @@ export const CHARACTER_CLASSES = {
     abilities: {
       'Resourceful': {
         level: 1,
-        description: 'Find resources in unlikely places. Locate supplies, tools, and information wherever you go.',
+        description: 'During a rest scene, you may spend 10 zenit to produce any basic item with a cost of up to 【SL × 100】 zenit.',
         type: 'passive',
         cost: 'None',
         maxTimes: 1
       },
       'Wilderness Lore': {
         level: 1,
-        description: 'Master knowledge of the natural world. Identify plants, animals, and natural phenomena.',
+        description: 'When you make an Open Check to study, navigate, or survive in a natural environment, you may spend 2 Mind Points to automatically succeed with two raises (no need to roll dice).',
         type: 'passive',
         cost: 'None',
         maxTimes: 1
       },
       'Tracking': {
         level: 2,
-        description: 'Follow tracks and signs to locate creatures. Never lose a trail.',
+        description: 'Study an area to determine what creatures have been present there, how many they were, and when they were last there.',
         type: 'active',
         cost: '5 MP',
         maxTimes: 1
       },
       'Camouflage': {
         level: 2,
-        description: 'Blend into natural surroundings. Become nearly invisible in wilderness environments.',
+        description: 'You may only use this skill if you are in a natural environment. Until the start of your next turn, you cannot be targeted by attacks unless you are the only valid target present on the scene.',
         type: 'active',
         cost: '8 MP',
         maxTimes: 1
       },
       'Faithful Companion': {
         level: 3,
-        description: 'Gain an animal companion that fights alongside you and provides unique abilities.',
+        description: 'You are accompanied by a faithful animal companion. During your turn, you may have your companion perform one action: attack one creature you can see (dealing 【SL × 10】 damage), or help you (granting a +【SL × 2】 bonus to your next Check).',
         type: 'passive',
         cost: 'None',
         maxTimes: 1
       },
       'Foraging': {
         level: 3,
-        description: 'Find food and medicinal plants in the wild. Provide sustenance for your party.',
+        description: 'You may only use this skill during a rest scene and if you are in a natural environment. Choose yourself and up to 【SL】 allies: each chosen creature recovers 【SL × 10】 Hit Points and 【SL × 5】 Mind Points.',
         type: 'active',
         cost: '5 MP',
         maxTimes: 1
@@ -3065,42 +3143,42 @@ export const CHARACTER_CLASSES = {
     abilities: {
       'Battle Gardening': {
         level: 5,
-        description: 'After you plant a magiseed through the Chloromancy Skill (not when using Graft), you may choose one option: perform a free attack with an equipped weapon; or perform the Spell action for free, casting a spell with a total Mind Point cost equal to or lower than 【5 + (SL × 5)】 (you must still pay its MP cost). Treat the High Roll (HR) of your Accuracy Check or Magic Check as being equal to 0 when determining damage dealt by this attack or spell.',
+        description: 'After you plant a magiseed through the Chloromancy Skill (not when using Graft), you may choose one option: perform a free attack with an equipped weapon; or perform the Spell action for free, casting a spell with a total Mind Point cost equal to or lower than 【SL × 5】 + 5 (you must still pay its MP cost). Treat the High Roll (HR) of your Accuracy Check or Magic Check as being equal to 0 when determining damage dealt by this attack or spell.',
         type: 'active',
         cost: 'Free after Chloromancy',
         maxTimes: 5
       },
       'Chloromancy': {
         level: 1,
-        description: 'You can perform rituals of the Chloromancy discipline during rest scenes. This allows you to create magical plants, seeds, and botanical effects. You can also plant magiseeds as an action during combat.',
+        description: 'You may perform Rituals of the Chloromancy discipline during rest scenes. Additionally, during a conflict, you may perform the following action: Plant Magiseed - Pay 5 MP to plant a magiseed adjacent to you. The magiseed grows instantly and produces its effect.',
         type: 'ritual',
         cost: 'Special',
         maxTimes: 1
       },
       'Emergency Harvest': {
         level: 3,
-        description: 'During a conflict, you may spend 10 MP to immediately harvest beneficial effects from nearby plants or create a temporary magical plant that provides tactical advantage.',
+        description: 'Choose yourself and up to 【SL】 allies you can see. Each chosen creature recovers 【SL × 5】 Hit Points and 【SL × 5】 Mind Points.',
         type: 'active',
         cost: '10 MP',
         maxTimes: 3
       },
       'Graft': {
         level: 2,
-        description: 'You can graft magical properties onto existing plants or weapons. This allows you to enhance equipment with botanical effects or create hybrid magical plants.',
+        description: 'During a conflict, you may plant a magiseed in a location where a magical plant already exists. The magiseed produces its effect immediately and is combined with the existing plant.',
         type: 'active',
         cost: 'MP varies',
         maxTimes: 2
       },
       'Green Thumb': {
         level: 1,
-        description: 'You have an innate connection to plant life. You can communicate with plants, understand their needs, and accelerate their growth through magical means.',
+        description: 'When you perform an Open Check to study, navigate, or survive in a natural environment, you may reroll up to 【SL】 dice.',
         type: 'passive',
         cost: 'None',
         maxTimes: 1
       },
       'Herbalism': {
         level: 2,
-        description: 'Your knowledge of plants allows you to create powerful potions and remedies. You can identify magical plants and their properties, and create healing items.',
+        description: 'When you use a Potion or Remedy, its effects are increased by 【SL × 5】 (if the item restores HP or MP) or the effect duration is doubled (if the item provides a different benefit).',
         type: 'passive',
         cost: 'None',
         maxTimes: 2
