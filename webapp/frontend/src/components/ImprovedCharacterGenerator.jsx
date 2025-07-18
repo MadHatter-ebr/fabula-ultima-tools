@@ -10,6 +10,7 @@ import CraftingSystem from './CraftingSystem';
 import GMTools from './GMTools';
 import CharacterSheet from './CharacterSheet';
 import './CharacterGenerator.css';
+import characterStorage from '../services/characterStorage';
 
 const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
   const [character, setCharacter] = useState({
@@ -393,29 +394,55 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
   const resources = calculateResources();
   const classesWithSpecialRules = getClassesWithSpecialRules();
 
-  const saveCharacter = () => {
-    const savedCharacters = JSON.parse(localStorage.getItem('savedCharacters') || '[]');
-    const characterToSave = {
-      ...character,
-      id: character.id || Date.now().toString(),
-      savedAt: new Date().toISOString(),
-      name: character.name || 'Unnamed Character'
-    };
-    
-    const existingIndex = savedCharacters.findIndex(c => c.id === characterToSave.id);
-    if (existingIndex >= 0) {
-      savedCharacters[existingIndex] = characterToSave;
-    } else {
-      savedCharacters.push(characterToSave);
+  const [savedCharacters, setSavedCharacters] = useState([]);
+  const [storageStatus, setStorageStatus] = useState({ storage: 'localStorage' });
+
+  // Load saved characters on component mount
+  useEffect(() => {
+    loadSavedCharacters();
+    updateStorageStatus();
+  }, []);
+
+  const loadSavedCharacters = async () => {
+    try {
+      const result = await characterStorage.loadCharacters();
+      setSavedCharacters(result.characters);
+      setStorageStatus(prev => ({ ...prev, storage: result.storage }));
+    } catch (error) {
+      console.error('Failed to load characters:', error);
+      setSavedCharacters([]);
     }
-    
-    localStorage.setItem('savedCharacters', JSON.stringify(savedCharacters));
-    setCharacter(prev => ({ ...prev, id: characterToSave.id }));
-    alert('Character saved successfully!');
   };
 
-  const loadCharacter = (characterId) => {
-    const savedCharacters = JSON.parse(localStorage.getItem('savedCharacters') || '[]');
+  const updateStorageStatus = async () => {
+    try {
+      const status = await characterStorage.getStorageStatus();
+      setStorageStatus(status);
+    } catch (error) {
+      console.error('Failed to get storage status:', error);
+    }
+  };
+
+  const saveCharacter = async () => {
+    try {
+      const result = await characterStorage.saveCharacter(character);
+      
+      if (result.success) {
+        setCharacter(prev => ({ ...prev, id: result.data.id }));
+        await loadSavedCharacters(); // Refresh the list
+        
+        const storageType = result.storage === 'supabase' ? 'cloud database' : 'local storage';
+        alert(`Character saved successfully to ${storageType}!`);
+      }
+    } catch (error) {
+      console.error('Failed to save character:', error);
+      alert('Failed to save character. Please try again.');
+    }
+  };
+
+  const loadCharacter = async (characterId) => {
+    if (!characterId) return;
+    
     const foundCharacter = savedCharacters.find(c => c.id === characterId);
     if (foundCharacter) {
       setCharacter(foundCharacter);
@@ -423,8 +450,17 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
     }
   };
 
-  const getSavedCharacters = () => {
-    return JSON.parse(localStorage.getItem('savedCharacters') || '[]');
+  const deleteCharacter = async (characterId) => {
+    if (!confirm('Are you sure you want to delete this character?')) return;
+    
+    try {
+      await characterStorage.deleteCharacter(characterId);
+      await loadSavedCharacters(); // Refresh the list
+      alert('Character deleted successfully!');
+    } catch (error) {
+      console.error('Failed to delete character:', error);
+      alert('Failed to delete character. Please try again.');
+    }
   };
 
   return (
@@ -438,21 +474,41 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
           <span>IP: {resources.ip}</span>
         </div>
         <div className="character-actions">
+          <div className="storage-status">
+            <span className={`storage-indicator ${storageStatus.storage}`}>
+              {storageStatus.storage === 'supabase' ? '☁️' : '💾'} 
+              {storageStatus.storage === 'supabase' ? 'Cloud' : 'Local'}
+            </span>
+          </div>
           <button onClick={saveCharacter} className="save-btn">
             💾 Save Character
           </button>
           <select 
             onChange={(e) => e.target.value && loadCharacter(e.target.value)}
-            defaultValue=""
+            value=""
             className="load-select"
           >
             <option value="">Load Character...</option>
-            {getSavedCharacters().map(char => (
+            {savedCharacters.map(char => (
               <option key={char.id} value={char.id}>
                 {char.name} (Level {char.classes?.reduce((sum, cls) => sum + (cls.level || 1), 0) || 1})
               </option>
             ))}
           </select>
+          {savedCharacters.length > 0 && (
+            <select 
+              onChange={(e) => e.target.value && deleteCharacter(e.target.value)}
+              value=""
+              className="delete-select"
+            >
+              <option value="">Delete Character...</option>
+              {savedCharacters.map(char => (
+                <option key={char.id} value={char.id}>
+                  🗑️ {char.name}
+                </option>
+              ))}
+            </select>
+          )}
         </div>
       </div>
 

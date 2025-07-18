@@ -46,9 +46,35 @@
   display: flex;
   gap: 1rem;
   align-items: center;
+  flex-wrap: wrap;
 }
 
-.save-btn, .load-select {
+.storage-status {
+  display: flex;
+  align-items: center;
+}
+
+.storage-indicator {
+  background: var(--ff9-bg-card);
+  border: 2px solid var(--ff9-border-secondary);
+  border-radius: 6px;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--ff9-text-secondary);
+}
+
+.storage-indicator.supabase {
+  border-color: var(--ff9-accent-success);
+  color: var(--ff9-accent-success);
+}
+
+.storage-indicator.localStorage {
+  border-color: var(--ff9-accent-warning);
+  color: var(--ff9-accent-warning);
+}
+
+.save-btn, .load-select, .delete-select {
   background: var(--ff9-bg-card);
   border: 2px solid var(--ff9-border-primary);
   border-radius: 8px;
@@ -60,10 +86,20 @@
   transition: all 0.3s ease;
 }
 
-.save-btn:hover, .load-select:hover {
+.delete-select {
+  border-color: var(--ff9-accent-error);
+  color: var(--ff9-accent-error);
+}
+
+.save-btn:hover, .load-select:hover, .delete-select:hover {
   background: var(--ff9-bg-hover);
   border-color: var(--ff9-accent-crystal);
   box-shadow: 0 0 15px var(--ff9-shadow-crystal);
+}
+
+.delete-select:hover {
+  border-color: var(--ff9-accent-error);
+  box-shadow: 0 0 15px rgba(255, 99, 99, 0.3);
 }
 
 .bottom-character-actions {
