@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { CHARACTER_CLASSES, ATTRIBUTES } from '../shared/complete_game_data.js';
+import ResistanceDisplay from './ResistanceDisplay';
 import './CharacterSheet.css';
 
 const CharacterSheet = ({ character, onClose }) => {
@@ -123,6 +124,13 @@ const CharacterSheet = ({ character, onClose }) => {
                       </div>
                     ))}
                   </div>
+                </div>
+
+                <div className="overview-section">
+                  <ResistanceDisplay
+                    character={character}
+                    editable={false}
+                  />
                 </div>
               </div>
             </div>

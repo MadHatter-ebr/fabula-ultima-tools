@@ -4045,53 +4045,6 @@ export const EQUIPMENT_CATEGORIES = {
 };
 
 // Damage Types and Resistances
-export const DAMAGE_TYPES = {
-  PHYSICAL: {
-    name: 'Physical',
-    description: 'Damage from weapons, claws, and physical attacks.',
-    common_resistances: ['Armor', 'Tough skin', 'Incorporeal']
-  },
-  AIR: {
-    name: 'Air',
-    description: 'Wind and lightning-based attacks.',
-    common_resistances: ['Grounded', 'Insulation', 'Storm resistance']
-  },
-  BOLT: {
-    name: 'Bolt',
-    description: 'Lightning and electrical attacks.',
-    common_resistances: ['Rubber', 'Grounding', 'Electrical immunity']
-  },
-  DARK: {
-    name: 'Dark',
-    description: 'Shadow and negative energy attacks.',
-    common_resistances: ['Holy protection', 'Light magic', 'Positive energy']
-  },
-  EARTH: {
-    name: 'Earth',
-    description: 'Stone and earth-based attacks.',
-    common_resistances: ['Flying', 'Intangible', 'Earth immunity']
-  },
-  FIRE: {
-    name: 'Fire',
-    description: 'Heat and flame-based attacks.',
-    common_resistances: ['Fire immunity', 'Cold resistance', 'Wet conditions']
-  },
-  ICE: {
-    name: 'Ice',
-    description: 'Cold and frost-based attacks.',
-    common_resistances: ['Cold immunity', 'Fire resistance', 'Warm conditions']
-  },
-  LIGHT: {
-    name: 'Light',
-    description: 'Holy and radiant energy attacks.',
-    common_resistances: ['Dark protection', 'Shadow magic', 'Negative energy']
-  },
-  POISON: {
-    name: 'Poison',
-    description: 'Toxic and venomous attacks.',
-    common_resistances: ['Poison immunity', 'Antidotes', 'Undead']
-  }
-};
 
 // Heroic Style Skills (available to all characters)
 export const HEROIC_STYLE_SKILLS = {
@@ -4307,6 +4260,96 @@ export const MAGISPHERES = {
   }
 };
 
+// Damage Types and Resistance System
+export const DAMAGE_TYPES = {
+  PHYSICAL: {
+    name: 'Physical',
+    icon: '⚔️',
+    color: '#8B4513',
+    description: 'Physical damage from weapons and attacks'
+  },
+  FIRE: {
+    name: 'Fire',
+    icon: '🔥',
+    color: '#FF4500',
+    description: 'Fire elemental damage'
+  },
+  ICE: {
+    name: 'Ice',
+    icon: '❄️',
+    color: '#00BFFF',
+    description: 'Ice and cold elemental damage'
+  },
+  AIR: {
+    name: 'Air',
+    icon: '💨',
+    color: '#87CEEB',
+    description: 'Wind and air elemental damage'
+  },
+  EARTH: {
+    name: 'Earth',
+    icon: '🗿',
+    color: '#8B4513',
+    description: 'Earth and stone elemental damage'
+  },
+  BOLT: {
+    name: 'Bolt',
+    icon: '⚡',
+    color: '#FFD700',
+    description: 'Lightning and electric damage'
+  },
+  DARK: {
+    name: 'Dark',
+    icon: '🌑',
+    color: '#4B0082',
+    description: 'Shadow and darkness damage'
+  },
+  LIGHT: {
+    name: 'Light',
+    icon: '✨',
+    color: '#FFD700',
+    description: 'Holy and light damage'
+  },
+  POISON: {
+    name: 'Poison',
+    icon: '☠️',
+    color: '#32CD32',
+    description: 'Poison and toxic damage'
+  }
+};
+
+// Affinity Types (Resistance System)
+export const AFFINITY_TYPES = {
+  VULNERABLE: {
+    name: 'Vulnerable',
+    icon: '🔻',
+    color: '#FF4444',
+    modifier: '+5',
+    description: 'Takes +5 extra damage from this type'
+  },
+  NORMAL: {
+    name: 'Normal',
+    icon: '➖',
+    color: '#888888',
+    modifier: '±0',
+    description: 'Normal damage from this type'
+  },
+  RESISTANT: {
+    name: 'Resistant',
+    icon: '🛡️',
+    color: '#4444FF',
+    modifier: '-5',
+    description: 'Takes 5 less damage from this type'
+  },
+  IMMUNE: {
+    name: 'Immune',
+    icon: '🚫',
+    color: '#00FF00',
+    modifier: '0',
+    description: 'Takes no damage from this type'
+  }
+};
+
 export const DEFAULT_CHARACTER = {
   name: '',
   level: 5,
@@ -4327,7 +4370,18 @@ export const DEFAULT_CHARACTER = {
   heroicStyles: [],
   equipment: [],
   bonds: [],
-  avatar_url: null
+  avatar_url: null,
+  affinities: {
+    physical: 'NORMAL',
+    fire: 'NORMAL',
+    ice: 'NORMAL',
+    air: 'NORMAL',
+    earth: 'NORMAL',
+    bolt: 'NORMAL',
+    dark: 'NORMAL',
+    light: 'NORMAL',
+    poison: 'NORMAL'
+  }
 };
 
 // Character creation rules
@@ -4353,6 +4407,7 @@ export default {
   EQUIPMENT_CATEGORIES,
   STATUS_EFFECTS,
   DAMAGE_TYPES,
+  AFFINITY_TYPES,
   DEFAULT_CHARACTER,
   CHARACTER_CREATION_RULES
 };

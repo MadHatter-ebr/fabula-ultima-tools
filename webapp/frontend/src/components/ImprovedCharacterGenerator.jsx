@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { CHARACTER_CLASSES, ATTRIBUTES, STARTING_ATTRIBUTES, HEROIC_STYLE_SKILLS, DEFAULT_CHARACTER } from '../shared/complete_game_data.js';
+import { CHARACTER_CLASSES, ATTRIBUTES, STARTING_ATTRIBUTES, HEROIC_STYLE_SKILLS, DEFAULT_CHARACTER, DAMAGE_TYPES, AFFINITY_TYPES } from '../shared/complete_game_data.js';
 import CharacterAvatar from './CharacterAvatar';
 import BondSystem from './BondSystem';
 import StatusEffects from './StatusEffects';
@@ -9,6 +9,7 @@ import CombatSystem from './CombatSystem';
 import CraftingSystem from './CraftingSystem';
 import GMTools from './GMTools';
 import CharacterSheet from './CharacterSheet';
+import ResistanceDisplay from './ResistanceDisplay';
 import './CharacterGenerator.css';
 import characterStorage from '../services/characterStorage';
 
@@ -463,6 +464,13 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
     }
   };
 
+  const handleAffinityChange = (newAffinities) => {
+    setCharacter(prev => ({
+      ...prev,
+      affinities: newAffinities
+    }));
+  };
+
   return (
     <div className="character-generator improved two-column">
       <div className="generator-header">
@@ -680,6 +688,12 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
                 gmData: gmData
               }))
             } 
+          />
+          
+          <ResistanceDisplay
+            character={character}
+            onAffinityChange={handleAffinityChange}
+            editable={true}
           />
         </div>
         </div>
