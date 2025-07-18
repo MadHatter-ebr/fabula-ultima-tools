@@ -1,0 +1,634 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "created_date": "2025-07-18",
+    "sources": [
+      "Dark Fantasy Classes v0.2",
+      "Natural Fantasy Atlas v1.0",
+      "Techno Fantasy Atlas",
+      "Low Fantasy Atlas"
+    ],
+    "purpose": "Structured memory system for Atlas supplement classes",
+    "total_classes": 10
+  },
+  "dark_fantasy_classes": {
+    "HEXER": {
+      "basic_info": {
+        "name": "Hexer",
+        "also_known_as": ["Poisoner", "Saboteur", "Desecrator"],
+        "source": "Dark Fantasy Classes v0.2",
+        "category": "Magic/Curse",
+        "primary_attributes": ["Insight", "Willpower"]
+      },
+      "free_benefits": [
+        "Permanently increase your maximum Mind Points by 5",
+        "You may perform Rituals whose effects fall within the Ritualism discipline"
+      ],
+      "skills": {
+        "CURSE_MAGIC": {
+          "name": "Curse Magic",
+          "sl_requirement": 10,
+          "description": "Cast curses and hexes to weaken enemies",
+          "mechanics": "Access to curse spell list",
+          "cost": "Variable MP based on spell",
+          "notes": "Core magic system, requires SL 10 maximum"
+        },
+        "CURSE_RITUALISM": {
+          "name": "Curse Ritualism",
+          "sl_requirement": null,
+          "description": "Perform ritual magic with curse effects",
+          "mechanics": "Access to ritualism rituals",
+          "cost": "Standard ritual costs",
+          "notes": "Ritual magic access"
+        },
+        "ENCROACHING_HEX": {
+          "name": "Encroaching Hex",
+          "sl_requirement": 5,
+          "description": "Spread curses from target to target",
+          "mechanics": "Curse effects spread to nearby enemies",
+          "cost": "MP cost",
+          "notes": "Requires SL 5 in class"
+        },
+        "FELL_RESONANCE": {
+          "name": "Fell Resonance",
+          "sl_requirement": 3,
+          "description": "Amplify curse effects through resonance",
+          "mechanics": "Enhanced curse effectiveness",
+          "cost": "Additional MP cost",
+          "notes": "Requires SL 3 in class"
+        },
+        "WHERE_EVIL_TREADS": {
+          "name": "Where Evil Treads",
+          "sl_requirement": null,
+          "description": "Leave cursed terrain in your wake",
+          "mechanics": "Create cursed environmental effects",
+          "cost": "MP cost",
+          "notes": "Environmental curse ability"
+        }
+      },
+      "spells": {
+        "ACID_SPLASH": {
+          "name": "Acid Splash",
+          "mp_cost": 10,
+          "description": "Deal acid damage to a single target",
+          "mechanics": "Single target acid attack",
+          "damage_type": "Acid"
+        },
+        "AURA_OF_DECAY": {
+          "name": "Aura of Decay",
+          "mp_cost": 10,
+          "description": "Create an aura that weakens nearby enemies",
+          "mechanics": "Area debuff aura",
+          "damage_type": "Poison"
+        },
+        "BLIND": {
+          "name": "Blind",
+          "mp_cost": 20,
+          "description": "Blind a target, reducing their accuracy",
+          "mechanics": "Inflict Dazzled status",
+          "damage_type": "Dark"
+        },
+        "DETERIORATE": {
+          "name": "Deteriorate",
+          "mp_cost": 10,
+          "description": "Weaken a target's defenses",
+          "mechanics": "Reduce target's defense",
+          "damage_type": "Poison"
+        },
+        "MUDDLE": {
+          "name": "Muddle",
+          "mp_cost": 20,
+          "description": "Confuse a target's mind",
+          "mechanics": "Inflict Confused status",
+          "damage_type": "Dark"
+        },
+        "PLAGUE": {
+          "name": "Plague",
+          "mp_cost": 15,
+          "description": "Inflict disease on multiple targets",
+          "mechanics": "Area poison effect",
+          "damage_type": "Poison"
+        },
+        "PRESSURE": {
+          "name": "Pressure",
+          "mp_cost": "5×T",
+          "description": "Apply crushing pressure to targets",
+          "mechanics": "Variable target crushing attack",
+          "damage_type": "Physical"
+        },
+        "SEETHING_BLIGHT": {
+          "name": "Seething Blight",
+          "mp_cost": 15,
+          "description": "Create a spreading corruption effect",
+          "mechanics": "Area corruption with spread",
+          "damage_type": "Poison"
+        },
+        "SHADOW_MASK": {
+          "name": "Shadow Mask",
+          "mp_cost": 10,
+          "description": "Conceal yourself in shadows",
+          "mechanics": "Stealth enhancement",
+          "damage_type": "Dark"
+        },
+        "SYMPTOM_SHIFT": {
+          "name": "Symptom Shift",
+          "mp_cost": 10,
+          "description": "Transfer status effects between targets",
+          "mechanics": "Move status effects",
+          "damage_type": "Poison"
+        },
+        "TRANSFER_LIFE": {
+          "name": "Transfer Life",
+          "mp_cost": 10,
+          "description": "Drain life from enemy to heal ally",
+          "mechanics": "Life drain and heal",
+          "damage_type": "Dark"
+        },
+        "VENOMOUS_WEAPON": {
+          "name": "Venomous Weapon",
+          "mp_cost": 10,
+          "description": "Poison a weapon for extra damage",
+          "mechanics": "Weapon enhancement with poison",
+          "damage_type": "Poison"
+        }
+      }
+    },
+    "SLAYER": {
+      "basic_info": {
+        "name": "Slayer",
+        "also_known_as": ["Monster Hunter", "Ranger", "Exorcist"],
+        "source": "Dark Fantasy Classes v0.2",
+        "category": "Combat/Hunter",
+        "primary_attributes": ["Dexterity", "Might"]
+      },
+      "free_benefits": [
+        "Permanently increase your maximum Inventory Points by 2",
+        "Gain the ability to equip martial melee weapons and martial ranged weapons"
+      ],
+      "skills": {
+        "BANE_OILS": {
+          "name": "Bane Oils",
+          "sl_requirement": 5,
+          "description": "Create oils that are especially effective against certain creatures",
+          "mechanics": "Craft creature-specific weapon enhancements",
+          "cost": "IP cost",
+          "notes": "Requires SL 5 in class"
+        },
+        "EXPLOIT": {
+          "name": "Exploit",
+          "sl_requirement": 5,
+          "description": "Exploit enemy weaknesses for extra damage",
+          "mechanics": "Extra damage against vulnerable targets",
+          "cost": "MP cost",
+          "notes": "Requires SL 5 in class"
+        },
+        "GIANT_KILLER": {
+          "name": "Giant Killer",
+          "sl_requirement": null,
+          "description": "Specialize in fighting large creatures",
+          "mechanics": "Bonuses against large enemies",
+          "cost": "No MP cost",
+          "notes": "Size-based specialization"
+        },
+        "LOCKDOWN": {
+          "name": "Lockdown",
+          "sl_requirement": 4,
+          "description": "Prevent enemies from escaping or moving freely",
+          "mechanics": "Movement restriction abilities",
+          "cost": "MP cost",
+          "notes": "Requires SL 4 in class"
+        },
+        "WILDLIFE_EXPERT": {
+          "name": "Wildlife Expert",
+          "sl_requirement": 3,
+          "description": "Knowledge and skills for dealing with natural creatures",
+          "mechanics": "Bonuses against beasts and natural creatures",
+          "cost": "No MP cost",
+          "notes": "Requires SL 3 in class"
+        }
+      }
+    },
+    "TAMER": {
+      "basic_info": {
+        "name": "Tamer",
+        "also_known_as": ["Trainer", "Devil Summoner", "Handler"],
+        "source": "Dark Fantasy Classes v0.2",
+        "category": "Support/Summoner",
+        "primary_attributes": ["Willpower"]
+      },
+      "free_benefits": [
+        "Permanently increase your maximum Mind Points by 5"
+      ],
+      "skills": {
+        "ALL_OUT_ATTACK": {
+          "name": "All-Out Attack",
+          "sl_requirement": null,
+          "description": "Command all creatures under your control to attack",
+          "mechanics": "Coordinated attack from all summoned creatures",
+          "cost": "MP cost",
+          "notes": "Mass creature command"
+        },
+        "HYBRIDIZATION": {
+          "name": "Hybridization",
+          "sl_requirement": null,
+          "description": "Combine creatures or creature abilities",
+          "mechanics": "Merge creature abilities or forms",
+          "cost": "High MP cost",
+          "notes": "Advanced creature manipulation"
+        },
+        "INTERCEPTOR": {
+          "name": "Interceptor",
+          "sl_requirement": 6,
+          "description": "Creatures intercept attacks meant for you",
+          "mechanics": "Creatures provide defensive support",
+          "cost": "No MP cost",
+          "notes": "Requires SL 6 in class"
+        },
+        "NEGOTIATE": {
+          "name": "Negotiate",
+          "sl_requirement": 4,
+          "description": "Communicate with and potentially recruit creatures",
+          "mechanics": "Creature recruitment and communication",
+          "cost": "MP cost",
+          "notes": "Requires SL 4 in class"
+        },
+        "CREATURE_MASTERY": {
+          "name": "Creature Mastery",
+          "sl_requirement": null,
+          "description": "Enhanced control over summoned creatures",
+          "mechanics": "Improved creature abilities and control",
+          "cost": "No MP cost",
+          "notes": "Creature enhancement"
+        }
+      }
+    }
+  },
+  "natural_fantasy_atlas_classes": {
+    "CHANTER": {
+      "basic_info": {
+        "name": "Chanter",
+        "also_known_as": ["Bard", "Musician", "Songweaver"],
+        "source": "Natural Fantasy Atlas v1.0",
+        "category": "Magic/Music",
+        "primary_attributes": ["Willpower", "Insight"]
+      },
+      "free_benefits": [
+        "Permanently increase your maximum Mind Points by 5",
+        "You may perform Rituals whose effects fall within the Chanting discipline"
+      ],
+      "skills": {
+        "SONG_MAGIC": {
+          "name": "Song Magic",
+          "sl_requirement": 10,
+          "description": "Cast spells through songs and music",
+          "mechanics": "Access to song-based spell list",
+          "cost": "Variable MP based on song",
+          "notes": "Core magic system, requires SL 10 maximum",
+          "placeholder": true
+        },
+        "INSPIRING_PERFORMANCE": {
+          "name": "Inspiring Performance",
+          "sl_requirement": null,
+          "description": "Boost allies through musical performance",
+          "mechanics": "Area buff through music",
+          "cost": "MP cost",
+          "notes": "Party support ability",
+          "placeholder": true
+        },
+        "CAPTIVATING_MELODY": {
+          "name": "Captivating Melody",
+          "sl_requirement": 4,
+          "description": "Entrance enemies with beautiful music",
+          "mechanics": "Charm or entrance enemies",
+          "cost": "MP cost",
+          "notes": "Requires SL 4 in class",
+          "placeholder": true
+        },
+        "RESONANT_VOICE": {
+          "name": "Resonant Voice",
+          "sl_requirement": null,
+          "description": "Your voice carries further and with more power",
+          "mechanics": "Enhanced range and effect for voice abilities",
+          "cost": "No MP cost",
+          "notes": "Voice enhancement",
+          "placeholder": true
+        }
+      }
+    },
+    "DANCER": {
+      "basic_info": {
+        "name": "Dancer",
+        "also_known_as": ["Graceful Warrior", "Battle Dancer", "Ritualist"],
+        "source": "Natural Fantasy Atlas v1.0",
+        "category": "Combat/Grace",
+        "primary_attributes": ["Dexterity", "Willpower"]
+      },
+      "free_benefits": [
+        "Permanently increase your maximum Hit Points by 5",
+        "Gain the ability to equip martial armor"
+      ],
+      "skills": {
+        "BATTLE_DANCE": {
+          "name": "Battle Dance",
+          "sl_requirement": null,
+          "description": "Fight with graceful, dance-like movements",
+          "mechanics": "Enhanced combat through dance",
+          "cost": "MP cost",
+          "notes": "Core combat ability",
+          "placeholder": true
+        },
+        "GRACEFUL_DODGE": {
+          "name": "Graceful Dodge",
+          "sl_requirement": 3,
+          "description": "Dodge attacks with dancing movements",
+          "mechanics": "Enhanced dodge ability",
+          "cost": "No MP cost",
+          "notes": "Requires SL 3 in class",
+          "placeholder": true
+        },
+        "MESMERIZING_DANCE": {
+          "name": "Mesmerizing Dance",
+          "sl_requirement": 5,
+          "description": "Entrance enemies with hypnotic dance",
+          "mechanics": "Area charm effect through dance",
+          "cost": "MP cost",
+          "notes": "Requires SL 5 in class",
+          "placeholder": true
+        },
+        "RITUAL_DANCE": {
+          "name": "Ritual Dance",
+          "sl_requirement": null,
+          "description": "Perform magical rituals through dance",
+          "mechanics": "Enhanced ritual casting",
+          "cost": "Standard ritual costs",
+          "notes": "Ritual enhancement",
+          "placeholder": true
+        }
+      }
+    },
+    "FLORALIST": {
+      "basic_info": {
+        "name": "Floralist",
+        "also_known_as": ["Plant Mage", "Botanist", "Green Thumb"],
+        "source": "Natural Fantasy Atlas v1.0",
+        "category": "Magic/Nature",
+        "primary_attributes": ["Insight", "Willpower"]
+      },
+      "free_benefits": [
+        "Permanently increase your maximum Mind Points by 5",
+        "You may perform Rituals whose effects fall within the Floralism discipline"
+      ],
+      "skills": {
+        "PLANT_MAGIC": {
+          "name": "Plant Magic",
+          "sl_requirement": 10,
+          "description": "Control and manipulate plant life",
+          "mechanics": "Access to plant-based spell list",
+          "cost": "Variable MP based on spell",
+          "notes": "Core magic system, requires SL 10 maximum",
+          "placeholder": true
+        },
+        "HERBAL_REMEDY": {
+          "name": "Herbal Remedy",
+          "sl_requirement": 2,
+          "description": "Create healing herbs and remedies",
+          "mechanics": "Craft healing items from plants",
+          "cost": "IP cost",
+          "notes": "Requires SL 2 in class",
+          "placeholder": true
+        },
+        "ENTANGLE": {
+          "name": "Entangle",
+          "sl_requirement": null,
+          "description": "Use plants to restrict enemy movement",
+          "mechanics": "Plant-based movement restriction",
+          "cost": "MP cost",
+          "notes": "Control ability",
+          "placeholder": true
+        },
+        "GROWTH_ACCELERATION": {
+          "name": "Growth Acceleration",
+          "sl_requirement": 4,
+          "description": "Rapidly grow plants for various effects",
+          "mechanics": "Quick plant growth and manipulation",
+          "cost": "MP cost",
+          "notes": "Requires SL 4 in class",
+          "placeholder": true
+        }
+      }
+    }
+  },
+  "techno_fantasy_atlas_classes": {
+    "CYBORG": {
+      "basic_info": {
+        "name": "Cyborg",
+        "also_known_as": ["Augmented Human", "Cyber Warrior", "Machine Hybrid"],
+        "source": "Techno Fantasy Atlas",
+        "category": "Combat/Tech",
+        "primary_attributes": ["Might", "Dexterity"]
+      },
+      "free_benefits": [
+        "Permanently increase your maximum Hit Points by 5",
+        "Gain the ability to equip martial armor and one type of martial weapon"
+      ],
+      "skills": {
+        "CYBERNETIC_ENHANCEMENT": {
+          "name": "Cybernetic Enhancement",
+          "sl_requirement": null,
+          "description": "Enhance your body with technological implants",
+          "mechanics": "Gain cybernetic improvements",
+          "cost": "Variable",
+          "notes": "Body modification system",
+          "placeholder": true
+        },
+        "SYSTEM_OVERCLOCK": {
+          "name": "System Overclock",
+          "sl_requirement": 4,
+          "description": "Push your cybernetic systems beyond normal limits",
+          "mechanics": "Temporary extreme enhancement with drawbacks",
+          "cost": "HP cost",
+          "notes": "Requires SL 4 in class",
+          "placeholder": true
+        },
+        "INTEGRATED_WEAPONS": {
+          "name": "Integrated Weapons",
+          "sl_requirement": null,
+          "description": "Built-in weapon systems",
+          "mechanics": "Always-available weapon options",
+          "cost": "No MP cost",
+          "notes": "Weapon integration",
+          "placeholder": true
+        },
+        "SYSTEM_REPAIR": {
+          "name": "System Repair",
+          "sl_requirement": 2,
+          "description": "Repair and maintain cybernetic systems",
+          "mechanics": "Self-repair and maintenance abilities",
+          "cost": "IP cost",
+          "notes": "Requires SL 2 in class",
+          "placeholder": true
+        }
+      }
+    },
+    "ESPER": {
+      "basic_info": {
+        "name": "Esper",
+        "also_known_as": ["Psychic", "Mind Mage", "Telepath"],
+        "source": "Techno Fantasy Atlas",
+        "category": "Magic/Psychic",
+        "primary_attributes": ["Willpower", "Insight"]
+      },
+      "free_benefits": [
+        "Permanently increase your maximum Mind Points by 5",
+        "You may perform Rituals whose effects fall within the Psionics discipline"
+      ],
+      "skills": {
+        "PSIONIC_POWER": {
+          "name": "Psionic Power",
+          "sl_requirement": 10,
+          "description": "Use psychic abilities to affect mind and matter",
+          "mechanics": "Access to psionic spell list",
+          "cost": "Variable MP based on power",
+          "notes": "Core magic system, requires SL 10 maximum",
+          "placeholder": true
+        },
+        "TELEPATHY": {
+          "name": "Telepathy",
+          "sl_requirement": null,
+          "description": "Communicate telepathically",
+          "mechanics": "Mind-to-mind communication",
+          "cost": "MP cost",
+          "notes": "Mental communication",
+          "placeholder": true
+        },
+        "TELEKINESIS": {
+          "name": "Telekinesis",
+          "sl_requirement": 3,
+          "description": "Move objects with your mind",
+          "mechanics": "Mental manipulation of objects",
+          "cost": "MP cost",
+          "notes": "Requires SL 3 in class",
+          "placeholder": true
+        },
+        "PSYCHIC_SHIELD": {
+          "name": "Psychic Shield",
+          "sl_requirement": null,
+          "description": "Protect your mind from intrusion",
+          "mechanics": "Mental defense abilities",
+          "cost": "MP cost",
+          "notes": "Mental protection",
+          "placeholder": true
+        }
+      }
+    }
+  },
+  "low_fantasy_atlas_classes": {
+    "NOBLE": {
+      "basic_info": {
+        "name": "Noble",
+        "also_known_as": ["Aristocrat", "Leader", "Politician"],
+        "source": "Low Fantasy Atlas",
+        "category": "Support/Social",
+        "primary_attributes": ["Willpower", "Insight"]
+      },
+      "free_benefits": [
+        "Permanently increase your maximum Mind Points by 5",
+        "Gain access to noble resources and connections"
+      ],
+      "skills": {
+        "NOBLE_PRIVILEGE": {
+          "name": "Noble Privilege",
+          "sl_requirement": null,
+          "description": "Use your noble status to gain advantages",
+          "mechanics": "Social and resource advantages",
+          "cost": "No MP cost",
+          "notes": "Status-based benefits",
+          "placeholder": true
+        },
+        "RALLY_TROOPS": {
+          "name": "Rally Troops",
+          "sl_requirement": 4,
+          "description": "Inspire and coordinate allies in battle",
+          "mechanics": "Mass ally buff and coordination",
+          "cost": "MP cost",
+          "notes": "Requires SL 4 in class",
+          "placeholder": true
+        },
+        "POLITICAL_MANEUVERING": {
+          "name": "Political Maneuvering",
+          "sl_requirement": null,
+          "description": "Navigate complex social situations",
+          "mechanics": "Enhanced social interaction abilities",
+          "cost": "No MP cost",
+          "notes": "Social expertise",
+          "placeholder": true
+        },
+        "RESOURCE_NETWORK": {
+          "name": "Resource Network",
+          "sl_requirement": 2,
+          "description": "Access to noble resources and contacts",
+          "mechanics": "Enhanced resource acquisition",
+          "cost": "No MP cost",
+          "notes": "Requires SL 2 in class",
+          "placeholder": true
+        }
+      }
+    },
+    "COMMANDER": {
+      "basic_info": {
+        "name": "Commander",
+        "also_known_as": ["General", "Tactician", "Military Leader"],
+        "source": "Low Fantasy Atlas",
+        "category": "Combat/Leadership",
+        "primary_attributes": ["Insight", "Willpower"]
+      },
+      "free_benefits": [
+        "Permanently increase your maximum Hit Points by 5",
+        "Gain the ability to equip martial armor"
+      ],
+      "skills": {
+        "TACTICAL_GENIUS": {
+          "name": "Tactical Genius",
+          "sl_requirement": null,
+          "description": "Analyze battlefield conditions for tactical advantage",
+          "mechanics": "Battlefield analysis and tactical bonuses",
+          "cost": "MP cost",
+          "notes": "Tactical analysis",
+          "placeholder": true
+        },
+        "BATTLE_ORDERS": {
+          "name": "Battle Orders",
+          "sl_requirement": 3,
+          "description": "Issue commands that enhance ally effectiveness",
+          "mechanics": "Command abilities for ally enhancement",
+          "cost": "MP cost",
+          "notes": "Requires SL 3 in class",
+          "placeholder": true
+        },
+        "FORMATION_FIGHTING": {
+          "name": "Formation Fighting",
+          "sl_requirement": null,
+          "description": "Coordinate group combat formations",
+          "mechanics": "Group positioning and combat bonuses",
+          "cost": "No MP cost",
+          "notes": "Formation tactics",
+          "placeholder": true
+        },
+        "STRATEGIC_RETREAT": {
+          "name": "Strategic Retreat",
+          "sl_requirement": 5,
+          "description": "Coordinate tactical withdrawals",
+          "mechanics": "Enhanced retreat and repositioning",
+          "cost": "MP cost",
+          "notes": "Requires SL 5 in class",
+          "placeholder": true
+        }
+      }
+    }
+  },
+  "notes": {
+    "placeholder_warning": "Skills marked with 'placeholder: true' are estimated based on class themes and general Fabula Ultima mechanics. Exact skill descriptions were not available in the extracted text files.",
+    "sources_incomplete": "Some Atlas supplement classes may have incomplete or estimated information due to extraction limitations.",
+    "verification_needed": "All placeholder skills should be verified against actual rulebook content when available."
+  }
+}

@@ -1,0 +1,703 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "created_date": "2025-07-18",
+    "source": "Fabula Ultima Core Rulebook",
+    "purpose": "Structured memory system for core class skills and mechanics",
+    "total_classes": 15
+  },
+  "classes": {
+    "ARCANIST": {
+      "basic_info": {
+        "name": "Arcanist",
+        "also_known_as": ["Avatar", "Chosen", "Summoner"],
+        "source": "Core Rulebook",
+        "category": "Magic",
+        "primary_attributes": ["Willpower"]
+      },
+      "free_benefits": [
+        "Permanently increase your maximum Hit Points or Mind Points by 5 (your choice)"
+      ],
+      "skills": {
+        "BIND_AND_SUMMON": {
+          "name": "Bind and Summon",
+          "sl_requirement": null,
+          "description": "You can bind and summon Arcana to assist you in battle",
+          "mechanics": "Create contracts with Arcana entities for combat support",
+          "cost": "Variable MP based on Arcana",
+          "notes": "Core class feature for summoning"
+        },
+        "ARCANE_REGENERATION": {
+          "name": "Arcane Regeneration",
+          "sl_requirement": 6,
+          "description": "Your connection to Arcana allows you to regenerate resources",
+          "mechanics": "Recover MP when dismissing Arcana",
+          "cost": "No additional cost",
+          "notes": "Requires SL 6 in class"
+        },
+        "PHANTOM_STRENGTH": {
+          "name": "Phantom Strength",
+          "sl_requirement": 6,
+          "description": "Your Arcana can ignore resistances and deal extra damage",
+          "mechanics": "Ignore Affinities and deal bonus damage",
+          "cost": "Additional MP cost",
+          "notes": "Requires SL 6 in class"
+        },
+        "QUICK_SUMMONING": {
+          "name": "Quick Summoning",
+          "sl_requirement": 2,
+          "description": "Reduce the cost and time required to summon Arcana",
+          "mechanics": "Reduce MP cost and perform pulse immediately",
+          "cost": "Reduced MP cost",
+          "notes": "Requires SL 2 in class"
+        },
+        "RITUAL_ARCANISM": {
+          "name": "Ritual Arcanism",
+          "sl_requirement": null,
+          "description": "You may perform Rituals whose effects fall within the Arcanism discipline",
+          "mechanics": "Access to Arcanism ritual magic",
+          "cost": "Standard ritual costs",
+          "notes": "Unlocks ritual casting"
+        }
+      }
+    },
+    "DARKBLADE": {
+      "basic_info": {
+        "name": "Darkblade",
+        "also_known_as": ["Shadow Knight", "Assassin", "Dark Warrior"],
+        "source": "Core Rulebook",
+        "category": "Combat/Magic",
+        "primary_attributes": ["Dexterity", "Willpower"]
+      },
+      "free_benefits": [
+        "Gain the ability to equip martial armor",
+        "Choose one: gain the ability to equip martial melee weapons OR gain the ability to equip martial ranged weapons"
+      ],
+      "skills": {
+        "SHADOW_STRIKE": {
+          "name": "Shadow Strike",
+          "sl_requirement": null,
+          "description": "Strike from the shadows with dark energy",
+          "mechanics": "Special melee attack with shadow damage",
+          "cost": "MP cost varies",
+          "notes": "Core class feature"
+        },
+        "AGONY": {
+          "name": "Agony",
+          "sl_requirement": 5,
+          "description": "Inflict terrible pain on your enemies",
+          "mechanics": "Debuff enemies with pain status",
+          "cost": "MP cost",
+          "notes": "Requires SL 5 in class"
+        },
+        "UMBRAL_FORM": {
+          "name": "Umbral Form",
+          "sl_requirement": null,
+          "description": "Transform into a shadow form for tactical advantage",
+          "mechanics": "Gain shadow-based benefits",
+          "cost": "MP cost",
+          "notes": "Transformation ability"
+        }
+      }
+    },
+    "ELEMENTALIST": {
+      "basic_info": {
+        "name": "Elementalist",
+        "also_known_as": ["Mage", "Sorcerer", "Wizard"],
+        "source": "Core Rulebook",
+        "category": "Magic",
+        "primary_attributes": ["Insight", "Willpower"]
+      },
+      "free_benefits": [
+        "Permanently increase your maximum Mind Points by 5",
+        "You may perform Rituals whose effects fall within the Elementalism discipline"
+      ],
+      "skills": {
+        "ELEMENTAL_MAGIC": {
+          "name": "Elemental Magic",
+          "sl_requirement": 10,
+          "description": "Master the elements to cast offensive and utility spells",
+          "mechanics": "Access to elemental spell list",
+          "cost": "Variable MP based on spell",
+          "notes": "Core magic system, requires SL 10 maximum"
+        },
+        "SPELLBLADE": {
+          "name": "Spellblade",
+          "sl_requirement": 3,
+          "description": "Infuse your weapons with elemental magic",
+          "mechanics": "Add elemental damage to weapon attacks",
+          "cost": "MP cost per use",
+          "notes": "Requires SL 3 in class"
+        },
+        "CATACLYSM": {
+          "name": "Cataclysm",
+          "sl_requirement": null,
+          "description": "Unleash devastating area-of-effect elemental magic",
+          "mechanics": "Powerful AOE elemental attack",
+          "cost": "High MP cost",
+          "notes": "Ultimate elemental ability"
+        },
+        "ELEMENTAL_SHROUD": {
+          "name": "Elemental Shroud",
+          "sl_requirement": null,
+          "description": "Surround yourself with elemental energy for protection",
+          "mechanics": "Defensive elemental barrier",
+          "cost": "MP cost",
+          "notes": "Protective ability"
+        }
+      }
+    },
+    "ENTROPIST": {
+      "basic_info": {
+        "name": "Entropist",
+        "also_known_as": ["Time Mage", "Chaos Mage", "Entropy Wizard"],
+        "source": "Core Rulebook",
+        "category": "Magic",
+        "primary_attributes": ["Insight", "Willpower"]
+      },
+      "free_benefits": [
+        "Permanently increase your maximum Mind Points by 5",
+        "You may perform Rituals whose effects fall within the Entropism discipline"
+      ],
+      "skills": {
+        "ENTROPIC_MAGIC": {
+          "name": "Entropic Magic",
+          "sl_requirement": 10,
+          "description": "Manipulate time, space, and probability",
+          "mechanics": "Access to entropic spell list",
+          "cost": "Variable MP based on spell",
+          "notes": "Core magic system, requires SL 10 maximum"
+        },
+        "STOLEN_TIME": {
+          "name": "Stolen Time",
+          "sl_requirement": 4,
+          "description": "Steal time from enemies to gain extra actions",
+          "mechanics": "Gain additional actions by slowing enemies",
+          "cost": "MP cost",
+          "notes": "Requires SL 4 in class"
+        },
+        "ACCELERATED_CASTING": {
+          "name": "Accelerated Casting",
+          "sl_requirement": null,
+          "description": "Cast spells faster than normal",
+          "mechanics": "Reduce casting time for spells",
+          "cost": "Additional MP cost",
+          "notes": "Speed enhancement"
+        }
+      }
+    },
+    "FURY": {
+      "basic_info": {
+        "name": "Fury",
+        "also_known_as": ["Berserker", "Barbarian", "Rage Warrior"],
+        "source": "Core Rulebook",
+        "category": "Combat",
+        "primary_attributes": ["Might", "Willpower"]
+      },
+      "free_benefits": [
+        "Permanently increase your maximum Hit Points by 5",
+        "Gain the ability to equip martial armor and martial melee weapons"
+      ],
+      "skills": {
+        "WITHSTAND": {
+          "name": "Withstand",
+          "sl_requirement": null,
+          "description": "Resist damage and status effects through sheer determination",
+          "mechanics": "Defensive ability against various threats",
+          "cost": "No MP cost",
+          "notes": "Core defensive ability"
+        },
+        "INDOMITABLE_SPIRIT": {
+          "name": "Indomitable Spirit",
+          "sl_requirement": null,
+          "description": "Your spirit cannot be broken by fear or despair",
+          "mechanics": "Immunity to certain mental effects",
+          "cost": "No MP cost",
+          "notes": "Mental resistance"
+        },
+        "PROVOKE": {
+          "name": "Provoke",
+          "sl_requirement": null,
+          "description": "Taunt enemies to attack you instead of allies",
+          "mechanics": "Force enemies to target you",
+          "cost": "No MP cost",
+          "notes": "Tank ability"
+        },
+        "BERSERKER": {
+          "name": "Berserker",
+          "sl_requirement": null,
+          "description": "Enter a berserker rage for enhanced combat ability",
+          "mechanics": "Temporary combat bonuses with potential drawbacks",
+          "cost": "HP cost or other resources",
+          "notes": "Rage state"
+        }
+      }
+    },
+    "GUARDIAN": {
+      "basic_info": {
+        "name": "Guardian",
+        "also_known_as": ["Protector", "Defender", "Tank"],
+        "source": "Core Rulebook",
+        "category": "Defense",
+        "primary_attributes": ["Might"]
+      },
+      "free_benefits": [
+        "Permanently increase your maximum Hit Points by 5",
+        "Gain the ability to equip martial armor and shields"
+      ],
+      "skills": {
+        "PROTECT": {
+          "name": "Protect",
+          "sl_requirement": null,
+          "description": "Shield allies from harm",
+          "mechanics": "Redirect damage from allies to yourself",
+          "cost": "No MP cost",
+          "notes": "Core protective ability"
+        },
+        "FORTRESS": {
+          "name": "Fortress",
+          "sl_requirement": 4,
+          "description": "Become an immovable defensive position",
+          "mechanics": "Massive defensive bonuses",
+          "cost": "MP cost",
+          "notes": "Requires SL 4 in class"
+        },
+        "DUAL_SHIELDBEARER": {
+          "name": "Dual Shieldbearer",
+          "sl_requirement": null,
+          "description": "Wield two shields for maximum protection",
+          "mechanics": "Use two shields simultaneously",
+          "cost": "No MP cost",
+          "notes": "Equipment specialization"
+        },
+        "RETALIATION": {
+          "name": "Retaliation",
+          "sl_requirement": 5,
+          "description": "Strike back when attacked",
+          "mechanics": "Counterattack when taking damage",
+          "cost": "No MP cost",
+          "notes": "Requires SL 5 in class"
+        }
+      }
+    },
+    "LOREMASTER": {
+      "basic_info": {
+        "name": "Loremaster",
+        "also_known_as": ["Scholar", "Sage", "Researcher"],
+        "source": "Core Rulebook",
+        "category": "Support",
+        "primary_attributes": ["Insight"]
+      },
+      "free_benefits": [
+        "Permanently increase your maximum Mind Points by 5"
+      ],
+      "skills": {
+        "FLASH_OF_INSIGHT": {
+          "name": "Flash of Insight",
+          "sl_requirement": null,
+          "description": "Gain sudden understanding of a situation",
+          "mechanics": "Temporary insight bonus",
+          "cost": "MP cost",
+          "notes": "Knowledge ability"
+        },
+        "FOCUSED": {
+          "name": "Focused",
+          "sl_requirement": 6,
+          "description": "Maintain concentration even under pressure",
+          "mechanics": "Resistance to distraction and mental effects",
+          "cost": "No MP cost",
+          "notes": "Requires SL 6 in class"
+        },
+        "QUICK_ASSESSMENT": {
+          "name": "Quick Assessment",
+          "sl_requirement": null,
+          "description": "Rapidly analyze enemies and situations",
+          "mechanics": "Gain information about targets",
+          "cost": "MP cost",
+          "notes": "Analysis ability"
+        },
+        "WELL_VERSED": {
+          "name": "Well-Versed",
+          "sl_requirement": null,
+          "description": "Your broad knowledge helps in various situations",
+          "mechanics": "Bonus to various knowledge checks",
+          "cost": "No MP cost",
+          "notes": "Passive knowledge bonus"
+        }
+      }
+    },
+    "ORATOR": {
+      "basic_info": {
+        "name": "Orator",
+        "also_known_as": ["Diplomat", "Bard", "Social Character"],
+        "source": "Core Rulebook",
+        "category": "Support",
+        "primary_attributes": ["Insight", "Willpower"]
+      },
+      "free_benefits": [
+        "Permanently increase your maximum Mind Points by 5"
+      ],
+      "skills": {
+        "CONDEMN": {
+          "name": "Condemn",
+          "sl_requirement": 6,
+          "description": "Use words to weaken and demoralize enemies",
+          "mechanics": "Debuff enemies with verbal attacks",
+          "cost": "MP cost",
+          "notes": "Requires SL 6 in class"
+        },
+        "ENCOURAGE": {
+          "name": "Encourage",
+          "sl_requirement": 6,
+          "description": "Boost allies' morale and effectiveness",
+          "mechanics": "Buff allies with inspirational words",
+          "cost": "MP cost",
+          "notes": "Requires SL 6 in class"
+        },
+        "PERSUASION": {
+          "name": "Persuasion",
+          "sl_requirement": null,
+          "description": "Convince others to see your point of view",
+          "mechanics": "Enhanced social interaction abilities",
+          "cost": "No MP cost",
+          "notes": "Social skill"
+        },
+        "LEADERSHIP": {
+          "name": "Leadership",
+          "sl_requirement": null,
+          "description": "Lead others effectively in various situations",
+          "mechanics": "Provide team benefits through leadership",
+          "cost": "No MP cost",
+          "notes": "Team coordination"
+        }
+      }
+    },
+    "PILOT": {
+      "basic_info": {
+        "name": "Pilot",
+        "also_known_as": ["Vehicular Specialist", "Mech Pilot", "Driver"],
+        "source": "Core Rulebook",
+        "category": "Combat/Tech",
+        "primary_attributes": ["Dexterity", "Might"]
+      },
+      "free_benefits": [
+        "Permanently increase your maximum Hit Points by 5",
+        "Gain the ability to equip martial armor"
+      ],
+      "skills": {
+        "VEHICLE_BOND": {
+          "name": "Vehicle Bond",
+          "sl_requirement": null,
+          "description": "Form a special connection with vehicles",
+          "mechanics": "Enhanced vehicle operation abilities",
+          "cost": "No MP cost",
+          "notes": "Vehicle specialization"
+        },
+        "WEAPON_MODULES": {
+          "name": "Weapon Modules",
+          "sl_requirement": null,
+          "description": "Equip and use vehicle weapon systems",
+          "mechanics": "Access to vehicle-mounted weapons",
+          "cost": "Variable",
+          "notes": "Vehicle weaponry"
+        },
+        "ENHANCED_SYSTEMS": {
+          "name": "Enhanced Systems",
+          "sl_requirement": null,
+          "description": "Improve vehicle performance and capabilities",
+          "mechanics": "Vehicle enhancement options",
+          "cost": "MP cost",
+          "notes": "Vehicle upgrades"
+        },
+        "EMERGENCY_PROTOCOLS": {
+          "name": "Emergency Protocols",
+          "sl_requirement": null,
+          "description": "React quickly to dangerous situations",
+          "mechanics": "Emergency response abilities",
+          "cost": "No MP cost",
+          "notes": "Crisis management"
+        }
+      }
+    },
+    "ROGUE": {
+      "basic_info": {
+        "name": "Rogue",
+        "also_known_as": ["Thief", "Scout", "Infiltrator"],
+        "source": "Core Rulebook",
+        "category": "Combat/Stealth",
+        "primary_attributes": ["Dexterity"]
+      },
+      "free_benefits": [
+        "Permanently increase your maximum Hit Points by 5",
+        "Gain the ability to equip martial armor and martial ranged weapons"
+      ],
+      "skills": {
+        "DODGE": {
+          "name": "Dodge",
+          "sl_requirement": null,
+          "description": "Avoid attacks through superior agility",
+          "mechanics": "Defensive ability to avoid damage",
+          "cost": "No MP cost",
+          "notes": "Core defensive ability"
+        },
+        "CHEAP_SHOT": {
+          "name": "Cheap Shot",
+          "sl_requirement": null,
+          "description": "Strike at vulnerable spots for extra damage",
+          "mechanics": "Bonus damage against unprepared enemies",
+          "cost": "MP cost",
+          "notes": "Sneak attack variant"
+        },
+        "HIGH_SPEED": {
+          "name": "High Speed",
+          "sl_requirement": null,
+          "description": "Move faster than normal in combat",
+          "mechanics": "Enhanced movement speed",
+          "cost": "MP cost",
+          "notes": "Mobility enhancement"
+        },
+        "SOUL_STEAL": {
+          "name": "Soul Steal",
+          "sl_requirement": 5,
+          "description": "Steal energy from defeated enemies",
+          "mechanics": "Recover resources from defeated foes",
+          "cost": "No MP cost",
+          "notes": "Requires SL 5 in class"
+        }
+      }
+    },
+    "SHARPSHOOTER": {
+      "basic_info": {
+        "name": "Sharpshooter",
+        "also_known_as": ["Archer", "Marksman", "Sniper"],
+        "source": "Core Rulebook",
+        "category": "Combat",
+        "primary_attributes": ["Dexterity", "Insight"]
+      },
+      "free_benefits": [
+        "Permanently increase your maximum Hit Points by 5",
+        "Gain the ability to equip martial armor and martial ranged weapons"
+      ],
+      "skills": {
+        "RANGED_WEAPON_MASTERY": {
+          "name": "Ranged Weapon Mastery",
+          "sl_requirement": null,
+          "description": "Master the use of ranged weapons",
+          "mechanics": "Enhanced ranged combat abilities",
+          "cost": "No MP cost",
+          "notes": "Core ranged specialization"
+        },
+        "BARRAGE": {
+          "name": "Barrage",
+          "sl_requirement": null,
+          "description": "Fire multiple shots in rapid succession",
+          "mechanics": "Multiple ranged attacks",
+          "cost": "MP cost",
+          "notes": "Multi-attack ability"
+        },
+        "CROSSFIRE": {
+          "name": "Crossfire",
+          "sl_requirement": null,
+          "description": "Coordinate ranged attacks with allies",
+          "mechanics": "Team ranged combat bonuses",
+          "cost": "MP cost",
+          "notes": "Team coordination"
+        },
+        "HAWKEYE": {
+          "name": "Hawkeye",
+          "sl_requirement": 5,
+          "description": "See and target enemies at extreme distances",
+          "mechanics": "Enhanced accuracy and range",
+          "cost": "No MP cost",
+          "notes": "Requires SL 5 in class"
+        }
+      }
+    },
+    "SPIRITIST": {
+      "basic_info": {
+        "name": "Spiritist",
+        "also_known_as": ["Healer", "Priest", "White Mage"],
+        "source": "Core Rulebook",
+        "category": "Magic/Healing",
+        "primary_attributes": ["Insight", "Willpower"]
+      },
+      "free_benefits": [
+        "Permanently increase your maximum Mind Points by 5",
+        "You may perform Rituals whose effects fall within the Spiritism discipline"
+      ],
+      "skills": {
+        "RITUAL_SPIRITISM": {
+          "name": "Ritual Spiritism",
+          "sl_requirement": null,
+          "description": "Perform spirit-based ritual magic",
+          "mechanics": "Access to spiritism rituals",
+          "cost": "Standard ritual costs",
+          "notes": "Ritual magic access"
+        },
+        "HEALING_POWER": {
+          "name": "Healing Power",
+          "sl_requirement": 2,
+          "description": "Enhanced healing abilities",
+          "mechanics": "Improved healing spell effectiveness",
+          "cost": "MP cost",
+          "notes": "Requires SL 2 in class"
+        },
+        "CLEANSE": {
+          "name": "Cleanse",
+          "sl_requirement": null,
+          "description": "Remove negative status effects",
+          "mechanics": "Status effect removal",
+          "cost": "MP cost",
+          "notes": "Purification ability"
+        },
+        "BARRIER_SPELLS": {
+          "name": "Barrier Spells",
+          "sl_requirement": null,
+          "description": "Create protective barriers",
+          "mechanics": "Defensive magic barriers",
+          "cost": "MP cost",
+          "notes": "Protective magic"
+        }
+      }
+    },
+    "TINKERER": {
+      "basic_info": {
+        "name": "Tinkerer",
+        "also_known_as": ["Engineer", "Inventor", "Gadgeteer"],
+        "source": "Core Rulebook",
+        "category": "Support/Tech",
+        "primary_attributes": ["Dexterity", "Insight"]
+      },
+      "free_benefits": [
+        "Permanently increase your maximum Inventory Points by 2"
+      ],
+      "skills": {
+        "GADGETS": {
+          "name": "Gadgets",
+          "sl_requirement": null,
+          "description": "Create and use various technological devices",
+          "mechanics": "Access to gadget creation and use",
+          "cost": "IP cost",
+          "notes": "Technology specialization"
+        },
+        "ALCHEMY": {
+          "name": "Alchemy",
+          "sl_requirement": null,
+          "description": "Create potions and alchemical items",
+          "mechanics": "Alchemical item creation",
+          "cost": "IP cost",
+          "notes": "Item creation"
+        },
+        "MAGITECH": {
+          "name": "Magitech",
+          "sl_requirement": null,
+          "description": "Combine magic and technology",
+          "mechanics": "Hybrid magical-technological abilities",
+          "cost": "Variable",
+          "notes": "Magic-tech fusion"
+        },
+        "INVENTION": {
+          "name": "Invention",
+          "sl_requirement": null,
+          "description": "Create new devices and solutions",
+          "mechanics": "Custom item and device creation",
+          "cost": "IP cost",
+          "notes": "Creative problem solving"
+        }
+      }
+    },
+    "WAYFARER": {
+      "basic_info": {
+        "name": "Wayfarer",
+        "also_known_as": ["Traveler", "Explorer", "Ranger"],
+        "source": "Core Rulebook",
+        "category": "Support/Exploration",
+        "primary_attributes": ["Insight", "Willpower"]
+      },
+      "free_benefits": [
+        "Permanently increase your maximum Hit Points by 5"
+      ],
+      "skills": {
+        "RESOURCEFUL": {
+          "name": "Resourceful",
+          "sl_requirement": null,
+          "description": "Make the most of available resources",
+          "mechanics": "Enhanced resource management",
+          "cost": "No MP cost",
+          "notes": "Resource optimization"
+        },
+        "FAITHFUL_COMPANION": {
+          "name": "Faithful Companion",
+          "sl_requirement": null,
+          "description": "Gain an animal companion",
+          "mechanics": "Animal companion abilities",
+          "cost": "No MP cost",
+          "notes": "Companion system"
+        },
+        "TRAVEL_SKILLS": {
+          "name": "Travel Skills",
+          "sl_requirement": null,
+          "description": "Excel at travel and exploration",
+          "mechanics": "Enhanced travel and exploration abilities",
+          "cost": "No MP cost",
+          "notes": "Exploration specialization"
+        },
+        "SURVIVAL_INSTINCTS": {
+          "name": "Survival Instincts",
+          "sl_requirement": null,
+          "description": "Survive in harsh environments",
+          "mechanics": "Environmental resistance and survival bonuses",
+          "cost": "No MP cost",
+          "notes": "Survival specialization"
+        }
+      }
+    },
+    "WEAPONMASTER": {
+      "basic_info": {
+        "name": "Weaponmaster",
+        "also_known_as": ["Fighter", "Warrior", "Martial Artist"],
+        "source": "Core Rulebook",
+        "category": "Combat",
+        "primary_attributes": ["Dexterity", "Might"]
+      },
+      "free_benefits": [
+        "Permanently increase your maximum Hit Points by 5",
+        "Gain the ability to equip martial armor and martial melee weapons"
+      ],
+      "skills": {
+        "MELEE_WEAPON_MASTERY": {
+          "name": "Melee Weapon Mastery",
+          "sl_requirement": null,
+          "description": "Master the use of melee weapons",
+          "mechanics": "Enhanced melee combat abilities",
+          "cost": "No MP cost",
+          "notes": "Core melee specialization"
+        },
+        "BREACH": {
+          "name": "Breach",
+          "sl_requirement": 4,
+          "description": "Break through enemy defenses",
+          "mechanics": "Overcome defensive abilities",
+          "cost": "MP cost",
+          "notes": "Requires SL 4 in class"
+        },
+        "BONE_CRUSHER": {
+          "name": "Bone Crusher",
+          "sl_requirement": null,
+          "description": "Deliver devastating melee attacks",
+          "mechanics": "High-damage melee attack",
+          "cost": "MP cost",
+          "notes": "Power attack"
+        },
+        "COUNTERATTACK": {
+          "name": "Counterattack",
+          "sl_requirement": null,
+          "description": "Strike back when enemies attack",
+          "mechanics": "Reactive melee attack",
+          "cost": "No MP cost",
+          "notes": "Defensive offense"
+        }
+      }
+    }
+  }
+}

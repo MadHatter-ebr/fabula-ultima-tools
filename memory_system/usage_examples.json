@@ -1,0 +1,224 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "created_date": "2025-07-18",
+    "purpose": "Example usage patterns for the Fabula Ultima memory system",
+    "examples_included": ["class_lookup", "skill_validation", "spell_mechanics", "implementation_tracking"]
+  },
+  "usage_examples": {
+    "CLASS_INFORMATION_LOOKUP": {
+      "description": "How to retrieve complete class information",
+      "example_code": "const classData = coreClasses.classes.ELEMENTALIST;",
+      "use_cases": [
+        "Character creation screen",
+        "Class description display",
+        "Skill availability checking",
+        "Free benefit application"
+      ],
+      "sample_queries": {
+        "get_class_skills": "coreClasses.classes.ELEMENTALIST.skills",
+        "get_free_benefits": "coreClasses.classes.ELEMENTALIST.free_benefits",
+        "get_primary_attributes": "coreClasses.classes.ELEMENTALIST.basic_info.primary_attributes",
+        "get_alternative_names": "coreClasses.classes.ELEMENTALIST.basic_info.also_known_as"
+      }
+    },
+    "SKILL_VALIDATION": {
+      "description": "Verify skill implementation against rulebook",
+      "example_code": "const skill = coreClasses.classes.ELEMENTALIST.skills.SPELLBLADE;",
+      "validation_checks": [
+        "skill.sl_requirement === implementation.sl_requirement",
+        "skill.description === implementation.description",
+        "skill.mechanics === implementation.mechanics",
+        "skill.cost === implementation.cost"
+      ],
+      "sample_validation": {
+        "skill_name": "Spellblade",
+        "expected_sl": 3,
+        "expected_description": "Infuse your weapons with elemental magic",
+        "expected_mechanics": "Add elemental damage to weapon attacks",
+        "expected_cost": "MP cost per use"
+      }
+    },
+    "SPELL_MECHANICS_LOOKUP": {
+      "description": "Get exact spell formulas and mechanics",
+      "example_code": "const flare = spellSystem.magic_schools.ELEMENTALISM.spells.FLARE;",
+      "mechanics_available": [
+        "mp_cost: Exact MP cost formula",
+        "damage: Damage calculation formula",
+        "accuracy: Hit chance calculation",
+        "range: Spell range specification",
+        "duration: Effect duration",
+        "target: Valid targets"
+      ],
+      "formula_examples": {
+        "damage_formula": "【INS + WLP】fire damage",
+        "mp_cost_formula": "5×T (where T = number of targets)",
+        "accuracy_formula": "【INS + WLP】+ Magic Check"
+      }
+    },
+    "IMPLEMENTATION_TRACKING": {
+      "description": "Track what's been implemented vs. what's needed",
+      "example_code": "const status = validationSystem.implementation_comparison.CORE_CLASSES_CHECKLIST.ELEMENTALIST;",
+      "tracking_fields": [
+        "implemented: boolean",
+        "free_benefits_correct: boolean",
+        "skills_complete: boolean",
+        "spell_list_complete: boolean",
+        "discrepancies: array"
+      ],
+      "update_pattern": {
+        "before_implementation": "Set all fields to false",
+        "during_implementation": "Update fields as features are completed",
+        "after_implementation": "Run validation and update status",
+        "maintenance": "Regularly verify and update status"
+      }
+    },
+    "MULTI_CLASS_COMPARISON": {
+      "description": "Compare multiple classes for analysis",
+      "example_code": "const magicClasses = ['ELEMENTALIST', 'ENTROPIST', 'SPIRITIST'];",
+      "comparison_use_cases": [
+        "Balance analysis",
+        "Feature overlap detection",
+        "Implementation priority",
+        "Content completeness"
+      ],
+      "sample_comparison": {
+        "query": "Compare all magic classes",
+        "classes_to_compare": ["ELEMENTALIST", "ENTROPIST", "SPIRITIST", "HEXER"],
+        "comparison_fields": ["free_benefits", "primary_attributes", "skill_count", "magic_school"],
+        "output_format": "Table or structured comparison"
+      }
+    },
+    "ATLAS_CLASS_HANDLING": {
+      "description": "Work with Atlas supplement classes",
+      "example_code": "const hexer = atlasClasses.dark_fantasy_classes.HEXER;",
+      "atlas_categories": [
+        "dark_fantasy_classes: Complete data available",
+        "natural_fantasy_atlas_classes: Estimated data",
+        "techno_fantasy_atlas_classes: Estimated data",
+        "low_fantasy_atlas_classes: Estimated data"
+      ],
+      "placeholder_handling": {
+        "check_placeholder": "skill.placeholder === true",
+        "use_placeholder_data": "Display with warning about accuracy",
+        "prioritize_verification": "Mark for rulebook verification",
+        "update_when_available": "Replace with actual data"
+      }
+    }
+  },
+  "integration_patterns": {
+    "CHARACTER_GENERATOR_INTEGRATION": {
+      "description": "How to integrate with character creation",
+      "initialization": "Load all memory files on app start",
+      "class_selection": "Present classes from memory system",
+      "skill_application": "Apply skills based on memory data",
+      "validation": "Verify character against memory requirements",
+      "code_example": {
+        "load_memory": "const memory = { core: require('./core_classes_memory.json'), atlas: require('./atlas_classes_memory.json') };",
+        "get_class_list": "const classList = Object.keys(memory.core.classes);",
+        "apply_free_benefits": "character.applyBenefits(memory.core.classes[className].free_benefits);",
+        "add_skills": "character.addSkills(memory.core.classes[className].skills);"
+      }
+    },
+    "VALIDATION_SYSTEM_INTEGRATION": {
+      "description": "How to use validation for quality assurance",
+      "pre_implementation": "Check validation.json for requirements",
+      "during_development": "Update implementation status",
+      "post_implementation": "Run validation checks",
+      "continuous_monitoring": "Track completeness metrics",
+      "validation_functions": {
+        "check_completeness": "function checkImplementationCompleteness(className) { return validation.CORE_CLASSES_CHECKLIST[className]; }",
+        "update_status": "function updateImplementationStatus(className, field, value) { validation.CORE_CLASSES_CHECKLIST[className][field] = value; }",
+        "run_validation": "function validateImplementation(className) { /* Compare implementation against memory */ }",
+        "generate_report": "function generateValidationReport() { /* Create status report */ }"
+      }
+    },
+    "SPELL_SYSTEM_INTEGRATION": {
+      "description": "How to implement spell mechanics",
+      "spell_lookup": "Get spell data from spell_system_memory.json",
+      "damage_calculation": "Implement damage formulas exactly as specified",
+      "mp_cost_calculation": "Apply MP cost formulas",
+      "status_effects": "Implement status effects as defined",
+      "implementation_example": {
+        "spell_data": "const spell = spellSystem.magic_schools.ELEMENTALISM.spells.FLARE;",
+        "calculate_damage": "const damage = calculateAttributeSum('INS', 'WLP') + bonuses;",
+        "apply_mp_cost": "const mpCost = 5 * targetCount;",
+        "check_accuracy": "const hitChance = calculateAttributeSum('INS', 'WLP') + magicCheck + bonuses;"
+      }
+    }
+  },
+  "best_practices": {
+    "MEMORY_ACCESS": {
+      "cache_frequently_used": "Cache commonly accessed data",
+      "lazy_loading": "Load memory files only when needed",
+      "error_handling": "Handle missing data gracefully",
+      "validation_before_use": "Always validate data exists before using"
+    },
+    "IMPLEMENTATION_WORKFLOW": {
+      "step_1": "Load memory system",
+      "step_2": "Identify implementation requirements",
+      "step_3": "Implement features based on memory data",
+      "step_4": "Validate implementation against memory",
+      "step_5": "Update implementation status",
+      "step_6": "Document any discrepancies"
+    },
+    "MAINTENANCE_ROUTINE": {
+      "weekly": "Check for placeholder entries that need updating",
+      "monthly": "Review implementation status and update",
+      "quarterly": "Validate all data against latest rulebooks",
+      "yearly": "Complete memory system review and cleanup"
+    }
+  },
+  "common_queries": {
+    "get_all_magic_classes": {
+      "description": "Get all classes that can cast spells",
+      "pattern": "Filter classes by magic school access",
+      "example": "classes.filter(c => c.free_benefits.includes('Ritual') || c.skills.includes('Magic'))"
+    },
+    "get_classes_by_attribute": {
+      "description": "Get all classes using specific attributes",
+      "pattern": "Filter by primary_attributes field",
+      "example": "classes.filter(c => c.basic_info.primary_attributes.includes('Willpower'))"
+    },
+    "get_skills_by_sl_requirement": {
+      "description": "Get skills that require specific SL",
+      "pattern": "Filter skills by sl_requirement field",
+      "example": "skills.filter(s => s.sl_requirement === 5)"
+    },
+    "get_incomplete_implementations": {
+      "description": "Get classes/skills not yet implemented",
+      "pattern": "Filter by implementation status",
+      "example": "validation.CORE_CLASSES_CHECKLIST.filter(c => !c.implemented)"
+    }
+  },
+  "troubleshooting": {
+    "COMMON_ISSUES": {
+      "memory_not_loaded": {
+        "error": "Cannot read property of undefined",
+        "solution": "Ensure memory files are loaded before use",
+        "example": "const memory = require('./memory_system/core_classes_memory.json');"
+      },
+      "class_not_found": {
+        "error": "Class data returns undefined",
+        "solution": "Check correct memory file (core vs atlas) and class name",
+        "example": "Check both core_classes_memory.json and atlas_classes_memory.json"
+      },
+      "skill_data_incomplete": {
+        "error": "Skill has placeholder: true",
+        "solution": "Use with caution, verify against rulebook",
+        "example": "if (skill.placeholder) { console.warn('Skill data is estimated'); }"
+      },
+      "validation_data_stale": {
+        "error": "Implementation status doesn't match reality",
+        "solution": "Update validation system regularly",
+        "example": "Run validation update script after implementation changes"
+      }
+    },
+    "DEBUGGING_TIPS": {
+      "log_memory_structure": "console.log(JSON.stringify(memory, null, 2));",
+      "check_data_availability": "console.log(Object.keys(memory.classes));",
+      "verify_skill_structure": "console.log(memory.classes.ELEMENTALIST.skills);",
+      "validate_implementation": "console.log(validation.CORE_CLASSES_CHECKLIST.ELEMENTALIST);"
+    }
+  }
+}

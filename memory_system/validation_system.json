@@ -1,0 +1,331 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "created_date": "2025-07-18",
+    "purpose": "Validation system for comparing implementation against rulebook content",
+    "validation_categories": ["classes", "skills", "spells", "mechanics", "equipment"]
+  },
+  "validation_framework": {
+    "ACCURACY_REQUIREMENTS": {
+      "class_skills": {
+        "requirement": "1:1 accuracy with rulebook",
+        "tolerance": "Zero deviation from official text",
+        "validation_method": "Direct text comparison"
+      },
+      "spell_formulas": {
+        "requirement": "Exact damage and MP formulas",
+        "tolerance": "No mathematical deviations",
+        "validation_method": "Formula verification"
+      },
+      "skill_levels": {
+        "requirement": "Exact SL requirements",
+        "tolerance": "No level requirement changes",
+        "validation_method": "SL requirement check"
+      },
+      "free_benefits": {
+        "requirement": "All class benefits included",
+        "tolerance": "No missing benefits",
+        "validation_method": "Benefit enumeration check"
+      }
+    },
+    "VALIDATION_CHECKLIST": {
+      "class_validation": [
+        "All 15 core classes implemented",
+        "All Atlas classes implemented",
+        "All Dark Fantasy classes implemented",
+        "Class names match exactly",
+        "Alternative names included",
+        "Free benefits accurate",
+        "Skill lists complete",
+        "Attribute requirements correct"
+      ],
+      "skill_validation": [
+        "Skill names match exactly",
+        "SL requirements accurate",
+        "MP costs correct",
+        "Damage formulas exact",
+        "Range specifications accurate",
+        "Duration specifications correct",
+        "Status effects accurate",
+        "Skill descriptions match"
+      ],
+      "spell_validation": [
+        "All school spells included",
+        "MP cost formulas correct",
+        "Damage calculations accurate",
+        "Target specifications exact",
+        "Range and duration correct",
+        "Status effects accurate",
+        "Spell descriptions match"
+      ],
+      "equipment_validation": [
+        "Weapon categories correct",
+        "Armor categories accurate",
+        "Martial weapon access correct",
+        "Shield access accurate",
+        "Equipment restrictions enforced"
+      ]
+    }
+  },
+  "implementation_comparison": {
+    "CORE_CLASSES_CHECKLIST": {
+      "ARCANIST": {
+        "implemented": false,
+        "free_benefits_correct": false,
+        "skills_complete": false,
+        "arcana_system_implemented": false,
+        "discrepancies": []
+      },
+      "DARKBLADE": {
+        "implemented": false,
+        "free_benefits_correct": false,
+        "skills_complete": false,
+        "shadow_magic_implemented": false,
+        "discrepancies": []
+      },
+      "ELEMENTALIST": {
+        "implemented": false,
+        "free_benefits_correct": false,
+        "skills_complete": false,
+        "spell_list_complete": false,
+        "discrepancies": []
+      },
+      "ENTROPIST": {
+        "implemented": false,
+        "free_benefits_correct": false,
+        "skills_complete": false,
+        "time_magic_implemented": false,
+        "discrepancies": []
+      },
+      "FURY": {
+        "implemented": false,
+        "free_benefits_correct": false,
+        "skills_complete": false,
+        "berserker_mechanics": false,
+        "discrepancies": []
+      },
+      "GUARDIAN": {
+        "implemented": false,
+        "free_benefits_correct": false,
+        "skills_complete": false,
+        "shield_mechanics": false,
+        "discrepancies": []
+      },
+      "LOREMASTER": {
+        "implemented": false,
+        "free_benefits_correct": false,
+        "skills_complete": false,
+        "knowledge_system": false,
+        "discrepancies": []
+      },
+      "ORATOR": {
+        "implemented": false,
+        "free_benefits_correct": false,
+        "skills_complete": false,
+        "social_mechanics": false,
+        "discrepancies": []
+      },
+      "PILOT": {
+        "implemented": false,
+        "free_benefits_correct": false,
+        "skills_complete": false,
+        "vehicle_system": false,
+        "discrepancies": []
+      },
+      "ROGUE": {
+        "implemented": false,
+        "free_benefits_correct": false,
+        "skills_complete": false,
+        "stealth_mechanics": false,
+        "discrepancies": []
+      },
+      "SHARPSHOOTER": {
+        "implemented": false,
+        "free_benefits_correct": false,
+        "skills_complete": false,
+        "ranged_combat_complete": false,
+        "discrepancies": []
+      },
+      "SPIRITIST": {
+        "implemented": false,
+        "free_benefits_correct": false,
+        "skills_complete": false,
+        "healing_magic_complete": false,
+        "discrepancies": []
+      },
+      "TINKERER": {
+        "implemented": false,
+        "free_benefits_correct": false,
+        "skills_complete": false,
+        "crafting_system": false,
+        "discrepancies": []
+      },
+      "WAYFARER": {
+        "implemented": false,
+        "free_benefits_correct": false,
+        "skills_complete": false,
+        "exploration_system": false,
+        "discrepancies": []
+      },
+      "WEAPONMASTER": {
+        "implemented": false,
+        "free_benefits_correct": false,
+        "skills_complete": false,
+        "melee_combat_complete": false,
+        "discrepancies": []
+      }
+    },
+    "ATLAS_CLASSES_CHECKLIST": {
+      "HEXER": {
+        "implemented": false,
+        "free_benefits_correct": false,
+        "skills_complete": false,
+        "curse_spells_complete": false,
+        "discrepancies": []
+      },
+      "SLAYER": {
+        "implemented": false,
+        "free_benefits_correct": false,
+        "skills_complete": false,
+        "monster_hunting_complete": false,
+        "discrepancies": []
+      },
+      "TAMER": {
+        "implemented": false,
+        "free_benefits_correct": false,
+        "skills_complete": false,
+        "creature_system": false,
+        "discrepancies": []
+      },
+      "CHANTER": {
+        "implemented": false,
+        "free_benefits_correct": false,
+        "skills_complete": false,
+        "music_magic_system": false,
+        "discrepancies": []
+      },
+      "DANCER": {
+        "implemented": false,
+        "free_benefits_correct": false,
+        "skills_complete": false,
+        "dance_combat_system": false,
+        "discrepancies": []
+      },
+      "FLORALIST": {
+        "implemented": false,
+        "free_benefits_correct": false,
+        "skills_complete": false,
+        "plant_magic_system": false,
+        "discrepancies": []
+      },
+      "CYBORG": {
+        "implemented": false,
+        "free_benefits_correct": false,
+        "skills_complete": false,
+        "cybernetic_system": false,
+        "discrepancies": []
+      },
+      "ESPER": {
+        "implemented": false,
+        "free_benefits_correct": false,
+        "skills_complete": false,
+        "psychic_system": false,
+        "discrepancies": []
+      },
+      "NOBLE": {
+        "implemented": false,
+        "free_benefits_correct": false,
+        "skills_complete": false,
+        "social_resource_system": false,
+        "discrepancies": []
+      },
+      "COMMANDER": {
+        "implemented": false,
+        "free_benefits_correct": false,
+        "skills_complete": false,
+        "tactical_system": false,
+        "discrepancies": []
+      }
+    }
+  },
+  "validation_tools": {
+    "AUTOMATED_CHECKS": {
+      "class_count_verification": {
+        "expected_core_classes": 15,
+        "expected_atlas_classes": 10,
+        "expected_total": 25
+      },
+      "skill_completeness": {
+        "method": "Cross-reference skill lists",
+        "verification": "Each class has all required skills"
+      },
+      "formula_accuracy": {
+        "method": "Mathematical validation",
+        "verification": "All formulas match rulebook exactly"
+      }
+    },
+    "MANUAL_VERIFICATION": {
+      "text_comparison": {
+        "method": "Direct text comparison",
+        "requirement": "Skill descriptions match exactly"
+      },
+      "mechanic_validation": {
+        "method": "Gameplay testing",
+        "requirement": "Mechanics work as intended"
+      },
+      "balance_verification": {
+        "method": "Statistical analysis",
+        "requirement": "No unintended balance changes"
+      }
+    }
+  },
+  "error_tracking": {
+    "COMMON_ISSUES": [
+      "Missing class skills",
+      "Incorrect SL requirements",
+      "Wrong MP costs",
+      "Inaccurate damage formulas",
+      "Missing free benefits",
+      "Incorrect equipment access",
+      "Wrong attribute requirements",
+      "Missing spell descriptions"
+    ],
+    "SEVERITY_LEVELS": {
+      "CRITICAL": "Breaks core gameplay mechanics",
+      "HIGH": "Significantly affects balance",
+      "MEDIUM": "Minor balance impact",
+      "LOW": "Cosmetic or text issues"
+    }
+  },
+  "compliance_scoring": {
+    "ACCURACY_METRICS": {
+      "class_completeness": "Percentage of classes fully implemented",
+      "skill_accuracy": "Percentage of skills with exact mechanics",
+      "spell_accuracy": "Percentage of spells with correct formulas",
+      "text_fidelity": "Percentage of text matching rulebook exactly"
+    },
+    "TARGET_SCORES": {
+      "class_completeness": 100,
+      "skill_accuracy": 100,
+      "spell_accuracy": 100,
+      "text_fidelity": 95
+    }
+  },
+  "update_procedures": {
+    "WHEN_TO_UPDATE": [
+      "New rulebook releases",
+      "Errata published",
+      "Implementation discrepancies found",
+      "Balance changes needed"
+    ],
+    "UPDATE_PROCESS": [
+      "1. Backup current memory system",
+      "2. Compare new content with existing",
+      "3. Identify changes and additions",
+      "4. Update memory structures",
+      "5. Run validation checks",
+      "6. Update implementation",
+      "7. Test for accuracy"
+    ]
+  }
+}

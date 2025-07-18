@@ -1,0 +1,359 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "created_date": "2025-07-18",
+    "source": "Fabula Ultima Core Rulebook and Supplements",
+    "purpose": "Detailed spell system and skill formulas for exact implementation",
+    "magic_schools": 5
+  },
+  "magic_schools": {
+    "ELEMENTALISM": {
+      "school_name": "Elementalism",
+      "description": "Control of elemental forces: earth, air, fire, water, ice, lightning",
+      "primary_attributes": ["Insight", "Willpower"],
+      "ritual_access": "Elementalist class",
+      "spell_categories": ["Offensive", "Utility", "Environmental"],
+      "spells": {
+        "FLARE": {
+          "name": "Flare",
+          "mp_cost": "5×T",
+          "target": "Up to T enemies",
+          "damage": "【INS + WLP】fire damage",
+          "accuracy": "【INS + WLP】+ Magic Check",
+          "range": "Distance",
+          "duration": "Instantaneous",
+          "description": "Launch fireballs at enemies",
+          "sl_requirement": 1,
+          "damage_type": "Fire"
+        },
+        "ICEBERG": {
+          "name": "Iceberg",
+          "mp_cost": "5×T",
+          "target": "Up to T enemies",
+          "damage": "【INS + WLP】ice damage",
+          "accuracy": "【INS + WLP】+ Magic Check",
+          "range": "Distance",
+          "duration": "Instantaneous",
+          "description": "Create ice shards to attack enemies",
+          "sl_requirement": 1,
+          "damage_type": "Ice"
+        },
+        "THUNDERBOLT": {
+          "name": "Thunderbolt",
+          "mp_cost": "5×T",
+          "target": "Up to T enemies",
+          "damage": "【INS + WLP】lightning damage",
+          "accuracy": "【INS + WLP】+ Magic Check",
+          "range": "Distance",
+          "duration": "Instantaneous",
+          "description": "Strike enemies with lightning",
+          "sl_requirement": 1,
+          "damage_type": "Lightning"
+        },
+        "WIND_CUTTER": {
+          "name": "Wind Cutter",
+          "mp_cost": "5×T",
+          "target": "Up to T enemies",
+          "damage": "【INS + WLP】air damage",
+          "accuracy": "【INS + WLP】+ Magic Check",
+          "range": "Distance",
+          "duration": "Instantaneous",
+          "description": "Slash enemies with cutting wind",
+          "sl_requirement": 1,
+          "damage_type": "Air"
+        },
+        "STONE_SPEAR": {
+          "name": "Stone Spear",
+          "mp_cost": "5×T",
+          "target": "Up to T enemies",
+          "damage": "【INS + WLP】earth damage",
+          "accuracy": "【INS + WLP】+ Magic Check",
+          "range": "Distance",
+          "duration": "Instantaneous",
+          "description": "Launch stone projectiles at enemies",
+          "sl_requirement": 1,
+          "damage_type": "Earth"
+        },
+        "HEAL": {
+          "name": "Heal",
+          "mp_cost": "5×T",
+          "target": "Up to T allies",
+          "healing": "【INS + WLP】Hit Points",
+          "accuracy": "Automatic (willing targets)",
+          "range": "Distance",
+          "duration": "Instantaneous",
+          "description": "Restore Hit Points to allies",
+          "sl_requirement": 1,
+          "damage_type": "Healing"
+        }
+      }
+    },
+    "ENTROPISM": {
+      "school_name": "Entropism",
+      "description": "Manipulation of time, space, and probability",
+      "primary_attributes": ["Insight", "Willpower"],
+      "ritual_access": "Entropist class",
+      "spell_categories": ["Time", "Space", "Probability", "Chaos"],
+      "spells": {
+        "SLOW": {
+          "name": "Slow",
+          "mp_cost": "10×T",
+          "target": "Up to T enemies",
+          "effect": "Inflict Slow status",
+          "accuracy": "【INS + WLP】+ Magic Check",
+          "range": "Distance",
+          "duration": "Scene",
+          "description": "Reduce enemy speed and actions",
+          "sl_requirement": 2,
+          "status_effect": "Slow"
+        },
+        "HASTE": {
+          "name": "Haste",
+          "mp_cost": "10×T",
+          "target": "Up to T allies",
+          "effect": "Grant extra actions",
+          "accuracy": "Automatic (willing targets)",
+          "range": "Distance",
+          "duration": "Scene",
+          "description": "Grant allies additional actions",
+          "sl_requirement": 2,
+          "status_effect": "Haste"
+        },
+        "TELEPORT": {
+          "name": "Teleport",
+          "mp_cost": "10×T",
+          "target": "Up to T allies",
+          "effect": "Instant movement",
+          "accuracy": "Automatic (willing targets)",
+          "range": "Scene",
+          "duration": "Instantaneous",
+          "description": "Instantly move allies to new positions",
+          "sl_requirement": 3,
+          "status_effect": "Movement"
+        },
+        "DISPEL": {
+          "name": "Dispel",
+          "mp_cost": "10×T",
+          "target": "Up to T targets",
+          "effect": "Remove magical effects",
+          "accuracy": "【INS + WLP】+ Magic Check",
+          "range": "Distance",
+          "duration": "Instantaneous",
+          "description": "Remove magical effects from targets",
+          "sl_requirement": 4,
+          "status_effect": "Dispel"
+        }
+      }
+    },
+    "SPIRITISM": {
+      "school_name": "Spiritism",
+      "description": "Healing, protection, and light magic",
+      "primary_attributes": ["Insight", "Willpower"],
+      "ritual_access": "Spiritist class",
+      "spell_categories": ["Healing", "Protection", "Light", "Purification"],
+      "spells": {
+        "HEAL": {
+          "name": "Heal",
+          "mp_cost": "5×T",
+          "target": "Up to T allies",
+          "healing": "【INS + WLP】Hit Points",
+          "accuracy": "Automatic (willing targets)",
+          "range": "Distance",
+          "duration": "Instantaneous",
+          "description": "Restore Hit Points to allies",
+          "sl_requirement": 1,
+          "damage_type": "Healing"
+        },
+        "CLEANSE": {
+          "name": "Cleanse",
+          "mp_cost": "5×T",
+          "target": "Up to T allies",
+          "effect": "Remove status effects",
+          "accuracy": "Automatic (willing targets)",
+          "range": "Distance",
+          "duration": "Instantaneous",
+          "description": "Remove negative status effects",
+          "sl_requirement": 1,
+          "status_effect": "Cleanse"
+        },
+        "BARRIER": {
+          "name": "Barrier",
+          "mp_cost": "10×T",
+          "target": "Up to T allies",
+          "effect": "Damage reduction",
+          "accuracy": "Automatic (willing targets)",
+          "range": "Distance",
+          "duration": "Scene",
+          "description": "Reduce damage taken by allies",
+          "sl_requirement": 2,
+          "status_effect": "Barrier"
+        },
+        "LIGHT": {
+          "name": "Light",
+          "mp_cost": "5×T",
+          "target": "Up to T enemies",
+          "damage": "【INS + WLP】light damage",
+          "accuracy": "【INS + WLP】+ Magic Check",
+          "range": "Distance",
+          "duration": "Instantaneous",
+          "description": "Strike enemies with holy light",
+          "sl_requirement": 1,
+          "damage_type": "Light"
+        }
+      }
+    },
+    "RITUALISM": {
+      "school_name": "Ritualism",
+      "description": "Curses, hexes, and dark magic",
+      "primary_attributes": ["Insight", "Willpower"],
+      "ritual_access": "Hexer class",
+      "spell_categories": ["Curses", "Hexes", "Dark", "Corruption"],
+      "spells": {
+        "CURSE": {
+          "name": "Curse",
+          "mp_cost": "10×T",
+          "target": "Up to T enemies",
+          "effect": "Inflict curse status",
+          "accuracy": "【INS + WLP】+ Magic Check",
+          "range": "Distance",
+          "duration": "Scene",
+          "description": "Curse enemies with various negative effects",
+          "sl_requirement": 2,
+          "status_effect": "Curse"
+        },
+        "DRAIN": {
+          "name": "Drain",
+          "mp_cost": "10×T",
+          "target": "Up to T enemies",
+          "damage": "【INS + WLP】dark damage",
+          "effect": "Heal caster for half damage dealt",
+          "accuracy": "【INS + WLP】+ Magic Check",
+          "range": "Distance",
+          "duration": "Instantaneous",
+          "description": "Drain life force from enemies",
+          "sl_requirement": 2,
+          "damage_type": "Dark"
+        },
+        "POISON": {
+          "name": "Poison",
+          "mp_cost": "10×T",
+          "target": "Up to T enemies",
+          "effect": "Inflict poison status",
+          "accuracy": "【INS + WLP】+ Magic Check",
+          "range": "Distance",
+          "duration": "Scene",
+          "description": "Poison enemies with toxic magic",
+          "sl_requirement": 1,
+          "status_effect": "Poison"
+        }
+      }
+    },
+    "ARCANISM": {
+      "school_name": "Arcanism",
+      "description": "Summoning and binding of Arcana entities",
+      "primary_attributes": ["Willpower"],
+      "ritual_access": "Arcanist class",
+      "spell_categories": ["Summoning", "Binding", "Arcana"],
+      "arcana_types": {
+        "FIRE_ARCANA": {
+          "name": "Fire Arcana",
+          "element": "Fire",
+          "merge_effect": "Gain fire damage on attacks",
+          "pulse_effect": "Area fire damage",
+          "dismiss_effect": "Heal allies for fire damage dealt",
+          "mp_cost": "Variable based on SL"
+        },
+        "ICE_ARCANA": {
+          "name": "Ice Arcana",
+          "element": "Ice",
+          "merge_effect": "Gain ice damage on attacks",
+          "pulse_effect": "Area ice damage and slow",
+          "dismiss_effect": "Heal allies for ice damage dealt",
+          "mp_cost": "Variable based on SL"
+        },
+        "LIGHTNING_ARCANA": {
+          "name": "Lightning Arcana",
+          "element": "Lightning",
+          "merge_effect": "Gain lightning damage on attacks",
+          "pulse_effect": "Chain lightning damage",
+          "dismiss_effect": "Heal allies for lightning damage dealt",
+          "mp_cost": "Variable based on SL"
+        }
+      }
+    }
+  },
+  "skill_formulas": {
+    "DAMAGE_CALCULATION": {
+      "basic_formula": "【Attribute1 + Attribute2】+ Weapon Damage + Bonuses",
+      "magic_damage": "【INS + WLP】+ Spell Modifier + Bonuses",
+      "critical_hits": "Roll two dice for damage, take higher result",
+      "fumbles": "Roll two dice for damage, take lower result",
+      "affinity_bonus": "+5 damage if target is Vulnerable",
+      "affinity_penalty": "-5 damage if target is Resistant, 0 if Immune"
+    },
+    "ACCURACY_CALCULATION": {
+      "basic_formula": "【Attribute1 + Attribute2】+ Accuracy Check + Bonuses",
+      "magic_accuracy": "【INS + WLP】+ Magic Check + Bonuses",
+      "difficulty_numbers": {
+        "easy": 7,
+        "normal": 10,
+        "hard": 13,
+        "extreme": 16
+      }
+    },
+    "RESOURCE_FORMULAS": {
+      "hit_points": "【Might】× 5 + Level × 2 + Class Bonuses",
+      "mind_points": "【Willpower】× 5 + Level × 2 + Class Bonuses",
+      "inventory_points": "6 + Class Bonuses",
+      "fabula_points": "Start with 3, gain 1 when conditions are met"
+    },
+    "LEVEL_PROGRESSION": {
+      "starting_level": 5,
+      "maximum_level": 50,
+      "skill_level_costs": {
+        "SL_1": 100,
+        "SL_2": 150,
+        "SL_3": 200,
+        "SL_4": 250,
+        "SL_5": 300,
+        "SL_6": 350,
+        "SL_7": 400,
+        "SL_8": 450,
+        "SL_9": 500,
+        "SL_10": 550
+      }
+    }
+  },
+  "status_effects": {
+    "DAZED": {
+      "name": "Dazed",
+      "effect": "Cannot perform actions",
+      "duration": "Until end of next turn",
+      "removal": "Automatically removed, or by Cleanse"
+    },
+    "SLOW": {
+      "name": "Slow",
+      "effect": "Reduced actions and movement",
+      "duration": "Scene",
+      "removal": "By Cleanse or Dispel"
+    },
+    "POISONED": {
+      "name": "Poisoned",
+      "effect": "Take poison damage at start of turn",
+      "duration": "Scene",
+      "removal": "By Cleanse"
+    },
+    "CONFUSED": {
+      "name": "Confused",
+      "effect": "Actions may target random allies",
+      "duration": "Scene",
+      "removal": "By Cleanse"
+    },
+    "CURSED": {
+      "name": "Cursed",
+      "effect": "Various negative effects depending on curse",
+      "duration": "Scene or longer",
+      "removal": "By Cleanse or specific ritual"
+    }
+  }
+}

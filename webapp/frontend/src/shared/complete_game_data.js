@@ -96,12 +96,12 @@ export const CHARACTER_CLASSES = {
           {
             title: 'DISMISSING AN ARCANUM',
             type: 'dropdown',
-            content: 'An Arcanum can be dismissed in several ways:\\n• Once the current scene ends, all Arcana are automatically dismissed.\\n• If you die or fall unconscious while merged with an Arcanum, they are dismissed.\\n• If you leave the scene while merged with an Arcanum, they are dismissed.\\n• You may willingly dismiss your Arcanum: this doesn\\'t require an action, but during a conflict it can only be done on your turn, before or after an action.'
+            content: 'An Arcanum can be dismissed in several ways: • Once the current scene ends, all Arcana are automatically dismissed. • If you die or fall unconscious while merged with an Arcanum, they are dismissed. • If you leave the scene while merged with an Arcanum, they are dismissed. • You may willingly dismiss your Arcanum: this does not require an action, but during a conflict it can only be done on your turn, before or after an action.'
           },
           {
             title: 'DISMISS EFFECTS',
             type: 'dropdown',
-            content: 'Most Arcana have a powerful dismiss effect, which may only be activated when you willingly dismiss the Arcanum as described above — if the Arcanum is dismissed for any other reason, the dismiss effect cannot be triggered. If the dismiss effect of an Arcanum deals damage, it will deal 10 extra damage if you are level 20 or higher, or 20 extra damage if you are level 40 or higher. You are also free to ignore the dismiss effect if you don\\'t want to use it.'
+            content: 'Most Arcana have a powerful dismiss effect, which may only be activated when you willingly dismiss the Arcanum as described above — if the Arcanum is dismissed for any other reason, the dismiss effect cannot be triggered. If the dismiss effect of an Arcanum deals damage, it will deal 10 extra damage if you are level 20 or higher, or 20 extra damage if you are level 40 or higher. You are also free to ignore the dismiss effect if you don\'t want to use it.'
           },
           {
             title: 'DOMAINS',
