@@ -631,9 +631,39 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
                       <div className="arcana-list">
                         {Object.entries(classInfo.specialRules.arcanaSelection.availableArcana).map(([key, arcana]) => (
                           <div key={key} className="arcana-item">
-                            <strong>{arcana.name}</strong>
-                            {arcana.domains && <p>Domains: {arcana.domains.join(', ')}</p>}
+                            <h6>{arcana.name}</h6>
+                            {arcana.domains && <p><strong>Domains:</strong> {arcana.domains.join(', ')}</p>}
                             {arcana.description && <p>{arcana.description}</p>}
+                            
+                            {arcana.mergeBenefits && (
+                              <div className="merge-benefits">
+                                <strong>Merge Benefits:</strong>
+                                <ul>
+                                  {arcana.mergeBenefits.map((benefit, i) => (
+                                    <li key={i}>{benefit}</li>
+                                  ))}
+                                </ul>
+                              </div>
+                            )}
+                            
+                            {arcana.dismissEffect && (
+                              <div className="dismiss-effect">
+                                <strong>Dismiss Effect - {arcana.dismissEffect.name}:</strong>
+                                <p>{arcana.dismissEffect.description}</p>
+                                {arcana.dismissEffect.options && (
+                                  <ul>
+                                    {arcana.dismissEffect.options.map((option, i) => (
+                                      <li key={i}>
+                                        <strong>{option.name}:</strong> {option.effect}
+                                      </li>
+                                    ))}
+                                  </ul>
+                                )}
+                                {arcana.dismissEffect.effect && (
+                                  <p>{arcana.dismissEffect.effect}</p>
+                                )}
+                              </div>
+                            )}
                           </div>
                         ))}
                       </div>
