@@ -611,6 +611,35 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
                     </div>
                   )}
 
+                  {classInfo.specialRules.characterSheetRules && (
+                    <div className="character-sheet-rules">
+                      <h5>Character Sheet Rules:</h5>
+                      <div className="rule-sections">
+                        {classInfo.specialRules.characterSheetRules.sections.map((section, i) => (
+                          <div key={i} className="rule-section">
+                            <h6>{section.title}</h6>
+                            <p>{section.content}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {classInfo.specialRules.arcanaSelection && (
+                    <div className="arcana-selection">
+                      <h5>Available Arcana:</h5>
+                      <div className="arcana-list">
+                        {Object.entries(classInfo.specialRules.arcanaSelection.availableArcana).map(([key, arcana]) => (
+                          <div key={key} className="arcana-item">
+                            <strong>{arcana.name}</strong>
+                            {arcana.domains && <p>Domains: {arcana.domains.join(', ')}</p>}
+                            {arcana.description && <p>{arcana.description}</p>}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
                   {classInfo.specialRules.mutationTypes && (
                     <div className="mutation-types">
                       <h5>Mutation Types:</h5>
