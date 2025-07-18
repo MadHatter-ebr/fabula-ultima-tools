@@ -396,6 +396,7 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
 
   const [savedCharacters, setSavedCharacters] = useState([]);
   const [storageStatus, setStorageStatus] = useState({ storage: 'localStorage' });
+  const [zoomLevel, setZoomLevel] = useState(1);
 
   // Load saved characters on component mount
   useEffect(() => {
@@ -471,56 +472,85 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
   };
 
   return (
-    <div className="character-generator improved two-column">
+    <div className="character-generator improved three-column" style={{ '--zoom-level': zoomLevel }}>
       <div className="generator-header">
-        <h2>🎭 Character Generator</h2>
-        <div className="character-summary compact">
-          <span>Total Level: {calculateTotalLevel()}</span>
-          <span>HP: {resources.hp}</span>
-          <span>MP: {resources.mp}</span>
-          <span>IP: {resources.ip}</span>
-        </div>
-        <div className="character-actions">
-          <div className="storage-status">
-            <span className={`storage-indicator ${storageStatus.storage}`}>
-              {storageStatus.storage === 'supabase' ? '☁️' : '💾'} 
-              {storageStatus.storage === 'supabase' ? 'Cloud' : 'Local'}
-            </span>
+        <div className="header-left">
+          <h2>🎭 Character Generator</h2>
+          <div className="character-summary compact">
+            <span>Total Level: {calculateTotalLevel()}</span>
+            <span>HP: {resources.hp}</span>
+            <span>MP: {resources.mp}</span>
+            <span>IP: {resources.ip}</span>
           </div>
-          <button onClick={saveCharacter} className="save-btn">
-            💾 Save Character
-          </button>
-          <select 
-            onChange={(e) => e.target.value && loadCharacter(e.target.value)}
-            value=""
-            className="load-select"
-          >
-            <option value="">Load Character...</option>
-            {savedCharacters.map(char => (
-              <option key={char.id} value={char.id}>
-                {char.name} (Level {char.classes?.reduce((sum, cls) => sum + (cls.level || 1), 0) || 1})
-              </option>
-            ))}
-          </select>
-          {savedCharacters.length > 0 && (
-            <select 
-              onChange={(e) => e.target.value && deleteCharacter(e.target.value)}
-              value=""
-              className="delete-select"
+        </div>
+        
+        <div className="header-center">
+          <div className="zoom-controls">
+            <button 
+              onClick={() => setZoomLevel(prev => Math.max(0.5, prev - 0.1))}
+              className="zoom-btn"
             >
-              <option value="">Delete Character...</option>
+              🔍-
+            </button>
+            <span className="zoom-level">{Math.round(zoomLevel * 100)}%</span>
+            <button 
+              onClick={() => setZoomLevel(prev => Math.min(2, prev + 0.1))}
+              className="zoom-btn"
+            >
+              🔍+
+            </button>
+            <button 
+              onClick={() => setZoomLevel(1)}
+              className="zoom-reset"
+            >
+              Reset
+            </button>
+          </div>
+        </div>
+        
+        <div className="header-right">
+          <div className="character-actions">
+            <div className="storage-status">
+              <span className={`storage-indicator ${storageStatus.storage}`}>
+                {storageStatus.storage === 'supabase' ? '☁️' : '💾'} 
+                {storageStatus.storage === 'supabase' ? 'Cloud' : 'Local'}
+              </span>
+            </div>
+            <button onClick={saveCharacter} className="save-btn">
+              💾 Save
+            </button>
+            <select 
+              onChange={(e) => e.target.value && loadCharacter(e.target.value)}
+              value=""
+              className="load-select"
+            >
+              <option value="">Load...</option>
               {savedCharacters.map(char => (
                 <option key={char.id} value={char.id}>
-                  🗑️ {char.name}
+                  {char.name} (Lv{char.classes?.reduce((sum, cls) => sum + (cls.level || 1), 0) || 1})
                 </option>
               ))}
             </select>
-          )}
+            {savedCharacters.length > 0 && (
+              <select 
+                onChange={(e) => e.target.value && deleteCharacter(e.target.value)}
+                value=""
+                className="delete-select"
+              >
+                <option value="">Delete...</option>
+                {savedCharacters.map(char => (
+                  <option key={char.id} value={char.id}>
+                    🗑️ {char.name}
+                  </option>
+                ))}
+              </select>
+            )}
+          </div>
         </div>
       </div>
 
-      <div className="generator-content two-column-layout">
-        <div className="left-column">
+      <div className="generator-content three-column-layout">
+        <div className="column column-left">
           {/* Basic Information - Compact */}
         <div className="basic-info-section compact">
           <h3>Basic Information</h3>
@@ -578,45 +608,48 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
           </div>
         </div>
 
-        {/* Classes */}
-        <div className="classes-section">
-          <div className="classes-header">
-            <h3>Classes</h3>
-            {(() => {
-              const totalLevel = calculateTotalLevel();
-              const maxClasses = totalLevel >= 10 ? 3 : 2;
-              const canAddClass = character.classes.length < maxClasses;
-              
-              if (canAddClass) {
-                const buttonText = character.classes.length === 1 
-                  ? "+ Add Second Class" 
-                  : "+ Add Third Class";
-                return (
-                  <button onClick={addCharacterClass} className="add-class-btn compact">
-                    {buttonText}
-                  </button>
-                );
-              }
-              
-              if (totalLevel < 10 && character.classes.length >= 2) {
-                return (
-                  <span className="class-requirement">
-                    Reach level 10+ to add a third class
-                  </span>
-                );
-              }
-              
-              return null;
-            })()}
-          </div>
-          
-          {character.classes.map((cls, index) => 
-            renderClassSection(cls, index)
-          )}
-        </div>
         </div>
 
-        <div className="right-column">
+        <div className="column column-center">
+          {/* Classes and Skills */}
+          <div className="classes-section">
+            <div className="classes-header">
+              <h3>Classes</h3>
+              {(() => {
+                const totalLevel = calculateTotalLevel();
+                const maxClasses = totalLevel >= 10 ? 3 : 2;
+                const canAddClass = character.classes.length < maxClasses;
+                
+                if (canAddClass) {
+                  const buttonText = character.classes.length === 1 
+                    ? "+ Add Second Class" 
+                    : "+ Add Third Class";
+                  return (
+                    <button onClick={addCharacterClass} className="add-class-btn compact">
+                      {buttonText}
+                    </button>
+                  );
+                }
+                
+                if (totalLevel < 10 && character.classes.length >= 2) {
+                  return (
+                    <span className="class-requirement">
+                      Reach level 10+ to add a third class
+                    </span>
+                  );
+                }
+                
+                return null;
+              })()}
+            </div>
+            
+            {character.classes.map((cls, index) => 
+              renderClassSection(cls, index)
+            )}
+          </div>
+        </div>
+
+        <div className="column column-right">
           {/* Advanced Character Systems */}
         <div className="advanced-systems">
           <FabulaPoints 
