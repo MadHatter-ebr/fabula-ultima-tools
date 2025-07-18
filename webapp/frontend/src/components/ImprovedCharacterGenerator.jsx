@@ -1,6 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { CHARACTER_CLASSES, ATTRIBUTES, STARTING_ATTRIBUTES, HEROIC_STYLE_SKILLS, DEFAULT_CHARACTER } from '../shared/complete_game_data.js';
 import CharacterAvatar from './CharacterAvatar';
+import BondSystem from './BondSystem';
+import StatusEffects from './StatusEffects';
+import FabulaPoints from './FabulaPoints';
+import EquipmentManager from './EquipmentManager';
+import CombatSystem from './CombatSystem';
+import CraftingSystem from './CraftingSystem';
+import GMTools from './GMTools';
+import CharacterSheet from './CharacterSheet';
 import './CharacterGenerator.css';
 
 const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
@@ -13,6 +21,7 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
 
   const [selectedSkillDescriptions, setSelectedSkillDescriptions] = useState({});
   const [showSkillDetails, setShowSkillDetails] = useState({});
+  const [showCharacterSheet, setShowCharacterSheet] = useState(false);
 
   useEffect(() => {
     if (onCharacterChange) {
@@ -20,21 +29,13 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
     }
   }, [character, onCharacterChange]);
 
-  // Get available skills for a class based on current level
+  // Get available skills for a class - all skills are available from level 1
   const getAvailableSkills = (classKey, currentLevel) => {
     if (!classKey || !CHARACTER_CLASSES[classKey]) return {};
     
     const classData = CHARACTER_CLASSES[classKey];
-    const availableSkills = {};
-    
-    // Only include skills that are available at or below current level
-    Object.entries(classData.abilities || {}).forEach(([skillName, skillData]) => {
-      if (skillData.level <= currentLevel) {
-        availableSkills[skillName] = skillData;
-      }
-    });
-    
-    return availableSkills;
+    // Return all skills regardless of character level
+    return classData.abilities || {};
   };
 
   // Check if a skill can be taken (based on usage limits)
@@ -50,9 +51,8 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
       skill => skill === skillName
     ).length;
     
-    // Most skills can only be taken once, some special skills might allow multiple times
-    // This would need to be defined in the skill data - for now, limit to 1
-    const maxTimes = availableSkills[skillName].maxTimes || 1;
+    // The skill level indicates how many times it can be taken (max level = max times)
+    const maxTimes = availableSkills[skillName].level || 1;
     
     return timesAlreadyTaken < maxTimes;
   };
@@ -70,15 +70,19 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
       const oldLevel = newClasses[classIndex].level;
       newClasses[classIndex].level = parseInt(newLevel);
       
-      // If level decreased, remove skills that are no longer available
+      // If level decreased, remove excess skill slots but keep all skills
+      // (since all skills are available from level 1, we only need to manage slot count)
       if (newLevel < oldLevel) {
-        const classKey = newClasses[classIndex].classKey;
-        const availableSkills = getAvailableSkills(classKey, newLevel);
+        const maxSkillSlots = getSkillSlotsForLevel(newLevel);
+        const currentAbilities = newClasses[classIndex].abilities;
         const newAbilities = {};
         
-        Object.entries(newClasses[classIndex].abilities).forEach(([slot, skillName]) => {
-          if (availableSkills[skillName]) {
+        // Keep only the first N skills that fit in the available slots
+        let slotCount = 0;
+        Object.entries(currentAbilities).forEach(([slot, skillName]) => {
+          if (slotCount < maxSkillSlots) {
             newAbilities[slot] = skillName;
+            slotCount++;
           }
         });
         
@@ -138,13 +142,18 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
             <option value="">-- Select Skill --</option>
             {Object.entries(availableSkills).map(([skillName, skillData]) => {
               const canTake = canTakeSkill(classIndex, skillName);
+              const timesAlreadyTaken = Object.values(currentClass.abilities).filter(
+                skill => skill === skillName
+              ).length;
+              const maxTimes = skillData.level || 1;
+              
               return (
                 <option 
                   key={skillName} 
                   value={skillName}
                   disabled={!canTake && currentSkill !== skillName}
                 >
-                  {skillName} (Lv.{skillData.level}) {!canTake && currentSkill !== skillName ? ' - Already taken' : ''}
+                  {skillName} (Max: {maxTimes}) {timesAlreadyTaken > 0 ? `[${timesAlreadyTaken}/${maxTimes}]` : ''} {!canTake && currentSkill !== skillName ? ' - Max reached' : ''}
                 </option>
               );
             })}
@@ -262,12 +271,16 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
   };
 
   const addCharacterClass = () => {
-    if (character.classes.length < 2) {
+    const totalLevel = calculateTotalLevel();
+    const maxClasses = totalLevel >= 10 ? 3 : 2; // Ab Level 10 sind 3 Klassen erlaubt
+    
+    if (character.classes.length < maxClasses) {
+      const slotName = character.classes.length === 1 ? 'secondary' : 'tertiary';
       setCharacter(prev => ({
         ...prev,
         classes: [
           ...prev.classes,
-          { classKey: null, level: 1, abilities: {}, slot: 'secondary' }
+          { classKey: null, level: 1, abilities: {}, slot: slotName }
         ]
       }));
     }
@@ -324,7 +337,15 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
     return { hp, mp, ip };
   };
 
+  // Get classes with special rules
+  const getClassesWithSpecialRules = () => {
+    return character.classes
+      .filter(cls => cls.classKey && CHARACTER_CLASSES[cls.classKey]?.specialRules)
+      .map(cls => CHARACTER_CLASSES[cls.classKey]);
+  };
+
   const resources = calculateResources();
+  const classesWithSpecialRules = getClassesWithSpecialRules();
 
   return (
     <div className="character-generator improved">
@@ -400,11 +421,32 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
         <div className="classes-section">
           <div className="classes-header">
             <h3>Classes</h3>
-            {character.classes.length < 2 && (
-              <button onClick={addCharacterClass} className="add-class-btn compact">
-                + Add Second Class
-              </button>
-            )}
+            {(() => {
+              const totalLevel = calculateTotalLevel();
+              const maxClasses = totalLevel >= 10 ? 3 : 2;
+              const canAddClass = character.classes.length < maxClasses;
+              
+              if (canAddClass) {
+                const buttonText = character.classes.length === 1 
+                  ? "+ Add Second Class" 
+                  : "+ Add Third Class";
+                return (
+                  <button onClick={addCharacterClass} className="add-class-btn compact">
+                    {buttonText}
+                  </button>
+                );
+              }
+              
+              if (totalLevel < 10 && character.classes.length >= 2) {
+                return (
+                  <span className="class-requirement">
+                    Reach level 10+ to add a third class
+                  </span>
+                );
+              }
+              
+              return null;
+            })()}
           </div>
           
           {character.classes.map((cls, index) => 
@@ -412,16 +454,167 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
           )}
         </div>
 
+        {/* Advanced Character Systems */}
+        <div className="advanced-systems">
+          <FabulaPoints 
+            character={character} 
+            onFabulaPointsChange={(fabulaData) => 
+              setCharacter(prev => ({ 
+                ...prev, 
+                fabulaPoints: fabulaData.points, 
+                fabulaHistory: fabulaData.history 
+              }))
+            } 
+          />
+          
+          <BondSystem 
+            character={character} 
+            onBondChange={(bonds) => 
+              setCharacter(prev => ({ ...prev, bonds }))
+            } 
+          />
+          
+          <StatusEffects 
+            character={character} 
+            onStatusChange={(statusEffects) => 
+              setCharacter(prev => ({ ...prev, statusEffects }))
+            } 
+          />
+          
+          <EquipmentManager 
+            character={character} 
+            onEquipmentChange={(equipmentData) => 
+              setCharacter(prev => ({ 
+                ...prev, 
+                equipment: equipmentData.equipment,
+                equippedItems: equipmentData.equippedItems,
+                zenit: equipmentData.zenit
+              }))
+            } 
+          />
+          
+          <CombatSystem 
+            character={character} 
+            onCombatChange={(combatData) => 
+              setCharacter(prev => ({ 
+                ...prev, 
+                combatState: combatData.combatState,
+                healthState: combatData.healthState
+              }))
+            } 
+          />
+          
+          <CraftingSystem 
+            character={character} 
+            onCraftingChange={(craftingData) => 
+              setCharacter(prev => ({ 
+                ...prev, 
+                craftingMaterials: craftingData.craftingMaterials,
+                craftingSkill: craftingData.craftingSkill,
+                craftingRecipes: craftingData.recipes
+              }))
+            } 
+          />
+          
+          <GMTools 
+            character={character} 
+            onGMDataChange={(gmData) => 
+              setCharacter(prev => ({ 
+                ...prev, 
+                gmData: gmData
+              }))
+            } 
+          />
+        </div>
+
+        {/* Special Class Rules */}
+        {classesWithSpecialRules.length > 0 && (
+          <div className="special-rules-section">
+            <h3>Special Class Rules</h3>
+            {classesWithSpecialRules.map((classInfo, index) => (
+              <div key={index} className="special-rule-card">
+                <div className="special-rule-header">
+                  <h4>{classInfo.name}: {classInfo.specialRules.title}</h4>
+                </div>
+                <div className="special-rule-content">
+                  <p className="special-rule-description">
+                    {classInfo.specialRules.description}
+                  </p>
+                  
+                  {classInfo.specialRules.arcanaTypes && (
+                    <div className="arcana-types">
+                      <h5>Arcana Types:</h5>
+                      <ul>
+                        {classInfo.specialRules.arcanaTypes.map((arcana, i) => (
+                          <li key={i}>
+                            <strong>{arcana.name}</strong>: {arcana.description}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                  
+                  {classInfo.specialRules.bindingRules && (
+                    <div className="binding-rules">
+                      <h5>Binding Rules:</h5>
+                      <ul>
+                        {classInfo.specialRules.bindingRules.map((rule, i) => (
+                          <li key={i}>{rule}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {classInfo.specialRules.mutationTypes && (
+                    <div className="mutation-types">
+                      <h5>Mutation Types:</h5>
+                      <ul>
+                        {classInfo.specialRules.mutationTypes.map((mutation, i) => (
+                          <li key={i}>
+                            <strong>{mutation.name}</strong>: {mutation.description}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                  
+                  {classInfo.specialRules.mutationRules && (
+                    <div className="mutation-rules">
+                      <h5>Mutation Rules:</h5>
+                      <ul>
+                        {classInfo.specialRules.mutationRules.map((rule, i) => (
+                          <li key={i}>{rule}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
         {/* Character Actions */}
         <div className="character-actions">
+          <button onClick={() => setShowCharacterSheet(true)} className="preview-btn">
+            View Character Sheet
+          </button>
           <button onClick={() => console.log(character)} className="preview-btn">
-            Preview Character
+            Export Character
           </button>
           <button onClick={() => setCharacter({...DEFAULT_CHARACTER, classes: [{ classKey: null, level: 1, abilities: {}, slot: 'primary' }]})} className="reset-btn">
             Reset Character
           </button>
         </div>
       </div>
+      
+      {/* Character Sheet Modal */}
+      {showCharacterSheet && (
+        <CharacterSheet 
+          character={character} 
+          onClose={() => setShowCharacterSheet(false)} 
+        />
+      )}
     </div>
   );
 };

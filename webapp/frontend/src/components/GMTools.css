@@ -1,0 +1,756 @@
+/* GM Tools Component */
+.gm-tools {
+  background: var(--ff9-bg-panel);
+  border: 2px solid var(--ff9-border-gold);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.gm-tools::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  right: -1px;
+  bottom: -1px;
+  background: linear-gradient(45deg, var(--ff9-gold-light), var(--ff9-crystal-blue), var(--ff9-gold-light));
+  border-radius: 12px;
+  z-index: -1;
+  opacity: 0.3;
+}
+
+.gm-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--ff9-border-gold);
+}
+
+.gm-header h3 {
+  font-family: var(--ff9-font-title);
+  font-size: 1.4rem;
+  color: var(--ff9-text-gold);
+  margin: 0;
+  text-shadow: 0 0 10px var(--ff9-shadow-gold);
+}
+
+.campaign-selector {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.current-campaign {
+  font-family: var(--ff9-font-title);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--ff9-text-primary);
+  text-shadow: 0 0 5px var(--ff9-shadow-crystal);
+}
+
+.create-campaign-btn {
+  background: var(--ff9-bg-accent);
+  color: var(--ff9-text-primary);
+  border: 1px solid var(--ff9-border-gold);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-family: var(--ff9-font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.create-campaign-btn:hover {
+  background: var(--ff9-gold-dark);
+  color: var(--ff9-text-gold);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px var(--ff9-shadow-gold);
+}
+
+.gm-content {
+  display: grid;
+  gap: 1.5rem;
+}
+
+/* Tabs */
+.gm-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid var(--ff9-border-secondary);
+}
+
+.tab-btn {
+  background: none;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  font-family: var(--ff9-font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--ff9-text-secondary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-bottom: 2px solid transparent;
+}
+
+.tab-btn:hover {
+  color: var(--ff9-text-primary);
+  background: rgba(58, 45, 74, 0.3);
+}
+
+.tab-btn.active {
+  color: var(--ff9-text-gold);
+  border-bottom-color: var(--ff9-gold-light);
+  background: rgba(58, 45, 74, 0.5);
+}
+
+.tab-content {
+  min-height: 400px;
+}
+
+/* Overview Tab */
+.overview-tab {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.campaign-overview {
+  background: rgba(42, 33, 56, 0.3);
+  border: 1px solid var(--ff9-border-secondary);
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.campaign-overview h4 {
+  font-family: var(--ff9-font-title);
+  font-size: 1.2rem;
+  color: var(--ff9-text-primary);
+  margin: 0 0 0.8rem 0;
+}
+
+.campaign-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+.stat {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0.8rem;
+  background: rgba(58, 45, 74, 0.3);
+  border-radius: 6px;
+}
+
+.stat span:first-child {
+  font-weight: 600;
+  color: var(--ff9-text-secondary);
+}
+
+.stat span:last-child {
+  font-weight: 600;
+  color: var(--ff9-text-primary);
+  font-size: 1.1rem;
+}
+
+.notes-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.world-notes,
+.session-notes {
+  background: rgba(42, 33, 56, 0.3);
+  border: 1px solid var(--ff9-border-secondary);
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.world-notes h4,
+.session-notes h4 {
+  font-family: var(--ff9-font-title);
+  font-size: 1.2rem;
+  color: var(--ff9-text-primary);
+  margin: 0 0 0.8rem 0;
+}
+
+.notes-textarea {
+  width: 100%;
+  height: 200px;
+  background: var(--ff9-bg-card);
+  border: 1px solid var(--ff9-border-primary);
+  border-radius: 6px;
+  padding: 0.8rem;
+  font-family: var(--ff9-font-body);
+  font-size: 0.9rem;
+  color: var(--ff9-text-primary);
+  resize: vertical;
+  transition: all 0.3s ease;
+}
+
+.notes-textarea:focus {
+  outline: none;
+  border-color: var(--ff9-border-gold);
+  box-shadow: 0 0 10px var(--ff9-shadow-gold);
+}
+
+/* Section Headers */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.section-header h4 {
+  font-family: var(--ff9-font-title);
+  font-size: 1.2rem;
+  color: var(--ff9-text-primary);
+  margin: 0;
+}
+
+.create-btn {
+  background: var(--ff9-crystal-blue);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-family: var(--ff9-font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.create-btn:hover {
+  background: #1976d2;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: 3rem;
+  color: var(--ff9-text-secondary);
+  font-style: italic;
+  background: rgba(42, 33, 56, 0.2);
+  border-radius: 8px;
+}
+
+/* Grid Layouts */
+.npcs-grid,
+.encounters-grid,
+.quests-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+/* Card Styles */
+.npc-card,
+.encounter-card,
+.quest-card {
+  background: rgba(58, 45, 74, 0.4);
+  border: 1px solid var(--ff9-border-primary);
+  border-radius: 8px;
+  padding: 1rem;
+  transition: all 0.3s ease;
+}
+
+.npc-card:hover,
+.encounter-card:hover,
+.quest-card:hover {
+  background: rgba(58, 45, 74, 0.6);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px var(--ff9-shadow-secondary);
+}
+
+/* Card Headers */
+.npc-header,
+.encounter-header,
+.quest-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.8rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--ff9-border-secondary);
+}
+
+.npc-name,
+.encounter-name,
+.quest-name {
+  font-family: var(--ff9-font-title);
+  font-weight: 600;
+  color: var(--ff9-text-primary);
+  font-size: 1.1rem;
+}
+
+.npc-type,
+.encounter-status,
+.quest-status {
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.npc-type {
+  background: var(--ff9-bg-accent);
+  color: var(--ff9-text-primary);
+}
+
+.encounter-status.planned {
+  background: rgba(33, 150, 243, 0.2);
+  color: var(--ff9-crystal-blue);
+}
+
+.encounter-status.active {
+  background: rgba(255, 152, 0, 0.2);
+  color: #ff9800;
+}
+
+.encounter-status.completed {
+  background: rgba(76, 175, 80, 0.2);
+  color: #4caf50;
+}
+
+.quest-status.active {
+  background: rgba(255, 152, 0, 0.2);
+  color: #ff9800;
+}
+
+.quest-status.completed {
+  background: rgba(76, 175, 80, 0.2);
+  color: #4caf50;
+}
+
+.quest-status.failed {
+  background: rgba(244, 67, 54, 0.2);
+  color: var(--ff9-crystal-red);
+}
+
+/* Card Content */
+.npc-description,
+.encounter-description,
+.quest-description {
+  font-size: 0.9rem;
+  color: var(--ff9-text-secondary);
+  line-height: 1.4;
+  margin-bottom: 0.8rem;
+  font-style: italic;
+}
+
+.npc-stats,
+.encounter-details,
+.quest-details {
+  display: grid;
+  gap: 0.5rem;
+  margin-bottom: 0.8rem;
+}
+
+.stat,
+.detail {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.3rem 0.5rem;
+  background: rgba(58, 45, 74, 0.3);
+  border-radius: 4px;
+  font-size: 0.85rem;
+}
+
+.stat span:first-child,
+.detail span:first-child {
+  font-weight: 600;
+  color: var(--ff9-text-secondary);
+}
+
+.stat span:last-child,
+.detail span:last-child {
+  color: var(--ff9-text-primary);
+}
+
+/* Quest Progress */
+.quest-progress {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.8rem;
+}
+
+.progress-bar {
+  flex: 1;
+  height: 8px;
+  background: rgba(42, 33, 56, 0.6);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--ff9-crystal-blue), var(--ff9-gold-light));
+  transition: width 0.3s ease;
+}
+
+.progress-text {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--ff9-text-primary);
+  min-width: 35px;
+}
+
+/* Card Actions */
+.npc-actions,
+.encounter-actions,
+.quest-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.edit-btn,
+.remove-btn,
+.run-btn,
+.progress-btn {
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  font-family: var(--ff9-font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.edit-btn {
+  background: var(--ff9-bg-accent);
+  color: var(--ff9-text-primary);
+}
+
+.edit-btn:hover {
+  background: var(--ff9-gold-dark);
+  color: var(--ff9-text-gold);
+}
+
+.remove-btn {
+  background: var(--ff9-crystal-red);
+  color: white;
+}
+
+.remove-btn:hover {
+  background: #d32f2f;
+  transform: scale(1.05);
+}
+
+.run-btn {
+  background: var(--ff9-crystal-blue);
+  color: white;
+}
+
+.run-btn:hover {
+  background: #1976d2;
+  transform: scale(1.05);
+}
+
+.progress-btn {
+  background: var(--ff9-crystal-purple);
+  color: white;
+}
+
+.progress-btn:hover {
+  background: #7b1fa2;
+  transform: scale(1.05);
+}
+
+/* Tools Tab */
+.tools-tab {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.tool-card {
+  background: rgba(58, 45, 74, 0.4);
+  border: 1px solid var(--ff9-border-primary);
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.tool-card:hover {
+  background: rgba(58, 45, 74, 0.6);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px var(--ff9-shadow-secondary);
+}
+
+.tool-card h4 {
+  font-family: var(--ff9-font-title);
+  font-size: 1.1rem;
+  color: var(--ff9-text-primary);
+  margin: 0 0 1rem 0;
+}
+
+.dice-buttons {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.dice-buttons button {
+  background: var(--ff9-bg-accent);
+  color: var(--ff9-text-primary);
+  border: 1px solid var(--ff9-border-gold);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-family: var(--ff9-font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 50px;
+}
+
+.dice-buttons button:hover {
+  background: var(--ff9-gold-dark);
+  color: var(--ff9-text-gold);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px var(--ff9-shadow-gold);
+}
+
+.tool-card > button {
+  background: var(--ff9-crystal-blue);
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  font-family: var(--ff9-font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.tool-card > button:hover {
+  background: #1976d2;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
+}
+
+/* Modal Styles */
+.create-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(3px);
+}
+
+.modal-content {
+  background: var(--ff9-bg-panel);
+  border: 2px solid var(--ff9-border-gold);
+  border-radius: 12px;
+  max-width: 500px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 8px 32px var(--ff9-shadow-gold);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--ff9-border-gold);
+}
+
+.modal-header h4 {
+  font-family: var(--ff9-font-title);
+  font-size: 1.3rem;
+  color: var(--ff9-text-gold);
+  margin: 0;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--ff9-text-secondary);
+  cursor: pointer;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.close-btn:hover {
+  background: var(--ff9-crystal-red);
+  color: white;
+}
+
+.modal-body {
+  padding: 1.5rem;
+}
+
+/* Form Styles */
+.form {
+  display: grid;
+  gap: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-weight: 600;
+  color: var(--ff9-text-secondary);
+  font-size: 0.9rem;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  background: var(--ff9-bg-card);
+  border: 1px solid var(--ff9-border-primary);
+  border-radius: 6px;
+  padding: 0.8rem;
+  font-family: var(--ff9-font-body);
+  font-size: 0.9rem;
+  color: var(--ff9-text-primary);
+  transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--ff9-border-gold);
+  box-shadow: 0 0 10px var(--ff9-shadow-gold);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.submit-btn {
+  background: var(--ff9-bg-accent);
+  color: var(--ff9-text-primary);
+  border: 1px solid var(--ff9-border-gold);
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  font-family: var(--ff9-font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  justify-self: center;
+}
+
+.submit-btn:hover {
+  background: var(--ff9-gold-dark);
+  color: var(--ff9-text-gold);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px var(--ff9-shadow-gold);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .gm-header {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .campaign-selector {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .gm-tabs {
+    flex-wrap: wrap;
+  }
+  
+  .tab-btn {
+    flex: 1;
+    min-width: 100px;
+  }
+  
+  .notes-section {
+    grid-template-columns: 1fr;
+  }
+  
+  .campaign-stats {
+    grid-template-columns: 1fr;
+  }
+  
+  .npcs-grid,
+  .encounters-grid,
+  .quests-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .tools-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .dice-buttons {
+    justify-content: center;
+  }
+  
+  .modal-content {
+    width: 95%;
+    margin: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .gm-tools {
+    padding: 1rem;
+  }
+  
+  .gm-content {
+    gap: 1rem;
+  }
+  
+  .npc-actions,
+  .encounter-actions,
+  .quest-actions {
+    flex-direction: column;
+  }
+  
+  .npc-actions button,
+  .encounter-actions button,
+  .quest-actions button {
+    width: 100%;
+  }
+}
