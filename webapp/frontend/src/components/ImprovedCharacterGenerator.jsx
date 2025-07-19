@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { CHARACTER_CLASSES, ATTRIBUTES, STARTING_ATTRIBUTES, HEROIC_STYLE_SKILLS, DEFAULT_CHARACTER, DAMAGE_TYPES, AFFINITY_TYPES } from '../shared/complete_game_data.js';
+import { CHARACTER_CLASSES, ATTRIBUTES, STARTING_ATTRIBUTES, HEROIC_STYLE_SKILLS, DEFAULT_CHARACTER, DAMAGE_TYPES, AFFINITY_TYPES, ELEMENTALIST_SPELLS } from '../shared/complete_game_data.js';
 import CharacterAvatar from './CharacterAvatar';
 import BondSystem from './BondSystem';
 import StatusEffects from './StatusEffects';
@@ -16,7 +16,7 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
   const [character, setCharacter] = useState({
     ...DEFAULT_CHARACTER,
     classes: [
-      { classKey: null, level: 5, abilities: {}, slot: 'primary' }
+      { classKey: null, level: 5, abilities: {}, slot: 'primary', spells: {} }
     ]
   });
 
@@ -64,15 +64,17 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
     
     // Check if we have available skill slots (unless we're replacing an existing skill)
     if (!skipSlotCheck) {
-      const maxSkillSlots = getSkillSlotsForLevel(currentClass.level);
-      const currentSkillCount = Object.keys(currentClass.abilities).length;
-      if (currentSkillCount >= maxSkillSlots) return false;
+      const maxSkillSlots = getSkillSlotsForLevel();
+      const totalCurrentSkills = character.classes.reduce((total, cls) => 
+        total + Object.keys(cls.abilities || {}).length, 0
+      );
+      if (totalCurrentSkills >= maxSkillSlots) return false;
     }
     
-    // Count how many times this skill is already taken
-    const timesAlreadyTaken = Object.values(currentClass.abilities).filter(
-      skill => skill === skillName
-    ).length;
+    // Count how many times this skill is already taken across ALL classes
+    const timesAlreadyTaken = character.classes.reduce((total, cls) => 
+      total + Object.values(cls.abilities || {}).filter(skill => skill === skillName).length, 0
+    );
     
     // The skill level indicates how many times it can be taken (max level = max times)
     const maxTimes = availableSkills[skillName].level || 1;
@@ -80,10 +82,10 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
     return timesAlreadyTaken < maxTimes;
   };
 
-  // Get skill slots based on class level (1:1 ratio)
-  const getSkillSlotsForLevel = (level) => {
-    // Each level grants one skill slot (Level 5 = 5 skills)
-    return level;
+  // Get skill slots based on total character level (1:1 ratio)
+  const getSkillSlotsForLevel = () => {
+    // Each character level grants one skill slot (Total Level 5 = 5 skills total)
+    return calculateTotalLevel();
   };
 
   const updateClassLevel = (classIndex, newLevel) => {
@@ -92,23 +94,25 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
       const oldLevel = newClasses[classIndex].level;
       newClasses[classIndex].level = parseInt(newLevel);
       
-      // If level decreased, remove excess skill slots but keep all skills
-      // (since all skills are available from level 1, we only need to manage slot count)
-      if (newLevel < oldLevel) {
-        const maxSkillSlots = getSkillSlotsForLevel(newLevel);
+      // If total level decreased, we need to check if we exceed total skill slots
+      const newTotalLevel = newClasses.reduce((total, cls) => total + cls.level, 0);
+      const maxSkillSlots = newTotalLevel; // 1:1 ratio with total level
+      const totalCurrentSkills = newClasses.reduce((total, cls) => 
+        total + Object.keys(cls.abilities || {}).length, 0
+      );
+      
+      // If we have too many skills, remove excess from the current class first
+      if (totalCurrentSkills > maxSkillSlots) {
+        const excessSkills = totalCurrentSkills - maxSkillSlots;
         const currentAbilities = newClasses[classIndex].abilities;
-        const newAbilities = {};
+        const abilityEntries = Object.entries(currentAbilities);
         
-        // Keep only the first N skills that fit in the available slots
-        let slotCount = 0;
-        Object.entries(currentAbilities).forEach(([slot, skillName]) => {
-          if (slotCount < maxSkillSlots) {
-            newAbilities[slot] = skillName;
-            slotCount++;
-          }
-        });
-        
-        newClasses[classIndex].abilities = newAbilities;
+        // Remove excess skills from this class
+        const skillsToRemove = Math.min(excessSkills, abilityEntries.length);
+        for (let i = 0; i < skillsToRemove; i++) {
+          const [slotToRemove] = abilityEntries[abilityEntries.length - 1 - i];
+          delete newClasses[classIndex].abilities[slotToRemove];
+        }
       }
       
       return {
@@ -125,9 +129,46 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
       if (skillName === '') {
         // Remove skill
         delete newClasses[classIndex].abilities[skillSlot];
+        // No need to remove spells when removing skills - spells are separate
       } else {
         // Add skill
         newClasses[classIndex].abilities[skillSlot] = skillName;
+      }
+      
+      return {
+        ...prev,
+        classes: newClasses
+      };
+    });
+  };
+  
+  const getElementalMagicSkillLevel = (classIndex) => {
+    const currentClass = character.classes[classIndex];
+    return Object.values(currentClass.abilities || {}).filter(
+      skill => skill === 'Elemental Magic'
+    ).length;
+  };
+  
+  const getAvailableSpellSlots = (classIndex) => {
+    // Each level of Elemental Magic grants one spell slot
+    return getElementalMagicSkillLevel(classIndex);
+  };
+  
+  const updateSpell = (classIndex, spellSlot, spellName) => {
+    setCharacter(prev => {
+      const newClasses = [...prev.classes];
+      
+      // Initialize spells if it doesn't exist
+      if (!newClasses[classIndex].spells) {
+        newClasses[classIndex].spells = {};
+      }
+      
+      if (spellName === '') {
+        // Remove spell
+        delete newClasses[classIndex].spells[spellSlot];
+      } else {
+        // Set the spell for this spell slot
+        newClasses[classIndex].spells[spellSlot] = spellName;
       }
       
       return {
@@ -143,6 +184,21 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
       ...prev,
       [key]: !prev[key]
     }));
+  };
+
+
+  const getAllKnownSpells = (classIndex) => {
+    const currentClass = character.classes[classIndex];
+    return Object.values(currentClass.spells || {}).filter(spell => spell);
+  };
+
+  const getAvailableSpells = (classIndex) => {
+    const allKnownSpells = getAllKnownSpells(classIndex);
+    return Object.keys(ELEMENTALIST_SPELLS).filter(spell => !allKnownSpells.includes(spell));
+  };
+  
+  const shouldShowSpellSection = (classIndex) => {
+    return getElementalMagicSkillLevel(classIndex) > 0;
   };
 
   const renderSkillSelector = (classIndex, skillSlot) => {
@@ -166,22 +222,24 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
               // If we're replacing an existing skill, skip slot check
               const isReplacing = currentSkill !== null && currentSkill !== '';
               const canTake = canTakeSkill(classIndex, skillName, isReplacing);
-              const timesAlreadyTaken = Object.values(currentClass.abilities).filter(
-                skill => skill === skillName
-              ).length;
+              const timesAlreadyTaken = character.classes.reduce((total, cls) => 
+                total + Object.values(cls.abilities || {}).filter(skill => skill === skillName).length, 0
+              );
               const maxTimes = skillData.level || 1;
               
-              // Check if skill slots are full (for better error message)
-              const maxSkillSlots = getSkillSlotsForLevel(currentClass.level);
-              const currentSkillCount = Object.keys(currentClass.abilities).length;
-              const slotsAreMax = currentSkillCount >= maxSkillSlots && !isReplacing;
+              // Check if total skill slots are full (for better error message)
+              const maxSkillSlots = getSkillSlotsForLevel();
+              const totalCurrentSkills = character.classes.reduce((total, cls) => 
+                total + Object.keys(cls.abilities || {}).length, 0
+              );
+              const slotsAreMax = totalCurrentSkills >= maxSkillSlots && !isReplacing;
               
               let disabledReason = '';
               if (!canTake && currentSkill !== skillName) {
                 if (slotsAreMax) {
-                  disabledReason = ' - No skill slots available';
+                  disabledReason = ' - No total skill slots available';
                 } else if (timesAlreadyTaken >= maxTimes) {
-                  disabledReason = ' - Max reached';
+                  disabledReason = ' - Max reached (across all classes)';
                 }
               }
               
@@ -197,6 +255,7 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
             })}
           </select>
         </div>
+        
         
         {currentSkill && availableSkills[currentSkill] && (
           <div className="skill-details">
@@ -216,17 +275,17 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
                   <span className="skill-type">Type: {availableSkills[currentSkill].type}</span>
                   <span className="skill-cost">Cost: {availableSkills[currentSkill].cost}</span>
                   <span className="skill-current-level">Current SL: {(() => {
-                    const timesAlreadyTaken = Object.values(currentClass.abilities).filter(
-                      skill => skill === currentSkill
-                    ).length;
+                    const timesAlreadyTaken = character.classes.reduce((total, cls) => 
+                      total + Object.values(cls.abilities || {}).filter(skill => skill === currentSkill).length, 0
+                    );
                     return timesAlreadyTaken;
                   })()}</span>
                 </div>
                 <div className="skill-description">
                   {(() => {
-                    const timesAlreadyTaken = Object.values(currentClass.abilities).filter(
-                      skill => skill === currentSkill
-                    ).length;
+                    const timesAlreadyTaken = character.classes.reduce((total, cls) => 
+                      total + Object.values(cls.abilities || {}).filter(skill => skill === currentSkill).length, 0
+                    );
                     const skillLevel = timesAlreadyTaken; // Current SL
                     
                     // Replace SL in description with actual skill level
@@ -249,6 +308,7 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
                     return description;
                   })()}
                 </div>
+                
               </div>
             )}
           </div>
@@ -259,8 +319,10 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
 
   const renderClassSection = (classData, classIndex) => {
     const currentClass = character.classes[classIndex];
-    const maxSkillSlots = getSkillSlotsForLevel(currentClass.level);
-    const skillSlots = Array.from({ length: maxSkillSlots }, (_, i) => `skill_${i + 1}`);
+    // Show available skill slots for this class (we'll limit globally)
+    const currentClassSkills = Object.keys(currentClass.abilities || {}).length;
+    const maxSlotsToShow = Math.max(currentClassSkills + 3, 5); // Show at least current + 3 empty slots
+    const skillSlots = Array.from({ length: maxSlotsToShow }, (_, i) => `skill_${i + 1}`);
     
     return (
       <div className="class-section compact" key={classIndex}>
@@ -313,9 +375,62 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
         
         {currentClass.classKey && (
           <div className="skills-section">
-            <h4>Skills ({Object.keys(currentClass.abilities).length}/{maxSkillSlots}):</h4>
+            <h4>Skills (Total: {character.classes.reduce((total, cls) => total + Object.keys(cls.abilities || {}).length, 0)}/{getSkillSlotsForLevel()}):</h4>
             <div className="skills-grid">
               {skillSlots.map(skillSlot => renderSkillSelector(classIndex, skillSlot))}
+            </div>
+          </div>
+        )}
+        
+        {/* Spell Section - separate from skills */}
+        {shouldShowSpellSection(classIndex) && (
+          <div className="spells-section">
+            <h4>Spells ({Object.keys(currentClass.spells || {}).length}/{getAvailableSpellSlots(classIndex)}):</h4>
+            <div className="spells-grid">
+              {Array.from({ length: getAvailableSpellSlots(classIndex) }, (_, i) => {
+                const spellSlot = `spell_${i + 1}`;
+                const currentSpell = currentClass.spells?.[spellSlot];
+                
+                return (
+                  <div className="spell-selector" key={spellSlot}>
+                    <div className="spell-header">
+                      <label>Spell Slot {i + 1}:</label>
+                      <select
+                        value={currentSpell || ''}
+                        onChange={(e) => updateSpell(classIndex, spellSlot, e.target.value)}
+                        className="spell-select compact"
+                      >
+                        <option value="">-- Select Spell --</option>
+                        {getAvailableSpells(classIndex).map(spellName => (
+                          <option key={spellName} value={spellName}>
+                            {spellName}
+                          </option>
+                        ))}
+                        {/* Show current spell even if it would be filtered out */}
+                        {currentSpell && !getAvailableSpells(classIndex).includes(currentSpell) && (
+                          <option key={currentSpell} value={currentSpell}>
+                            {currentSpell} (Selected)
+                          </option>
+                        )}
+                      </select>
+                    </div>
+                    
+                    {currentSpell && ELEMENTALIST_SPELLS[currentSpell] && (
+                      <div className="selected-spell-info">
+                        <div className="spell-meta-inline">
+                          <span>MP: {ELEMENTALIST_SPELLS[currentSpell].mp}</span>
+                          <span>Target: {ELEMENTALIST_SPELLS[currentSpell].target}</span>
+                          <span>Duration: {ELEMENTALIST_SPELLS[currentSpell].duration}</span>
+                          <span>Type: {ELEMENTALIST_SPELLS[currentSpell].type}</span>
+                        </div>
+                        <p className="spell-description-mini">
+                          {ELEMENTALIST_SPELLS[currentSpell].description}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
             </div>
           </div>
         )}
@@ -329,7 +444,8 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
       newClasses[classIndex] = {
         ...newClasses[classIndex],
         classKey: classKey,
-        abilities: {} // Reset abilities when changing class
+        abilities: {}, // Reset abilities when changing class
+        spells: {} // Reset spells when changing class
       };
       return {
         ...prev,
@@ -349,7 +465,7 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
         ...prev,
         classes: [
           ...prev.classes,
-          { classKey: null, level: 5, abilities: {}, slot: slotName }
+          { classKey: null, level: 5, abilities: {}, slot: slotName, spells: {} }
         ]
       }));
     }
@@ -881,10 +997,11 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
         <button onClick={() => console.log(character)} className="preview-btn">
           Export Character
         </button>
-        <button onClick={() => setCharacter({...DEFAULT_CHARACTER, classes: [{ classKey: null, level: 5, abilities: {}, slot: 'primary' }]})} className="reset-btn">
+        <button onClick={() => setCharacter({...DEFAULT_CHARACTER, classes: [{ classKey: null, level: 5, abilities: {}, slot: 'primary', spells: {} }]})} className="reset-btn">
           Reset Character
         </button>
       </div>
+      
     </div>
   );
 };

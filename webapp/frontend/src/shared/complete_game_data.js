@@ -299,116 +299,47 @@ export const CHARACTER_CLASSES = {
 
   ELEMENTALIST: {
     name: 'Elementalist',
-    description: 'Wielders of elemental forces',
+    description: 'Scholars of elemental magic who combine arcane knowledge with elemental power',
     primaryAttributes: ['insight', 'willpower'],
-    freeBenefits: ['MP +5', 'Elementalism Rituals'],
+    freeBenefits: ['MP +5', 'Ritualism'],
     equipmentProficiencies: ['Basic weapons', 'Basic armor'],
     abilities: {
+      'Cataclysm': {
+        level: 5,
+        description: 'When you cast an instantaneous spell, if you have an arcane weapon equipped, you may increase the spell\'s total MP cost by up to 【SL × 10】 Mind Points to have it deal an additional 【SL × 5】 damage.',
+        type: 'active',
+        cost: 'Variable MP increase',
+        maxTimes: 5
+      },
       'Elemental Magic': {
         level: 10,
-        description: 'You may learn and cast spells from any of these types: earth, air, fire, water, ice, or bolt. Spells you cast can target any creature you can see.',
+        description: 'You may learn and cast spells from any of these types: earth, air, fire, water, ice, or bolt. Each time you take this Skill, you learn one spell from the Elementalist spell list.',
         type: 'active',
         cost: 'MP varies',
-        skillLevel: 10,
-        maxTimes: 1
+        maxTimes: 10,
+        requiresSpellSelection: true,
+        spellList: 'ELEMENTALIST_SPELLS'
+      },
+      'Magical Artillery': {
+        level: 5,
+        description: 'When you cast a spell of the earth, air, fire, water, ice, or bolt type that targets only you, you may change its target to "One enemy you can see" instead.',
+        type: 'active',
+        cost: 'None',
+        maxTimes: 5
       },
       'Ritual Elementalism': {
         level: 1,
-        description: 'You may perform Elementalism rituals without needing to learn them.',
+        description: 'You may perform Rituals whose effects fall within the Ritualism discipline.',
         type: 'ritual',
         cost: 'Special',
         maxTimes: 1
       },
-      'Elemental Resistance': {
-        level: 2,
-        description: 'Choose one damage type: air, bolt, earth, fire, ice, or water. You gain Resistance to that damage type.',
-        type: 'passive',
-        cost: 'None',
-        maxTimes: 1
-      },
-      'Elemental Weapon': {
-        level: 2,
-        description: 'Choose one damage type: air, bolt, earth, fire, ice, or water. Until the end of this scene, your weapon attacks deal damage of the chosen type (instead of physical damage).',
-        type: 'active',
-        cost: '10 MP',
-        maxTimes: 1
-      },
       'Spellblade': {
-        level: 3,
-        description: 'Choose one damage type: air, bolt, earth, fire, ice, or water. Until the end of this scene, after you hit with a weapon attack, you deal 【SL × 5】 additional damage of the chosen type.',
+        level: 5,
+        description: 'When you deal damage with a weapon attack, you may spend 10 Mind Points to have the attack deal an additional 【SL × 5】 damage. Choose a damage type when you take this Skill: air, bolt, earth, fire, ice, or water.',
         type: 'active',
         cost: '10 MP',
-        maxTimes: 1
-      },
-      'Elemental Shield': {
-        level: 3,
-        description: 'Choose one damage type: air, bolt, earth, fire, ice, or water. Until the start of your next turn, you gain Resistance to that damage type.',
-        type: 'active',
-        cost: '15 MP',
-        maxTimes: 1
-      },
-      'Elemental Mastery': {
-        level: 4,
-        description: 'Choose a second element to master. You can now cast spells of two different elements.',
-        type: 'passive',
-        cost: 'None',
-        maxTimes: 1
-      },
-      'Elemental Fusion': {
-        level: 4,
-        description: 'Combine two elements to create more powerful hybrid spells with unique effects.',
-        type: 'active',
-        cost: '20 MP',
-        maxTimes: 1
-      },
-      'Elemental Summoning': {
-        level: 5,
-        description: 'Summon elemental beings to fight alongside you. Each elemental has unique abilities based on its element.',
-        type: 'active',
-        cost: '25 MP',
-        maxTimes: 1
-      },
-      'Elemental Travel': {
-        level: 5,
-        description: 'Travel through your chosen element. Teleport through fire, ice, lightning, earth, air, or water.',
-        type: 'active',
-        cost: '20 MP',
-        maxTimes: 1
-      },
-      'Elemental Shroud': {
-        level: 6,
-        description: 'Surround yourself with elemental energy. Gain bonuses to all actions and damage enemies who attack you.',
-        type: 'active',
-        cost: '15 MP',
-        maxTimes: 1
-      },
-      'Elemental Storm': {
-        level: 6,
-        description: 'Create a localized elemental storm that affects a large area with continuous elemental effects.',
-        type: 'active',
-        cost: '30 MP',
-        maxTimes: 1
-      },
-      'Elemental Avatar': {
-        level: 8,
-        description: 'Transform into an elemental avatar, gaining incredible power and new abilities based on your chosen element.',
-        type: 'active',
-        cost: '35 MP',
-        maxTimes: 1
-      },
-      'Primal Magic': {
-        level: 8,
-        description: 'Access the raw, primal forces of the elements. Your spells ignore resistances and deal maximum damage.',
-        type: 'passive',
-        cost: 'None',
-        maxTimes: 1
-      },
-      'Cataclysm': {
-        level: 10,
-        description: 'Unleash devastating elemental destruction that can reshape the battlefield. Affects multiple targets with catastrophic elemental damage.',
-        type: 'active',
-        cost: '40 MP',
-        maxTimes: 1
+        maxTimes: 5
       }
     },
     source: 'Core Rules'
@@ -4426,6 +4357,94 @@ export const DEFAULT_CHARACTER = {
 };
 
 // Character creation rules
+// Elementalist Spells
+export const ELEMENTALIST_SPELLS = {
+  'Elemental Shroud': {
+    mp: '5 × T',
+    target: 'Up to three creatures',
+    duration: 'Scene',
+    description: 'You weave magical energy and protect the targets from the fury of the elements. Choose a damage type: air, bolt, earth, fire or ice. Until this spell ends, each target gains Resistance against the chosen damage type.',
+    type: 'earth, air, fire, water, ice, bolt'
+  },
+  'Elemental Weapon': {
+    mp: '10',
+    target: 'One weapon',
+    duration: 'Scene',
+    description: 'You imbue a weapon with elemental energy. Choose a damage type: air, bolt, earth, fire, or ice. Until this spell ends, all damage dealt by the weapon becomes of the chosen damage type. If you have that weapon equipped while you cast this spell, you may perform a free attack with it as part of the same action. This spell can only be cast on a weapon equipped by a willing creature.',
+    type: 'earth, air, fire, water, ice, bolt'
+  },
+  'Flare': {
+    mp: '20',
+    target: 'One creature',
+    duration: 'Instantaneous',
+    description: 'You channel a single ray of fire towards your foe, its temperature so high that it will pierce through most defenses. The target suffers 【HR + 25】 fire damage. Damage dealt by this spell ignores Resistances.',
+    type: 'fire'
+  },
+  'Fulgur': {
+    mp: '10 × T',
+    target: 'Up to three creatures',
+    duration: 'Instantaneous',
+    description: 'You weave electricity into a wave of crackling bolts. Each target hit by this spell suffers 【HR + 15】 bolt damage. Opportunity: Each target hit by this spell suffers dazed.',
+    type: 'bolt'
+  },
+  'Glacies': {
+    mp: '10 × T',
+    target: 'Up to three creatures',
+    duration: 'Instantaneous',
+    description: 'You coat your foes under a thick layer of frost. Each target hit by this spell suffers 【HR + 15】 ice damage. Opportunity: Each target hit by this spell suffers slow.',
+    type: 'ice'
+  },
+  'Iceberg': {
+    mp: '20',
+    target: 'One creature',
+    duration: 'Instantaneous',
+    description: 'A pillar of ice magic envelops your foe, suddenly dropping their body temperature to a critical level. The target suffers 【HR + 25】 ice damage. Damage dealt by this spell ignores Resistances.',
+    type: 'ice'
+  },
+  'Ignis': {
+    mp: '10 × T',
+    target: 'Up to three creatures',
+    duration: 'Instantaneous',
+    description: 'You unleash a searing barrage against your foes, conjuring flames out of thin air. Each target hit by this spell suffers 【HR + 15】 fire damage. Opportunity: Each target hit by this spell suffers shaken.',
+    type: 'fire'
+  },
+  'Soaring Strike': {
+    mp: '10',
+    target: 'Self',
+    duration: 'Instantaneous',
+    description: 'The wind carries your strikes across the battlefield. You may immediately perform a free attack with a melee weapon you have equipped. This attack may target creatures that can only be targeted by ranged attacks. If you used a weapon belonging to the brawling or spear Category for this attack, it deals 5 extra damage. If you hit a flying target with this attack, you may force them to land immediately.',
+    type: 'air'
+  },
+  'Terra': {
+    mp: '10 × T',
+    target: 'Up to three creatures',
+    duration: 'Instantaneous',
+    description: 'Spires of jagged rock erupt from the ground beneath your foes, closing around them. Each target hit by this spell suffers 【HR + 15】 earth damage. This spell cannot target creatures who are flying, floating, falling, or otherwise in mid-air. Opportunity: Each target hit by this spell performs one fewer action on their next turn (to a minimum of 0 actions).',
+    type: 'earth'
+  },
+  'Thunderbolt': {
+    mp: '20',
+    target: 'One creature',
+    duration: 'Instantaneous',
+    description: 'You send lightning striking at your foe. The target suffers 【HR + 25】 bolt damage. Damage dealt by this spell ignores Resistances.',
+    type: 'bolt'
+  },
+  'Ventus': {
+    mp: '10 × T',
+    target: 'Up to three creatures',
+    duration: 'Instantaneous',
+    description: 'You summon the power of winds against your enemy. Each target hit by this spell suffers 【HR + 15】 air damage. Opportunity: Each flying target hit by this spell is forced to land immediately.',
+    type: 'air'
+  },
+  'Vortex': {
+    mp: '10',
+    target: 'Self',
+    duration: 'Scene',
+    description: 'A roaring gale surrounds you, blowing away arrows and bullets. Until this spell ends, you gain a +2 bonus to your Defense against ranged attacks.',
+    type: 'air'
+  }
+};
+
 export const CHARACTER_CREATION_RULES = {
   startingLevel: 5,
   maxLevel: 50,
@@ -4450,5 +4469,6 @@ export default {
   DAMAGE_TYPES,
   AFFINITY_TYPES,
   DEFAULT_CHARACTER,
-  CHARACTER_CREATION_RULES
+  CHARACTER_CREATION_RULES,
+  ELEMENTALIST_SPELLS
 };
