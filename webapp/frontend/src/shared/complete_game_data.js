@@ -347,95 +347,47 @@ export const CHARACTER_CLASSES = {
 
   ENTROPIST: {
     name: 'Entropist',
-    description: 'Masters of time and chaos magic',
+    description: 'Masters of time, chaos, and entropy magic',
     primaryAttributes: ['insight', 'willpower'],
-    freeBenefits: ['MP +5', 'Entropism Rituals'],
+    freeBenefits: ['MP +5', 'Ritualism'],
     equipmentProficiencies: ['Basic weapons', 'Basic armor'],
     abilities: {
+      'Absorb MP': {
+        level: 5,
+        description: 'After you suffer damage, you may immediately recover 【SL × 2】 Mind Points.',
+        type: 'reaction',
+        cost: 'None',
+        maxTimes: 5
+      },
       'Entropic Magic': {
-        level: 1,
-        description: 'Manipulate time and probability with chaos magic. Alter the flow of time, change outcomes, and bend reality.',
+        level: 10,
+        description: 'Each time you acquire this Skill, learn one Entropist spell. Offensive (rr) Entropist spells use 【INS + WLP】 for the Magic Check.',
         type: 'active',
         cost: 'MP varies',
-        skillLevel: 10,
+        maxTimes: 10,
+        requiresSpellSelection: true,
+        spellList: 'ENTROPIST_SPELLS'
+      },
+      'Lucky Seven': {
+        level: 1,
+        description: 'You have a lucky number; at the beginning of each session, that number is 7. Once per scene after you perform a Check, you may replace the value shown on one of the dice you rolled with your lucky number (even if this would give an impossible Result, such as a value of 7 on a d6). If you do, the replaced value becomes your new lucky number.',
+        type: 'passive',
+        cost: 'None',
         maxTimes: 1
       },
       'Ritual Entropism': {
         level: 1,
-        description: 'Perform time and chaos rituals during rest scenes to glimpse the future, alter fate, or create temporal anomalies.',
+        description: 'You may perform Rituals whose effects fall within the Entropism discipline. Entropism Rituals use 【INS + WLP】 for the Magic Check.',
         type: 'ritual',
         cost: 'Special',
         maxTimes: 1
       },
-      'Probability Shift': {
-        level: 2,
-        description: 'Alter the odds of success. Force a reroll of any die roll within range, choosing the better or worse result.',
-        type: 'reaction',
-        cost: '10 MP',
-        maxTimes: 1
-      },
-      'Temporal Anchor': {
-        level: 2,
-        description: 'Create a temporal anchor point. You can return to this exact moment in time once per scene.',
-        type: 'active',
-        cost: '15 MP',
-        maxTimes: 1
-      },
-      'Chaos Bolt': {
-        level: 3,
-        description: 'Launch a bolt of pure chaos that has random effects. Roll to determine what happens to the target.',
-        type: 'active',
-        cost: '12 MP',
-        maxTimes: 1
-      },
-      'Time Dilation': {
-        level: 3,
-        description: 'Slow time around yourself. Move and act normally while others are slowed, giving you extra actions.',
-        type: 'active',
-        cost: '18 MP',
-        maxTimes: 1
-      },
       'Stolen Time': {
         level: 4,
-        description: 'Steal time from your enemies to empower yourself. Act multiple times in a single turn while enemies lose actions.',
+        description: 'During a conflict, you may use an action to interfere with the flow of time by spending up to 【SL × 5】 Mind Points. For every 5 Mind Points you spend this way, choose one option: one creature you can see suffers slow; or one creature you can see recovers from slow; or one creature you can see may immediately perform the Equipment action for free; or choose one ally you can see who has yet to take a turn during this round: that ally may take their turn immediately after yours during this round. Each option can only be chosen once per use of this Skill.',
         type: 'active',
-        cost: '20 MP',
-        maxTimes: 1
-      },
-      'Fate Manipulation': {
-        level: 4,
-        description: 'Directly alter fate and destiny. Change the outcome of any event that just occurred.',
-        type: 'reaction',
-        cost: '25 MP',
-        maxTimes: 1
-      },
-      'Temporal Echo': {
-        level: 5,
-        description: 'Create echoes of yourself from different timelines. These echoes can act independently but share your MP.',
-        type: 'active',
-        cost: '30 MP',
-        maxTimes: 1
-      },
-      'Chaos Field': {
-        level: 5,
-        description: 'Create an area of pure chaos where random magical effects occur continuously.',
-        type: 'active',
-        cost: '25 MP',
-        maxTimes: 1
-      },
-      'Time Stop': {
-        level: 6,
-        description: 'Stop time for everyone except yourself. Take multiple actions while time is frozen.',
-        type: 'active',
-        cost: '35 MP',
-        maxTimes: 1
-      },
-      'Entropy Wave': {
-        level: 6,
-        description: 'Release a wave of entropy that ages, corrodes, and breaks down everything it touches.',
-        type: 'active',
-        cost: '30 MP',
-        maxTimes: 1
+        cost: 'Up to SL × 5 MP',
+        maxTimes: 4
       },
       'Accelerated Casting': {
         level: 7,
@@ -464,81 +416,48 @@ export const CHARACTER_CLASSES = {
 
   FURY: {
     name: 'Fury',
-    description: 'Berserkers who channel primal rage',
+    description: 'Warriors who channel primal rage and unbridled fury in combat',
     primaryAttributes: ['might', 'willpower'],
-    freeBenefits: ['HP +5', 'Martial armor and melee weapons'],
-    equipmentProficiencies: ['Martial armor', 'Martial melee weapons'],
+    freeBenefits: ['HP +5', 'Martial melee weapons and martial armor'],
+    equipmentProficiencies: ['Martial melee weapons', 'Martial armor'],
     abilities: {
-      'Withstand': {
-        level: 1,
-        description: 'You may use this skill when you suffer damage. If you spend 2 Mind Points, you reduce that damage by 【SL × 2】.',
-        type: 'reaction',
-        cost: 'MP varies',
-        maxTimes: 1
-      },
       'Adrenaline': {
-        level: 1,
-        description: 'If your Hit Points are equal to or less than half your maximum Hit Points, you gain a +【SL × 2】 bonus to damage rolls.',
+        level: 5,
+        description: 'As long as you are in Crisis, you deal 【SL × 2】 extra damage (be it with attacks, spells, Arcana, items or any other method).',
         type: 'passive',
         cost: 'None',
-        maxTimes: 1
-      },
-      'Intimidate': {
-        level: 2,
-        description: 'Choose one creature you can see. You and that creature must make opposed Willpower + Intimidate Checks. If you win, that creature is shaken until the end of the scene.',
-        type: 'active',
-        cost: '8 MP',
-        maxTimes: 1
-      },
-      'Rage Strike': {
-        level: 2,
-        description: 'Choose one creature you can see and make a melee attack against it. This attack deals 【SL × 5】 extra damage, but you cannot use Guard until the start of your next turn.',
-        type: 'active',
-        cost: '10 MP',
-        maxTimes: 1
-      },
-      'Provoke': {
-        level: 3,
-        description: 'Choose up to 【SL】 creatures you can see. Until the start of your next turn, each of those creatures can only target you with their attacks and offensive spells.',
-        type: 'active',
-        cost: '10 MP',
-        maxTimes: 1
-      },
-      'Reckless Attack': {
-        level: 3,
-        description: 'Until the start of your next turn, you deal 【SL × 3】 extra damage with attacks, but you also suffer 【SL × 3】 extra damage from all sources.',
-        type: 'active',
-        cost: '12 MP',
-        maxTimes: 1
+        maxTimes: 5
       },
       'Frenzy': {
-        level: 4,
-        description: 'Enter a controlled frenzy. Make additional attacks each turn but cannot perform other actions.',
-        type: 'active',
-        cost: '15 MP',
-        maxTimes: 1
-      },
-      'Unbreakable': {
-        level: 4,
-        description: 'Become incredibly difficult to kill. Continue fighting even when reduced to 0 HP.',
+        level: 1,
+        description: 'Your Accuracy Checks with brawling, dagger, flail and thrown weapons trigger a critical success if both dice show the same number (and the Check is not a fumble).',
         type: 'passive',
         cost: 'None',
         maxTimes: 1
       },
       'Indomitable Spirit': {
-        level: 5,
-        description: 'Resist status effects and mental influences through sheer force of will. Automatically succeed on some saves.',
+        level: 4,
+        description: 'When you spend one or more Fabula Points, you get an additional benefit — choose one option: you recover 【SL × 5】 Hit Points; or you recover 【SL × 5】 Mind Points; or you recover from a single status effect of your choice.',
         type: 'passive',
         cost: 'None',
-        maxTimes: 1
+        maxTimes: 4
       },
-      'Brutal Strike': {
+      'Provoke': {
         level: 5,
-        description: 'Attack with devastating force. Deal maximum damage and potentially stun or knock down enemies.',
+        description: 'You may use an action and spend 5 Mind Points to perform an Opposed 【MIG + WLP】 Check against a creature you can see — describe how you taunt them! If you succeed, the target suffers enraged and is compelled to focus their attention on you (their attacks and offensive spells must include you among the targets if possible). This compulsion ends if you fall unconscious or leave the scene, if the creature is no longer enraged, or if they are successfully provoked by someone else. You gain a bonus equal to 【SL】 to your 【MIG + WLP】 Checks for this Skill.',
         type: 'active',
-        cost: '20 MP',
-        maxTimes: 1
+        cost: '5 MP',
+        maxTimes: 5
       },
+      'Withstand': {
+        level: 5,
+        description: 'When you perform the Guard action, if you choose not to provide cover to another creature, you recover Hit Points equal to 【SL, multiplied by the highest strength among your Bonds】 and choose Might or Willpower: you treat the chosen Attribute as being one die size higher (up to a maximum of d12) until the end of your next turn.',
+        type: 'active',
+        cost: 'None',
+        maxTimes: 5
+    },
+    source: 'Core Rules'
+  },
       'Bloodlust': {
         level: 6,
         description: 'Heal yourself by dealing damage. Recover HP equal to a portion of the damage you deal.',
@@ -580,93 +499,48 @@ export const CHARACTER_CLASSES = {
 
   GUARDIAN: {
     name: 'Guardian',
-    description: 'Protectors who defend their allies',
+    description: 'Stalwart protectors who shield their allies from harm',
     primaryAttributes: ['might'],
-    freeBenefits: ['HP +5', 'Martial armor and shields'],
-    equipmentProficiencies: ['Martial armor', 'Shields'],
+    freeBenefits: ['HP +5', 'Martial armor and martial shields'],
+    equipmentProficiencies: ['Martial armor', 'Martial shields'],
     abilities: {
-      'Protect': {
+      'Bodyguard': {
         level: 1,
-        description: 'You may use this skill when an ally you can see suffers damage. You suffer that damage instead of them.',
-        type: 'reaction',
-        cost: '5 MP',
-        maxTimes: 1
-      },
-      'Taunt': {
-        level: 1,
-        description: 'Choose up to 【SL】 creatures you can see. Until the start of your next turn, each of those creatures can only target you with their attacks and offensive spells.',
+        description: 'If you perform the Guard action and choose to provide cover to another creature, that creature gains Resistance to all damage types until the start of your next turn.',
         type: 'active',
-        cost: '8 MP',
-        maxTimes: 1
-      },
-      'Shield Wall': {
-        level: 2,
-        description: 'Until the start of your next turn, you and all allies you can see gain a +【SL × 2】 bonus to Defense.',
-        type: 'active',
-        cost: '10 MP',
-        maxTimes: 1
-      },
-      'Guardian\'s Resolve': {
-        level: 2,
-        description: 'You gain a +【SL】 bonus to Accuracy Checks and damage rolls for each ally other than yourself that is present on the scene.',
-        type: 'passive',
         cost: 'None',
         maxTimes: 1
       },
-      'Defensive Stance': {
-        level: 3,
-        description: 'Until the start of your next turn, you gain a +【SL × 3】 bonus to Defense, but you also suffer a -【SL × 3】 penalty to Accuracy Checks.',
-        type: 'active',
-        cost: '12 MP',
-        maxTimes: 1
+      'Defensive Mastery': {
+        level: 5,
+        description: 'As long as you have a shield or a martial armor equipped, all damage you suffer is reduced by 【SL】 (applied before damage Affinities).',
+        type: 'passive',
+        cost: 'None',
+        maxTimes: 5
       },
-      'Shield Bash': {
-        level: 3,
-        description: 'You may only use this skill if you have a shield equipped. Choose one creature you can see and make a melee attack against it. If this attack hits, you deal no damage, but that creature is dazed until the end of your next turn.',
-        type: 'active',
-        cost: '10 MP',
+      'Dual Shieldbearer': {
+        level: 1,
+        description: 'You may now equip a shield in your main hand slot. As long as you have two shields equipped, you gain the benefits of both items and may treat them as the following combined two-handed melee brawling weapon: Twin Shields 【MIG + MIG】 【HR + 5】 physical. Deals extra damage equal to your 【SL】 in defensive mastery (above).',
+        type: 'passive',
+        cost: 'None',
         maxTimes: 1
       },
       'Fortress': {
-        level: 4,
-        description: 'Become an immovable defense. Gain immunity to forced movement and greatly increased resistances.',
-        type: 'active',
-        cost: '15 MP',
-        maxTimes: 1
-      },
-      'Rallying Cry': {
-        level: 4,
-        description: 'Inspire your allies to fight harder. Provide bonuses to all allies\' actions and morale.',
-        type: 'active',
-        cost: '18 MP',
-        maxTimes: 1
-      },
-      'Retaliation': {
         level: 5,
-        description: 'Strike back when attacked. Automatically counterattack enemies who hit you.',
+        description: 'Permanently increase your maximum Hit Points by 【SL × 3】.',
         type: 'passive',
         cost: 'None',
-        maxTimes: 1
+        maxTimes: 5
       },
-      'Sacrifice': {
-        level: 5,
-        description: 'Take damage meant for an ally. Transfer all damage from an ally to yourself.',
+      'Protect': {
+        level: 1,
+        description: 'When another creature is threatened by an attack, spell or other danger, you may take their place (any Checks that are part of the danger will be performed against you; you may declare the use of this Skill before or after the Checks have been made). If the danger already affected you, it affects you twice (resolve both instances separately); you also cannot protect multiple creatures from the same danger. If you use this Skill during a conflict, you cannot use it again until the start of your next turn.',
         type: 'reaction',
-        cost: '20 MP',
+        cost: 'None',
         maxTimes: 1
-      },
-      'Aegis': {
-        level: 6,
-        description: 'Create a protective field around allies. Reduce damage taken by all nearby allies.',
-        type: 'active',
-        cost: '25 MP',
-        maxTimes: 1
-      },
-      'Guardian Angel': {
-        level: 6,
-        description: 'Instantly teleport to an ally in danger and intercept attacks against them.',
-        type: 'reaction',
-        cost: '20 MP',
+    },
+    source: 'Core Rules'
+  },
         maxTimes: 1
       },
       'Dual Shieldbearer': {
@@ -696,88 +570,52 @@ export const CHARACTER_CLASSES = {
 
   LOREMASTER: {
     name: 'Loremaster',
-    description: 'Scholars of ancient knowledge',
+    description: 'Scholars and investigators who uncover secrets through knowledge and deduction',
     primaryAttributes: ['insight'],
     freeBenefits: ['MP +5'],
     equipmentProficiencies: ['Basic weapons', 'Basic armor'],
     abilities: {
       'Flash of Insight': {
-        level: 1,
-        description: 'You may use this skill at the start of your turn. You recover 【SL × 5】 Mind Points.',
-        type: 'active',
-        cost: '5 MP',
-        maxTimes: 1
-      },
-      'Lore': {
-        level: 1,
-        description: 'When you make an Open Check to recall information, you may spend 3 Mind Points to automatically succeed with two raises (no need to roll dice).',
+        level: 3,
+        description: 'When you roll a 13 or higher on a Check performed to investigate a creature, item or location — this includes using the Study action during a conflict — you may ask the Game Master up to 【SL】 questions concerning the subject of your investigation. You may ask these questions immediately or save them for later; whenever you ask one of these questions, the Game Master will answer truthfully and you will describe your character\'s deductive process. This Skill may only be used once on the same creature, item or location.',
         type: 'passive',
         cost: 'None',
-        maxTimes: 1
+        maxTimes: 3
       },
-      'Identify': {
-        level: 2,
-        description: 'Choose one option: identify the effects of an item, or learn if there are any hints or clues in the current scene and their location.',
-        type: 'active',
-        cost: '8 MP',
-        maxTimes: 1
+      'Focused': {
+        level: 5,
+        description: 'Permanently increase your maximum Mind Points by 【SL × 3】. When you perform an Open Check using 【INS + INS】, you gain a bonus equal to 【SL】 on that Check (this only applies to Open Checks).',
+        type: 'passive',
+        cost: 'None',
+        maxTimes: 5
       },
-      'Tactical Advice': {
-        level: 2,
-        description: 'Choose one ally you can see. That ally gains a +【SL × 2】 bonus to their next Accuracy Check.',
-        type: 'active',
-        cost: '10 MP',
+      'Knowledge is Power': {
+        level: 1,
+        description: 'When you perform an Accuracy Check, you may replace one of the Attribute dice with Insight (such as 【INS + INS】 for a pistol or 【INS + MIG】 for a waraxe).',
+        type: 'passive',
+        cost: 'None',
         maxTimes: 1
       },
       'Quick Assessment': {
-        level: 3,
-        description: 'Choose one creature you can see. Learn their current Hit Points, Mind Points, and any Affinities they might have.',
-        type: 'active',
-        cost: '10 MP',
-        maxTimes: 1
-      },
-      'Sage Advice': {
-        level: 3,
-        description: 'Choose up to 【SL】 allies you can see. Each of those allies gains a +【SL × 2】 bonus to Magic Checks until the start of your next turn.',
-        type: 'active',
-        cost: '12 MP',
-        maxTimes: 1
-      },
-      'Research': {
-        level: 4,
-        description: 'Conduct magical research during rest scenes to learn new information or create magical items.',
-        type: 'ritual',
-        cost: 'Special',
-        maxTimes: 1
-      },
-      'Encyclopedic Knowledge': {
-        level: 4,
-        description: 'Your knowledge covers virtually every subject. Gain bonuses to all knowledge-based rolls.',
-        type: 'passive',
-        cost: 'None',
-        maxTimes: 1
-      },
-      'Predict': {
-        level: 5,
-        description: 'Predict future events based on your knowledge. Warn allies of incoming dangers or opportunities.',
-        type: 'active',
-        cost: '15 MP',
-        maxTimes: 1
-      },
-      'Teaching': {
-        level: 5,
-        description: 'Teach skills to allies during rest scenes. Temporarily grant allies knowledge or abilities they don\'t possess.',
-        type: 'ritual',
-        cost: 'Special',
-        maxTimes: 1
-      },
-      'Focused': {
         level: 6,
-        description: 'Maintain concentration better. Resist distractions and mental effects through scholarly discipline.',
+        description: 'At the start of a conflict, you may spend up to 【SL × 5】 Mind Points. For every 5 Mind Points you spend this way, choose one option: choose a creature you can see and the GM reveals one of their Traits; or name a damage type and choose a creature you can see, and the GM reveals that creature\'s Affinity towards that damage type.',
+        type: 'active',
+        cost: 'Up to SL × 5 MP',
+        maxTimes: 6
+      },
+      'Trained Memory': {
+        level: 1,
+        description: 'You may perfectly recall the details of any scene you have visited within the past week. You can "go back in time" within your mind in order to examine and investigate such scenes again — your Flash of Insight Skill will apply to these memories as well.',
         type: 'passive',
         cost: 'None',
         maxTimes: 1
-      },
+      }
+        type: 'passive',
+        cost: 'None',
+        maxTimes: 1
+    },
+    source: 'Core Rules'
+  },
       'Ancient Secrets': {
         level: 6,
         description: 'Access knowledge of ancient secrets and lost arts. Use abilities from other classes or forgotten magic.',
@@ -812,88 +650,48 @@ export const CHARACTER_CLASSES = {
 
   ORATOR: {
     name: 'Orator',
-    description: 'Masters of speech and persuasion',
+    description: 'Masters of speech, persuasion, and social manipulation',
     primaryAttributes: ['insight', 'willpower'],
     freeBenefits: ['MP +5'],
     equipmentProficiencies: ['Basic weapons', 'Basic armor'],
     abilities: {
       'Condemn': {
-        level: 1,
-        description: 'Choose one creature you can see. Until the end of this scene, that creature suffers a -【SL × 2】 penalty to Accuracy Checks and Magic Checks.',
+        level: 4,
+        description: 'You may use an action and spend 5 Mind Points to perform an Opposed 【INS + WLP】 Check against a creature that can hear and understand you — describe your accusations! If you succeed, the target loses 【SL × 10】 Mind Points and suffers dazed or shaken (your choice). You gain a bonus equal to 【SL】 to your 【INS + WLP】 Checks for this Skill.',
         type: 'active',
-        cost: '10 MP',
-        maxTimes: 1
-      },
-      'Inspiring Speech': {
-        level: 1,
-        description: 'Choose yourself and up to 【SL】 allies you can see. Until the end of this scene, each chosen creature gains a +【SL】 bonus to Accuracy Checks and Magic Checks.',
-        type: 'active',
-        cost: '8 MP',
-        maxTimes: 1
+        cost: '5 MP',
+        maxTimes: 4
       },
       'Encourage': {
-        level: 2,
-        description: 'Choose one ally you can see. That ally may immediately retry one failed Check they performed during this scene.',
-        type: 'active',
-        cost: '10 MP',
-        maxTimes: 1
-      },
-      'Debate': {
-        level: 2,
-        description: 'You may use this skill when you or an ally you can see are targeted by an Insight + Empathy, Insight + Persuasion, or Willpower + Intimidate Check. The Check automatically fails.',
-        type: 'reaction',
-        cost: '12 MP',
-        maxTimes: 1
-      },
-      'Rally': {
-        level: 3,
-        description: 'Choose yourself and up to 【SL】 allies you can see. Each chosen creature recovers from all status effects and recovers 【SL × 10】 Hit Points and 【SL × 5】 Mind Points.',
-        type: 'active',
-        cost: '15 MP',
-        maxTimes: 1
-      },
-      'Demoralize': {
-        level: 3,
-        description: 'Choose up to 【SL】 creatures you can see. Each chosen creature is shaken until the end of this scene.',
-        type: 'active',
-        cost: '15 MP',
-        maxTimes: 1
-      },
-      'Persuasion': {
-        level: 4,
-        description: 'Influence others through masterful speech. Change enemy allegiances or gain cooperation.',
-        type: 'active',
-        cost: '15 MP',
-        maxTimes: 1
-      },
-      'Oratory': {
-        level: 4,
-        description: 'Deliver powerful speeches that affect large groups. Influence crowds and masses of people.',
-        type: 'active',
-        cost: '20 MP',
-        maxTimes: 1
-      },
-      'Command': {
-        level: 5,
-        description: 'Issue commands that allies must obey. Direct ally actions with perfect coordination.',
-        type: 'active',
-        cost: '18 MP',
-        maxTimes: 1
-      },
-      'Inspiring Presence': {
-        level: 5,
-        description: 'Your mere presence inspires those around you. Allies gain bonuses while near you.',
-        type: 'passive',
-        cost: 'None',
-        maxTimes: 1
-      },
-      'Diplomatic Immunity': {
         level: 6,
-        description: 'Your words protect you from harm. Reduce damage from enemies who can understand you.',
-        type: 'passive',
-        cost: 'None',
-        maxTimes: 1
+        description: 'During a conflict, you may use an action and spend 5 Mind Points to choose another creature that can hear and understand you. That creature recovers 【SL × 5】 Hit Points and chooses Dexterity, Insight, Might, or Willpower: they treat the chosen Attribute as being one die size higher (up to a maximum of d12) until the start of your next turn.',
+        type: 'active',
+        cost: '5 MP',
+        maxTimes: 6
       },
+      'My Trust in You': {
+        level: 2,
+        description: 'After another Player Character who is able to hear you performs a Check, you may spend 1 Fabula Point and invoke one of their Traits or Bonds in order to let them reroll dice or improve the Result of the Check (following the normal rules). Then, if you have a Bond towards that character, they recover 【SL × 10】 Mind Points.',
+        type: 'reaction',
+        cost: '1 Fabula Point',
+        maxTimes: 2
+      },
+      'Persuasive': {
+        level: 2,
+        description: 'When you successfully perform a Check to fill or erase sections of a Clock, if your approach relied on charm, diplomacy, deception or intimidation, you may spend up to 【SL × 20】 Mind Points. If you do, fill or erase an additional section of that Clock for every 20 Mind Points you spend this way.',
+        type: 'passive',
+        cost: 'Variable MP',
+        maxTimes: 2
+      },
+      'Unexpected Ally': {
+        level: 1,
+        description: 'You may use an action and spend 1 Fabula Point to choose a non-hostile creature able to hear and understand you. If you do, that creature becomes helpful towards you so long as you are kind and respectful to them and your requests are reasonable.',
+        type: 'active',
+        cost: '1 Fabula Point',
+        maxTimes: 1
+    },
+    source: 'Core Rules'
+  },
       'Mass Suggestion': {
         level: 6,
         description: 'Suggest actions to multiple targets through compelling speech. Influence groups of enemies.',
@@ -1044,86 +842,48 @@ export const CHARACTER_CLASSES = {
 
   ROGUE: {
     name: 'Rogue',
-    description: 'Stealthy combatants and infiltrators',
+    description: 'Stealthy thieves and opportunists who excel at hit-and-run tactics',
     primaryAttributes: ['dexterity'],
-    freeBenefits: ['HP +5', 'Martial armor and ranged weapons'],
-    equipmentProficiencies: ['Martial armor', 'Martial ranged weapons'],
+    freeBenefits: ['IP +2'],
+    equipmentProficiencies: ['Basic weapons', 'Basic armor'],
     abilities: {
-      'Dodge': {
-        level: 1,
-        description: 'You may use this skill when you are targeted by an attack. If you spend 2 Mind Points, you gain a +【SL × 2】 bonus to Defense against that attack.',
-        type: 'reaction',
-        cost: 'MP varies',
-        maxTimes: 1
-      },
-      'Stealth': {
-        level: 1,
-        description: 'Until the start of your next turn, you cannot be targeted by attacks unless you are the only valid target present on the scene.',
-        type: 'active',
-        cost: '8 MP',
-        maxTimes: 1
-      },
-      'Lockpicking': {
-        level: 2,
-        description: 'You automatically succeed on any Check made to open a lock, disable a trap, or overcome a similar mechanical obstacle.',
-        type: 'active',
-        cost: '5 MP',
-        maxTimes: 1
-      },
-      'Poison': {
-        level: 2,
-        description: 'Until the end of this scene, your attacks gain the following additional effect: the target is poisoned.',
-        type: 'active',
-        cost: '10 MP',
-        maxTimes: 1
-      },
       'Cheap Shot': {
+        level: 5,
+        description: 'When you hit a creature with an attack, if the attack only targeted that creature and they are suffering from one or more status effects, you may have it deal extra damage equal to 【SL + the number of status effects on the creature】.',
+        type: 'passive',
+        cost: 'None',
+        maxTimes: 5
+      },
+      'Dodge': {
         level: 3,
-        description: 'You may only use this skill if you have not acted yet during this turn. Choose one creature you can see and make a ranged attack against it. If this attack hits, it deals 【SL × 10】 extra damage.',
-        type: 'active',
-        cost: '10 MP',
-        maxTimes: 1
-      },
-      'Shadow Clone': {
-        level: 3,
-        description: 'You may perform up to 【SL】 additional attacks during your turn. Each of these attacks deals halved damage.',
-        type: 'active',
-        cost: '15 MP',
-        maxTimes: 1
-      },
-      'Trap': {
-        level: 4,
-        description: 'Set traps to damage or hinder enemies. Create strategic obstacles on the battlefield.',
-        type: 'active',
-        cost: '12 MP',
-        maxTimes: 1
-      },
-      'Backstab': {
-        level: 4,
-        description: 'Attack from behind for massive damage. Deal critical hits to unaware enemies.',
-        type: 'active',
-        cost: '15 MP',
-        maxTimes: 1
+        description: 'As long as you have no shields and no martial armor equipped, your Defense score is increased by 【SL】.',
+        type: 'passive',
+        cost: 'None',
+        maxTimes: 3
       },
       'High Speed': {
-        level: 5,
-        description: 'Move with incredible speed. Take multiple actions in a single turn.',
-        type: 'active',
-        cost: '15 MP',
-        maxTimes: 1
-      },
-      'Sleight of Hand': {
-        level: 5,
-        description: 'Steal items or plant objects with supernatural dexterity. Manipulate objects at distance.',
+        level: 3,
+        description: 'At the start of a conflict, you may spend 10 Mind Points. If you do, choose one option and apply it before the start of the first round: perform a free attack with a weapon you have equipped; or perform a Hinder or Objective action. You also gain a bonus equal to 【SL】 to all Checks you perform as part of the chosen option.',
         type: 'active',
         cost: '10 MP',
+        maxTimes: 3
+      },
+      'See You Later': {
+        level: 1,
+        description: 'You may use an action and spend 1 Fabula Point to vanish from the current scene, reappearing whenever you want during a different scene in which another Player Character is present. Describe how you escaped and miraculously got here!',
+        type: 'active',
+        cost: '1 Fabula Point',
         maxTimes: 1
       },
-      'Vanish': {
-        level: 6,
-        description: 'Disappear completely from sight and detection. Become untargetable for a short time.',
+      'Soul Steal': {
+        level: 5,
+        description: 'You may use an action to perform a 【DEX + WLP】 Check against the Magic Defense of a creature you can see. If you succeed and the target is a soldier, you recover 【SL】 Inventory Points; if they are an elite or champion, the GM gives you the target\'s soul treasure, an item worth an amount of zenit equal to or lower than 【the target\'s level multiplied by 30, or by 50 if they are a Villain】. This soul treasure will appear inside your backpack; a creature can be successfully stolen from with this Skill only once. You gain a bonus equal to 【SL】 to your 【DEX + WLP】 Checks for this Skill.',
         type: 'active',
-        cost: '20 MP',
+        cost: 'None',
+        maxTimes: 5
+    },
+    source: 'Core Rules'
+  },
         maxTimes: 1
       },
       'Critical Strike': {
@@ -1160,115 +920,45 @@ export const CHARACTER_CLASSES = {
 
   SHARPSHOOTER: {
     name: 'Sharpshooter',
-    description: 'Expert marksmen and ranged combatants',
+    description: 'Expert marksmen specializing in ranged combat and precision shooting',
     primaryAttributes: ['dexterity', 'insight'],
-    freeBenefits: ['HP +5', 'Martial armor and ranged weapons'],
-    equipmentProficiencies: ['Martial armor', 'Martial ranged weapons'],
+    freeBenefits: ['HP +5', 'Martial ranged weapons and martial shields'],
+    equipmentProficiencies: ['Martial ranged weapons', 'Martial shields'],
     abilities: {
-      'Ranged Weapon Mastery': {
+      'Barrage': {
         level: 1,
-        description: 'Excel with all ranged weapons. Gain bonuses to accuracy, damage, and range.',
-        type: 'passive',
-        cost: 'None',
-        maxTimes: 1
-      },
-      'Aimed Shot': {
-        level: 1,
-        description: 'Take careful aim for guaranteed hits. Spend time aiming to ensure perfect accuracy.',
-        type: 'active',
-        cost: '8 MP',
-        maxTimes: 1
-      },
-      'Quick Draw': {
-        level: 2,
-        description: 'Draw and fire weapons with lightning speed. Always act first in combat.',
-        type: 'passive',
-        cost: 'None',
-        maxTimes: 1
-      },
-      'Covering Fire': {
-        level: 2,
-        description: 'Provide covering fire for allies. Protect allies from enemy attacks.',
+        description: 'When you perform a ranged attack, you may spend 10 Mind Points to choose one option: the attack gains multi (2); or you increase the attack\'s multi property by one, up to a maximum of multi (3).',
         type: 'active',
         cost: '10 MP',
         maxTimes: 1
       },
-      'Barrage': {
-        level: 3,
-        description: 'Fire multiple shots rapidly at a single target. Overwhelm enemies with volume of fire.',
-        type: 'active',
-        cost: '15 MP',
-        maxTimes: 1
-      },
-      'Ricochets': {
-        level: 3,
-        description: 'Bounce shots off surfaces to hit enemies around corners or behind cover.',
-        type: 'active',
-        cost: '12 MP',
-        maxTimes: 1
-      },
-      'Sniper': {
-        level: 4,
-        description: 'Attack from extreme range with devastating accuracy. Hit targets at any distance.',
-        type: 'active',
-        cost: '15 MP',
-        maxTimes: 1
-      },
-      'Trick Shot': {
-        level: 4,
-        description: 'Perform impossible shots that defy physics. Hit multiple targets with one shot.',
-        type: 'active',
-        cost: '18 MP',
-        maxTimes: 1
-      },
       'Crossfire': {
-        level: 5,
-        description: 'Attack multiple enemies simultaneously. Coordinate attacks for maximum coverage.',
-        type: 'active',
-        cost: '20 MP',
-        maxTimes: 1
-      },
-      'Piercing Shot': {
-        level: 5,
-        description: 'Fire shots that pierce through multiple enemies. Ignore armor and cover.',
-        type: 'active',
-        cost: '20 MP',
-        maxTimes: 1
-      },
-      'Rain of Arrows': {
-        level: 6,
-        description: 'Fire shots that rain down over a large area. Attack all enemies in the area.',
-        type: 'active',
-        cost: '25 MP',
-        maxTimes: 1
-      },
-      'Called Shot': {
-        level: 6,
-        description: 'Target specific body parts for special effects. Disable enemies by targeting limbs.',
-        type: 'active',
-        cost: '20 MP',
+        level: 1,
+        description: 'After a creature you can see performs a ranged attack, you may spend an amount of Mind Points equal to the total Result of their Accuracy Check in order to have the attack fail automatically against all targets. You can only use this Skill if you have a ranged weapon equipped, and it has no effect if the Accuracy Check was a critical success.',
+        type: 'reaction',
+        cost: 'Variable MP',
         maxTimes: 1
       },
       'Hawkeye': {
-        level: 8,
-        description: 'Never miss your target. All ranged attacks automatically hit.',
-        type: 'passive',
-        cost: 'None',
-        maxTimes: 1
-      },
-      'Master Marksman': {
-        level: 8,
-        description: 'Achieve perfect mastery of ranged combat. All shots deal maximum damage.',
-        type: 'passive',
-        cost: 'None',
-        maxTimes: 1
-      },
-      'Legendary Shot': {
-        level: 10,
-        description: 'Fire a shot that becomes legend. This ultimate attack can change the course of battle.',
+        level: 5,
+        description: 'When you perform the Guard action, if you choose not to provide cover to another creature, you may choose one option: the next ranged attack you perform before the end of the current scene will deal 【SL × 2】 extra damage; or you may immediately perform a free attack with a bow or firearm you have equipped, treating your High Roll (HR) as 0 when calculating damage dealt by this attack.',
         type: 'active',
-        cost: '40 MP',
-        maxTimes: 1
+        cost: 'None',
+        maxTimes: 5
+      },
+      'Ranged Weapon Mastery': {
+        level: 4,
+        description: 'You gain a bonus equal to 【SL】 to all Accuracy Checks with ranged weapons.',
+        type: 'passive',
+        cost: 'None',
+        maxTimes: 4
+      },
+      'Warning Shot': {
+        level: 4,
+        description: 'When you hit one or more targets with a ranged attack that would deal damage, you may have the attack deal no damage. If you do, choose one option: inflict shaken on each target hit by the attack; or inflict slow on each target hit by the attack; or each target hit by the attack loses 【SL × 10】 Mind Points. Describe your maneuver!',
+        type: 'active',
+        cost: 'None',
+        maxTimes: 4
       }
     },
     source: 'Core Rules'
@@ -1281,109 +971,39 @@ export const CHARACTER_CLASSES = {
     freeBenefits: ['MP +5', 'Spiritism Rituals'],
     equipmentProficiencies: ['Basic weapons', 'Basic armor'],
     abilities: {
+      'Healing Power': {
+        level: 2,
+        description: 'When you cast a spell that targets one or more allies, if you have an arcane weapon equipped, you may have each of those allies recover an amount of Hit Points equal to 【SL, multiplied by the number of Bonds you have】. This healing is separate from any healing caused by the effects of the spell.',
+        type: 'passive',
+        cost: 'None',
+        maxTimes: 2
+      },
       'Ritual Spiritism': {
         level: 1,
-        description: 'You may perform Spiritism rituals without needing to learn them.',
+        description: 'You may perform Rituals whose effects fall within the Spiritism discipline. Spiritism Rituals use 【INS + WLP】 for the Magic Check.',
         type: 'ritual',
         cost: 'Special',
         maxTimes: 1
       },
-      'Light Magic': {
+      'Spiritual Magic': {
         level: 10,
-        description: 'You may learn spells of the light type. Spells you cast can target any creature you can see.',
-        type: 'active',
+        description: 'Each time you acquire this Skill, learn one Spiritist spell. Offensive (rr) Spiritist spells use 【INS + WLP】 for the Magic Check.',
+        type: 'spell',
         cost: 'MP varies',
-        maxTimes: 1
+        maxTimes: 10
       },
-      'Healing Power': {
-        level: 2,
-        description: 'Choose up to 【SL】 creatures you can see. Each chosen creature recovers 【SL × 10】 Hit Points.',
-        type: 'active',
-        cost: 'MP varies',
-        maxTimes: 1
-      },
-      'Bless': {
-        level: 2,
-        description: 'Choose one creature you can see. Until the end of this scene, that creature gains a +【SL】 bonus to all Checks and adds 【SL × 5】 damage to all damage rolls.',
-        type: 'active',
-        cost: '10 MP',
-        maxTimes: 1
-      },
-      'Sanctuary': {
-        level: 3,
-        description: 'Choose yourself and up to 【SL】 allies you can see. Until the end of this scene, chosen creatures cannot be targeted by attacks unless they are the only valid targets present on the scene.',
-        type: 'active',
-        cost: '15 MP',
-        maxTimes: 1
-      },
-      'Turn Undead': {
-        level: 3,
-        description: 'Choose up to 【SL】 creatures you can see that have the Beast or Undead species. Each chosen creature suffers 【SL × 10】 light damage.',
-        type: 'active',
-        cost: '12 MP',
-        maxTimes: 1
-      },
-      'Cleanse': {
-        level: 4,
-        description: 'Choose one creature you can see. Remove all status effects from that creature.',
-        type: 'active',
-        cost: '15 MP',
-        maxTimes: 1
-      },
-      'Divine Protection': {
-        level: 4,
-        description: 'Grant divine protection to allies. Reduce damage taken from all sources.',
-        type: 'active',
-        cost: '18 MP',
-        maxTimes: 1
-      },
-      'Resurrection': {
-        level: 5,
-        description: 'Restore fallen allies to life. Bring back allies from death.',
-        type: 'active',
-        cost: '30 MP',
-        maxTimes: 1
-      },
-      'Banish': {
-        level: 5,
-        description: 'Choose one creature you can see that is affected by at least one status effect. That creature suffers【SL × 5】light damage; this is elemental magic of the light type.',
-        type: 'active',
-        cost: '25 MP',
-        maxTimes: 1
-      },
-      'Barrier Spells': {
-        level: 6,
-        description: 'Choose yourself or one creature you can see. Until the start of your next turn, that creature gains Resistance to all damage types.',
-        type: 'active',
-        cost: '20 MP',
-        maxTimes: 1
-      },
-      'Mass Healing': {
-        level: 6,
-        description: 'Heal all allies simultaneously. Restore HP to multiple targets.',
-        type: 'active',
-        cost: '30 MP',
-        maxTimes: 1
-      },
-      'Divine Intervention': {
-        level: 8,
-        description: 'Call upon divine powers for miraculous effects. Alter fate and reality.',
-        type: 'active',
-        cost: '35 MP',
-        maxTimes: 1
-      },
-      'Holy Aura': {
-        level: 8,
-        description: 'Radiate divine energy that empowers allies and weakens enemies.',
+      'Support Magic': {
+        level: 1,
+        description: 'When you cast a spell that targets one or more allies, if you have an arcane weapon equipped, you may choose one of those allies you have a Bond towards. If you do, that ally gains a bonus to the next Check they perform during the current scene; this bonus is equal to the strength of your Bond towards them.',
         type: 'passive',
         cost: 'None',
         maxTimes: 1
       },
-      'Miracle': {
-        level: 10,
-        description: 'Perform a miracle that can change the course of events. Ultimate divine magic.',
+      'Vismagus': {
+        level: 1,
+        description: 'When you cast a spell, if you don\'t have enough Mind Points to pay for its total cost, you may choose to spend twice as many Hit Points instead. You cannot use this Skill if doing so would reduce you to 0 Hit Points. If a spell cast this way would cause you to recover Hit Points, you instead recover no Hit Points (the spell functions normally on any other target).',
         type: 'active',
-        cost: '50 MP',
+        cost: 'HP varies',
         maxTimes: 1
       }
     },
@@ -1394,32 +1014,43 @@ export const CHARACTER_CLASSES = {
     name: 'Tinkerer',
     description: 'Inventors and gadget masters',
     primaryAttributes: ['dexterity', 'insight'],
-    freeBenefits: ['IP +2'],
-    equipmentProficiencies: ['Basic weapons', 'Basic armor', 'Gadgets'],
+    freeBenefits: ['IP +2', 'Projects'],
+    equipmentProficiencies: ['Basic weapons', 'Basic armor'],
     abilities: {
-      'Gadgets': {
+      'Emergency Item': {
         level: 1,
-        description: 'Create and use mechanical devices',
+        description: 'Once per conflict scene, if you are in Crisis, you may perform an additional action on your turn. This action must be the Inventory action.',
         type: 'active',
-        cost: 'IP varies'
+        cost: 'None',
+        maxTimes: 1
       },
-      'Alchemy': {
-        level: 3,
-        description: 'Brew potions and create compounds',
-        type: 'active',
-        cost: 'IP varies'
-      },
-      'Magitech': {
+      'Gadgets': {
         level: 5,
-        description: 'Combine magic and technology',
-        type: 'passive',
-        cost: 'None'
+        description: 'When you first acquire this Skill, choose a gadget type: alchemy, infusions or magitech (see next four pages). You gain its basic benefits. Whenever you take this Skill again, choose one option: you gain the basic benefits of a new gadget type; or you gain the advanced benefits of a gadget type whose basic benefits you already obtained; or you gain the superior benefits of a gadget type whose advanced benefits you already obtained.',
+        type: 'invention',
+        cost: 'IP varies',
+        maxTimes: 5
       },
-      'Invention': {
-        level: 8,
-        description: 'Create entirely new devices',
-        type: 'active',
-        cost: 'IP varies'
+      'Potion Rain': {
+        level: 2,
+        description: 'When you create a potion that restores a single creature\'s HP and/or MP, you may have it affect up to 【SL】 additional creatures. If you do, the potion only restores half the normal amount of HP and MP to each creature.',
+        type: 'passive',
+        cost: 'None',
+        maxTimes: 2
+      },
+      'Secret Formula': {
+        level: 5,
+        description: 'When you create a potion or magisphere whose effects restore HP and/or MP, each restored amount is increased by 【SL × 5】. When you create an elemental shard, potion or magisphere that deals damage, that item deals 【SL】 extra damage.',
+        type: 'passive',
+        cost: 'None',
+        maxTimes: 5
+      },
+      'Visionary': {
+        level: 5,
+        description: 'When you work on a Project, up to 【SL × 100】 zenit of material costs are automatically paid; additionally, you generate an additional 【SL】 progress every day. If multiple characters with this Skill work on the same Project, the effects will be cumulative.',
+        type: 'passive',
+        cost: 'None',
+        maxTimes: 5
       }
     },
     source: 'Core Rules'
@@ -4445,6 +4076,272 @@ export const ELEMENTALIST_SPELLS = {
   }
 };
 
+// Tinkerer Invention Systems
+export const TINKERER_ALCHEMY = {
+  basic: {
+    name: 'Basic Mix',
+    ipCost: 3,
+    dice: 2,
+    description: 'Roll two d20s and assign one to target and one to effect.'
+  },
+  advanced: {
+    name: 'Advanced Mix',
+    ipCost: 4,
+    dice: 3,
+    description: 'Roll three d20s and assign one to target and one to effect.'
+  },
+  superior: {
+    name: 'Superior Mix',
+    ipCost: 5,
+    dice: 4,
+    description: 'Roll four d20s and assign one to target and one to effect.'
+  }
+};
+
+export const ALCHEMY_TARGETS = {
+  '1-6': 'You or one ally you can see that is present on the scene',
+  '7-11': 'One enemy you can see that is present on the scene',
+  '12-16': 'You and every ally present on the scene',
+  '17-20': 'Every enemy present on the scene'
+};
+
+export const ALCHEMY_EFFECTS = {
+  'Any1': 'Suffers 20 poison damage',
+  'Any2': 'Recovers 30 Hit Points',
+  '1': 'Treats their Dexterity and Might dice as if they were one size higher (up to a maximum of d12) until the end of your next turn',
+  '2': 'Treats their Insight and Willpower dice as if they were one size higher (up to a maximum of d12) until the end of your next turn',
+  '3': 'Suffers 20 air damage (30 at level 20+, 40 at level 40+)',
+  '4': 'Suffers 20 bolt damage (30 at level 20+, 40 at level 40+)',
+  '5': 'Suffers 20 dark damage (30 at level 20+, 40 at level 40+)',
+  '6': 'Suffers 20 earth damage (30 at level 20+, 40 at level 40+)',
+  '7': 'Suffers 20 fire damage (30 at level 20+, 40 at level 40+)',
+  '8': 'Suffers 20 ice damage (30 at level 20+, 40 at level 40+)',
+  '9': 'Gains Resistance to air and fire damage until the end of the scene',
+  '10': 'Gains Resistance to bolt and ice damage until the end of the scene',
+  '11': 'Gains Resistance to dark and earth damage until the end of the scene',
+  '12': 'Suffers enraged',
+  '13': 'Suffers poisoned',
+  '14': 'Suffers dazed, shaken, slow and weak',
+  '15': 'Recovers from all status effects',
+  '16-17': 'Recovers 50 Hit Points and 50 Mind Points',
+  '18': 'Recovers 100 Hit Points',
+  '19': 'Recovers 100 Mind Points',
+  '20': 'Recovers 100 Hit Points and 100 Mind Points'
+};
+
+export const TINKERER_INFUSIONS = {
+  basic: {
+    'Cryo': { damage: 5, type: 'ice', description: 'The attack deals 5 extra damage, and its damage becomes ice' },
+    'Pyro': { damage: 5, type: 'fire', description: 'The attack deals 5 extra damage, and its damage becomes fire' },
+    'Volt': { damage: 5, type: 'bolt', description: 'The attack deals 5 extra damage, and its damage becomes bolt' }
+  },
+  advanced: {
+    'Cyclone': { damage: 5, type: 'air', description: 'The attack deals 5 extra damage, and its damage becomes air' },
+    'Exorcism': { damage: 5, type: 'light', description: 'The attack deals 5 extra damage, and its damage becomes light' },
+    'Seismic': { damage: 5, type: 'earth', description: 'The attack deals 5 extra damage, and its damage becomes earth' },
+    'Shadow': { damage: 5, type: 'dark', description: 'The attack deals 5 extra damage, and its damage becomes dark' }
+  },
+  superior: {
+    'Vampire': { 
+      damage: 0, 
+      type: 'special', 
+      description: 'Choose one option: you recover an amount of HP equal to half the HP loss suffered by the target of the attack; or you recover an amount of MP equal to half the HP loss suffered by the target of the attack. This infusion can only be used if the attack targeted a single creature.' 
+    },
+    'Venom': { 
+      damage: 5, 
+      type: 'poison', 
+      description: 'The attack deals 5 extra damage, its damage becomes poison, and each creature hit by the attack suffers poisoned' 
+    }
+  }
+};
+
+export const TINKERER_MAGITECH = {
+  basic: {
+    name: 'Magitech Override',
+    description: 'You may use an action and spend 10 Mind Points to perform an Opposed 【INS + INS】 Check against a nearby soldier-rank construct you can see. If you succeed, you gain control of the creature until the end of the scene.',
+    cost: '10 MP'
+  },
+  advanced: {
+    name: 'Magicannon',
+    description: 'You may perform the Inventory action and spend 3 Inventory Points to create a magicannon firearm. Choose the type of damage it deals (air, bolt, earth, fire, ice, or physical). Accuracy: 【DEX + INS】 +1, Damage: 【HR + 10】, Two-handed, Ranged.',
+    cost: '3 IP'
+  },
+  superior: {
+    name: 'Magispheres',
+    description: 'You develop magisphere prototypes that can replicate spells from Elementalist, Entropist and Spiritist lists. You may perform the Inventory action and spend 2 Inventory Points to create a magisphere and immediately cast one of your prototype spells.',
+    cost: '2 IP',
+    spellSlots: { base: 3, level20: 2, level40: 2 }
+  }
+};
+
+// Spiritist Spells
+export const SPIRITIST_SPELLS = {
+  'Aura': {
+    mp: '5 × T',
+    target: 'Up to three creatures',
+    duration: 'Scene',
+    description: 'You project your soul outside your body and direct it to surround the targets, shielding them from dangerous magic. Until this spell ends, each target may treat their Magic Defense as being equal to 12 against any effects that target it (they are still free to use their normal Defense score if higher than 12).'
+  },
+  'Awaken': {
+    mp: '20',
+    target: 'One creature',
+    duration: 'Scene',
+    description: 'You allow a creature to focus their vital energy into accomplishing what they previously could not. Choose one Attribute: Dexterity, Insight, Might, or Willpower. Until this spell ends, the target treats the chosen Attribute as if it were one die size higher (up to a maximum of d12).'
+  },
+  'Barrier': {
+    mp: '5 × T',
+    target: 'Up to three creatures',
+    duration: 'Scene',
+    description: 'You project your soul outside your body and weave it into a barrier to protect the targets from attacks. Until this spell ends, each target may treat their Defense as being equal to 12 against any effects that target it (they are still free to use their normal Defense score if higher than 12).'
+  },
+  'Cleanse': {
+    mp: '5 × T',
+    target: 'Up to three creatures',
+    duration: 'Instantaneous',
+    description: 'You strengthen and purify the soul energy coursing through your companions. Each target recovers from all status effects.'
+  },
+  'Enrage': {
+    mp: '10',
+    target: 'One creature',
+    duration: 'Instantaneous',
+    description: 'You cause a creature to lose any semblance of temper and act brazenly. The target suffers enraged and cannot perform the Guard or Spell actions during their next turn.',
+    offensive: true
+  },
+  'Hallucination': {
+    mp: '5 × T',
+    target: 'Up to three creatures',
+    duration: 'Instantaneous',
+    description: 'You alter the senses of your enemies, causing them to experience bizarre or frightening hallucinations. Choose dazed or shaken: you inflict the chosen status effect on each target hit by this spell.',
+    offensive: true
+  },
+  'Heal': {
+    mp: '10 × T',
+    target: 'Up to three creatures',
+    duration: 'Instantaneous',
+    description: 'You invigorate your companions, soothing their pain and healing their fatigue. Each target recovers 40 Hit Points. This amount increases to 50 Hit Points if you are level 20 or higher, or to 60 Hit Points if you are level 40 or higher.'
+  },
+  'Lux': {
+    mp: '10 × T',
+    target: 'Up to three creatures',
+    duration: 'Instantaneous',
+    description: 'You focus your inner energy into a barrage of blinding soul rays. Each target hit by this spell suffers 【HR + 15】 light damage. Opportunity: Each target hit by this spell suffers dazed.',
+    offensive: true
+  },
+  'Mercy': {
+    mp: '20',
+    target: 'One creature',
+    duration: 'Scene',
+    description: 'You strengthen the heart of a creature against suffering and despair. Until this spell ends, if the target would be reduced to 0 Hit Points, they are instead left standing with exactly 1 Hit Point. Once that happens, this spell ends.'
+  },
+  'Reinforce': {
+    mp: '5 × T',
+    target: 'Up to three creatures',
+    duration: 'Scene',
+    description: 'You protect the targets from attacks that would corrupt their body and spirit. Choose dazed, enraged, poisoned, shaken, slow, or weak. Until this spell ends, each target becomes immune to the chosen status effect.'
+  },
+  'Soul Weapon': {
+    mp: '10',
+    target: 'One equipped weapon',
+    duration: 'Scene',
+    description: 'You imbue a weapon with the cleansing energy of your spirit. Until this spell ends, all damage dealt by the weapon becomes of the light type. If you have that weapon equipped while you cast this spell, you may perform a free attack with it as part of the same action. This spell can only be cast on a weapon equipped by a willing creature.'
+  },
+  'Torpor': {
+    mp: '5 × T',
+    target: 'Up to three creatures',
+    duration: 'Instantaneous',
+    description: 'You smother the soul energy coursing through the bodies of your foes, hindering their movements. Choose slow or weak: you inflict the chosen status effect on each target hit by this spell.',
+    offensive: true
+  }
+};
+
+// Entropist Spells
+export const ENTROPIST_SPELLS = {
+  'Acceleration': {
+    mp: '20',
+    target: 'One creature',
+    duration: 'Scene',
+    description: 'You bend the fabric of time. Until this spell ends, the target gains the ability to perform a single additional action during each of their turns. Once the target has performed a total of two additional actions granted by this spell, this spell ends.',
+    type: 'time'
+  },
+  'Anomaly': {
+    mp: '20',
+    target: 'One creature',
+    duration: 'Scene',
+    description: 'You alter the very nature of your target. Until this spell ends, if the target would suffer damage of a type they Absorb or are Immune to, they are instead treated as if they were Vulnerable to that damage type. Once that happens, this spell ends.',
+    type: 'chaos'
+  },
+  'Dark Weapon': {
+    mp: '10',
+    target: 'One equipped weapon',
+    duration: 'Scene',
+    description: 'You imbue a weapon with dark energy. Until this spell ends, all damage dealt by the weapon becomes of the dark type. If you have that weapon equipped while you cast this spell, you may perform a free attack with it as part of the same action. This spell can only be cast on a weapon equipped by a willing creature.',
+    type: 'dark'
+  },
+  'Dispel': {
+    mp: '10',
+    target: 'One creature',
+    duration: 'Instantaneous',
+    description: 'You release a wave of negative energy and cleanse all magic from a creature. If the target is affected by one or more spells with a duration of Scene, they are no longer affected by any of those spells instead.',
+    type: 'chaos'
+  },
+  'Divination': {
+    mp: '10',
+    target: 'Self',
+    duration: 'Scene',
+    description: 'You glimpse briefly into the future. Until this spell ends, after a creature you can see performs a Check, if it was not a fumble nor a critical success, you may force that creature to reroll both dice. Once you have forced two rerolls this way, this spell ends.',
+    type: 'time'
+  },
+  'Drain Spirit': {
+    mp: '5',
+    target: 'One creature',
+    duration: 'Instantaneous',
+    description: 'You consume a creature\'s psyche. The target loses 【HR + 15】 Mind Points. Then, you recover an amount of Mind Points equal to half the Mind Points loss they suffered (if the loss was reduced to 0 in some way, you recover none).',
+    type: 'dark'
+  },
+  'Drain Vigor': {
+    mp: '10',
+    target: 'One creature',
+    duration: 'Instantaneous',
+    description: 'You steal another creature\'s life force. The target suffers 【HR + 15】 dark damage. Then, you recover an amount of Hit Points equal to half the Hit Points loss they suffered (if the loss was reduced to 0 in some way, you recover none).',
+    type: 'dark'
+  },
+  'Gamble': {
+    mp: 'up to 20',
+    target: 'Special',
+    duration: 'Instantaneous',
+    description: 'You summon a vortex of chaotic energy. Roll your current Willpower die once for every 10 Mind Points spent while casting this spell, then keep the single die you prefer: the number on that die determines the effects of this spell. 1: You lose half of your current Hit Points and half of your current Mind Points. 2-3: Each creature present on the scene, including yourself, suffers poisoned. 4-6: Each creature present on the scene, including yourself, suffers slow. 7-8: Choose up to three creatures you can see: each of them recovers 50 Hit Points and also recovers from all status effects. 9+: Choose any number of creatures you can see: each of them suffers 30 damage. The damage type is determined randomly by rolling a d6: 1. air 2. bolt 3. dark 4. earth 5. fire 6. poison',
+    type: 'chaos'
+  },
+  'Mirror': {
+    mp: '10',
+    target: 'One creature',
+    duration: 'Scene',
+    description: 'You twist the laws of magic. Until this spell ends, if an offensive (rr) spell is cast on the target, the creature who cast that offensive spell will be targeted in their stead (any other targets of the offensive spell will be targeted as normal). Once that happens, this spell ends.',
+    type: 'chaos'
+  },
+  'Omega': {
+    mp: '20',
+    target: 'One creature',
+    duration: 'Instantaneous',
+    description: 'You invoke doom on your foe, turning strength into frailty. The target loses an amount of Hit Points equal to 【20 + half the target\'s level】.',
+    type: 'dark'
+  },
+  'Stop': {
+    mp: '10',
+    target: 'One creature',
+    duration: 'Instantaneous',
+    description: 'You trap a foe inside a circle of altered time and space. The target will perform one fewer action on their next turn (to a minimum of 0 actions).',
+    type: 'time'
+  },
+  'Umbra': {
+    mp: '10 × T',
+    target: 'Up to three creatures',
+    duration: 'Instantaneous',
+    description: 'A storm of dark energy turns matter into ash. Each target hit by this spell suffers 【HR + 15】 dark damage. Opportunity: Each target hit by this spell suffers weak.',
+    type: 'dark'
+  }
+};
+
 export const CHARACTER_CREATION_RULES = {
   startingLevel: 5,
   maxLevel: 50,
@@ -4470,5 +4367,12 @@ export default {
   AFFINITY_TYPES,
   DEFAULT_CHARACTER,
   CHARACTER_CREATION_RULES,
-  ELEMENTALIST_SPELLS
+  ELEMENTALIST_SPELLS,
+  ENTROPIST_SPELLS,
+  SPIRITIST_SPELLS,
+  TINKERER_ALCHEMY,
+  ALCHEMY_TARGETS,
+  ALCHEMY_EFFECTS,
+  TINKERER_INFUSIONS,
+  TINKERER_MAGITECH
 };

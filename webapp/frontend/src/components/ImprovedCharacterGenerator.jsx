@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { CHARACTER_CLASSES, ATTRIBUTES, STARTING_ATTRIBUTES, HEROIC_STYLE_SKILLS, DEFAULT_CHARACTER, DAMAGE_TYPES, AFFINITY_TYPES, ELEMENTALIST_SPELLS } from '../shared/complete_game_data.js';
+import { CHARACTER_CLASSES, ATTRIBUTES, STARTING_ATTRIBUTES, HEROIC_STYLE_SKILLS, DEFAULT_CHARACTER, DAMAGE_TYPES, AFFINITY_TYPES, ELEMENTALIST_SPELLS, ENTROPIST_SPELLS, SPIRITIST_SPELLS, TINKERER_ALCHEMY, ALCHEMY_TARGETS, ALCHEMY_EFFECTS, TINKERER_INFUSIONS, TINKERER_MAGITECH } from '../shared/complete_game_data.js';
 import CharacterAvatar from './CharacterAvatar';
 import BondSystem from './BondSystem';
 import StatusEffects from './StatusEffects';
@@ -16,7 +16,7 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
   const [character, setCharacter] = useState({
     ...DEFAULT_CHARACTER,
     classes: [
-      { classKey: null, level: 5, abilities: {}, slot: 'primary', spells: {} }
+      { classKey: null, level: 5, abilities: {}, slot: 'primary', spells: {}, inventions: {} }
     ]
   });
 
@@ -142,16 +142,19 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
     });
   };
   
-  const getElementalMagicSkillLevel = (classIndex) => {
+  const getMagicSkillLevel = (classIndex, skillName) => {
     const currentClass = character.classes[classIndex];
     return Object.values(currentClass.abilities || {}).filter(
-      skill => skill === 'Elemental Magic'
+      skill => skill === skillName
     ).length;
   };
   
   const getAvailableSpellSlots = (classIndex) => {
-    // Each level of Elemental Magic grants one spell slot
-    return getElementalMagicSkillLevel(classIndex);
+    // Each level of Elemental Magic, Entropic Magic, or Spiritual Magic grants one spell slot
+    const elementalLevel = getMagicSkillLevel(classIndex, 'Elemental Magic');
+    const entropicLevel = getMagicSkillLevel(classIndex, 'Entropic Magic');
+    const spiritualLevel = getMagicSkillLevel(classIndex, 'Spiritual Magic');
+    return elementalLevel + entropicLevel + spiritualLevel;
   };
   
   const updateSpell = (classIndex, spellSlot, spellName) => {
@@ -194,11 +197,88 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
 
   const getAvailableSpells = (classIndex) => {
     const allKnownSpells = getAllKnownSpells(classIndex);
-    return Object.keys(ELEMENTALIST_SPELLS).filter(spell => !allKnownSpells.includes(spell));
+    const availableSpells = [];
+    
+    // Add Elementalist spells if character has Elemental Magic
+    if (getMagicSkillLevel(classIndex, 'Elemental Magic') > 0) {
+      Object.keys(ELEMENTALIST_SPELLS).forEach(spell => {
+        if (!allKnownSpells.includes(spell)) {
+          availableSpells.push(spell);
+        }
+      });
+    }
+    
+    // Add Entropist spells if character has Entropic Magic
+    if (getMagicSkillLevel(classIndex, 'Entropic Magic') > 0) {
+      Object.keys(ENTROPIST_SPELLS).forEach(spell => {
+        if (!allKnownSpells.includes(spell)) {
+          availableSpells.push(spell);
+        }
+      });
+    }
+    
+    // Add Spiritist spells if character has Spiritual Magic
+    if (getMagicSkillLevel(classIndex, 'Spiritual Magic') > 0) {
+      Object.keys(SPIRITIST_SPELLS).forEach(spell => {
+        if (!allKnownSpells.includes(spell)) {
+          availableSpells.push(spell);
+        }
+      });
+    }
+    
+    return availableSpells;
   };
   
   const shouldShowSpellSection = (classIndex) => {
-    return getElementalMagicSkillLevel(classIndex) > 0;
+    return getMagicSkillLevel(classIndex, 'Elemental Magic') > 0 || 
+           getMagicSkillLevel(classIndex, 'Entropic Magic') > 0 ||
+           getMagicSkillLevel(classIndex, 'Spiritual Magic') > 0;
+  };
+  
+  const getSpellData = (spellName) => {
+    return ELEMENTALIST_SPELLS[spellName] || ENTROPIST_SPELLS[spellName] || SPIRITIST_SPELLS[spellName];
+  };
+
+  // Tinkerer Invention Functions
+  const getGadgetsSkillLevel = (classIndex) => {
+    const currentClass = character.classes[classIndex];
+    return Object.values(currentClass.abilities || {}).filter(
+      skill => skill === 'Gadgets'
+    ).length;
+  };
+
+  const updateInvention = (classIndex, inventionSlot, inventionData) => {
+    setCharacter(prev => {
+      const newClasses = [...prev.classes];
+      
+      if (!newClasses[classIndex].inventions) {
+        newClasses[classIndex].inventions = {};
+      }
+      
+      newClasses[classIndex].inventions[inventionSlot] = inventionData;
+      
+      return {
+        ...prev,
+        classes: newClasses
+      };
+    });
+  };
+
+  const getAvailableInventionSlots = (classIndex) => {
+    return getGadgetsSkillLevel(classIndex);
+  };
+
+  const shouldShowInventionSection = (classIndex) => {
+    return getGadgetsSkillLevel(classIndex) > 0;
+  };
+
+  const getAvailableGadgetTypes = () => {
+    return ['alchemy', 'infusions', 'magitech'];
+  };
+
+  const getGadgetTierName = (tier) => {
+    const tiers = { 1: 'basic', 2: 'advanced', 3: 'superior' };
+    return tiers[tier] || 'basic';
   };
 
   const renderSkillSelector = (classIndex, skillSlot) => {
@@ -415,16 +495,74 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
                       </select>
                     </div>
                     
-                    {currentSpell && ELEMENTALIST_SPELLS[currentSpell] && (
+                    {currentSpell && getSpellData(currentSpell) && (
                       <div className="selected-spell-info">
                         <div className="spell-meta-inline">
-                          <span>MP: {ELEMENTALIST_SPELLS[currentSpell].mp}</span>
-                          <span>Target: {ELEMENTALIST_SPELLS[currentSpell].target}</span>
-                          <span>Duration: {ELEMENTALIST_SPELLS[currentSpell].duration}</span>
-                          <span>Type: {ELEMENTALIST_SPELLS[currentSpell].type}</span>
+                          <span>MP: {getSpellData(currentSpell).mp}</span>
+                          <span>Target: {getSpellData(currentSpell).target}</span>
+                          <span>Duration: {getSpellData(currentSpell).duration}</span>
+                          <span>Type: {getSpellData(currentSpell).type}</span>
                         </div>
                         <p className="spell-description-mini">
-                          {ELEMENTALIST_SPELLS[currentSpell].description}
+                          {getSpellData(currentSpell).description}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
+        
+        {/* Invention Section - for Tinkerer gadgets */}
+        {shouldShowInventionSection(classIndex) && (
+          <div className="inventions-section">
+            <h4>Inventions ({Object.keys(currentClass.inventions || {}).length}/{getAvailableInventionSlots(classIndex)}):</h4>
+            <div className="inventions-grid">
+              {Array.from({ length: getAvailableInventionSlots(classIndex) }, (_, i) => {
+                const inventionSlot = `invention_${i + 1}`;
+                const currentInvention = currentClass.inventions?.[inventionSlot];
+                
+                return (
+                  <div className="invention-selector" key={inventionSlot}>
+                    <div className="invention-header">
+                      <label>Gadget Slot {i + 1}:</label>
+                      <select
+                        value={currentInvention?.type || ''}
+                        onChange={(e) => {
+                          if (e.target.value) {
+                            const [type, tier] = e.target.value.split('-');
+                            updateInvention(classIndex, inventionSlot, { 
+                              type, 
+                              tier: getGadgetTierName(parseInt(tier)),
+                              name: `${type.charAt(0).toUpperCase() + type.slice(1)} (${getGadgetTierName(parseInt(tier))})`
+                            });
+                          } else {
+                            updateInvention(classIndex, inventionSlot, null);
+                          }
+                        }}
+                        className="invention-select compact"
+                      >
+                        <option value="">-- Select Gadget --</option>
+                        {getAvailableGadgetTypes().map(type => [1, 2, 3].map(tier => (
+                          <option key={`${type}-${tier}`} value={`${type}-${tier}`}>
+                            {type.charAt(0).toUpperCase() + type.slice(1)} ({getGadgetTierName(tier)})
+                          </option>
+                        ))).flat()}
+                      </select>
+                    </div>
+                    
+                    {currentInvention && (
+                      <div className="selected-invention-info">
+                        <div className="invention-meta-inline">
+                          <span>Type: {currentInvention.type}</span>
+                          <span>Tier: {currentInvention.tier}</span>
+                        </div>
+                        <p className="invention-description-mini">
+                          {currentInvention.type === 'alchemy' && TINKERER_ALCHEMY[currentInvention.tier]?.description}
+                          {currentInvention.type === 'infusions' && `Enhance attacks with elemental infusions (${currentInvention.tier} tier)`}
+                          {currentInvention.type === 'magitech' && TINKERER_MAGITECH[currentInvention.tier]?.description}
                         </p>
                       </div>
                     )}
@@ -445,7 +583,8 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
         ...newClasses[classIndex],
         classKey: classKey,
         abilities: {}, // Reset abilities when changing class
-        spells: {} // Reset spells when changing class
+        spells: {}, // Reset spells when changing class
+        inventions: {} // Reset inventions when changing class
       };
       return {
         ...prev,
@@ -465,7 +604,7 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
         ...prev,
         classes: [
           ...prev.classes,
-          { classKey: null, level: 5, abilities: {}, slot: slotName, spells: {} }
+          { classKey: null, level: 5, abilities: {}, slot: slotName, spells: {}, inventions: {} }
         ]
       }));
     }
