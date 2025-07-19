@@ -253,142 +253,44 @@ export const CHARACTER_CLASSES = {
 
   DARKBLADE: {
     name: 'Darkblade',
-    description: 'Warriors who have embraced the darkness within themselves, wielding shadow magic and forbidden techniques. They sacrifice light for power, becoming living weapons of darkness.',
+    description: 'Warriors who embrace darkness and pain, channeling their suffering into power',
     primaryAttributes: ['dexterity', 'willpower'],
     freeBenefits: ['Martial armor', 'Martial melee OR ranged weapons'],
     equipmentProficiencies: ['Martial armor', 'Martial weapons'],
     abilities: {
-      'Shadow Strike': {
-        level: 1,
-        description: 'Strike from the shadows with supernatural speed and precision. You may only use this skill if you have not acted yet during this turn. Choose one creature you can see. You deal 【HR + SL × 5】 dark damage to that creature; this is a ranged attack that can target any creature you can see, ignoring cover and distance as you briefly step through shadows to strike.',
-        type: 'Offensive Spell',
-        cost: '5 MP',
-        maxTimes: 1
-      },
-      'Umbral Blade': {
-        level: 1,
-        description: 'Infuse your weapons with dark energy, transforming them into conduits of shadow. Until the end of this scene, your melee attacks deal dark damage instead of physical damage. Your weapons appear wreathed in writhing shadows and gain a faint purple glow.',
-        type: 'Spell',
-        cost: '10 MP',
-        maxTimes: 1
-      },
-      'Dark Resilience': {
-        level: 1,
-        description: 'Your body has been hardened by exposure to dark magic. You gain Resistance to dark damage. If you already have Resistance to dark damage, you gain Immunity to dark damage instead.',
-        type: 'Passive',
-        cost: 'None',
-        maxTimes: 1
-      },
-      'Cloak of Shadows': {
-        level: 2,
-        description: 'Wrap yourself in supernatural darkness that confuses enemies and deflects attacks. Until the start of your next turn, you cannot be targeted by attacks unless you are the only valid target present on the scene. While cloaked, you appear as a shifting, indistinct shadow.',
-        type: 'Spell',
-        cost: '8 MP',
-        maxTimes: 1
-      },
-      'Dark Healing': {
-        level: 2,
-        description: 'Feed on the suffering you cause, converting pain into vitality. After you deal damage to a creature with a dark attack, you recover Hit Points equal to 【SL × 3】. This healing manifests as dark energy flowing from your victim into your wounds.',
-        type: 'Passive',
-        cost: 'None',
-        maxTimes: 1
-      },
-      'Dread': {
-        level: 2,
-        description: 'Your presence emanates an aura of menace and despair. You may use an action and spend 10 Mind Points to choose one creature you can see: they must make an Insight + Willpower Check against your Magic Accuracy. If they fail, they suffer the shaken status effect.',
-        type: 'Spell',
-        cost: '10 MP',
-        maxTimes: 1
-      },
-      'Shadow Step': {
-        level: 3,
-        description: 'Dissolve into shadow and reappear elsewhere in an instant. You may perform a free movement without spending actions. Additionally, this movement ignores the presence of other creatures and can cross through obstacles no thicker than a few meters. You briefly become incorporeal during this movement.',
-        type: 'Spell',
-        cost: '12 MP',
-        maxTimes: 1
-      },
-      'Curse': {
-        level: 3,
-        description: 'Place a malevolent hex upon your enemy that hinders their actions. Choose one creature you can see. Until the end of this scene, that creature suffers a -【SL × 2】 penalty to Accuracy Checks; this is elemental magic of the dark type. The target\'s eyes briefly glow with malevolent energy when cursed.',
-        type: 'Offensive Spell',
-        cost: '15 MP',
-        maxTimes: 1
-      },
-      'Life Drain': {
-        level: 3,
-        description: 'Siphon the life force directly from your enemies\' bodies. You may use an action and spend 15 Mind Points to choose one creature you can see and perform a Magic Accuracy Check against their Magic Defense. If you succeed, they lose 【HR + SL × 5】 Hit Points and you recover the same amount.',
-        type: 'Offensive Spell',
-        cost: '15 MP',
-        maxTimes: 1
-      },
-      'Nightmare': {
-        level: 4,
-        description: 'Invade an enemy\'s mind with terrifying visions of their deepest fears. You may use an action and spend 18 Mind Points to choose one creature you can see: they must make an Insight + Willpower Check against your Magic Accuracy. If they fail, they suffer the confused status effect and take 【SL × 3】 mental damage each turn until the end of the scene.',
-        type: 'Offensive Spell',
-        cost: '18 MP',
-        maxTimes: 1
-      },
       'Agony': {
-        level: 4,
-        description: 'Inflict excruciating supernatural pain that transcends physical sensation. You may use an action and spend 20 Mind Points to choose one creature you can see: they must make a Might + Willpower Check against your Magic Accuracy. If they fail, they take 【HR + SL × 4】 dark damage and suffer -2 to all rolls until the end of their next turn.',
-        type: 'Offensive Spell',
-        cost: '20 MP',
-        maxTimes: 1
-      },
-      'Shadow Mastery': {
-        level: 4,
-        description: 'Your control over darkness has reached new heights. When you cast a Spell that deals dark damage or forces a Check, its effects are treated as if you were one level higher (this does not affect the Spell\'s MP cost). Additionally, you may see clearly in any level of darkness.',
+        level: 5,
+        description: 'After you deal damage to one or more creatures, if you have a Bond towards at least one of those creatures, you may recover 【SL × 2】 Hit Points and 【SL × 2】 Mind Points.',
         type: 'Passive',
         cost: 'None',
         maxTimes: 1
       },
-      'Darkness': {
-        level: 5,
-        description: 'Plunge a large area into supernatural darkness that follows your will. You may use an action and spend 25 Mind Points to fill the entire scene with darkness for 【SL】 rounds. Creatures other than you suffer -2 to Accuracy Checks and cannot target creatures more than one zone away.',
-        type: 'Spell',
-        cost: '25 MP',
-        maxTimes: 1
-      },
-      'Soul Rend': {
-        level: 5,
-        description: 'Strike at the very essence of your enemy\'s being, bypassing all physical defenses. You may use an action and spend 30 Mind Points to choose one creature you can see and perform a Magic Accuracy Check against their Magic Defense. If you succeed, they take 【HR + SL × 6】 damage that ignores Defense, Resistances, and Immunities.',
-        type: 'Offensive Spell',
-        cost: '30 MP',
-        maxTimes: 1
-      },
-      'Dark Avatar': {
-        level: 5,
-        description: 'Transform into a living embodiment of darkness and malice. You may use an action and spend 25 Mind Points: until the end of this scene, you gain Immunity to dark damage, Resistance to all other damage types, and your Spell attacks gain a +2 bonus to their Magic Accuracy Checks.',
-        type: 'Spell',
-        cost: '25 MP',
-        maxTimes: 1
-      },
-      'Umbral Form': {
-        level: 6,
-        description: 'Become one with the shadows, transcending physical form. You may use an action and spend 30 Mind Points: until the end of the scene, you become incorporeal and immune to physical damage, but you cannot deal physical damage or use items. You can pass through solid obstacles and cannot be grappled or knocked prone.',
-        type: 'Spell',
-        cost: '30 MP',
-        maxTimes: 1
-      },
-      'Death\'s Touch': {
-        level: 6,
-        description: 'Channel the power of death itself through your attacks. After you deal damage to a creature with Crisis, you may spend 10 Mind Points: that creature must make an Insight + Willpower Check against your Magic Accuracy or be immediately defeated. This can only affect creatures with a current level equal to or lower than yours.',
+      'Dark Blood': {
+        level: 1,
+        description: 'As long as you are in Crisis, you have Resistance to dark damage and poison damage.',
         type: 'Passive',
-        cost: '10 MP per use',
+        cost: 'None',
         maxTimes: 1
       },
-      'Void Walker': {
-        level: 8,
-        description: 'You have learned to step between dimensions, moving through the spaces between reality. You may use an action to teleport to any location you can see within the same scene, regardless of distance or obstacles. This movement cannot be prevented or redirected by any means.',
-        type: 'Spell',
-        cost: '20 MP',
+      'Heart of Darkness': {
+        level: 1,
+        description: 'Once per scene upon entering Crisis, you may choose a specific creature you can see that you don\'t have a Bond towards. If you do, create a Bond of hatred towards that creature.',
+        type: 'Passive',
+        cost: 'None',
         maxTimes: 1
       },
-      'Apocalypse': {
-        level: 10,
-        description: 'Unleash the ultimate expression of dark magic, bringing forth a localized apocalypse. You may use an action and spend 50 Mind Points: all creatures in the scene except you must make an Insight + Willpower Check against your Magic Accuracy. Those who fail take 【HR + SL × 10】 dark damage and suffer a status effect of your choice.',
-        type: 'Offensive Spell',
-        cost: '50 MP',
+      'Painful Lesson': {
+        level: 3,
+        description: 'After another creature causes you to lose Hit Points (with an attack, a spell or any other method), you may immediately perform the Study action on that creature for free. If you do, gain a bonus equal to 【SL】 to your Check. Remember, you can study the same aspect of a creature only once.',
+        type: 'Passive',
+        cost: 'None',
+        maxTimes: 1
+      },
+      'Shadow Strike': {
+        level: 5,
+        description: 'You have learned to channel your vital force into your attacks. You may use an action to perform a Shadow Strike: roll your current Might die and lose an amount of Hit Points equal to 【the number rolled on your Might die】. If this didn\'t reduce your Hit Points to 0, you may perform a free attack with a weapon you have equipped: if this attack hits one or more targets, it deals extra damage equal to 【SL + the number rolled on your Might die】. However, all damage dealt by this attack becomes dark and its damage type cannot be changed.',
+        type: 'Active',
+        cost: 'HP sacrifice',
         maxTimes: 1
       }
     },
