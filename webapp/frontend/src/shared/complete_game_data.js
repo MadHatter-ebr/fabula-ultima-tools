@@ -455,43 +455,6 @@ export const CHARACTER_CLASSES = {
         type: 'active',
         cost: 'None',
         maxTimes: 5
-    },
-    source: 'Core Rules'
-  },
-      'Bloodlust': {
-        level: 6,
-        description: 'Heal yourself by dealing damage. Recover HP equal to a portion of the damage you deal.',
-        type: 'passive',
-        cost: 'None',
-        maxTimes: 1
-      },
-      'Whirlwind': {
-        level: 6,
-        description: 'Attack all enemies around you in a spinning assault. Hit multiple targets with reduced accuracy.',
-        type: 'active',
-        cost: '25 MP',
-        maxTimes: 1
-      },
-      'Berserker': {
-        level: 8,
-        description: 'Enter a devastating rage that increases all your physical capabilities while making you harder to control.',
-        type: 'active',
-        cost: '25 MP',
-        maxTimes: 1
-      },
-      'Unstoppable Force': {
-        level: 8,
-        description: 'Nothing can stop your advance. Ignore obstacles, resistances, and defensive abilities.',
-        type: 'passive',
-        cost: 'None',
-        maxTimes: 1
-      },
-      'Apocalypse': {
-        level: 10,
-        description: 'Unleash your ultimate fury in a devastating area attack that can reshape the battlefield.',
-        type: 'active',
-        cost: '40 MP',
-        maxTimes: 1
       }
     },
     source: 'Core Rules'
@@ -536,31 +499,6 @@ export const CHARACTER_CLASSES = {
         level: 1,
         description: 'When another creature is threatened by an attack, spell or other danger, you may take their place (any Checks that are part of the danger will be performed against you; you may declare the use of this Skill before or after the Checks have been made). If the danger already affected you, it affects you twice (resolve both instances separately); you also cannot protect multiple creatures from the same danger. If you use this Skill during a conflict, you cannot use it again until the start of your next turn.',
         type: 'reaction',
-        cost: 'None',
-        maxTimes: 1
-    },
-    source: 'Core Rules'
-  },
-        maxTimes: 1
-      },
-      'Dual Shieldbearer': {
-        level: 7,
-        description: 'Wield two shields effectively. Gain additional defensive bonuses and can protect more allies simultaneously.',
-        type: 'passive',
-        cost: 'None',
-        maxTimes: 1
-      },
-      'Unbreakable Defense': {
-        level: 8,
-        description: 'Your defense becomes nearly impenetrable. Reduce all damage taken to minimal amounts.',
-        type: 'passive',
-        cost: 'None',
-        maxTimes: 1
-      },
-      'Final Stand': {
-        level: 10,
-        description: 'When reduced to low HP, gain massive bonuses to all defensive abilities and can protect unlimited allies.',
-        type: 'passive',
         cost: 'None',
         maxTimes: 1
       }
@@ -610,40 +548,6 @@ export const CHARACTER_CLASSES = {
         cost: 'None',
         maxTimes: 1
       }
-        type: 'passive',
-        cost: 'None',
-        maxTimes: 1
-    },
-    source: 'Core Rules'
-  },
-      'Ancient Secrets': {
-        level: 6,
-        description: 'Access knowledge of ancient secrets and lost arts. Use abilities from other classes or forgotten magic.',
-        type: 'active',
-        cost: '20 MP',
-        maxTimes: 1
-      },
-      'Master Scholar': {
-        level: 8,
-        description: 'Your scholarly pursuits grant you insight into all fields. Gain bonuses to all non-combat activities.',
-        type: 'passive',
-        cost: 'None',
-        maxTimes: 1
-      },
-      'Well-Versed': {
-        level: 8,
-        description: 'Master of all knowledge. You can provide expert advice on any topic and gain benefits from all knowledge.',
-        type: 'passive',
-        cost: 'None',
-        maxTimes: 1
-      },
-      'Wisdom of the Ages': {
-        level: 10,
-        description: 'Access the collective wisdom of all scholars throughout history. Gain ultimate insight into any situation.',
-        type: 'active',
-        cost: '30 MP',
-        maxTimes: 1
-      }
     },
     source: 'Core Rules'
   },
@@ -688,36 +592,6 @@ export const CHARACTER_CLASSES = {
         description: 'You may use an action and spend 1 Fabula Point to choose a non-hostile creature able to hear and understand you. If you do, that creature becomes helpful towards you so long as you are kind and respectful to them and your requests are reasonable.',
         type: 'active',
         cost: '1 Fabula Point',
-        maxTimes: 1
-    },
-    source: 'Core Rules'
-  },
-      'Mass Suggestion': {
-        level: 6,
-        description: 'Suggest actions to multiple targets through compelling speech. Influence groups of enemies.',
-        type: 'active',
-        cost: '25 MP',
-        maxTimes: 1
-      },
-      'Leadership': {
-        level: 7,
-        description: 'Command respect and loyalty through natural leadership. Allies gain bonuses to all actions.',
-        type: 'passive',
-        cost: 'None',
-        maxTimes: 1
-      },
-      'Legendary Oration': {
-        level: 8,
-        description: 'Deliver speeches that become legendary. Your words have lasting effects on all who hear them.',
-        type: 'active',
-        cost: '30 MP',
-        maxTimes: 1
-      },
-      'Words of Power': {
-        level: 10,
-        description: 'Speak words that reshape reality itself. Your ultimate speech can change the course of events.',
-        type: 'active',
-        cost: '40 MP',
         maxTimes: 1
       }
     },
@@ -881,38 +755,6 @@ export const CHARACTER_CLASSES = {
         type: 'active',
         cost: 'None',
         maxTimes: 5
-    },
-    source: 'Core Rules'
-  },
-        maxTimes: 1
-      },
-      'Critical Strike': {
-        level: 6,
-        description: 'Strike with perfect precision. Always hit vital points for maximum damage.',
-        type: 'active',
-        cost: '25 MP',
-        maxTimes: 1
-      },
-      'Master Thief': {
-        level: 8,
-        description: 'Steal anything from anyone. Take abstract concepts like abilities or memories.',
-        type: 'active',
-        cost: '30 MP',
-        maxTimes: 1
-      },
-      'Soul Steal': {
-        level: 8,
-        description: 'Drain life energy from enemies. Steal HP, MP, or even abilities from targets.',
-        type: 'active',
-        cost: '25 MP',
-        maxTimes: 1
-      },
-      'Perfect Assassin': {
-        level: 10,
-        description: 'Become the ultimate assassin. Your attacks can instantly kill any target.',
-        type: 'active',
-        cost: '40 MP',
-        maxTimes: 1
       }
     },
     source: 'Core Rules'
