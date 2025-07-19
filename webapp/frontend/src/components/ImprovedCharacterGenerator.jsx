@@ -54,13 +54,20 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
     return classData.abilities || {};
   };
 
-  // Check if a skill can be taken (based on usage limits)
-  const canTakeSkill = (classIndex, skillName) => {
+  // Check if a skill can be taken (based on usage limits and available slots)
+  const canTakeSkill = (classIndex, skillName, skipSlotCheck = false) => {
     const currentClass = character.classes[classIndex];
     if (!currentClass.classKey) return false;
     
     const availableSkills = getAvailableSkills(currentClass.classKey, currentClass.level);
     if (!availableSkills[skillName]) return false;
+    
+    // Check if we have available skill slots (unless we're replacing an existing skill)
+    if (!skipSlotCheck) {
+      const maxSkillSlots = getSkillSlotsForLevel(currentClass.level);
+      const currentSkillCount = Object.keys(currentClass.abilities).length;
+      if (currentSkillCount >= maxSkillSlots) return false;
+    }
     
     // Count how many times this skill is already taken
     const timesAlreadyTaken = Object.values(currentClass.abilities).filter(
@@ -73,11 +80,10 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
     return timesAlreadyTaken < maxTimes;
   };
 
-  // Get skill slots based on class level
+  // Get skill slots based on class level (1:1 ratio)
   const getSkillSlotsForLevel = (level) => {
-    // In Fabula Ultima, you get skills at levels 1, 2, 3, 4, 5, 6, 8, 10
-    const skillLevels = [1, 2, 3, 4, 5, 6, 8, 10];
-    return skillLevels.filter(skillLevel => skillLevel <= level).length;
+    // Each level grants one skill slot (Level 5 = 5 skills)
+    return level;
   };
 
   const updateClassLevel = (classIndex, newLevel) => {
@@ -157,11 +163,27 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
           >
             <option value="">-- Select Skill --</option>
             {Object.entries(availableSkills).map(([skillName, skillData]) => {
-              const canTake = canTakeSkill(classIndex, skillName);
+              // If we're replacing an existing skill, skip slot check
+              const isReplacing = currentSkill !== null && currentSkill !== '';
+              const canTake = canTakeSkill(classIndex, skillName, isReplacing);
               const timesAlreadyTaken = Object.values(currentClass.abilities).filter(
                 skill => skill === skillName
               ).length;
               const maxTimes = skillData.level || 1;
+              
+              // Check if skill slots are full (for better error message)
+              const maxSkillSlots = getSkillSlotsForLevel(currentClass.level);
+              const currentSkillCount = Object.keys(currentClass.abilities).length;
+              const slotsAreMax = currentSkillCount >= maxSkillSlots && !isReplacing;
+              
+              let disabledReason = '';
+              if (!canTake && currentSkill !== skillName) {
+                if (slotsAreMax) {
+                  disabledReason = ' - No skill slots available';
+                } else if (timesAlreadyTaken >= maxTimes) {
+                  disabledReason = ' - Max reached';
+                }
+              }
               
               return (
                 <option 
@@ -169,7 +191,7 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
                   value={skillName}
                   disabled={!canTake && currentSkill !== skillName}
                 >
-                  {skillName} (Max: {maxTimes}) {timesAlreadyTaken > 0 ? `[${timesAlreadyTaken}/${maxTimes}]` : ''} {!canTake && currentSkill !== skillName ? ' - Max reached' : ''}
+                  {skillName} (Max: {maxTimes}) {timesAlreadyTaken > 0 ? `[${timesAlreadyTaken}/${maxTimes}]` : ''} {disabledReason}
                 </option>
               );
             })}
