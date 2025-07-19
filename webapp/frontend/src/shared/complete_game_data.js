@@ -1769,7 +1769,7 @@ export const CHARACTER_CLASSES = {
         maxTimes: 1
       }
     },
-    source: 'High Fantasy Atlas'
+    source: 'Core Rules'
   },
 
   // DARK FANTASY CLASSES
