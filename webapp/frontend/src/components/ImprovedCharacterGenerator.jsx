@@ -311,7 +311,7 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
   };
 
   const initializeDeck = () => {
-    const newDeck = shuffleDeck(createStandardDeck());
+    const newDeck = shuffleDeck(createAceOfCardsDeck());
     const hand = newDeck.splice(0, character.cardDeck.handSize);
     
     setCharacter(prev => ({
