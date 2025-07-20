@@ -1055,3 +1055,206 @@
 .retro .grave-points-info {
   color: #888;
 }
+
+/* Card Deck System */
+.card-deck-section {
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: var(--ff9-bg-card);
+  border: 2px solid var(--ff9-border-secondary);
+  border-radius: 12px;
+}
+
+.card-deck-section h3 {
+  margin: 0 0 1rem 0;
+  color: var(--ff9-text-primary);
+  font-family: var(--ff9-font-title);
+  text-align: center;
+}
+
+.card-deck-tracker {
+  text-align: center;
+}
+
+.deck-stats {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  color: var(--ff9-text-primary);
+}
+
+.deck-controls {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.btn-init-deck,
+.btn-draw-card,
+.btn-shuffle {
+  background: var(--ff9-bg-button);
+  border: 2px solid var(--ff9-border-button);
+  color: var(--ff9-text-primary);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: bold;
+}
+
+.btn-init-deck:hover,
+.btn-draw-card:hover,
+.btn-shuffle:hover {
+  background: var(--ff9-bg-button-hover);
+  transform: translateY(-2px);
+}
+
+.btn-init-deck:disabled,
+.btn-draw-card:disabled,
+.btn-shuffle:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.hand-display {
+  margin: 1rem 0;
+}
+
+.hand-display h4 {
+  margin: 0 0 0.5rem 0;
+  color: var(--ff9-text-primary);
+}
+
+.cards-in-hand {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.card {
+  background: #fff;
+  border: 2px solid #333;
+  border-radius: 8px;
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 60px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.card.red {
+  color: #d32f2f;
+}
+
+.card.black {
+  color: #333;
+}
+
+.card.special {
+  color: #7b1fa2;
+  background: linear-gradient(45deg, #fff, #f3e5f5);
+}
+
+.card:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.card-display {
+  font-size: 1.2rem;
+  font-weight: bold;
+  display: block;
+}
+
+.card-name {
+  font-size: 0.7rem;
+  color: #666;
+  display: block;
+  margin-top: 0.2rem;
+}
+
+.empty-hand {
+  color: var(--ff9-text-secondary);
+  font-style: italic;
+  padding: 1rem;
+}
+
+.card-deck-info {
+  color: var(--ff9-text-secondary);
+  line-height: 1.4;
+}
+
+/* Retro theme adjustments for Card Deck */
+.retro .card-deck-section {
+  background: #000;
+  border: 2px solid #0f0;
+  box-shadow: 0 0 10px #0f0;
+}
+
+.retro .deck-stats {
+  color: #0f0;
+}
+
+.retro .btn-init-deck,
+.retro .btn-draw-card,
+.retro .btn-shuffle {
+  background: #000;
+  border: 1px solid #0f0;
+  color: #0f0;
+}
+
+.retro .btn-init-deck:hover,
+.retro .btn-draw-card:hover,
+.retro .btn-shuffle:hover {
+  background: #0f0;
+  color: #000;
+}
+
+.retro .hand-display h4 {
+  color: #0f0;
+}
+
+.retro .card {
+  background: #000;
+  border: 1px solid #0f0;
+  color: #0f0;
+}
+
+.retro .card.red {
+  color: #f44336;
+  border-color: #f44336;
+}
+
+.retro .card.black {
+  color: #fff;
+  border-color: #fff;
+}
+
+.retro .card.special {
+  color: #e91e63;
+  border-color: #e91e63;
+  background: #000;
+}
+
+.retro .card:hover {
+  box-shadow: 0 0 10px currentColor;
+}
+
+.retro .card-name {
+  color: #888;
+}
+
+.retro .empty-hand {
+  color: #666;
+}
+
+.retro .card-deck-info {
+  color: #888;
+}

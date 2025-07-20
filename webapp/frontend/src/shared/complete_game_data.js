@@ -1082,6 +1082,52 @@ export const CHARACTER_CLASSES = {
     source: 'Core Rules'
   },
 
+  ACE_OF_CARDS: {
+    name: 'Ace of Cards',
+    description: 'Masters of fate and fortune who manipulate luck through magical cards',
+    primaryAttributes: ['dexterity', 'insight'],
+    freeBenefits: ['HP +5 or MP +5 (your choice)'],
+    equipmentProficiencies: ['Basic weapons', 'Basic armor'],
+    abilities: {
+      'Double or Nothing': {
+        level: 1,
+        description: 'Before you perform an Accuracy Check, a Magic Check for an offensive spell (rr), or a Check to advance or turn back a Clock, you may declare double or nothing. If you do and the Check triggers a critical success, double the damage dealt by that attack or spell or the filled or erased sections of that Clock, respectively; however, any other kind of success becomes a failure instead.',
+        type: 'active',
+        cost: 'None',
+        maxTimes: 1
+      },
+      'High or Low': {
+        level: 1,
+        description: 'When you generate a critical success or a fumble, you may draw 1 card from your deck. If you do, discard 1 card from your hand.',
+        type: 'passive',
+        cost: 'None',
+        maxTimes: 1
+      },
+      'Magic Cards': {
+        level: 3,
+        description: 'You gain a deck, a hand and a discard pile. During a conflict, you may use an action and spend up to 【10 + (SL × 5)】 Mind Points (minimum 10). If you do, resolve 1 card from your hand for every 5 MP spent this way (to a maximum of 5 cards; these cards form a set). After you resolve the effect of the set (if any), discard these cards and draw that many cards from your deck.',
+        type: 'active',
+        cost: 'Variable MP',
+        maxTimes: 3
+      },
+      'Mulligan': {
+        level: 5,
+        description: 'At the end of your turn during a conflict, you may discard up to 【SL】 cards from your hand. If you do, draw that many cards from your deck.',
+        type: 'active',
+        cost: 'None',
+        maxTimes: 5
+      },
+      'Trap Card': {
+        level: 4,
+        description: 'After an enemy you can see performs an action during a conflict, you may declare one of your deck\'s suits (after the action has been resolved) and put the first card on the bottom of your deck in your discard pile, face up. If that card is a joker or its suit matches the one you declared, you may immediately perform the Spell action for free, casting a spell with a total Mind Point cost equal to or lower than 【SL × 5】 (you must still pay its MP cost).',
+        type: 'reaction',
+        cost: 'None',
+        maxTimes: 4
+      }
+    },
+    source: 'Core Rules'
+  },
+
   // DARK FANTASY CLASSES
   HEXER: {
     name: 'Hexer',
@@ -3922,6 +3968,64 @@ export const TINKERER_MAGITECH = {
   }
 };
 
+// Ace of Cards Deck System
+export const CARD_SUITS = {
+  hearts: { name: 'Hearts', symbol: '♥️', color: 'red' },
+  diamonds: { name: 'Diamonds', symbol: '♦️', color: 'red' },
+  clubs: { name: 'Clubs', symbol: '♣️', color: 'black' },
+  spades: { name: 'Spades', symbol: '♠️', color: 'black' }
+};
+
+export const CARD_VALUES = {
+  ace: { name: 'Ace', value: 1, display: 'A' },
+  2: { name: 'Two', value: 2, display: '2' },
+  3: { name: 'Three', value: 3, display: '3' },
+  4: { name: 'Four', value: 4, display: '4' },
+  5: { name: 'Five', value: 5, display: '5' },
+  6: { name: 'Six', value: 6, display: '6' },
+  7: { name: 'Seven', value: 7, display: '7' },
+  8: { name: 'Eight', value: 8, display: '8' },
+  9: { name: 'Nine', value: 9, display: '9' },
+  10: { name: 'Ten', value: 10, display: '10' },
+  jack: { name: 'Jack', value: 11, display: 'J' },
+  queen: { name: 'Queen', value: 12, display: 'Q' },
+  king: { name: 'King', value: 13, display: 'K' }
+};
+
+export const createStandardDeck = () => {
+  const deck = [];
+  
+  // Add regular cards
+  Object.keys(CARD_SUITS).forEach(suit => {
+    Object.keys(CARD_VALUES).forEach(value => {
+      deck.push({
+        id: `${value}_${suit}`,
+        suit,
+        value,
+        isJoker: false,
+        display: `${CARD_VALUES[value].display}${CARD_SUITS[suit].symbol}`
+      });
+    });
+  });
+  
+  // Add jokers
+  deck.push(
+    { id: 'joker_red', suit: 'joker', value: 'joker', isJoker: true, display: '🃏' },
+    { id: 'joker_black', suit: 'joker', value: 'joker', isJoker: true, display: '🃏' }
+  );
+  
+  return deck;
+};
+
+export const shuffleDeck = (deck) => {
+  const shuffled = [...deck];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+};
+
 // Spiritist Spells
 export const SPIRITIST_SPELLS = {
   'Aura': {
@@ -4122,5 +4226,9 @@ export default {
   ALCHEMY_TARGETS,
   ALCHEMY_EFFECTS,
   TINKERER_INFUSIONS,
-  TINKERER_MAGITECH
+  TINKERER_MAGITECH,
+  CARD_SUITS,
+  CARD_VALUES,
+  createStandardDeck,
+  shuffleDeck
 };

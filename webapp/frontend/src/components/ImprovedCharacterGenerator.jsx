@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { CHARACTER_CLASSES, ATTRIBUTES, STARTING_ATTRIBUTES, HEROIC_STYLE_SKILLS, DEFAULT_CHARACTER, DAMAGE_TYPES, AFFINITY_TYPES, ELEMENTALIST_SPELLS, ENTROPIST_SPELLS, SPIRITIST_SPELLS, TINKERER_ALCHEMY, ALCHEMY_TARGETS, ALCHEMY_EFFECTS, TINKERER_INFUSIONS, TINKERER_MAGITECH } from '../shared/complete_game_data.js';
+import { CHARACTER_CLASSES, ATTRIBUTES, STARTING_ATTRIBUTES, HEROIC_STYLE_SKILLS, DEFAULT_CHARACTER, DAMAGE_TYPES, AFFINITY_TYPES, ELEMENTALIST_SPELLS, ENTROPIST_SPELLS, SPIRITIST_SPELLS, TINKERER_ALCHEMY, ALCHEMY_TARGETS, ALCHEMY_EFFECTS, TINKERER_INFUSIONS, TINKERER_MAGITECH, CARD_SUITS, CARD_VALUES, createStandardDeck, shuffleDeck } from '../shared/complete_game_data.js';
 import CharacterAvatar from './CharacterAvatar';
 import BondSystem from './BondSystem';
 import StatusEffects from './StatusEffects';
@@ -18,7 +18,13 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
     classes: [
       { classKey: null, level: 5, abilities: {}, slot: 'primary', spells: {}, inventions: {} }
     ],
-    gravePoints: { current: 0, maximum: 0 }
+    gravePoints: { current: 0, maximum: 0 },
+    cardDeck: {
+      deck: [],
+      hand: [],
+      discard: [],
+      handSize: 5
+    }
   });
 
   const [selectedSkillDescriptions, setSelectedSkillDescriptions] = useState({});
@@ -279,6 +285,110 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
 
   const shouldShowGravePoints = () => {
     return hasNecromancerClass() && getBeyondTheRealmsLevel() > 0;
+  };
+
+  // Ace of Cards Functions
+  const hasAceOfCardsClass = () => {
+    return character.classes.some(cls => cls.classKey === 'ACE_OF_CARDS');
+  };
+
+  const getMagicCardsLevel = () => {
+    let level = 0;
+    character.classes.forEach(cls => {
+      if (cls.classKey === 'ACE_OF_CARDS') {
+        Object.values(cls.abilities || {}).forEach(ability => {
+          if (ability === 'Magic Cards') {
+            level++;
+          }
+        });
+      }
+    });
+    return level;
+  };
+
+  const shouldShowCardDeck = () => {
+    return hasAceOfCardsClass() && getMagicCardsLevel() > 0;
+  };
+
+  const initializeDeck = () => {
+    const newDeck = shuffleDeck(createStandardDeck());
+    const hand = newDeck.splice(0, character.cardDeck.handSize);
+    
+    setCharacter(prev => ({
+      ...prev,
+      cardDeck: {
+        ...prev.cardDeck,
+        deck: newDeck,
+        hand: hand,
+        discard: []
+      }
+    }));
+  };
+
+  const drawCard = () => {
+    setCharacter(prev => {
+      const newDeck = [...prev.cardDeck.deck];
+      const newHand = [...prev.cardDeck.hand];
+      const newDiscard = [...prev.cardDeck.discard];
+
+      if (newDeck.length === 0 && newDiscard.length > 0) {
+        // Reshuffle discard pile into deck
+        const reshuffled = shuffleDeck(newDiscard);
+        newDeck.push(...reshuffled);
+        newDiscard.length = 0;
+      }
+
+      if (newDeck.length > 0) {
+        const drawnCard = newDeck.pop();
+        newHand.push(drawnCard);
+      }
+
+      return {
+        ...prev,
+        cardDeck: {
+          ...prev.cardDeck,
+          deck: newDeck,
+          hand: newHand,
+          discard: newDiscard
+        }
+      };
+    });
+  };
+
+  const discardCard = (cardIndex) => {
+    setCharacter(prev => {
+      const newHand = [...prev.cardDeck.hand];
+      const newDiscard = [...prev.cardDeck.discard];
+      
+      const discardedCard = newHand.splice(cardIndex, 1)[0];
+      if (discardedCard) {
+        newDiscard.push(discardedCard);
+      }
+
+      return {
+        ...prev,
+        cardDeck: {
+          ...prev.cardDeck,
+          hand: newHand,
+          discard: newDiscard
+        }
+      };
+    });
+  };
+
+  const shuffleDiscardIntoDeck = () => {
+    setCharacter(prev => {
+      const reshuffled = shuffleDeck([...prev.cardDeck.deck, ...prev.cardDeck.discard]);
+      
+      return {
+        ...prev,
+        cardDeck: {
+          ...prev.cardDeck,
+          deck: reshuffled,
+          discard: []
+        }
+      };
+    });
   };
 
   // Tinkerer Invention Functions
@@ -1061,6 +1171,75 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
                     💀 Gain Grave Points when enemies in Crisis lose HP<br/>
                     💀 Lose all points when reduced to 0 HP (but survive if you have any)<br/>
                     💀 Maximum: {character.gravePoints.maximum} (Beyond the Realms of Death Level + 1)
+                  </small>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Card Deck System for Ace of Cards */}
+          {shouldShowCardDeck() && (
+            <div className="card-deck-section card">
+              <h3>🂠 Magic Cards</h3>
+              <div className="card-deck-tracker">
+                <div className="deck-stats">
+                  <span>Deck: {character.cardDeck.deck.length}</span>
+                  <span>Hand: {character.cardDeck.hand.length}</span>
+                  <span>Discard: {character.cardDeck.discard.length}</span>
+                </div>
+                
+                <div className="deck-controls">
+                  <button 
+                    onClick={initializeDeck}
+                    className="btn-init-deck"
+                    title="Initialize/Reset Deck"
+                  >
+                    🂠 New Deck
+                  </button>
+                  <button 
+                    onClick={drawCard}
+                    disabled={character.cardDeck.deck.length === 0 && character.cardDeck.discard.length === 0}
+                    className="btn-draw-card"
+                    title="Draw Card"
+                  >
+                    🂮 Draw
+                  </button>
+                  <button 
+                    onClick={shuffleDiscardIntoDeck}
+                    disabled={character.cardDeck.discard.length === 0}
+                    className="btn-shuffle"
+                    title="Shuffle Discard into Deck"
+                  >
+                    🔄 Shuffle
+                  </button>
+                </div>
+
+                <div className="hand-display">
+                  <h4>Hand ({character.cardDeck.hand.length})</h4>
+                  <div className="cards-in-hand">
+                    {character.cardDeck.hand.map((card, index) => (
+                      <div 
+                        key={card.id}
+                        className={`card ${CARD_SUITS[card.suit]?.color || 'special'}`}
+                        onClick={() => discardCard(index)}
+                        title={`${card.display} - Click to discard`}
+                      >
+                        <span className="card-display">{card.display}</span>
+                        <span className="card-name">{CARD_VALUES[card.value]?.name || card.value}</span>
+                      </div>
+                    ))}
+                  </div>
+                  {character.cardDeck.hand.length === 0 && (
+                    <div className="empty-hand">No cards in hand</div>
+                  )}
+                </div>
+
+                <div className="card-deck-info">
+                  <small>
+                    🂠 Standard 54-card deck (52 cards + 2 jokers)<br/>
+                    🂮 Click cards to discard them<br/>
+                    🔄 Discard pile reshuffles into deck when empty<br/>
+                    🎯 Use Magic Cards skill to activate card effects in combat
                   </small>
                 </div>
               </div>
