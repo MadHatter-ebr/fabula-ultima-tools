@@ -23,7 +23,7 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
       deck: [],
       hand: [],
       discard: [],
-      handSize: 5
+      handSize: ACE_OF_CARDS_RULES.startingHandSize
     }
   });
 
@@ -1234,13 +1234,44 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
                   )}
                 </div>
 
+                <div className="card-set-effects">
+                  <h4>📋 Card Set Effects</h4>
+                  <div className="set-effects-list">
+                    {Object.entries(CARD_SET_EFFECTS).map(([name, effect]) => (
+                      <div key={name} className="set-effect">
+                        <div className="set-name">{name}</div>
+                        <div className="set-requirement">{effect.requirement}</div>
+                        <div className="set-description">{effect.effect}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
                 <div className="card-deck-info">
-                  <small>
-                    🂠 Standard 54-card deck (52 cards + 2 jokers)<br/>
-                    🂮 Click cards to discard them<br/>
-                    🔄 Discard pile reshuffles into deck when empty<br/>
-                    🎯 Use Magic Cards skill to activate card effects in combat
-                  </small>
+                  <h4>🂠 Deck Rules (Official 30-Card System)</h4>
+                  <div className="deck-rules">
+                    <p><strong>Deck Composition:</strong> {ACE_OF_CARDS_RULES.deckSize} cards total</p>
+                    <ul>
+                      <li>{ACE_OF_CARDS_RULES.jokerCount} Jokers</li>
+                      <li>{ACE_OF_CARDS_RULES.suitCount} Suits × {ACE_OF_CARDS_RULES.cardsPerSuit} Cards = {ACE_OF_CARDS_RULES.suitCount * ACE_OF_CARDS_RULES.cardsPerSuit} Suit Cards</li>
+                      <li>Card Values: {ACE_OF_CARDS_RULES.cardValues.join(', ')}</li>
+                    </ul>
+                    <p><strong>Suit Damage Types:</strong></p>
+                    <ul>
+                      {Object.entries(CARD_SUITS).map(([suit, data]) => (
+                        <li key={suit}>{data.symbol} {data.name} → {data.damageType}</li>
+                      ))}
+                    </ul>
+                    <div className="rules-summary">
+                      <small>
+                        🔥 Only available during conflict scenes<br/>
+                        🂮 Start each conflict with {ACE_OF_CARDS_RULES.startingHandSize} cards<br/>
+                        🔄 When deck empty, shuffle discard pile back in<br/>
+                        🎯 Resolve card sets for powerful effects<br/>
+                        🃏 Jokers can be any suit/value when resolving sets
+                      </small>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

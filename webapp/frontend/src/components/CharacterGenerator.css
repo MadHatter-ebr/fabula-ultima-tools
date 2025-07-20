@@ -1247,6 +1247,137 @@
   box-shadow: 0 0 10px currentColor;
 }
 
+/* Card Set Effects Styling */
+.card-set-effects {
+  margin: 20px 0;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.card-set-effects h4 {
+  margin: 0 0 15px 0;
+  color: #2c3e50;
+  font-size: 1.1em;
+}
+
+.set-effects-list {
+  display: grid;
+  gap: 12px;
+}
+
+.set-effect {
+  padding: 12px;
+  background: white;
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+  transition: all 0.2s ease;
+}
+
+.set-effect:hover {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  border-color: #3498db;
+}
+
+.set-name {
+  font-weight: bold;
+  color: #8e44ad;
+  font-size: 1.1em;
+  margin-bottom: 4px;
+}
+
+.set-requirement {
+  font-style: italic;
+  color: #7f8c8d;
+  font-size: 0.9em;
+  margin-bottom: 6px;
+}
+
+.set-description {
+  color: #2c3e50;
+  font-size: 0.95em;
+  line-height: 1.4;
+}
+
+/* Deck Rules Styling */
+.deck-rules {
+  margin-top: 10px;
+}
+
+.deck-rules p {
+  margin: 8px 0;
+  color: #2c3e50;
+}
+
+.deck-rules ul {
+  margin: 8px 0;
+  padding-left: 20px;
+}
+
+.deck-rules li {
+  margin: 4px 0;
+  color: #34495e;
+}
+
+.rules-summary {
+  margin-top: 15px;
+  padding: 10px;
+  background: #ecf0f1;
+  border-radius: 6px;
+}
+
+.rules-summary small {
+  line-height: 1.5;
+  color: #7f8c8d;
+}
+
+/* Retro Theme for Card Set Effects */
+.retro .card-set-effects {
+  background: #000;
+  border: 1px solid #0f0;
+}
+
+.retro .card-set-effects h4 {
+  color: #0f0;
+}
+
+.retro .set-effect {
+  background: #000;
+  border: 1px solid #333;
+  color: #0f0;
+}
+
+.retro .set-effect:hover {
+  border-color: #0f0;
+  box-shadow: 0 0 10px #0f0;
+}
+
+.retro .set-name {
+  color: #ff0;
+}
+
+.retro .set-requirement {
+  color: #888;
+}
+
+.retro .set-description {
+  color: #0f0;
+}
+
+.retro .deck-rules p,
+.retro .deck-rules li {
+  color: #0f0;
+}
+
+.retro .rules-summary {
+  background: #000;
+  border: 1px solid #333;
+}
+
+.retro .rules-summary small {
+  color: #888;
+}
+
 .retro .card-name {
   color: #888;
 }

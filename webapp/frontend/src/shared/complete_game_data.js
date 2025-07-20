@@ -3968,47 +3968,82 @@ export const TINKERER_MAGITECH = {
   }
 };
 
-// Ace of Cards Deck System
+// Ace of Cards Deck System - Official 30-Card Rules
 export const CARD_SUITS = {
-  hearts: { name: 'Hearts', symbol: '♥️', color: 'red' },
-  diamonds: { name: 'Diamonds', symbol: '♦️', color: 'red' },
-  clubs: { name: 'Clubs', symbol: '♣️', color: 'black' },
-  spades: { name: 'Spades', symbol: '♠️', color: 'black' }
+  hearts: { name: 'Hearts', symbol: '♥️', color: 'red', damageType: 'fire' },
+  diamonds: { name: 'Diamonds', symbol: '♦️', color: 'red', damageType: 'earth' },
+  clubs: { name: 'Clubs', symbol: '♣️', color: 'black', damageType: 'ice' },
+  spades: { name: 'Spades', symbol: '♠️', color: 'black', damageType: 'air' }
 };
 
 export const CARD_VALUES = {
-  ace: { name: 'Ace', value: 1, display: 'A' },
+  1: { name: 'One', value: 1, display: '1' },
   2: { name: 'Two', value: 2, display: '2' },
   3: { name: 'Three', value: 3, display: '3' },
   4: { name: 'Four', value: 4, display: '4' },
   5: { name: 'Five', value: 5, display: '5' },
   6: { name: 'Six', value: 6, display: '6' },
-  7: { name: 'Seven', value: 7, display: '7' },
-  8: { name: 'Eight', value: 8, display: '8' },
-  9: { name: 'Nine', value: 9, display: '9' },
-  10: { name: 'Ten', value: 10, display: '10' },
-  jack: { name: 'Jack', value: 11, display: 'J' },
-  queen: { name: 'Queen', value: 12, display: 'Q' },
-  king: { name: 'King', value: 13, display: 'K' }
+  7: { name: 'Seven', value: 7, display: '7' }
 };
 
-export const createStandardDeck = () => {
+// Create 30-card Ace of Cards deck (28 suit cards + 2 jokers)
+export const createAceOfCardsDeck = () => {
   const deck = [];
   
-  // Add regular cards
+  // Add 7 cards per suit (values 1-7)
   Object.keys(CARD_SUITS).forEach(suit => {
     Object.keys(CARD_VALUES).forEach(value => {
       deck.push({
         id: `${value}_${suit}`,
         suit,
-        value,
+        value: parseInt(value),
         isJoker: false,
-        display: `${CARD_VALUES[value].display}${CARD_SUITS[suit].symbol}`
+        display: `${CARD_VALUES[value].display}${CARD_SUITS[suit].symbol}`,
+        damageType: CARD_SUITS[suit].damageType
       });
     });
   });
   
-  // Add jokers
+  // Add 2 jokers
+  deck.push(
+    { id: 'joker_1', suit: 'joker', value: 'joker', isJoker: true, display: '🃏', damageType: null },
+    { id: 'joker_2', suit: 'joker', value: 'joker', isJoker: true, display: '🃏', damageType: null }
+  );
+  
+  return deck;
+};
+
+// Legacy 52-card deck function for compatibility
+export const createStandardDeck = () => {
+  const deck = [];
+  const standardValues = {
+    ace: { name: 'Ace', value: 1, display: 'A' },
+    2: { name: 'Two', value: 2, display: '2' },
+    3: { name: 'Three', value: 3, display: '3' },
+    4: { name: 'Four', value: 4, display: '4' },
+    5: { name: 'Five', value: 5, display: '5' },
+    6: { name: 'Six', value: 6, display: '6' },
+    7: { name: 'Seven', value: 7, display: '7' },
+    8: { name: 'Eight', value: 8, display: '8' },
+    9: { name: 'Nine', value: 9, display: '9' },
+    10: { name: 'Ten', value: 10, display: '10' },
+    jack: { name: 'Jack', value: 11, display: 'J' },
+    queen: { name: 'Queen', value: 12, display: 'Q' },
+    king: { name: 'King', value: 13, display: 'K' }
+  };
+  
+  Object.keys(CARD_SUITS).forEach(suit => {
+    Object.keys(standardValues).forEach(value => {
+      deck.push({
+        id: `${value}_${suit}`,
+        suit,
+        value,
+        isJoker: false,
+        display: `${standardValues[value].display}${CARD_SUITS[suit].symbol}`
+      });
+    });
+  });
+  
   deck.push(
     { id: 'joker_red', suit: 'joker', value: 'joker', isJoker: true, display: '🃏' },
     { id: 'joker_black', suit: 'joker', value: 'joker', isJoker: true, display: '🃏' }
@@ -4024,6 +4059,110 @@ export const shuffleDeck = (deck) => {
     [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
   }
   return shuffled;
+};
+
+// Ace of Cards Set Effects
+export const CARD_SET_EFFECTS = {
+  'Jackpot': {
+    requirement: '4 cards of the same value, none of which is a joker',
+    effect: 'You and every ally present on the scene recover 777 Hit Points and 777 Mind Points; any PCs who have surrendered but are still part of the scene immediately regain consciousness (this does not cancel the effects of their Surrender).',
+    checkSet: (cards) => {
+      if (cards.length !== 4) return false;
+      const values = cards.map(c => c.value);
+      const hasJoker = cards.some(c => c.isJoker);
+      return !hasJoker && values.every(v => v === values[0]);
+    }
+  },
+  'Magic Flush': {
+    requirement: '4 cards of consecutive values and of the same suit',
+    effect: 'You deal damage equal to 【25 + the total value of the resolved cards】 to each enemy present on the scene; the type of this damage matches the suit of the resolved cards.',
+    bonusDamage: { level20: 10, level40: 20 },
+    checkSet: (cards) => {
+      if (cards.length !== 4) return false;
+      const suits = cards.map(c => c.suit);
+      const values = cards.map(c => parseInt(c.value)).sort((a, b) => a - b);
+      const sameSuit = suits.every(s => s === suits[0] && s !== 'joker');
+      const consecutive = values.every((v, i) => i === 0 || v === values[i-1] + 1);
+      return sameSuit && consecutive;
+    }
+  },
+  'Blinding Flush': {
+    requirement: '4 cards of consecutive values',
+    effect: 'You deal damage equal to 【15 + the total value of the resolved cards】 to each enemy present on the scene; the type of this damage is light if the highest value among those cards is even, or dark if that value is odd.',
+    bonusDamage: { level20: 10, level40: 20 },
+    checkSet: (cards) => {
+      if (cards.length !== 4) return false;
+      const values = cards.map(c => parseInt(c.value)).sort((a, b) => a - b);
+      return values.every((v, i) => i === 0 || v === values[i-1] + 1);
+    }
+  },
+  'Full Status': {
+    requirement: '3 cards of the same value + 2 cards of the same value',
+    effect: 'Choose two status effects among dazed, shaken, slow, and weak: if 【the highest value among resolved cards】 is even, you and every ally present on the scene recover from the chosen status effects; if odd, each enemy present on the scene suffers them.',
+    checkSet: (cards) => {
+      if (cards.length !== 5) return false;
+      const valueCounts = {};
+      cards.forEach(c => {
+        const val = c.value;
+        valueCounts[val] = (valueCounts[val] || 0) + 1;
+      });
+      const counts = Object.values(valueCounts).sort((a, b) => b - a);
+      return counts.length === 2 && counts[0] === 3 && counts[1] === 2;
+    }
+  },
+  'Triple Support': {
+    requirement: '3 cards of the same value',
+    effect: 'You and every ally present on the scene regain an amount of Hit Points and Mind Points equal to 【the total value of the resolved cards, multiplied by 3】.',
+    checkSet: (cards) => {
+      if (cards.length !== 3) return false;
+      const values = cards.map(c => c.value);
+      return values.every(v => v === values[0]);
+    }
+  },
+  'Double Trouble': {
+    requirement: '2 cards of the same value + 2 cards of the same value',
+    effect: 'You deal damage equal to 【10 + the highest value among resolved cards】 to each of up to two different enemies you can see that are present on the scene; the type of this damage is one of your choice among those matching the suits of the resolved cards.',
+    bonusDamage: { level20: 10, level40: 20 },
+    checkSet: (cards) => {
+      if (cards.length !== 4) return false;
+      const valueCounts = {};
+      cards.forEach(c => {
+        const val = c.value;
+        valueCounts[val] = (valueCounts[val] || 0) + 1;
+      });
+      const counts = Object.values(valueCounts);
+      return counts.length === 2 && counts.every(c => c === 2);
+    }
+  },
+  'Magic Pair': {
+    requirement: '2 cards of the same value',
+    effect: 'You perform a free attack with a weapon you have equipped. If this attack deals damage, choose a suit among those of the resolved cards; all damage dealt by the attack becomes of the type matching that suit.',
+    checkSet: (cards) => {
+      if (cards.length !== 2) return false;
+      const values = cards.map(c => c.value);
+      return values[0] === values[1];
+    }
+  }
+};
+
+// Deck Management Rules
+export const ACE_OF_CARDS_RULES = {
+  deckSize: 30,
+  startingHandSize: 5,
+  cardsPerSuit: 7,
+  suitCount: 4,
+  jokerCount: 2,
+  cardValues: [1, 2, 3, 4, 5, 6, 7],
+  availableOnlyInConflict: true,
+  shuffleAfterConflict: true,
+  description: {
+    deck: 'Your deck contains exactly 30 cards: 2 jokers, plus 28 cards divided into 4 suits. Each suit contains 7 cards with values 1 to 7. Each suit is associated with a different damage type: air, earth, fire, and ice.',
+    conflict: 'When a conflict begins, shuffle all 30 cards and place face down, then draw 5 cards for your starting hand.',
+    drawing: 'If you need to draw cards and your deck doesn\'t have enough, draw as many as you can, shuffle your discard pile into the deck, then keep drawing.',
+    hand: 'Cards in your hand are normally only visible to you, but you can show them to others if you wish.',
+    discard: 'When you discard cards, place them face up in your discard pile in any order you prefer. The order cannot be modified once placed.',
+    endOfConflict: 'At the end of each conflict, shuffle all 30 cards back into your deck and put it aside.'
+  }
 };
 
 // Spiritist Spells
@@ -4230,5 +4369,8 @@ export default {
   CARD_SUITS,
   CARD_VALUES,
   createStandardDeck,
-  shuffleDeck
+  createAceOfCardsDeck,
+  shuffleDeck,
+  CARD_SET_EFFECTS,
+  ACE_OF_CARDS_RULES
 };
