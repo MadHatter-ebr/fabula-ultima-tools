@@ -1036,6 +1036,52 @@ export const CHARACTER_CLASSES = {
     source: 'Core Rules'
   },
 
+  NECROMANCER: {
+    name: 'Necromancer',
+    description: 'Masters of death magic and manipulation of the undead',
+    primaryAttributes: ['insight', 'willpower'],
+    freeBenefits: ['HP +5 or MP +5 (your choice)'],
+    equipmentProficiencies: ['Basic weapons', 'Basic armor'],
+    abilities: {
+      'Beyond the Realms of Death': {
+        level: 5,
+        description: 'When another creature you can see loses Hit Points while in Crisis, if they are not undead, you gain 1 Grave Point. You may never have more than 【SL + 1】 Grave Points. When you are reduced to 0 Hit Points, you lose all Grave Points; then, if you lost at least 1 Grave Point this way and this is the first time you are reduced to 0 HP during this scene, you do not Surrender nor Sacrifice yourself: instead, you recover an amount of HP equal to 【SL, multiplied by the amount of Grave Points you lost this way】.',
+        type: 'passive',
+        cost: 'None',
+        maxTimes: 5
+      },
+      'Children of the Grave': {
+        level: 1,
+        description: 'You can always communicate verbally with undead creatures. Once per scene, you may ask an undead a single question; they are compelled to answer truthfully.',
+        type: 'passive',
+        cost: 'None',
+        maxTimes: 1
+      },
+      'Fear is the Key': {
+        level: 3,
+        description: 'After you cause one or more enemies to lose Hit Points, if you have acquired the Beyond the Realms of Death Skill and at least one of them is suffering from shaken and/or weak, you gain 1 Grave Point and recover 【SL × 2】 Hit Points and Mind Points.',
+        type: 'passive',
+        cost: 'None',
+        maxTimes: 3
+      },
+      'For Whom the Bell Tolls': {
+        level: 3,
+        description: 'When you deal damage to a creature with a spell, if that spell only deals damage to that creature, you may spend 1 Grave Point. If you do, choose one option: if that creature is suffering from one or more status effects, the spell deals extra damage equal to 【(SL × 2) + the number of status effects on that creature】; or if that creature is suffering from no status effects, they suffer shaken.',
+        type: 'active',
+        cost: '1 Grave Point',
+        maxTimes: 3
+      },
+      'Rondo of Nightmare': {
+        level: 1,
+        description: 'When you cast an offensive spell (rr) with a target of "One creature", you may spend 2 Grave Points to have it target all creatures you can see that are present on the scene (perform a single Magic Check and confront it with the Magic Defense of each target). If you do, all damage dealt by the spell becomes dark and its type cannot change.',
+        type: 'active',
+        cost: '2 Grave Points',
+        maxTimes: 1
+      }
+    },
+    source: 'Core Rules'
+  },
+
   // DARK FANTASY CLASSES
   HEXER: {
     name: 'Hexer',
