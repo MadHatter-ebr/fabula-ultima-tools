@@ -3778,6 +3778,16 @@ export const DEFAULT_CHARACTER = {
     bolt: 'NORMAL',
     dark: 'NORMAL',
     light: 'NORMAL'
+  },
+  gravePoints: {
+    current: 0,
+    maximum: 0
+  },
+  cardDeck: {
+    deck: [],
+    hand: [],
+    discard: [],
+    handSize: 5
   }
 };
 

@@ -899,7 +899,20 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
     
     const foundCharacter = savedCharacters.find(c => c.id === characterId);
     if (foundCharacter) {
-      setCharacter(foundCharacter);
+      // Migrate older characters to include new properties
+      const migratedCharacter = {
+        ...DEFAULT_CHARACTER,
+        ...foundCharacter,
+        gravePoints: foundCharacter.gravePoints || { current: 0, maximum: 0 },
+        cardDeck: foundCharacter.cardDeck || {
+          deck: [],
+          hand: [],
+          discard: [],
+          handSize: ACE_OF_CARDS_RULES.startingHandSize
+        }
+      };
+      
+      setCharacter(migratedCharacter);
       alert('Character loaded successfully!');
     }
   };
