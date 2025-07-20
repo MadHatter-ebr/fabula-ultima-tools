@@ -674,7 +674,7 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
   const [savedCharacters, setSavedCharacters] = useState([]);
   const [storageStatus, setStorageStatus] = useState({ storage: 'localStorage' });
   const [zoomLevel, setZoomLevel] = useState(1);
-  const [isRetroTheme, setIsRetroTheme] = useState(false);
+  const [isRetroTheme, setIsRetroTheme] = useState(true);
 
   // Load saved characters on component mount
   useEffect(() => {
