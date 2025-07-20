@@ -902,112 +902,42 @@ export const CHARACTER_CLASSES = {
     name: 'Wayfarer',
     description: 'Explorers and wilderness survivors',
     primaryAttributes: ['insight', 'willpower'],
-    freeBenefits: ['HP +5'],
+    freeBenefits: ['IP +2'],
     equipmentProficiencies: ['Basic weapons', 'Basic armor'],
     abilities: {
-      'Resourceful': {
-        level: 1,
-        description: 'During a rest scene, you may spend 10 zenit to produce any basic item with a cost of up to 【SL × 100】 zenit.',
-        type: 'passive',
-        cost: 'None',
-        maxTimes: 1
-      },
-      'Wilderness Lore': {
-        level: 1,
-        description: 'When you make an Open Check to study, navigate, or survive in a natural environment, you may spend 2 Mind Points to automatically succeed with two raises (no need to roll dice).',
-        type: 'passive',
-        cost: 'None',
-        maxTimes: 1
-      },
-      'Tracking': {
-        level: 2,
-        description: 'Study an area to determine what creatures have been present there, how many they were, and when they were last there.',
-        type: 'active',
-        cost: '5 MP',
-        maxTimes: 1
-      },
-      'Camouflage': {
-        level: 2,
-        description: 'You may only use this skill if you are in a natural environment. Until the start of your next turn, you cannot be targeted by attacks unless you are the only valid target present on the scene.',
-        type: 'active',
-        cost: '8 MP',
-        maxTimes: 1
-      },
       'Faithful Companion': {
-        level: 3,
-        description: 'You are accompanied by a faithful animal companion. During your turn, you may have your companion perform one action: attack one creature you can see (dealing 【SL × 10】 damage), or help you (granting a +【SL × 2】 bonus to your next Check).',
-        type: 'passive',
-        cost: 'None',
-        maxTimes: 1
-      },
-      'Foraging': {
-        level: 3,
-        description: 'You may only use this skill during a rest scene and if you are in a natural environment. Choose yourself and up to 【SL】 allies: each chosen creature recovers 【SL × 10】 Hit Points and 【SL × 5】 Mind Points.',
-        type: 'active',
-        cost: '5 MP',
-        maxTimes: 1
-      },
-      'Weather Sense': {
-        level: 4,
-        description: 'Predict weather changes and natural disasters. Prepare for environmental hazards.',
-        type: 'passive',
-        cost: 'None',
-        maxTimes: 1
-      },
-      'Beast Speech': {
-        level: 4,
-        description: 'Communicate with wild animals. Gain information and assistance from creatures.',
-        type: 'active',
-        cost: '10 MP',
-        maxTimes: 1
-      },
-      'Travel Skills': {
         level: 5,
-        description: 'Excel at navigation and survival. Never get lost and always find the best route.',
+        description: 'Together with the rest of your group, design a level 5 beast, construct, elemental or plant creature that becomes your companion. This creature has no Initiative score and does not level up, can have up to two basic attacks, gains a bonus equal to 【SL】 to Accuracy Checks and Magic Checks, and their maximum Hit Points are equal to 【(SL multiplied by the companion\'s base Might die size) + half your level】. Your companion doesn\'t get a turn during conflicts, but on your turn you can use an action to have the companion perform an action (only once per turn). If you leave a scene, your companion leaves with you. If your companion falls to 0 Hit Points, they flee and rejoin you at the start of the next scene in which you are present, with HP equal to their Crisis score. When you rest, your companion also gains the full benefits of resting.',
+        type: 'companion',
+        cost: 'None',
+        maxTimes: 5
+      },
+      'Resourceful': {
+        level: 4,
+        description: 'You recover 【SL】 Inventory Points after each travel roll.',
         type: 'passive',
         cost: 'None',
-        maxTimes: 1
+        maxTimes: 4
       },
-      'Trap Sense': {
-        level: 5,
-        description: 'Detect and disarm natural and artificial traps. Protect your party from hidden dangers.',
-        type: 'passive',
-        cost: 'None',
-        maxTimes: 1
-      },
-      'Nature\'s Ally': {
-        level: 6,
-        description: 'Call upon nature for aid. Summon natural forces to help in combat or exploration.',
+      'Tavern Talk': {
+        level: 3,
+        description: 'When you rest inside an inn or tavern, you may ask the Game Master up to 【SL】 questions about your surroundings and the people who live here; the Game Master will answer truthfully and you describe how you gathered the information.',
         type: 'active',
-        cost: '20 MP',
-        maxTimes: 1
+        cost: 'None',
+        maxTimes: 3
       },
-      'Wilderness Stride': {
-        level: 6,
-        description: 'Move through difficult terrain without penalty. Lead your party through any environment.',
+      'Treasure Hunter': {
+        level: 2,
+        description: 'When your group journeys on the world map, you will make a discovery on a roll of 【SL + 1】 or lower on the travel roll (instead of only on a 1).',
         type: 'passive',
         cost: 'None',
-        maxTimes: 1
+        maxTimes: 2
       },
-      'Master Tracker': {
-        level: 8,
-        description: 'Track anything across any distance. Follow trails through time and space.',
+      'Well-Traveled': {
+        level: 1,
+        description: 'You reduce the die rolled for your travel rolls by one size (to a minimum of d6). If multiple characters have this Skill, the effects are not cumulative.',
         type: 'passive',
         cost: 'None',
-        maxTimes: 1
-      },
-      'Survival Instincts': {
-        level: 8,
-        description: 'Sense danger and opportunity with supernatural awareness. Never be caught off guard.',
-        type: 'passive',
-        cost: 'None',
-        maxTimes: 1
-      },
-      'One with Nature': {
-        level: 10,
-        description: 'Become one with the natural world. Gain the abilities of any natural creature.',
-        type: 'active',
-        cost: '40 MP',
         maxTimes: 1
       }
     },
@@ -1018,113 +948,43 @@ export const CHARACTER_CLASSES = {
     name: 'Weaponmaster',
     description: 'Masters of martial combat',
     primaryAttributes: ['dexterity', 'might'],
-    freeBenefits: ['HP +5', 'Martial armor and melee weapons'],
-    equipmentProficiencies: ['Martial armor', 'Martial melee weapons'],
+    freeBenefits: ['HP +5', 'Martial melee weapons and martial shields'],
+    equipmentProficiencies: ['Martial melee weapons', 'Martial shields'],
     abilities: {
-      'Melee Weapon Mastery': {
+      'Bladestorm': {
         level: 1,
-        description: 'Excel with all melee weapons. Gain bonuses to accuracy, damage, and special maneuvers.',
-        type: 'passive',
-        cost: 'None',
-        maxTimes: 1
-      },
-      'Combat Reflexes': {
-        level: 1,
-        description: 'React instantly to threats. Gain bonuses to initiative and defensive actions.',
-        type: 'passive',
-        cost: 'None',
-        maxTimes: 1
-      },
-      'Weapon Techniques': {
-        level: 2,
-        description: 'Master special techniques for each weapon type. Unlock unique abilities per weapon.',
-        type: 'passive',
-        cost: 'None',
-        maxTimes: 1
-      },
-      'Flurry of Blows': {
-        level: 2,
-        description: 'Attack multiple times in rapid succession. Overwhelm enemies with speed.',
+        description: 'When you perform a melee attack, you may spend 10 Mind Points to choose one option: the attack gains multi (2); or you increase the attack\'s multi property by one, up to a maximum of multi (3).',
         type: 'active',
         cost: '10 MP',
-        maxTimes: 1
-      },
-      'Breach': {
-        level: 3,
-        description: 'Break through enemy defenses and armor. Ignore defensive bonuses.',
-        type: 'active',
-        cost: '10 MP',
-        maxTimes: 1
-      },
-      'Disarm': {
-        level: 3,
-        description: 'Disarm enemies with precise strikes. Remove weapons from enemy hands.',
-        type: 'active',
-        cost: '12 MP',
-        maxTimes: 1
-      },
-      'Weapon Throw': {
-        level: 4,
-        description: 'Throw melee weapons with devastating accuracy. Turn any weapon into a ranged weapon.',
-        type: 'active',
-        cost: '15 MP',
-        maxTimes: 1
-      },
-      'Combat Expertise': {
-        level: 4,
-        description: 'Master all aspects of combat. Gain bonuses to all combat actions.',
-        type: 'passive',
-        cost: 'None',
-        maxTimes: 1
-      },
-      'Counterattack': {
-        level: 5,
-        description: 'Strike back when attacked. Automatically counter enemy attacks.',
-        type: 'passive',
-        cost: 'None',
-        maxTimes: 1
-      },
-      'Whirlwind Strike': {
-        level: 5,
-        description: 'Attack all enemies around you in a devastating circular assault.',
-        type: 'active',
-        cost: '20 MP',
-        maxTimes: 1
-      },
-      'Weapon Mastery': {
-        level: 6,
-        description: 'Achieve perfect mastery with your chosen weapons. Maximize damage and accuracy.',
-        type: 'passive',
-        cost: 'None',
-        maxTimes: 1
-      },
-      'Devastating Strike': {
-        level: 6,
-        description: 'Strike with overwhelming force. Deal massive damage to single targets.',
-        type: 'active',
-        cost: '25 MP',
         maxTimes: 1
       },
       'Bone Crusher': {
-        level: 8,
-        description: 'Deliver devastating attacks that can shatter bones and destroy armor.',
+        level: 4,
+        description: 'When you hit one or more targets with a melee attack that would deal damage, you may have the attack deal no damage. If you do, choose one option: inflict dazed on each target hit by the attack; or inflict weak on each target hit by the attack; or each target hit by the attack loses 【SL × 10】 Mind Points. Describe your maneuver!',
         type: 'active',
-        cost: '20 MP',
-        maxTimes: 1
+        cost: 'None',
+        maxTimes: 4
       },
-      'Legendary Warrior': {
-        level: 8,
-        description: 'Become a legendary warrior. All weapon attacks gain maximum effectiveness.',
-        type: 'passive',
+      'Breach': {
+        level: 3,
+        description: 'You may use an action and spend 5 Mind Points to perform a free attack with a melee weapon you have equipped. This attack must target a single creature. If the attack is successful, it deals no damage and you choose one option: you destroy one shield equipped by the target; or you destroy the target\'s equipped armor; or whenever the target suffers damage from a source before the start of your next turn, that source deals 【SL × 2】 extra damage to them.',
+        type: 'active',
+        cost: '5 MP',
+        maxTimes: 3
+      },
+      'Counterattack': {
+        level: 1,
+        description: 'After an enemy hits or misses you with a melee attack, if the Result of their Accuracy Check was an even number, you may perform a free attack against that enemy (after their attack has been fully resolved). This attack must be a melee attack and must have that enemy as its only target; treat your High Roll (HR) as 0 when calculating damage dealt by this attack.',
+        type: 'reaction',
         cost: 'None',
         maxTimes: 1
       },
-      'Thousand Cuts': {
-        level: 10,
-        description: 'Unleash a legendary technique that strikes with the power of a thousand blows.',
-        type: 'active',
-        cost: '40 MP',
-        maxTimes: 1
+      'Melee Weapon Mastery': {
+        level: 4,
+        description: 'You gain a bonus equal to 【SL】 to all Accuracy Checks with melee weapons.',
+        type: 'passive',
+        cost: 'None',
+        maxTimes: 4
       }
     },
     source: 'Core Rules'
