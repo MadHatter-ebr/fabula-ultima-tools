@@ -2470,116 +2470,47 @@ export const CHARACTER_CLASSES = {
     name: 'Floralist',
     description: 'A practitioner of chloromancy, skilled in the cultivation and manipulation of magical plants',
     primaryAttributes: ['willpower', 'insight'],
-    freeBenefits: ['MP +5', 'Chloromancy Rituals'],
+    freeBenefits: ['HP +5 or MP +5 (your choice)'],
     equipmentProficiencies: ['Basic weapons', 'Basic armor'],
     abilities: {
       'Battle Gardening': {
-        level: 5,
-        description: 'After you plant a magiseed through the Chloromancy Skill (not when using Graft), you may choose one option: perform a free attack with an equipped weapon; or perform the Spell action for free, casting a spell with a total Mind Point cost equal to or lower than 【SL × 5】 + 5 (you must still pay its MP cost). Treat the High Roll (HR) of your Accuracy Check or Magic Check as being equal to 0 when determining damage dealt by this attack or spell.',
-        type: 'active',
+        level: 3,
+        description: 'After you plant a magiseed through the Chloromancy Skill (not when using Graft), you may choose one option: perform a free attack with an equipped weapon; or perform the Spell action for free, casting a spell with a total Mind Point cost equal to or lower than 【5 + (SL × 5)】 (you must still pay its MP cost). Treat the High Roll (HR) of your Accuracy Check or Magic Check as being equal to 0 when determining damage dealt by this attack or spell.',
+        type: 'passive',
         cost: 'Free after Chloromancy',
-        maxTimes: 5
+        maxTimes: 3
       },
       'Chloromancy': {
-        level: 1,
-        description: 'You may perform Rituals of the Chloromancy discipline during rest scenes. Additionally, during a conflict, you may perform the following action: Plant Magiseed - Pay 5 MP to plant a magiseed adjacent to you. The magiseed grows instantly and produces its effect.',
-        type: 'ritual',
-        cost: 'Special',
-        maxTimes: 1
-      },
-      'Emergency Harvest': {
-        level: 3,
-        description: 'Choose yourself and up to 【SL】 allies you can see. Each chosen creature recovers 【SL × 5】 Hit Points and 【SL × 5】 Mind Points.',
-        type: 'active',
-        cost: '10 MP',
-        maxTimes: 3
+        level: 10,
+        description: 'Each time you acquire this Skill, you discover a new type of magiseed from the list. During a conflict, if there are no magiseeds in your garden, you may use an action and spend 20 Mind Points to plant a magiseed of a type you have discovered.',
+        type: 'special',
+        cost: '20 MP',
+        maxTimes: 10,
+        requiresMagiseedSelection: true
       },
       'Graft': {
-        level: 2,
-        description: 'During a conflict, you may plant a magiseed in a location where a magical plant already exists. The magiseed produces its effect immediately and is combined with the existing plant.',
-        type: 'active',
-        cost: 'MP varies',
-        maxTimes: 2
-      },
-      'Green Thumb': {
         level: 1,
-        description: 'When you perform an Open Check to study, navigate, or survive in a natural environment, you may reroll up to 【SL】 dice.',
-        type: 'passive',
-        cost: 'None',
+        description: 'As long as there is a magiseed in your garden and 1 or more sections of your Growth Clock are filled, you may use an action to remove that magiseed from your garden: if you do, plant a different magiseed among those you have discovered (keep the current filled sections of your Growth Clock unchanged).',
+        type: 'active',
+        cost: 'Action',
         maxTimes: 1
       },
-      'Herbalism': {
-        level: 2,
-        description: 'When you use a Potion or Remedy, its effects are increased by 【SL × 5】 (if the item restores HP or MP) or the effect duration is doubled (if the item provides a different benefit).',
-        type: 'passive',
-        cost: 'None',
-        maxTimes: 2
-      },
-      'Magiseed Creation': {
-        level: 4,
-        description: 'You can create special magiseeds that contain concentrated magical energy. These seeds can be planted to create various magical effects during combat or exploration.',
-        type: 'active',
-        cost: 'MP varies',
-        maxTimes: 4
-      },
-      'Nature\'s Ally': {
-        level: 3,
-        description: 'You can call upon plant allies to assist you in combat. Summon plant creatures or animate existing vegetation to fight alongside you.',
-        type: 'active',
-        cost: '15 MP',
-        maxTimes: 3
-      },
-      'Poison Resistance': {
-        level: 2,
-        description: 'Your constant exposure to various plants has built up your resistance to toxins. You gain immunity to poison effects and can neutralize poison in others.',
-        type: 'passive',
-        cost: 'None',
-        maxTimes: 2
-      },
-      'Root Network': {
-        level: 4,
-        description: 'You can tap into the underground network of plant roots to gather information over vast distances and communicate with other plant-connected individuals.',
-        type: 'active',
-        cost: '10 MP',
-        maxTimes: 4
-      },
-      'Seasonal Adaptation': {
-        level: 3,
-        description: 'You can adapt your magical abilities to match the current season, gaining different benefits and spell effects based on the time of year.',
-        type: 'passive',
-        cost: 'None',
-        maxTimes: 3
-      },
-      'Thorn Barrier': {
-        level: 3,
-        description: 'Create a barrier of thorns that protects you and your allies. The barrier deals damage to enemies who attack through it and provides cover.',
-        type: 'active',
-        cost: '12 MP',
-        maxTimes: 3
-      },
-      'Verdant Growth': {
+      'Tree of Life': {
         level: 5,
-        description: 'Cause explosive plant growth in the area around you. This can create difficult terrain, provide cover, or enhance existing plant-based effects.',
-        type: 'active',
-        cost: '20 MP',
+        description: 'When you remove a magiseed from your garden, you may choose one creature you can see: if that creature is in Crisis, they recover 【5 + (SL × 5)】 Hit Points.',
+        type: 'passive',
+        cost: 'None',
         maxTimes: 5
       },
-      'Vine Whip': {
+      'Verdant Sway': {
         level: 1,
-        description: 'Control nearby vines or create magical vines to strike enemies, restrain them, or manipulate objects at a distance.',
-        type: 'active',
-        cost: '5 MP',
-        maxTimes: 1
-      },
-      'Photosynthesis': {
-        level: 2,
-        description: 'You can absorb sunlight to restore your magical energy. During daylight hours, you can recover MP more quickly during rest.',
+        description: 'You gain the ability to perform Rituals of the Ritualism discipline; additionally, you may use Ritualism to create, animate, and/or control vegetation, pollen, spores, and toxins (but you cannot create nor control plant-Species NPCs this way).',
         type: 'passive',
         cost: 'None',
-        maxTimes: 2
+        maxTimes: 1
       }
     },
-    source: 'Natural Fantasy Atlas'
+    source: 'Atlas High Fantasy'
   },
 
   GEOMANCER: {
@@ -3788,6 +3719,12 @@ export const DEFAULT_CHARACTER = {
     hand: [],
     discard: [],
     handSize: 5
+  },
+  garden: {
+    currentMagiseed: null,
+    growthClock: 0,
+    discoveredMagiseeds: [],
+    isActive: false
   }
 };
 
@@ -4343,6 +4280,48 @@ export const ENTROPIST_SPELLS = {
   }
 };
 
+// Floralist Magiseed System - Simplified for now
+export const FLORALIST_MAGISEEDS = {
+  'Arctic Narcissus': {
+    name: 'Arctic Narcissus',
+    description: 'It stubbornly survives in frozen territories.',
+    color: '#a8d8ea',
+    icon: '🌷'
+  },
+  'Blazing Chrysanthemum': {
+    name: 'Blazing Chrysanthemum', 
+    description: 'Its thick petals resemble an erupting volcano.',
+    color: '#ff6b6b',
+    icon: '🌻'
+  },
+  'Desert Dahlia': {
+    name: 'Desert Dahlia',
+    description: 'A tenacious plant that thrives in dry conditions.',
+    color: '#ffd93d', 
+    icon: '🌺'
+  },
+  'Golden Ginkgo': {
+    name: 'Golden Ginkgo',
+    description: 'Its vibrantly colored leaves represent tenacity.',
+    color: '#ffeb3b',
+    icon: '🍀'
+  },
+  'Grave Asphodel': {
+    name: 'Grave Asphodel',
+    description: 'Solemn and elegant, it embodies death.',
+    color: '#6c5ce7',
+    icon: '🥀'
+  }
+};
+
+// Garden System Rules
+export const GARDEN_SYSTEM = {
+  gardenCapacity: 1,
+  growthClockSections: 4,
+  availableOnlyInConflict: true,
+  autoRemoveEndOfScene: true
+};
+
 export const CHARACTER_CREATION_RULES = {
   startingLevel: 5,
   maxLevel: 50,
@@ -4382,5 +4361,7 @@ export default {
   createAceOfCardsDeck,
   shuffleDeck,
   CARD_SET_EFFECTS,
-  ACE_OF_CARDS_RULES
+  ACE_OF_CARDS_RULES,
+  FLORALIST_MAGISEEDS,
+  GARDEN_SYSTEM
 };
