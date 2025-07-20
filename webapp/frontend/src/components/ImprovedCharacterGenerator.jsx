@@ -17,7 +17,8 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
     ...DEFAULT_CHARACTER,
     classes: [
       { classKey: null, level: 5, abilities: {}, slot: 'primary', spells: {}, inventions: {} }
-    ]
+    ],
+    gravePoints: { current: 0, maximum: 0 }
   });
 
   const [selectedSkillDescriptions, setSelectedSkillDescriptions] = useState({});
@@ -237,6 +238,47 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
   
   const getSpellData = (spellName) => {
     return ELEMENTALIST_SPELLS[spellName] || ENTROPIST_SPELLS[spellName] || SPIRITIST_SPELLS[spellName];
+  };
+
+  // Necromancer Grave Points Functions
+  const hasNecromancerClass = () => {
+    return character.classes.some(cls => cls.classKey === 'NECROMANCER');
+  };
+
+  const getBeyondTheRealmsLevel = () => {
+    let level = 0;
+    character.classes.forEach(cls => {
+      if (cls.classKey === 'NECROMANCER') {
+        Object.values(cls.abilities || {}).forEach(ability => {
+          if (ability === 'Beyond the Realms of Death') {
+            level++;
+          }
+        });
+      }
+    });
+    return level;
+  };
+
+  const calculateMaxGravePoints = () => {
+    const level = getBeyondTheRealmsLevel();
+    return level > 0 ? level + 1 : 0;
+  };
+
+  const updateGravePoints = (newCurrent) => {
+    const maxGravePoints = calculateMaxGravePoints();
+    const clampedCurrent = Math.max(0, Math.min(newCurrent, maxGravePoints));
+    
+    setCharacter(prev => ({
+      ...prev,
+      gravePoints: {
+        current: clampedCurrent,
+        maximum: maxGravePoints
+      }
+    }));
+  };
+
+  const shouldShowGravePoints = () => {
+    return hasNecromancerClass() && getBeyondTheRealmsLevel() > 0;
   };
 
   // Tinkerer Invention Functions
@@ -691,6 +733,20 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
     }
   }, [isRetroTheme]);
 
+  // Grave Points management
+  useEffect(() => {
+    const maxGravePoints = calculateMaxGravePoints();
+    if (character.gravePoints.maximum !== maxGravePoints) {
+      setCharacter(prev => ({
+        ...prev,
+        gravePoints: {
+          current: Math.min(prev.gravePoints.current, maxGravePoints),
+          maximum: maxGravePoints
+        }
+      }));
+    }
+  }, [character.classes]);
+
   const loadSavedCharacters = async () => {
     try {
       const result = await characterStorage.loadCharacters();
@@ -767,6 +823,11 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
           <span>HP: {resources.hp}</span>
           <span>MP: {resources.mp}</span>
           <span>IP: {resources.ip}</span>
+          {shouldShowGravePoints() && (
+            <span className="grave-points-display">
+              💀 Grave Points: {character.gravePoints.current}/{character.gravePoints.maximum}
+            </span>
+          )}
         </div>
         <div className="controls-group">
           <div className="zoom-controls">
@@ -946,6 +1007,65 @@ const ImprovedCharacterGenerator = ({ onCharacterChange, user }) => {
               }))
             } 
           />
+
+          {/* Grave Points System for Necromancer */}
+          {shouldShowGravePoints() && (
+            <div className="grave-points-section card">
+              <h3>💀 Grave Points</h3>
+              <div className="grave-points-tracker">
+                <div className="grave-points-skulls">
+                  {Array.from({ length: character.gravePoints.maximum }, (_, i) => (
+                    <span 
+                      key={i}
+                      className={`skull ${i < character.gravePoints.current ? 'active' : 'inactive'}`}
+                      onClick={() => updateGravePoints(i + 1)}
+                      title={`${i < character.gravePoints.current ? 'Click to remove' : 'Click to add'} Grave Point`}
+                    >
+                      💀
+                    </span>
+                  ))}
+                </div>
+                <div className="grave-points-controls">
+                  <span className="grave-points-counter">
+                    {character.gravePoints.current} / {character.gravePoints.maximum}
+                  </span>
+                  <div className="grave-points-buttons">
+                    <button 
+                      onClick={() => updateGravePoints(character.gravePoints.current + 1)}
+                      disabled={character.gravePoints.current >= character.gravePoints.maximum}
+                      className="btn-add-grave-point"
+                      title="Add Grave Point"
+                    >
+                      +
+                    </button>
+                    <button 
+                      onClick={() => updateGravePoints(character.gravePoints.current - 1)}
+                      disabled={character.gravePoints.current <= 0}
+                      className="btn-remove-grave-point"
+                      title="Remove Grave Point"
+                    >
+                      -
+                    </button>
+                    <button 
+                      onClick={() => updateGravePoints(0)}
+                      disabled={character.gravePoints.current === 0}
+                      className="btn-clear-grave-points"
+                      title="Clear all Grave Points"
+                    >
+                      Clear
+                    </button>
+                  </div>
+                </div>
+                <div className="grave-points-info">
+                  <small>
+                    💀 Gain Grave Points when enemies in Crisis lose HP<br/>
+                    💀 Lose all points when reduced to 0 HP (but survive if you have any)<br/>
+                    💀 Maximum: {character.gravePoints.maximum} (Beyond the Realms of Death Level + 1)
+                  </small>
+                </div>
+              </div>
+            </div>
+          )}
           
           <BondSystem 
             character={character} 

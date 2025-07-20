@@ -907,3 +907,151 @@
     align-items: center;
   }
 }
+
+/* Grave Points System */
+.grave-points-section {
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: var(--ff9-bg-card);
+  border: 2px solid var(--ff9-border-secondary);
+  border-radius: 12px;
+}
+
+.grave-points-section h3 {
+  margin: 0 0 1rem 0;
+  color: var(--ff9-text-primary);
+  font-family: var(--ff9-font-title);
+  text-align: center;
+}
+
+.grave-points-tracker {
+  text-align: center;
+}
+
+.grave-points-skulls {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.skull {
+  font-size: 2rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+  padding: 0.2rem;
+  border-radius: 8px;
+}
+
+.skull.active {
+  filter: drop-shadow(0 0 8px #ff4444);
+  transform: scale(1.1);
+}
+
+.skull.inactive {
+  opacity: 0.3;
+  filter: grayscale(100%);
+}
+
+.skull:hover {
+  transform: scale(1.2);
+  filter: drop-shadow(0 0 12px #ff6666);
+}
+
+.grave-points-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.grave-points-counter {
+  font-weight: bold;
+  color: var(--ff9-text-primary);
+  font-size: 1.1rem;
+}
+
+.grave-points-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.btn-add-grave-point,
+.btn-remove-grave-point,
+.btn-clear-grave-points {
+  background: var(--ff9-bg-button);
+  border: 2px solid var(--ff9-border-button);
+  color: var(--ff9-text-primary);
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: bold;
+}
+
+.btn-add-grave-point:hover,
+.btn-remove-grave-point:hover,
+.btn-clear-grave-points:hover {
+  background: var(--ff9-bg-button-hover);
+  transform: translateY(-2px);
+}
+
+.btn-add-grave-point:disabled,
+.btn-remove-grave-point:disabled,
+.btn-clear-grave-points:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.grave-points-info {
+  color: var(--ff9-text-secondary);
+  line-height: 1.4;
+}
+
+.grave-points-display {
+  color: var(--ff9-text-accent) !important;
+  font-weight: bold;
+}
+
+/* Retro theme adjustments for Grave Points */
+.retro .grave-points-section {
+  background: #000;
+  border: 2px solid #0f0;
+  box-shadow: 0 0 10px #0f0;
+}
+
+.retro .skull.active {
+  filter: drop-shadow(0 0 8px #0f0);
+  color: #0f0;
+}
+
+.retro .skull:hover {
+  filter: drop-shadow(0 0 12px #0f0);
+}
+
+.retro .grave-points-counter {
+  color: #0f0;
+}
+
+.retro .btn-add-grave-point,
+.retro .btn-remove-grave-point,
+.retro .btn-clear-grave-points {
+  background: #000;
+  border: 1px solid #0f0;
+  color: #0f0;
+}
+
+.retro .btn-add-grave-point:hover,
+.retro .btn-remove-grave-point:hover,
+.retro .btn-clear-grave-points:hover {
+  background: #0f0;
+  color: #000;
+}
+
+.retro .grave-points-info {
+  color: #888;
+}
